@@ -1,0 +1,62 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.3s ease-out;
+}
+
+html {
+  font-size: 10px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 150%;
+  font-family: "Inter", sans-serif;
+}
+
+h1 {
+  font-size: 7.2rem;
+  font-weight: 600;
+  line-height: 105%;
+  font-family: "Inter", sans-serif;
+}
+@media (max-width: 348px) {
+  h1 {
+    font-size: 4.2rem;
+    font-weight: 600;
+    line-height: 115%;
+    font-family: "Inter", sans-serif;
+  }
+}
+
+h2 {
+  font-size: 6rem;
+  font-weight: 600;
+  line-height: 125%;
+  font-family: "Inter", sans-serif;
+}
+@media (max-width: 348px) {
+  h2 {
+    font-size: 3.2rem;
+    font-weight: 600;
+    line-height: 125%;
+    font-family: "Inter", sans-serif;
+  }
+}
+
+h3 {
+  font-size: 2.4rem;
+  font-weight: 600;
+  line-height: 125%;
+  font-family: "Inter", sans-serif;
+}
+
+.tab-item {
+  width: 115px;
+  height: 46px;
+}
+
+/*# sourceMappingURL=style.css.map */
