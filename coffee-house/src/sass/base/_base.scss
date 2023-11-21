@@ -8,10 +8,17 @@
 html {
   font-size: 10px;
   scroll-behavior: smooth;
+  background-color: white;
 }
 
 body {
+  margin: auto;
+  width: 1440px;
   @include font ($size: 1.6rem, $height: 150%, $weight: 400);
+  background-color: $color-background-body;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 h1 {
@@ -30,4 +37,9 @@ h2 {
 
 h3 {
   @include font ($size: 2.4rem, $height: 125%, $weight: 600);
+}
+
+.title-italy {
+  font-style: italic;
+  color: $color-text-accent;
 }
