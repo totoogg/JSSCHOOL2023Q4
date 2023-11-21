@@ -90,6 +90,29 @@ h3 {
   height: 46px;
 }
 
+.button_primary {
+  width: 200px;
+  height: 64px;
+  background-color: #E1D4C9;
+  border: none;
+  cursor: pointer;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button_primary .enjoy__content__button__icon {
+  display: inline-block;
+  width: 0px;
+  height: 24px;
+  background: url(../img/icons/coffee-cup.svg) no-repeat center -1px;
+  transition: width 0.3s ease-out;
+}
+.button_primary:hover .enjoy__content__button__icon {
+  width: 20px;
+  margin-left: 8px;
+}
+
 .wrapper {
   max-width: 1360px;
   margin: auto;
@@ -141,6 +164,35 @@ h3 {
   width: 20px;
   height: 20px;
   background: url(../img/icons/coffee-cup.svg) no-repeat center;
+}
+
+.main__enjoy {
+  position: relative;
+  margin-top: 20px;
+  overflow: hidden;
+  border-radius: 40px;
+}
+.main__enjoy .enjoy__background {
+  position: absolute;
+  z-index: 0;
+  top: -10%;
+  width: 100%;
+}
+.main__enjoy .enjoy__content {
+  position: relative;
+  z-index: 1;
+  height: 644px;
+  padding: 100px;
+  width: 730px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.main__enjoy .enjoy__content .enjoy__content__title {
+  color: #E1D4C9;
+}
+.main__enjoy .enjoy__content .enjoy__content__text {
+  color: #E1D4C9;
 }
 
 /*# sourceMappingURL=style.css.map */

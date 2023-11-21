@@ -1,5 +1,3 @@
-
-
 //Abstract
 @import 'abstract/constants';
 @import 'abstract/mixins';
@@ -15,4 +13,6 @@
 @import 'layouts/wrapper';
 @import 'layouts/header';
 
+
 // Components
+@import 'components/favorite';

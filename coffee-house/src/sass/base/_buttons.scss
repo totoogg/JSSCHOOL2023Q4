@@ -2,3 +2,30 @@
   width: 115px;
   height: 46px;
 }
+
+.button_primary {
+  width: 200px;
+  height: 64px;
+  background-color: $color-background-body;
+  border: none;
+  cursor: pointer;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .enjoy__content__button__icon {
+    display: inline-block;
+    width: 0px;
+    height: 24px;
+    background: url(../img/icons/coffee-cup.svg) no-repeat center -1px;
+    transition: width 0.3s ease-out;
+  }
+  
+  &:hover {
+    .enjoy__content__button__icon {
+      width: 20px;
+      margin-left: 8px;
+    }
+  }
+}
