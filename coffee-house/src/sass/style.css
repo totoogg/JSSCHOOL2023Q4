@@ -289,4 +289,45 @@ h3 {
   background-color: #665F55;
 }
 
+.main__about {
+  margin-top: 100px;
+}
+.main__about .about__images {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+.main__about .about__images .about__images__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 1060px;
+}
+.main__about .about__images .about__images__content .about__image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 660px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.main__about .about__images .about__images__content .about__image img {
+  transform: scale(1.1);
+}
+.main__about .about__images .about__images__content .about__image img:hover {
+  transform: scale(1);
+}
+.main__about .about__images .about__images__content .first {
+  height: 590px;
+}
+.main__about .about__images .about__images__content .second {
+  height: 430px;
+}
+.main__about .about__images .about__images__content .third {
+  height: 430px;
+}
+.main__about .about__images .about__images__content .fourth {
+  height: 590px;
+}
+
 /*# sourceMappingURL=style.css.map */
