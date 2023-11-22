@@ -133,6 +133,54 @@ h3 {
   stroke: #E1D4C9;
 }
 
+.button_secondary {
+  width: 200px;
+  height: 64px;
+  background-color: #E1D4C9;
+  border: 1px solid #665F55;
+  cursor: pointer;
+  border-radius: 100px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-right: 20px;
+  padding-left: 20px;
+  text-align: start;
+}
+.button_secondary:hover {
+  color: #E1D4C9;
+  background-color: #665F55;
+}
+.button_secondary:hover .google {
+  fill: #E1D4C9;
+}
+.button_secondary:hover .apple {
+  fill: #E1D4C9;
+}
+.button_secondary .button_secondary__image {
+  width: 36px;
+  height: 36px;
+  margin-right: 8px;
+}
+.button_secondary .button_secondary__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 40px;
+}
+.button_secondary .button_secondary__text .button_secondary__text__title {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 140%;
+  font-family: "Inter", sans-serif;
+}
+.button_secondary .button_secondary__text .button_secondary__text__name {
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 150%;
+  font-family: "Inter", sans-serif;
+}
+
 .wrapper {
   max-width: 1360px;
   margin: auto;
@@ -328,6 +376,30 @@ h3 {
 }
 .main__about .about__images .about__images__content .fourth {
   height: 590px;
+}
+
+.main__mobile_app {
+  margin-top: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 630px;
+}
+.main__mobile_app .mobile_app__content {
+  width: 630px;
+  height: 342px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.main__mobile_app .mobile_app__content .mobile_app__buttons {
+  display: flex;
+  height: 64px;
+}
+.main__mobile_app .mobile_app__image {
+  width: 630px;
+  background: url(../img/background/mobile-screens.png) no-repeat center;
+  align-self: stretch;
 }
 
 /*# sourceMappingURL=style.css.map */

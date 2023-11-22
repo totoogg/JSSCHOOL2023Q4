@@ -52,3 +52,49 @@
   }
 }
 
+.button_secondary {
+  width: 200px;
+  height: 64px;
+  background-color: $color-background-body;
+  border: 1px solid $color-border-dark;
+  cursor: pointer;
+  border-radius: 100px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-right: 20px;
+  padding-left: 20px;
+  text-align: start;
+
+  &:hover {
+    color: $color-background-body;
+    background-color: $color-border-dark;
+    .google {
+      fill: $color-background-body;
+    }
+    .apple {
+      fill: $color-background-body;
+    }
+  }
+
+  .button_secondary__image {
+    width: 36px;
+    height: 36px;
+    margin-right: 8px;
+  }
+
+  .button_secondary__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 40px;
+
+    .button_secondary__text__title {
+      @include font ($size: 1rem, $height: 140%, $weight: 600);
+    }
+
+    .button_secondary__text__name {
+      @include font ($size: 1.6rem, $height: 150%, $weight: 600);
+    }
+  }
+}

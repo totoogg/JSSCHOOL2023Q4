@@ -1,0 +1,26 @@
+.main__mobile_app {
+  margin-top: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 630px;
+
+  .mobile_app__content {
+    width: 630px;
+    height: 342px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .mobile_app__buttons {
+      display: flex;
+      height: 64px;
+    }
+  }
+
+  .mobile_app__image {
+    width: 630px;
+    background: url(../img/background/mobile-screens.png) no-repeat center;
+    align-self: stretch;
+  }
+}
