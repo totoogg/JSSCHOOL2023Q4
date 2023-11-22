@@ -29,3 +29,26 @@
     }
   }
 }
+
+.arrow {
+  width: 60px;
+  height: 60px;
+  border: 1px solid $color-border-dark;
+  background-color: $color-background-body;
+  border-radius: 100px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: $color-border-dark;
+    .left {
+      stroke: $color-background-body;
+    }
+    .right {
+      stroke: $color-background-body;
+    }
+  }
+}
+
