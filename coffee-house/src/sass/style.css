@@ -103,6 +103,8 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-decoration: none;
+  color: #403F3D;
 }
 .button_primary .enjoy__content__button__icon {
   display: inline-block;
@@ -111,9 +113,15 @@ h3 {
   background: url(../img/icons/coffee-cup.svg) no-repeat center -1px;
   transition: width 0.3s ease-out;
 }
+.button_primary:hover {
+  color: #403F3D;
+}
 .button_primary:hover .enjoy__content__button__icon {
   width: 20px;
   margin-left: 8px;
+}
+.button_primary:active {
+  color: #403F3D;
 }
 
 .arrow {

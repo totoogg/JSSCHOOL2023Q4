@@ -13,6 +13,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-decoration: none;
+  color: $color-text-dark;
 
   .enjoy__content__button__icon {
     display: inline-block;
@@ -27,6 +29,11 @@
       width: 20px;
       margin-left: 8px;
     }
+    color: $color-text-dark;
+  }
+
+  &:active {
+    color: $color-text-dark;
   }
 }
 
