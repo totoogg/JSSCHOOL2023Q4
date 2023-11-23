@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "style": "sass --watch src/sass/style.scss src/sass/style.css",
+    "stylePage2": "sass --watch src/sass/stylePage2.scss src/sass/stylePage2.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

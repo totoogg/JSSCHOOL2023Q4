@@ -47,6 +47,11 @@
     justify-content: space-between;
     text-decoration: none;
     @extend %hover-link;
+    color: $color-text-dark;
+
+    .menu-link__text {
+      color: $color-text-dark;
+    }
 
     .menu-link__icon {
       width: 20px;
