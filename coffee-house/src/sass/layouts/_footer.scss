@@ -1,0 +1,92 @@
+.footer {
+  margin-top: 100px;
+
+  .footer__wrapper {
+    padding: 100px;
+    background-color: $color-background-container;
+    border-radius: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .contact__block {
+      width: 530px;
+      height: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .contact__block__title {
+        color: $color-text-light;
+      }
+
+      .contact__block__social_media {
+        width: 204px;
+        height: 60px;
+        display: flex;
+        justify-content: space-between;
+
+        .social_media-link {
+          width: 60px;
+          height: 60px;
+          border: 1px  solid $color-border-light;
+          border-radius: 100px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          &:hover {
+            background-color: $color-border-light;
+            .instagram,
+            .twiter,
+            .facebook {
+              stroke: $color-background-container;
+            }
+          }
+        }
+      }
+    }
+
+    .contact__content {
+      width: 530px;
+      color: $color-text-light;
+      height: 186px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .contact__content__text {
+        height: 116px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        @include font ($size: 1.6rem, $height: 150%, $weight: 600);
+
+        .contact_us {
+          height: 24px;
+        }
+
+        .contact_us > img {
+          margin-right: 8px;
+        }
+
+        .map,
+        .telephone {
+          text-decoration: none;
+          color: $color-text-light;
+          position: relative;
+          @extend %hover-link;
+
+          &:after {
+            background-color: $color-text-light;
+          }
+
+          &:visited {
+            color: $color-text-light;
+          }
+        }
+      }
+    }
+  }
+}

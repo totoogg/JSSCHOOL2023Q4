@@ -1,4 +1,5 @@
-.header__wrapper .header__menu-link:after, .header__wrapper .header__navigation .navigation .navigation__item__link:after {
+.footer .footer__wrapper .contact__content .contact__content__text .map:after,
+.footer .footer__wrapper .contact__content .contact__content__text .telephone:after, .header__wrapper .header__menu-link:after, .header__wrapper .header__navigation .navigation .navigation__item__link:after {
   content: "";
   display: block;
   position: absolute;
@@ -10,10 +11,13 @@
   background-color: #403F3D;
   transition: width 0.3s ease-out;
 }
-.header__wrapper .header__menu-link:hover:after, .header__wrapper .header__navigation .navigation .navigation__item__link:hover:after, .header__wrapper .header__menu-link:focus:after, .header__wrapper .header__navigation .navigation .navigation__item__link:focus:after {
+.footer .footer__wrapper .contact__content .contact__content__text .map:hover:after,
+.footer .footer__wrapper .contact__content .contact__content__text .telephone:hover:after, .header__wrapper .header__menu-link:hover:after, .header__wrapper .header__navigation .navigation .navigation__item__link:hover:after, .footer .footer__wrapper .contact__content .contact__content__text .map:focus:after,
+.footer .footer__wrapper .contact__content .contact__content__text .telephone:focus:after, .header__wrapper .header__menu-link:focus:after, .header__wrapper .header__navigation .navigation .navigation__item__link:focus:after {
   width: 100%;
 }
-.header__wrapper .header__menu-link:visited, .header__wrapper .header__navigation .navigation .navigation__item__link:visited {
+.footer .footer__wrapper .contact__content .contact__content__text .map:visited,
+.footer .footer__wrapper .contact__content .contact__content__text .telephone:visited, .header__wrapper .header__menu-link:visited, .header__wrapper .header__navigation .navigation .navigation__item__link:visited {
   color: #403F3D;
 }
 
@@ -232,6 +236,90 @@ h3 {
   width: 20px;
   height: 20px;
   background: url(../img/icons/coffee-cup.svg) no-repeat center;
+}
+
+.footer {
+  margin-top: 100px;
+}
+.footer .footer__wrapper {
+  padding: 100px;
+  background-color: #665F55;
+  border-radius: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer .footer__wrapper .contact__block {
+  width: 530px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.footer .footer__wrapper .contact__block .contact__block__title {
+  color: #E1D4C9;
+}
+.footer .footer__wrapper .contact__block .contact__block__social_media {
+  width: 204px;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+}
+.footer .footer__wrapper .contact__block .contact__block__social_media .social_media-link {
+  width: 60px;
+  height: 60px;
+  border: 1px solid #C1B6AD;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer .footer__wrapper .contact__block .contact__block__social_media .social_media-link:hover {
+  background-color: #C1B6AD;
+}
+.footer .footer__wrapper .contact__block .contact__block__social_media .social_media-link:hover .instagram,
+.footer .footer__wrapper .contact__block .contact__block__social_media .social_media-link:hover .twiter,
+.footer .footer__wrapper .contact__block .contact__block__social_media .social_media-link:hover .facebook {
+  stroke: #665F55;
+}
+.footer .footer__wrapper .contact__content {
+  width: 530px;
+  color: #E1D4C9;
+  height: 186px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.footer .footer__wrapper .contact__content .contact__content__text {
+  height: 116px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 150%;
+  font-family: "Inter", sans-serif;
+}
+.footer .footer__wrapper .contact__content .contact__content__text .contact_us {
+  height: 24px;
+}
+.footer .footer__wrapper .contact__content .contact__content__text .contact_us > img {
+  margin-right: 8px;
+}
+.footer .footer__wrapper .contact__content .contact__content__text .map,
+.footer .footer__wrapper .contact__content .contact__content__text .telephone {
+  text-decoration: none;
+  color: #E1D4C9;
+  position: relative;
+}
+.footer .footer__wrapper .contact__content .contact__content__text .map:after,
+.footer .footer__wrapper .contact__content .contact__content__text .telephone:after {
+  background-color: #E1D4C9;
+}
+.footer .footer__wrapper .contact__content .contact__content__text .map:visited,
+.footer .footer__wrapper .contact__content .contact__content__text .telephone:visited {
+  color: #E1D4C9;
 }
 
 .main__enjoy {
