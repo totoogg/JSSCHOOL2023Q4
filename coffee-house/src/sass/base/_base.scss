@@ -27,7 +27,8 @@ h1 {
   }
 }
 
-h2 {
+h2,
+.menu__headline {
   @include font ($size: 6rem, $height: 125%, $weight: 600);
   @include media-mobile {
     @include font ($size: 3.2rem, $height: 125%, $weight: 600);
