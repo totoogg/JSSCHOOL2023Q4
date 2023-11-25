@@ -1,0 +1,107 @@
+.tab-item {
+  width: 115px;
+  height: 46px;
+}
+
+.button_primary {
+  width: 200px;
+  height: 64px;
+  background-color: $color-background-body;
+  border: none;
+  cursor: pointer;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: $color-text-dark;
+
+  .enjoy__content__button__icon {
+    display: inline-block;
+    width: 0px;
+    height: 24px;
+    background: url(../img/icons/coffee-cup.svg) no-repeat center -1px;
+    transition: width 0.3s ease-out;
+  }
+  
+  &:hover {
+    .enjoy__content__button__icon {
+      width: 20px;
+      margin-left: 8px;
+    }
+    color: $color-text-dark;
+  }
+
+  &:active {
+    color: $color-text-dark;
+  }
+}
+
+.arrow {
+  width: 60px;
+  height: 60px;
+  border: 1px solid $color-border-dark;
+  background-color: $color-background-body;
+  border-radius: 100px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: $color-border-dark;
+    .left {
+      stroke: $color-background-body;
+    }
+    .right {
+      stroke: $color-background-body;
+    }
+  }
+}
+
+.button_secondary {
+  width: 200px;
+  height: 64px;
+  background-color: $color-background-body;
+  border: 1px solid $color-border-dark;
+  cursor: pointer;
+  border-radius: 100px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-right: 20px;
+  padding-left: 20px;
+  text-align: start;
+
+  &:hover {
+    color: $color-background-body;
+    background-color: $color-border-dark;
+    .google {
+      fill: $color-background-body;
+    }
+    .apple {
+      fill: $color-background-body;
+    }
+  }
+
+  .button_secondary__image {
+    width: 36px;
+    height: 36px;
+    margin-right: 8px;
+  }
+
+  .button_secondary__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 40px;
+
+    .button_secondary__text__title {
+      @include font ($size: 1rem, $height: 140%, $weight: 600);
+    }
+
+    .button_secondary__text__name {
+      @include font ($size: 1.6rem, $height: 150%, $weight: 600);
+    }
+  }
+}

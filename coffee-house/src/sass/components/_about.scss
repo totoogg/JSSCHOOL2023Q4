@@ -1,0 +1,49 @@
+.main__about {
+  margin-top: 100px;
+
+  .about__images {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+
+    .about__images__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 1060px;
+
+      .about__image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 660px;
+        border-radius: 20px;
+        overflow: hidden;
+
+        img {
+          transform: scale(1.1);
+        }
+
+        & img:hover {
+          transform: scale(1);
+        }
+      }
+
+      .first {
+        height: 590px;
+      }
+
+      .second {
+        height: 430px;
+      }
+
+      .third {
+        height: 430px;
+      }
+
+      .fourth {
+        height: 590px;
+      }
+    }
+  }
+}

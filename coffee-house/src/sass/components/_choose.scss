@@ -1,0 +1,85 @@
+.main__favorite_coffee {
+  margin-top: 100px;
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .favorite__title {
+    text-align: center;
+  }
+
+  .favorite_coffee__slider {
+    height: 684px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .slider__content {
+      width: 480px;
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .slider__content__blocks {
+        display: flex;
+        text-align: center;
+        overflow: hidden;
+        
+        .block {
+          width: 480px;
+          flex-shrink: 0;
+
+          .slider__images {
+            height: 480px;
+            width: 480px;
+          }
+
+          .slider__text {
+            margin-top: 20px;
+
+            .slider__text__description {
+              margin-top: 16px;
+              margin-bottom: 16px;
+            }
+
+            .slider__text__price {
+              @include font ($size: 2.4rem, $height: 125%, $weight: 600);
+            }
+          }
+        }
+
+        .slider_1 > .slider__images {
+          background: url(../img/slider/coffee-slider-1.png) no-repeat center;
+        }
+
+        .slider_2 > .slider__images {
+          background: url(../img/slider/coffee-slider-2.png) no-repeat center;
+        }
+
+        .slider_3 > .slider__images {
+          background: url(../img/slider/coffee-slider-3.png) no-repeat center;
+        }
+      }
+
+      .slider__content__control {
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+        align-self: center;
+        width: 144px;
+        height: 4px;
+
+        .slider__content__control__button {
+          width: 40px;
+          background-color: $color-border-light;
+        }
+
+        .current {
+          background-color: $color-border-dark;
+        }
+      }
+    }
+  }
+}

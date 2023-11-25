@@ -1,0 +1,128 @@
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .menu__headline {
+    margin-top: 20px;
+    text-align: center;
+    width: 800px;
+  }
+
+  .menu__radio_box {
+    width: 361px;
+    height: 46px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+
+    .radio_box__button {
+      display: flex;
+
+      .radio {
+        display: none;
+  
+        &:checked + .radio__label {
+          background-color: $color-background-container;
+          cursor: default;
+          color: $color-text-light;
+
+          .label_icon {
+            background-color: $color-background-body;
+          }
+        }
+      }
+  
+      .radio__label {
+        display: flex;
+        align-items: center;
+        @include font ($size: 1.6rem, $height: 150%, $weight: 600);
+        cursor: pointer;
+        border: 1px solid $color-border-light;
+        border-radius: 100px;
+        padding-right: 16px;
+        padding-left: 8px;
+  
+        &:hover {
+          background-color: $color-background-container;
+          color: $color-text-light;
+
+          .label_icon {
+            background-color: $color-background-body;
+          }
+        }
+
+        .label_icon {
+          width: 30px;
+          height: 30px;
+          margin-right: 8px;
+          border-radius: 100px;
+          background-color: $color-border-light;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+
+    
+  }
+
+  .menu__product {
+    align-self: stretch;
+    margin-top: 40px;
+    /* display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; */
+    display: grid;
+    grid-template-columns: repeat(4, 310px);
+    row-gap: 40px;
+    justify-content: space-between;
+
+    .product__content {
+      /* margin-bottom: 40px; */
+      width: 310px;
+      height: 506px;
+      border-radius: 40px;
+      border: 1px solid $color-border-light;
+
+      .product__content__image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border-radius: 40px;
+        height: 310px;
+
+        img {
+          transform: scale(1.1);
+        }
+      }
+
+      .product__content__title {
+        margin-top: 20px;
+        margin-left: 20px;
+      }
+
+      .product__content__text {
+        margin-top: 12px;
+        margin-left: 20px;
+        width: 270px;
+        height: 72px;
+      }
+
+      .product__content__price {
+        margin-top: 12px;
+        margin-left: 20px;
+      }
+
+      &:hover {
+
+        img {
+          transform: scale(1.0);
+        }
+      }
+    }
+  }
+}
