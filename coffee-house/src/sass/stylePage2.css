@@ -362,10 +362,6 @@ h3 {
   color: #E1D4C9;
 }
 
-.footer {
-  margin-top: 60px;
-}
-
 .menu {
   display: flex;
   flex-direction: column;
@@ -387,17 +383,18 @@ h3 {
 .menu .menu__radio_box .radio_box__button {
   display: flex;
 }
-.menu .menu__radio_box .radio_box__button input[type=radio] {
+.menu .menu__radio_box .radio_box__button .radio {
   display: none;
 }
-.menu .menu__radio_box .radio_box__button input[type=radio]:checked + label {
+.menu .menu__radio_box .radio_box__button .radio:checked + .radio__label {
   background-color: #665F55;
   cursor: default;
+  color: #E1D4C9;
 }
-.menu .menu__radio_box .radio_box__button input[type=radio]:checked + label .label_icon {
+.menu .menu__radio_box .radio_box__button .radio:checked + .radio__label .label_icon {
   background-color: #E1D4C9;
 }
-.menu .menu__radio_box .radio_box__button label {
+.menu .menu__radio_box .radio_box__button .radio__label {
   display: flex;
   align-items: center;
   font-size: 1.6rem;
@@ -410,13 +407,14 @@ h3 {
   padding-right: 16px;
   padding-left: 8px;
 }
-.menu .menu__radio_box .radio_box__button label:hover {
+.menu .menu__radio_box .radio_box__button .radio__label:hover {
   background-color: #665F55;
+  color: #E1D4C9;
 }
-.menu .menu__radio_box .radio_box__button label:hover .label_icon {
+.menu .menu__radio_box .radio_box__button .radio__label:hover .label_icon {
   background-color: #E1D4C9;
 }
-.menu .menu__radio_box .radio_box__button label .label_icon {
+.menu .menu__radio_box .radio_box__button .radio__label .label_icon {
   width: 30px;
   height: 30px;
   margin-right: 8px;
@@ -429,12 +427,16 @@ h3 {
 .menu .menu__product {
   align-self: stretch;
   margin-top: 40px;
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
+  justify-content: space-between; */
+  display: grid;
+  grid-template-columns: repeat(4, 310px);
+  row-gap: 40px;
   justify-content: space-between;
 }
 .menu .menu__product .product__content {
-  margin-bottom: 40px;
+  /* margin-bottom: 40px; */
   width: 310px;
   height: 506px;
   border-radius: 40px;
