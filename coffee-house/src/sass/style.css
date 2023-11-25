@@ -69,14 +69,16 @@ h1 {
   }
 }
 
-h2 {
+h2,
+.menu__headline {
   font-size: 6rem;
   font-weight: 600;
   line-height: 125%;
   font-family: "Inter", sans-serif;
 }
 @media (max-width: 348px) {
-  h2 {
+  h2,
+  .menu__headline {
     font-size: 3.2rem;
     font-weight: 600;
     line-height: 125%;
@@ -239,6 +241,7 @@ h3 {
 .header__wrapper .header__navigation .navigation .navigation__item__link {
   position: relative;
   text-decoration: none;
+  color: #403F3D;
 }
 .header__wrapper .header__menu-link {
   position: relative;

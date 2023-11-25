@@ -34,6 +34,7 @@
       .navigation__item__link {
         position: relative;
         text-decoration: none;
+        color: $color-text-dark;
         @extend %hover-link;
       }
     }
