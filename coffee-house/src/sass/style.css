@@ -1,3 +1,14 @@
+/* @mixin media-laptop {
+  @media (max-width: $content-width) { @content; }
+}
+
+@mixin media-tablet {
+  @media (max-width: $tablet-width) { @content; }
+}
+
+@mixin media-mobile {
+  @media (max-width: $mobile-width) { @content; }
+} */
 .footer .footer__wrapper .contact__content .contact__content__text .map:after,
 .footer .footer__wrapper .contact__content .contact__content__text .telephone:after, .header__wrapper .header__menu-link:after, .header__wrapper .header__navigation .navigation .navigation__item__link:after {
   content: "";
@@ -59,14 +70,9 @@ h1 {
   font-weight: 600;
   line-height: 105%;
   font-family: "Inter", sans-serif;
-}
-@media (max-width: 348px) {
-  h1 {
-    font-size: 4.2rem;
-    font-weight: 600;
-    line-height: 115%;
-    font-family: "Inter", sans-serif;
-  }
+  /* @include media-mobile {
+    @include font ($size: 4.2rem, $height: 115%, $weight: 600);
+  } */
 }
 
 h2,
@@ -75,15 +81,9 @@ h2,
   font-weight: 600;
   line-height: 125%;
   font-family: "Inter", sans-serif;
-}
-@media (max-width: 348px) {
-  h2,
-  .menu__headline {
-    font-size: 3.2rem;
-    font-weight: 600;
-    line-height: 125%;
-    font-family: "Inter", sans-serif;
-  }
+  /* @include media-mobile {
+    @include font ($size: 3.2rem, $height: 125%, $weight: 600);
+  } */
 }
 
 h3 {
@@ -115,6 +115,7 @@ h3 {
   align-items: center;
   text-decoration: none;
   color: #403F3D;
+  font-weight: 600;
 }
 .button_primary .enjoy__content__button__icon {
   display: inline-block;
@@ -153,6 +154,10 @@ h3 {
 }
 .arrow:hover .right {
   stroke: #E1D4C9;
+}
+
+.arrow_left {
+  cursor: default;
 }
 
 .button_secondary {

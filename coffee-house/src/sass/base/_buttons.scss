@@ -15,6 +15,7 @@
   align-items: center;
   text-decoration: none;
   color: $color-text-dark;
+  font-weight: 600;
 
   .enjoy__content__button__icon {
     display: inline-block;
@@ -57,6 +58,10 @@
       stroke: $color-background-body;
     }
   }
+}
+
+.arrow_left {
+  cursor: default;
 }
 
 .button_secondary {
