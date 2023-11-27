@@ -116,9 +116,18 @@
         margin-top: 12px;
         margin-left: 20px;
       }
+    }
 
-      &:hover {
-
+    @media (hover: hover) {
+      .product__content:hover {
+        img {
+          transform: scale(1.0);
+        }
+      }
+    }
+  
+    @media (hover: none) {
+      .product__content:active {
         img {
           transform: scale(1.0);
         }
