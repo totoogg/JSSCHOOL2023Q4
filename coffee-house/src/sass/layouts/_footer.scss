@@ -16,7 +16,7 @@
 
     .contact__block {
       width: 530px;
-      height: 250px;
+      min-height: 250px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -88,6 +88,7 @@
 
           &:after {
             background-color: $color-text-light;
+            width: 0;
           }
 
           &:visited {

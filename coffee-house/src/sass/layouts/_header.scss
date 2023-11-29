@@ -8,6 +8,7 @@
   .header__logo {
     width: 100px;
     height: 60px;
+    flex-shrink: 0;
 
     .logo__link {
       display: block;
@@ -46,6 +47,10 @@
           text-decoration: none;
           color: $color-text-dark;
           @extend %hover-link;
+
+          &::after {
+            width: 0;
+          }
         }
       }
     }
@@ -59,6 +64,10 @@
       text-decoration: none;
       @extend %hover-link;
       color: $color-text-dark;
+
+      &::after {
+        width: 0;
+      }
   
       .menu-link__text {
         color: $color-text-dark;

@@ -1,42 +1,41 @@
 .footer .footer__wrapper .contact__content .contact__content__text .map:after,
-.footer .footer__wrapper .contact__content .contact__content__text .telephone:after, .header__wrapper .header__menu-link:after, .header__wrapper .header__navigation .navigation .navigation__item__link:after {
+.footer .footer__wrapper .contact__content .contact__content__text .telephone:after, .header__wrapper .header__navigation_button .header__menu-link:after, .header__wrapper .header__navigation_button .header__navigation .navigation .navigation__item__link:after {
   content: "";
   display: block;
   position: absolute;
   align-self: flex-end;
   left: 50%;
   transform: translateX(-50%);
-  width: 0;
   height: 2px;
   background-color: #403F3D;
   transition: width 0.3s ease-out;
 }
 @media (hover: hover) {
   .footer .footer__wrapper .contact__content .contact__content__text .map:hover:after,
-  .footer .footer__wrapper .contact__content .contact__content__text .telephone:hover:after, .header__wrapper .header__menu-link:hover:after, .header__wrapper .header__navigation .navigation .navigation__item__link:hover:after {
+  .footer .footer__wrapper .contact__content .contact__content__text .telephone:hover:after, .header__wrapper .header__navigation_button .header__menu-link:hover:after, .header__wrapper .header__navigation_button .header__navigation .navigation .navigation__item__link:hover:after {
     width: 100%;
   }
 }
 @media (hover: none) {
   .footer .footer__wrapper .contact__content .contact__content__text .map:active:after,
-  .footer .footer__wrapper .contact__content .contact__content__text .telephone:active:after, .header__wrapper .header__menu-link:active:after, .header__wrapper .header__navigation .navigation .navigation__item__link:active:after {
+  .footer .footer__wrapper .contact__content .contact__content__text .telephone:active:after, .header__wrapper .header__navigation_button .header__menu-link:active:after, .header__wrapper .header__navigation_button .header__navigation .navigation .navigation__item__link:active:after {
     width: 100%;
   }
 }
 .footer .footer__wrapper .contact__content .contact__content__text .map:focus:after,
-.footer .footer__wrapper .contact__content .contact__content__text .telephone:focus:after, .header__wrapper .header__menu-link:focus:after, .header__wrapper .header__navigation .navigation .navigation__item__link:focus:after {
+.footer .footer__wrapper .contact__content .contact__content__text .telephone:focus:after, .header__wrapper .header__navigation_button .header__menu-link:focus:after, .header__wrapper .header__navigation_button .header__navigation .navigation .navigation__item__link:focus:after {
   width: 100%;
 }
 .footer .footer__wrapper .contact__content .contact__content__text .map:visited,
-.footer .footer__wrapper .contact__content .contact__content__text .telephone:visited, .header__wrapper .header__menu-link:visited, .header__wrapper .header__navigation .navigation .navigation__item__link:visited {
+.footer .footer__wrapper .contact__content .contact__content__text .telephone:visited, .header__wrapper .header__navigation_button .header__menu-link:visited, .header__wrapper .header__navigation_button .header__navigation .navigation .navigation__item__link:visited {
   color: #403F3D;
 }
 .footer .footer__wrapper .contact__content .contact__content__text .map:hover,
-.footer .footer__wrapper .contact__content .contact__content__text .telephone:hover, .header__wrapper .header__menu-link:hover, .header__wrapper .header__navigation .navigation .navigation__item__link:hover {
+.footer .footer__wrapper .contact__content .contact__content__text .telephone:hover, .header__wrapper .header__navigation_button .header__menu-link:hover, .header__wrapper .header__navigation_button .header__navigation .navigation .navigation__item__link:hover {
   color: #403F3D;
 }
 .footer .footer__wrapper .contact__content .contact__content__text .map:active,
-.footer .footer__wrapper .contact__content .contact__content__text .telephone:active, .header__wrapper .header__menu-link:active, .header__wrapper .header__navigation .navigation .navigation__item__link:active {
+.footer .footer__wrapper .contact__content .contact__content__text .telephone:active, .header__wrapper .header__navigation_button .header__menu-link:active, .header__wrapper .header__navigation_button .header__navigation .navigation .navigation__item__link:active {
   color: #403F3D;
 }
 
@@ -248,6 +247,11 @@ h3 {
   max-width: 1360px;
   margin: auto;
 }
+@media (max-width: 768px) {
+  .wrapper {
+    max-width: 688px;
+  }
+}
 
 .header__wrapper {
   padding-top: 20px;
@@ -259,32 +263,48 @@ h3 {
 .header__wrapper .header__logo {
   width: 100px;
   height: 60px;
+  flex-shrink: 0;
 }
 .header__wrapper .header__logo .logo__link {
   display: block;
   width: 100%;
   height: 100%;
   background: url(../img/icons/logo.svg) no-repeat center;
+  background-size: 100%;
 }
 .header__wrapper .header__logo .home {
   cursor: default;
 }
-.header__wrapper .header__navigation {
-  align-self: center;
+.header__wrapper .header__navigation_button {
+  width: 894px;
+  display: flex;
+  justify-content: space-between;
 }
-.header__wrapper .header__navigation .navigation {
+@media (max-width: 768px) {
+  .header__wrapper .header__navigation_button {
+    display: none;
+  }
+}
+.header__wrapper .header__navigation_button .header__navigation {
+  align-self: center;
+  display: flex;
+}
+.header__wrapper .header__navigation_button .header__navigation .navigation {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 456px;
   list-style: none;
 }
-.header__wrapper .header__navigation .navigation .navigation__item__link {
+.header__wrapper .header__navigation_button .header__navigation .navigation .navigation__item__link {
   position: relative;
   text-decoration: none;
   color: #403F3D;
 }
-.header__wrapper .header__menu-link {
+.header__wrapper .header__navigation_button .header__navigation .navigation .navigation__item__link::after {
+  width: 0;
+}
+.header__wrapper .header__navigation_button .header__menu-link {
   position: relative;
   display: flex;
   align-self: center;
@@ -293,22 +313,22 @@ h3 {
   text-decoration: none;
   color: #403F3D;
 }
-.header__wrapper .header__menu-link .menu-link__text {
+.header__wrapper .header__navigation_button .header__menu-link::after {
+  width: 0;
+}
+.header__wrapper .header__navigation_button .header__menu-link .menu-link__text {
   color: #403F3D;
 }
-.header__wrapper .header__menu-link .menu-link__icon {
+.header__wrapper .header__navigation_button .header__menu-link .menu-link__icon {
   width: 20px;
   height: 20px;
   background: url(../img/icons/coffee-cup.svg) no-repeat center;
 }
 
-.header__wrapper .header__navigation .navigation .navigation__item__link {
-  cursor: default;
-}
 .header__wrapper .header__menu-link {
   cursor: default;
 }
-.header__wrapper .header__menu-link::after {
+.header__wrapper .header__menu-link:after {
   width: 100%;
 }
 
@@ -324,12 +344,23 @@ h3 {
   justify-content: space-between;
   align-items: center;
 }
+@media (max-width: 768px) {
+  .footer .footer__wrapper {
+    padding: 100px 60px;
+    flex-direction: column;
+  }
+}
 .footer .footer__wrapper .contact__block {
   width: 530px;
-  height: 250px;
+  min-height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+@media (max-width: 768px) {
+  .footer .footer__wrapper .contact__block {
+    margin-bottom: 100px;
+  }
 }
 .footer .footer__wrapper .contact__block .contact__block__title {
   color: #E1D4C9;
@@ -391,6 +422,7 @@ h3 {
 .footer .footer__wrapper .contact__content .contact__content__text .map:after,
 .footer .footer__wrapper .contact__content .contact__content__text .telephone:after {
   background-color: #E1D4C9;
+  width: 0;
 }
 .footer .footer__wrapper .contact__content .contact__content__text .map:visited,
 .footer .footer__wrapper .contact__content .contact__content__text .telephone:visited {
@@ -399,6 +431,18 @@ h3 {
 .footer .footer__wrapper .contact__content .contact__content__text .map:active,
 .footer .footer__wrapper .contact__content .contact__content__text .telephone:active {
   color: #E1D4C9;
+}
+@media (hover: hover) {
+  .footer .footer__wrapper .contact__content .contact__content__text .map:hover,
+  .footer .footer__wrapper .contact__content .contact__content__text .telephone:hover {
+    color: #E1D4C9;
+  }
+}
+@media (hover: none) {
+  .footer .footer__wrapper .contact__content .contact__content__text .map:active,
+  .footer .footer__wrapper .contact__content .contact__content__text .telephone:active {
+    color: #E1D4C9;
+  }
 }
 
 .menu {
@@ -409,7 +453,12 @@ h3 {
 .menu .menu__headline {
   margin-top: 20px;
   text-align: center;
-  width: 800px;
+  width: 58.8%;
+}
+@media (max-width: 768px) {
+  .menu .menu__headline {
+    width: 100%;
+  }
 }
 .menu .menu__radio_box {
   width: 361px;
@@ -466,20 +515,31 @@ h3 {
 .menu .menu__product {
   align-self: stretch;
   margin-top: 40px;
-  /* display: flex;
+  min-height: 1052px;
+  display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; */
-  display: grid;
-  grid-template-columns: repeat(4, 310px);
-  row-gap: 40px;
   justify-content: space-between;
+  align-content: space-between;
+}
+@media (max-width: 768px) {
+  .menu .menu__product .product__content:nth-child(n+5) {
+    display: none;
+  }
 }
 .menu .menu__product .product__content {
   /* margin-bottom: 40px; */
-  width: 310px;
-  height: 506px;
+  width: 23.1%;
+  min-height: 48.1%;
   border-radius: 40px;
   border: 1px solid #C1B6AD;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  .menu .menu__product .product__content {
+    width: 45.1%;
+  }
 }
 .menu .menu__product .product__content .product__content__image {
   display: flex;
@@ -492,19 +552,16 @@ h3 {
 .menu .menu__product .product__content .product__content__image img {
   transform: scale(1.1);
 }
-.menu .menu__product .product__content .product__content__title {
-  margin-top: 20px;
-  margin-left: 20px;
+.menu .menu__product .product__content .product__content__description {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 196px;
+  width: 100%;
 }
-.menu .menu__product .product__content .product__content__text {
+.menu .menu__product .product__content .product__content__description .description__content__text {
   margin-top: 12px;
-  margin-left: 20px;
-  width: 270px;
-  height: 72px;
-}
-.menu .menu__product .product__content .product__content__price {
-  margin-top: 12px;
-  margin-left: 20px;
 }
 @media (hover: hover) {
   .menu .menu__product .product__content:hover img {
@@ -514,6 +571,89 @@ h3 {
 @media (hover: none) {
   .menu .menu__product .product__content:active img {
     transform: scale(1);
+  }
+}
+.menu .menu__update {
+  margin-top: 40px;
+  width: 60px;
+  height: 60px;
+  border-radius: 100px;
+  border: 1px solid #665F55;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .menu .menu__update:hover {
+    background-color: #665F55;
+  }
+  .menu .menu__update:hover path {
+    stroke: #E1D4C9;
+  }
+}
+@media (hover: none) {
+  .menu .menu__update:active {
+    background-color: #665F55;
+  }
+  .menu .menu__update:active path {
+    stroke: #E1D4C9;
+  }
+}
+
+.burger_menu {
+  cursor: pointer;
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #665F55;
+  border-radius: 100px;
+  display: none;
+}
+@media (max-width: 768px) {
+  .burger_menu {
+    display: block;
+  }
+}
+.burger_menu span {
+  position: absolute;
+  width: 16px;
+  height: 2px;
+  background-color: #403F3D;
+  left: calc(50% - 8px);
+}
+.burger_menu span:first-child {
+  top: 17px;
+}
+.burger_menu span:last-child {
+  bottom: 17px;
+}
+.burger_menu.active span {
+  transform: scale(0);
+}
+.burger_menu.active span:first-child {
+  transform: rotate(-45deg);
+  top: calc(50% - 1px);
+}
+.burger_menu.active span:last-child {
+  bottom: calc(50% - 1px);
+  transform: rotate(45deg);
+}
+
+@media (hover: hover) {
+  .burger_menu:hover {
+    background-color: #665F55;
+  }
+  .burger_menu:hover span {
+    background-color: #E1D4C9;
+  }
+}
+@media (hover: none) {
+  .burger_menu:active {
+    background-color: #665F55;
+  }
+  .burger_menu:active span {
+    background-color: #E1D4C9;
   }
 }
 

@@ -6,7 +6,6 @@
   align-self: flex-end;
   left: 50%;
   transform: translateX(-50%);
-  width: 0;
   height: 2px;
   background-color: #403F3D;
   transition: width 0.3s ease-out;
@@ -264,6 +263,7 @@ h3 {
 .header__wrapper .header__logo {
   width: 100px;
   height: 60px;
+  flex-shrink: 0;
 }
 .header__wrapper .header__logo .logo__link {
   display: block;
@@ -301,6 +301,9 @@ h3 {
   text-decoration: none;
   color: #403F3D;
 }
+.header__wrapper .header__navigation_button .header__navigation .navigation .navigation__item__link::after {
+  width: 0;
+}
 .header__wrapper .header__navigation_button .header__menu-link {
   position: relative;
   display: flex;
@@ -309,6 +312,9 @@ h3 {
   justify-content: space-between;
   text-decoration: none;
   color: #403F3D;
+}
+.header__wrapper .header__navigation_button .header__menu-link::after {
+  width: 0;
 }
 .header__wrapper .header__navigation_button .header__menu-link .menu-link__text {
   color: #403F3D;
@@ -409,6 +415,7 @@ h3 {
 .footer .footer__wrapper .contact__content .contact__content__text .map:after,
 .footer .footer__wrapper .contact__content .contact__content__text .telephone:after {
   background-color: #E1D4C9;
+  width: 0;
 }
 .footer .footer__wrapper .contact__content .contact__content__text .map:visited,
 .footer .footer__wrapper .contact__content .contact__content__text .telephone:visited {
@@ -441,13 +448,14 @@ h3 {
   position: absolute;
   z-index: 0;
   top: -10%;
-  width: 100%;
+  width: 1360px;
   height: auto;
   min-height: 100%;
 }
 @media (max-width: 768px) {
   .main__enjoy .enjoy__background {
     height: 100%;
+    width: 100%;
     transform: scale(2.2);
   }
 }

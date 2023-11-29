@@ -1,20 +1,10 @@
 .header__wrapper  {
 
-  .header__navigation {
-
-    .navigation {
-  
-      .navigation__item__link {
-        cursor: default;
-      }
-    }
-  }
-
   .header__menu-link {
     cursor: default;
-  }
 
-  .header__menu-link::after {
-    width: 100%;
+    &:after {
+      width: 100%;
+    }
   }
 }
