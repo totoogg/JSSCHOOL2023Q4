@@ -10,17 +10,27 @@
 
   .mobile_app__content {
     width: 630px;
-    height: 342px;
+    min-height: 342px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     @include media-tablet {
       margin-bottom: 100px;
+      width: 100%;
+    }
+    @include media-mobile {
+      margin-bottom: 40px;
+      min-height: 380px;
     }
 
     .mobile_app__buttons {
       display: flex;
       height: 64px;
+      @include media-mobile {
+        flex-direction: column;
+        height: 148px;
+        justify-content: space-between;
+      }
     }
   }
   
@@ -33,6 +43,9 @@
     background-size: 100%;
     @include media-tablet {
       width: 100%;
+    }
+    @include media-mobile {
+      height: 348px;
     }
   }
 }

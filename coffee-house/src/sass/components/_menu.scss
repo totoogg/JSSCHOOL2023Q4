@@ -14,13 +14,14 @@
 
   .menu__radio_box {
     width: 361px;
-    height: 46px;
+    min-height: 46px;
     margin-top: 40px;
     display: flex;
     justify-content: space-between;
     align-items: stretch;
     @include media-mobile {
       width: 100%;
+      flex-wrap: wrap;
     }
 
     .radio_box__button {
@@ -104,7 +105,7 @@
         width: 45.1%;
       }
       @include media-mobile {
-        width: 310px;
+        width: 89.1%;
       }
 
       .product__content__image {

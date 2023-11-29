@@ -43,7 +43,7 @@
       }
     
       @media (hover: none) {
-        .about__image:active {
+        .about__image {
           img {
             transform: scale(1.0);
           }

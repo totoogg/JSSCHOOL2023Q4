@@ -23,6 +23,10 @@
     height: 24px;
     background: url(../img/icons/coffee-cup.svg) no-repeat center -1px;
     transition: width 0.3s ease-out;
+    @include media-tablet {
+      width: 20px;
+      margin-left: 8px;
+    }
   }
 
   &:active {
@@ -40,6 +44,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
+  @include media-mobile {
+    display: none;
+  }
 }
 
 .arrow_left {

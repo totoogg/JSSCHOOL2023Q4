@@ -478,7 +478,7 @@ h3 {
 }
 .menu .menu__radio_box {
   width: 361px;
-  height: 46px;
+  min-height: 46px;
   margin-top: 40px;
   display: flex;
   justify-content: space-between;
@@ -487,6 +487,7 @@ h3 {
 @media (max-width: 380px) {
   .menu .menu__radio_box {
     width: 100%;
+    flex-wrap: wrap;
   }
 }
 .menu .menu__radio_box .radio_box__button {
@@ -570,7 +571,7 @@ h3 {
 }
 @media (max-width: 380px) {
   .menu .menu__product .product__content {
-    width: 310px;
+    width: 89.1%;
   }
 }
 .menu .menu__product .product__content .product__content__image {
