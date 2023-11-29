@@ -252,6 +252,11 @@ h3 {
     max-width: 688px;
   }
 }
+@media (max-width: 380px) {
+  .wrapper {
+    max-width: 348px;
+  }
+}
 
 .header__wrapper {
   padding-top: 20px;
@@ -350,8 +355,13 @@ h3 {
     flex-direction: column;
   }
 }
+@media (max-width: 380px) {
+  .footer .footer__wrapper {
+    padding: 60px 16px;
+  }
+}
 .footer .footer__wrapper .contact__block {
-  width: 530px;
+  width: 100%;
   min-height: 250px;
   display: flex;
   flex-direction: column;
@@ -360,6 +370,12 @@ h3 {
 @media (max-width: 768px) {
   .footer .footer__wrapper .contact__block {
     margin-bottom: 100px;
+  }
+}
+@media (max-width: 380px) {
+  .footer .footer__wrapper .contact__block {
+    min-height: 180px;
+    margin-bottom: 40px;
   }
 }
 .footer .footer__wrapper .contact__block .contact__block__title {
@@ -389,7 +405,7 @@ h3 {
   stroke: #665F55;
 }
 .footer .footer__wrapper .contact__content {
-  width: 530px;
+  width: 100%;
   color: #E1D4C9;
   height: 186px;
   display: flex;
@@ -468,6 +484,11 @@ h3 {
   justify-content: space-between;
   align-items: stretch;
 }
+@media (max-width: 380px) {
+  .menu .menu__radio_box {
+    width: 100%;
+  }
+}
 .menu .menu__radio_box .radio_box__button {
   display: flex;
 }
@@ -526,6 +547,12 @@ h3 {
     display: none;
   }
 }
+@media (max-width: 380px) {
+  .menu .menu__product {
+    justify-content: center;
+    min-height: 2144px;
+  }
+}
 .menu .menu__product .product__content {
   /* margin-bottom: 40px; */
   width: 23.1%;
@@ -539,6 +566,11 @@ h3 {
 @media (max-width: 768px) {
   .menu .menu__product .product__content {
     width: 45.1%;
+  }
+}
+@media (max-width: 380px) {
+  .menu .menu__product .product__content {
+    width: 310px;
   }
 }
 .menu .menu__product .product__content .product__content__image {
@@ -579,10 +611,15 @@ h3 {
   height: 60px;
   border-radius: 100px;
   border: 1px solid #665F55;
-  display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  display: none;
+}
+@media (max-width: 768px) {
+  .menu .menu__update {
+    display: flex;
+  }
 }
 @media (hover: hover) {
   .menu .menu__update:hover {

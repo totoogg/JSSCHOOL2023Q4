@@ -13,15 +13,22 @@
       padding: 100px 60px;
       flex-direction: column;
     }
+    @include media-mobile {
+      padding: 60px 16px;
+    }
 
     .contact__block {
-      width: 530px;
+      width: 100%;
       min-height: 250px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       @include media-tablet {
         margin-bottom: 100px;
+      }
+      @include media-mobile {
+        min-height: 180px;
+        margin-bottom: 40px;
       }
 
       .contact__block__title {
@@ -56,7 +63,7 @@
     }
 
     .contact__content {
-      width: 530px;
+      width: 100%;
       color: $color-text-light;
       height: 186px;
       display: flex;

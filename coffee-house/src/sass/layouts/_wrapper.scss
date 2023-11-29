@@ -5,4 +5,8 @@
   @include media-tablet {
     max-width: $tablet-width-content;
   }
+
+  @include media-mobile {
+    max-width: $mobile-width-content;
+  }
 }
