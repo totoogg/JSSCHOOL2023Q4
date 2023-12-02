@@ -51,14 +51,7 @@
         padding-right: 16px;
         padding-left: 8px;
   
-        &:hover {
-          background-color: $color-background-container;
-          color: $color-text-light;
-
-          .label_icon {
-            background-color: $color-background-body;
-          }
-        }
+        /*  */
         
         .label_icon {
           width: 30px;
@@ -141,6 +134,15 @@
           transform: scale(1.0);
         }
       }
+
+      .radio__label:hover {
+        background-color: $color-background-container;
+        color: $color-text-light;
+
+        .label_icon {
+          background-color: $color-background-body;
+        }
+      }
     }
   
     @media (hover: none) {
@@ -167,6 +169,7 @@
     }
   }
 
+  
   @media (hover: hover) {
     .menu__update:hover {
       path {
@@ -175,7 +178,7 @@
       background-color: $color-border-dark;
     }
   }
-
+  
   @media (hover: none) {
     .menu__update:active {
       path {
