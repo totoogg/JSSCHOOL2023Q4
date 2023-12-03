@@ -23,14 +23,10 @@
     height: 24px;
     background: url(../img/icons/coffee-cup.svg) no-repeat center -1px;
     transition: width 0.3s ease-out;
-  }
-  
-  &:hover {
-    .enjoy__content__button__icon {
+    @include media-tablet {
       width: 20px;
       margin-left: 8px;
     }
-    color: $color-text-dark;
   }
 
   &:active {
@@ -48,15 +44,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
-  &:hover {
-    background-color: $color-border-dark;
-    .left {
-      stroke: $color-background-body;
-    }
-    .right {
-      stroke: $color-background-body;
-    }
+  flex-shrink: 0;
+  @include media-mobile {
+    display: none;
   }
 }
 
@@ -78,17 +68,6 @@
   padding-left: 20px;
   text-align: start;
 
-  &:hover {
-    color: $color-background-body;
-    background-color: $color-border-dark;
-    .google {
-      fill: $color-background-body;
-    }
-    .apple {
-      fill: $color-background-body;
-    }
-  }
-
   .button_secondary__image {
     width: 36px;
     height: 36px;
@@ -107,6 +86,65 @@
 
     .button_secondary__text__name {
       @include font ($size: 1.6rem, $height: 150%, $weight: 600);
+    }
+  }
+}
+
+
+@media (hover: hover) {
+  .button_primary:hover {
+    .enjoy__content__button__icon {
+      width: 20px;
+      margin-left: 8px;
+    }
+    color: $color-text-dark;
+  }
+
+  .arrow:hover {
+    background-color: $color-border-dark;
+    .left {
+      stroke: $color-background-body;
+    }
+    .right {
+      stroke: $color-background-body;
+    }
+  }
+
+  .button_secondary:hover {
+    color: $color-background-body;
+    background-color: $color-border-dark;
+    .google {
+      fill: $color-background-body;
+    }
+    .apple {
+      fill: $color-background-body;
+    }
+  }
+}
+
+@media (hover: none) {
+  .button_primary:active {
+    color: $color-text-dark;
+  }
+
+  .arrow:active {
+    background-color: $color-border-dark;
+    .left {
+      stroke: $color-background-body;
+    }
+    .right {
+      stroke: $color-background-body;
+    }
+  }
+
+  .button_secondary:active {
+    color: $color-background-body;
+    background-color: $color-border-dark;
+    .google {
+      fill: $color-background-body;
+    }
+    .apple {
+      fill: $color-background-body;
     }
   }
 }

@@ -12,7 +12,6 @@ html {
 
 body {
   margin: auto;
-  width: 1440px;
   @include font ($size: 1.6rem, $height: 150%, $weight: 400);
   background-color: $color-background-body;
   display: flex;
@@ -22,17 +21,17 @@ body {
 
 h1 {
   @include font ($size: 7.2rem, $height: 105%, $weight: 600);
-  /* @include media-mobile {
+  @include media-mobile {
     @include font ($size: 4.2rem, $height: 115%, $weight: 600);
-  } */
+  }
 }
 
 h2,
 .menu__headline {
   @include font ($size: 6rem, $height: 125%, $weight: 600);
-  /* @include media-mobile {
+  @include media-mobile {
     @include font ($size: 3.2rem, $height: 125%, $weight: 600);
-  } */
+  }
 }
 
 h3 {

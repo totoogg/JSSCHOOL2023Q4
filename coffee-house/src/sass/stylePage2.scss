@@ -1,7 +1,7 @@
 //Abstract
 @import 'abstract/constants';
-@import 'abstract/mixins';
 @import 'abstract/placeholder';
+@import 'abstract/mixins';
 
 
 //Base
@@ -18,3 +18,5 @@
 
 // Components
 @import 'components/menu';
+@import 'components/burger';
+@import 'components/popUp';
