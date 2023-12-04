@@ -161,10 +161,6 @@ h3 {
   }
 }
 
-.arrow_left {
-  cursor: default;
-}
-
 .button_secondary {
   width: 200px;
   height: 64px;
@@ -675,10 +671,16 @@ h3 {
   height: 4px;
 }
 .main__favorite_coffee .favorite_coffee__slider .slider__content .slider__content__control .slider__content__control__button {
+  position: relative;
   width: 40px;
   background-color: #C1B6AD;
 }
-.main__favorite_coffee .favorite_coffee__slider .slider__content .slider__content__control .current {
+.main__favorite_coffee .favorite_coffee__slider .slider__content .slider__content__control .slider__content__control__button .current {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 4px;
   background-color: #665F55;
 }
 
