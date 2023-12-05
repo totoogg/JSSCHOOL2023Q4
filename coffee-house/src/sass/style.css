@@ -61,6 +61,10 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow-x: hidden;
+}
+body.block {
+  overflow: hidden;
 }
 
 h1 {
@@ -273,7 +277,6 @@ h3 {
   font-weight: 600;
   color: #403F3D;
   position: relative;
-  overflow: hidden;
 }
 .header__wrapper .header__logo {
   width: 100px;
@@ -300,7 +303,7 @@ h3 {
     position: absolute;
     top: 80px;
     width: 100%;
-    height: 924px;
+    height: 100vh;
     padding: 60px 40px;
     z-index: 2;
     background-color: #E1D4C9;
@@ -310,10 +313,8 @@ h3 {
     left: 100%;
   }
 }
-@media (max-width: 380px) {
-  .header__wrapper .header__navigation_button {
-    height: 724px;
-  }
+.header__wrapper .header__navigation_button.active {
+  left: 0;
 }
 .header__wrapper .header__navigation_button .header__navigation {
   align-self: center;

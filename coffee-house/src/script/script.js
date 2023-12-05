@@ -1,6 +1,12 @@
 import {leafingSlider} from './modules/leafingSlider.js'
 import {currentUpdate} from './modules/currentUpdate.js'
 
+const burgerMenu = document.querySelector('.burger_menu')
+const navigation = document.querySelector('.header__navigation_button')
+const navigationLink = document.querySelectorAll('.navigation__item__link')
+const body = document.querySelector('body')
+const logo = document.querySelector('.header__logo')
+const menuLink = document.querySelector('.header__menu-link')
 
 const sliderContentBocks = document.querySelector('.slider__content__blocks')
 const sliderBlock1 = document.querySelector('.slider_1')
@@ -10,6 +16,39 @@ const buttonSliderRight = document.querySelector('.arrow_right')
 
 let timerCurrent
 let clickDownX = 0
+
+
+//    Burger
+
+
+burgerMenu.addEventListener('click', () => {
+  navigation.classList.toggle('active')
+  burgerMenu.classList.toggle('active')
+  body.classList.toggle('block')
+})
+
+logo.addEventListener('click', () => {
+  navigation.classList.remove('active')
+  burgerMenu.classList.remove('active')
+  body.classList.remove('block')
+})
+
+menuLink.addEventListener('click', () => {
+  navigation.classList.remove('active')
+  burgerMenu.classList.remove('active')
+  body.classList.remove('block')
+})
+
+navigationLink.forEach(x => {
+  x.addEventListener('click', () => {
+    navigation.classList.remove('active')
+    burgerMenu.classList.remove('active')
+    body.classList.remove('block')
+  })
+})
+
+
+//    Slider
 
 
 buttonSliderLeft.addEventListener('click', () => {
