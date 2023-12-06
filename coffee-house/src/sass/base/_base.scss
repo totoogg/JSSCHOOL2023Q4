@@ -8,6 +8,11 @@
 html {
   font-size: 10px;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+
+  &.block {
+    overflow-y: hidden;
+  }
 }
 
 body {

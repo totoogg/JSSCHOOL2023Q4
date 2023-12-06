@@ -49,6 +49,10 @@
 html {
   font-size: 10px;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+html.block {
+  overflow-y: hidden;
 }
 
 body {

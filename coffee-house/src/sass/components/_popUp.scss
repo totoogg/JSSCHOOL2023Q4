@@ -11,7 +11,10 @@
   justify-content: space-between;
   border-radius: 40px;
   background-color: $color-background-body;
-  display: none;
+  display: none;  
+  @include media-tablet {
+    max-width: 688px;
+  }
   @include media-mobile {
     max-width: 342px;
   }

@@ -5,7 +5,7 @@ export function leafingSlider(direction) {
 
   sliderControls.forEach(x => x.style.width = 0)
   if (direction === 'right') {
-    if (sliderBlock1.style.marginLeft === `${-parseInt(widthSlider) * 2}px`) {
+    if (parseInt(sliderBlock1.style.marginLeft) <= (-parseInt(widthSlider) * 2)) {
       sliderBlock1.style.marginLeft = ''
     } else if (sliderBlock1.style.marginLeft === '') {
       sliderBlock1.style.marginLeft = `-${widthSlider}`
