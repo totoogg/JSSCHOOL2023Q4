@@ -36,6 +36,7 @@ burgerMenu.addEventListener('click', () => {
   navigation.classList.toggle('active')
   burgerMenu.classList.toggle('active')
   html.classList.toggle('block')
+  window.scrollTo(0,0)
 })
 
 logo.addEventListener('click', () => {
