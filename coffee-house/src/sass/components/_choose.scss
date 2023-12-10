@@ -95,12 +95,18 @@
         height: 4px;
 
         .slider__content__control__button {
+          position: relative;
           width: 40px;
           background-color: $color-border-light;
-        }
 
-        .current {
-          background-color: $color-border-dark;
+          .current {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background-color: $color-border-dark;
+          }
         }
       }
     }

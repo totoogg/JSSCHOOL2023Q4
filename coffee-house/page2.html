@@ -40,15 +40,15 @@
         <h1 class="menu__headline">Behind each of our cups hides an <span class="title-italy">amazing surprise</span></h1>
         <div class="menu__radio_box">
           <div class="radio_box__button">
-            <input type="radio" name="radio" value="1" id="coffee" checked class="radio">
+            <input type="radio" name="radio" value="coffee" id="coffee" checked class="radio">
             <label for="coffee" class="radio__label"><span class="label_icon"><img src="src/img/icons/coffee.svg" alt="img"></span>Coffee</label>
           </div>
           <div class="radio_box__button">
-            <input type="radio" name="radio" value="2" id="tea" class="radio">
+            <input type="radio" name="radio" value="tea" id="tea" class="radio">
             <label for="tea" class="radio__label"><span class="label_icon"><img src="src/img/icons/tea.svg" alt="img"></span>Tea</label>
           </div>
           <div class="radio_box__button">
-            <input type="radio" name="radio" value="3" id="dessert" class="radio">
+            <input type="radio" name="radio" value="dessert" id="dessert" class="radio">
             <label for="dessert" class="radio__label"><span class="label_icon"><img src="src/img/icons/dessert.svg" alt="img"></span>Dessert</label>
           </div>
         </div>
@@ -101,7 +101,7 @@
               <h3 class="description__price">$5.00</h3>
             </div>
           </div>
-          <div class="product__content">
+          <div class="product__content display-none">
             <div class="product__content__image">
               <img src="src/img/menu/coffee-5.png" alt="product">
             </div>
@@ -113,7 +113,7 @@
               <h3 class="description__price">$4.50</h3>
             </div>
           </div>
-          <div class="product__content">
+          <div class="product__content display-none">
             <div class="product__content__image">
               <img src="src/img/menu/coffee-6.png" alt="product">
             </div>
@@ -125,7 +125,7 @@
               <h3 class="description__price">$5.50</h3>
             </div>
           </div>
-          <div class="product__content">
+          <div class="product__content display-none">
             <div class="product__content__image">
               <img src="src/img/menu/coffee-7.png" alt="product">
             </div>
@@ -137,7 +137,7 @@
               <h3 class="description__price">$5.50</h3>
             </div>
           </div>
-          <div class="product__content">
+          <div class="product__content display-none">
             <div class="product__content__image">
               <img src="src/img/menu/coffee-8.png" alt="product">
             </div>
@@ -158,7 +158,7 @@
         </div>
       </section>
     </div>
-    <section class="menu__pop_up">
+    <section class="menu__pop_up display-none">
       <div class="pop_up__image">
         <img src="src/img/menu/coffee-1.png" alt="product">
       </div>
@@ -174,15 +174,15 @@
           <div class="menu__radio_box">
             <div class="radio_box__button">
               <input type="radio" name="size" value="1" id="size_1" checked class="radio">
-              <label for="size_1" class="radio__label"><span class="label_icon">S</span>200 ml</label>
+              <label for="size_1" class="radio__label"><span class="label_icon">S</span><span class="label_text">200 ml</span></label>
             </div>
             <div class="radio_box__button">
               <input type="radio" name="size" value="2" id="size_2" class="radio">
-              <label for="size_2" class="radio__label"><span class="label_icon">M</span>300 ml</label>
+              <label for="size_2" class="radio__label"><span class="label_icon">M</span><span class="label_text">300 ml</span></label>
             </div>
             <div class="radio_box__button">
               <input type="radio" name="size" value="3" id="size_3" class="radio">
-              <label for="size_3" class="radio__label"><span class="label_icon">L</span>400 ml</label>
+              <label for="size_3" class="radio__label"><span class="label_icon">L</span><span class="label_text">400 ml</span></label>
             </div>
           </div>
         </div>
@@ -190,16 +190,16 @@
           <p class="radio__title">Additives</p>
           <div class="menu__radio_box">
             <div class="radio_box__button">
-              <input type="radio" name="additives" value="1" id="additives_1" class="radio">
-              <label for="additives_1" class="radio__label"><span class="label_icon">1</span>Sugar</label>
+              <input type="checkbox" name="additives" value="1" id="additives_1" class="radio">
+              <label for="additives_1" class="radio__label"><span class="label_icon">1</span><span class="label_text">Sugar</span></label>
             </div>
             <div class="radio_box__button">
-              <input type="radio" name="additives" value="2" id="additives_2" class="radio">
-              <label for="additives_2" class="radio__label"><span class="label_icon">2</span>Cinnamon</label>
+              <input type="checkbox" name="additives" value="2" id="additives_2" class="radio">
+              <label for="additives_2" class="radio__label"><span class="label_icon">2</span><span class="label_text">Cinnamon</span></label>
             </div>
             <div class="radio_box__button">
-              <input type="radio" name="additives" value="3" id="additives_3" class="radio">
-              <label for="additives_3" class="radio__label"><span class="label_icon">3</span>Syrup</label>
+              <input type="checkbox" name="additives" value="3" id="additives_3" class="radio">
+              <label for="additives_3" class="radio__label"><span class="label_icon">3</span><span class="label_text">Syrup</span></label>
             </div>
           </div>
         </div>
@@ -214,6 +214,7 @@
         <button class="pop_up__description__button">Close</button>
       </div>
     </section>
+    <div class="backdrop display-none"></div>
   </main>
   <footer class="footer">
     <div class="wrapper footer__wrapper" id="contact">
@@ -257,5 +258,6 @@
       </div>
     </div>
   </footer>
+  <script type="module" src="src/script/scriptPage2.js"></script>
 </body>
 </html>
