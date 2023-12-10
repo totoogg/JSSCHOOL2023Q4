@@ -10,10 +10,23 @@ const menuLink = document.querySelector('.header__menu-link')
 const menuRadioBox = document.querySelector('.menu__radio_box')
 
 let currentProducts
+let productCurrent
 
 const menuUpdate = document.querySelector('.menu__update')
 const menuProduct = document.querySelector('.menu__product')
 const productContent = document.querySelectorAll('.product__content')
+
+const popUp = document.querySelector('.menu__pop_up')
+const backdrop = document.querySelector('.backdrop')
+const popUpButton = document.querySelector('.pop_up__description__button')
+const popUpTitle = document.querySelector('.basic__title')
+const popUpText = document.querySelector('.basic__text')
+const popUpPrice = document.querySelector('.price__cost')
+const popUpImg = document.querySelector('.pop_up__image img')
+const popUpLabel = document.querySelectorAll('.label_text')
+const popUpLabelIcon = popUp.querySelectorAll('.label_icon')
+const popUpRadio = popUp.querySelector('.menu__radio_box:has(input[type="radio"])')
+const popUpCheckbox = popUp.querySelector('.menu__radio_box:has(input[type="checkbox"])')
 
 
 //    Burger
@@ -50,9 +63,8 @@ navigationLink.forEach(x => {
 
 
 menuRadioBox.addEventListener('mousedown', (event) => {
-  let input = event.target.closest('.radio_box__button')?.children[0].value
-
-  if (input && input !== menuRadioBox.querySelector('input:checked').value) {
+  let input = event.target.closest('.radio__label')?.innerText.toLowerCase()
+  if (input) {
     currentProducts = products.filter(x => x.category === input)
     if (currentProducts.length < 5) {
       menuUpdate.classList.add('display-none')
@@ -81,8 +93,6 @@ menuRadioBox.addEventListener('mousedown', (event) => {
   }
 })
 
-console.log(products)
-
 menuUpdate.addEventListener('click', () => {
   menuProduct.classList.add('update')
   menuUpdate.classList.add('display-none')
@@ -96,7 +106,70 @@ menuUpdate.addEventListener('click', () => {
 //    PopUP
 
 menuProduct.addEventListener('click', (event) => {
-  if (event.target.closest('.product__content')) {
-    console.log(1)
+  let product = event.target.closest('.product__content')
+
+  if (product) {
+    popUp.classList.remove('display-none')
+    backdrop.classList.remove('display-none')
+    html.classList.toggle('block')
+
+    let productSearch = product.querySelector('.description__content__title').innerHTML
+    productCurrent = products.find(x => x.name === productSearch)
+
+    let popUpLabelIconText = [... popUpLabelIcon].map(x => x.innerHTML.toLowerCase())
+
+    popUpLabel.forEach((x, i) => {
+      if (isNaN(popUpLabelIconText[i])) {
+        x.textContent = productCurrent.sizes[popUpLabelIconText[i]].size
+      } else {
+        x.textContent = productCurrent.additives[+popUpLabelIconText[i] - 1].name
+      }
+    })
+
+    popUpTitle.textContent = productCurrent.name
+    popUpText.textContent = productCurrent.description
+    popUpPrice.textContent = `$${productCurrent.price}`
+    popUpImg.src = productCurrent.img
   }
 })
+
+backdrop.addEventListener('click', () => {
+  closePopUp()
+})
+
+popUpButton.addEventListener('click', () => {
+  closePopUp()
+})
+
+popUpRadio.addEventListener('mousedown', (event) => {
+  let radio = event.target.closest('.radio__label')?.children[0].innerHTML.toLowerCase()
+  if (radio) {
+    let countCheckbox = 0
+    popUpCheckbox.querySelectorAll('input').forEach(x => {
+      if (x.checked) countCheckbox++
+    })
+    popUpPrice.textContent = `$${(parseFloat(productCurrent.price) + parseFloat(productCurrent.sizes[radio]['add-price']) + countCheckbox * 0.5).toFixed(2)}`
+  }
+})
+
+popUpCheckbox.addEventListener('click', (event) => {
+  let countCheckbox = 0
+  popUpCheckbox.querySelectorAll('input').forEach(x => {
+    if (x.checked) countCheckbox++
+  })
+  let currentRadio = popUpRadio.querySelector('input:checked').labels[0].children[0].innerHTML.toLowerCase()
+    
+  popUpPrice.textContent = `$${(parseFloat(productCurrent.price) + parseFloat(productCurrent.sizes[currentRadio]['add-price']) + countCheckbox * 0.5).toFixed(2)}`
+})
+
+
+function closePopUp() {
+  popUp.classList.add('display-none')
+  backdrop.classList.add('display-none')
+  html.classList.remove('block')
+
+  popUpRadio.querySelector('input').checked = true
+  popUpCheckbox.querySelectorAll('input').forEach(x => {
+    x.checked = false
+  })
+}

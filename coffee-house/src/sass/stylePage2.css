@@ -782,7 +782,7 @@ h3 {
   }
 }
 .menu__pop_up {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -794,7 +794,7 @@ h3 {
   justify-content: space-between;
   border-radius: 40px;
   background-color: #E1D4C9;
-  display: none;
+  z-index: 3;
 }
 @media (max-width: 768px) {
   .menu__pop_up {
@@ -805,6 +805,9 @@ h3 {
   .menu__pop_up {
     max-width: 342px;
   }
+}
+.menu__pop_up.display-none {
+  display: none;
 }
 .menu__pop_up .pop_up__image {
   width: 310px;
@@ -971,6 +974,18 @@ h3 {
     background-color: #665F55;
     color: #E1D4C9;
   }
+}
+.backdrop {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(64, 63, 61, 0.8);
+  z-index: 2;
+}
+.backdrop.display-none {
+  display: none;
 }
 
 /*# sourceMappingURL=stylePage2.css.map */
