@@ -1,0 +1,115 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.3s ease-out;
+  font-family: Roboto, sans-serif;
+}
+
+html {
+  font-size: 10px;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+html.block {
+  overflow-y: hidden;
+}
+
+body {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  height: 100vh;
+  justify-content: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  max-width: 1440px;
+}
+body.block {
+  overflow: hidden;
+}
+
+h1 {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.content {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.hangman {
+  width: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hangman .hangman__gallows {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 512px;
+  width: 300px;
+  background: url(../img/hangman/gallows.svg) no-repeat center;
+  background-size: contain;
+}
+.hangman .hangman__head {
+  position: absolute;
+  top: 125px;
+  left: 210px;
+  width: 90px;
+  height: 90px;
+  background: url(../img/hangman/head.svg) no-repeat center;
+  background-size: contain;
+}
+.hangman .hangman__body {
+  position: absolute;
+  top: 217px;
+  left: 252px;
+  width: 10px;
+  height: 150px;
+  background: url(../img/hangman/body.svg) no-repeat center;
+  background-size: contain;
+}
+.hangman .hangman__hand-one {
+  position: absolute;
+  top: 215px;
+  left: 190px;
+  width: 70px;
+  height: 70px;
+  background: url(../img/hangman/hand-one.svg) no-repeat center;
+  background-size: contain;
+}
+.hangman .hangman__hand-two {
+  position: absolute;
+  top: 215px;
+  left: 255px;
+  width: 70px;
+  height: 70px;
+  background: url(../img/hangman/hand-two.svg) no-repeat center;
+  background-size: contain;
+}
+.hangman .hangman__leg-one {
+  position: absolute;
+  top: 367px;
+  left: 190px;
+  width: 70px;
+  height: 70px;
+  background: url(../img/hangman/leg-one.svg) no-repeat center;
+  background-size: contain;
+}
+.hangman .hangman__leg-two {
+  position: absolute;
+  top: 367px;
+  left: 255px;
+  width: 70px;
+  height: 70px;
+  background: url(../img/hangman/hand-two.svg) no-repeat center;
+  background-size: contain;
+}
+
+/*# sourceMappingURL=style.css.map */

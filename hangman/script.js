@@ -1,21 +1,21 @@
 import questions from './src/js/questions.json' assert { type: 'json' };
 
 window.onload = function () {
-  console.log(questions);
-
-  loadPage();
+  let countQuestion = questions[rangeRandom(1, questions.length) - 1];
+  console.log(countQuestion.answer);
+  loadPage(countQuestion);
 };
 
-const loadPage = () => {
+const loadPage = (countQuestion) => {
   const body = document.querySelector('body');
 
   let div = document.createElement('div');
   let title = document.createElement('h1');
-  
+
   div.classList.add('content');
   title.classList.add('title');
   title.textContent = 'HANGMAN GAME';
-  
+
   body.prepend(div);
   body.prepend(title);
 
@@ -62,6 +62,63 @@ const loadPage = () => {
     }
     document.querySelector('.crossword').append(div);
   }
+
+  for (let i = 0; i < countQuestion.answer.length; i++) {
+    let div = document.createElement('div');
+    div.textContent = '_';
+    document.querySelector('.crossword__answer').append(div);
+  }
+
+  document.querySelector('.crossword__question').textContent = `Hint: `;
+  let spanQuestion = document.createElement('span');
+  spanQuestion.classList.add('question__current');
+  spanQuestion.textContent = `${countQuestion.question}`;
+  document.querySelector('.crossword__question').append(spanQuestion);
+
+  document.querySelector('.crossword__miss').textContent =
+    `Incorrect guesses: `;
+  let spanMiss = document.createElement('span');
+  spanMiss.classList.add('miss__current');
+  spanMiss.textContent = `0 / 6`;
+  document.querySelector('.crossword__miss').append(spanMiss);
+
+  let alphabet = [
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'F',
+    'G',
+    'H',
+    'I',
+    'J',
+    'K',
+    'L',
+    'M',
+    'N',
+    'O',
+    'P',
+    'Q',
+    'R',
+    'S',
+    'T',
+    'U',
+    'V',
+    'W',
+    'X',
+    'Y',
+    'Z',
+  ];
+
+  for (let i = 0; i < alphabet.length; i++) {
+    let div = document.createElement('div');
+    div.classList.add('keyboard__letter')
+    div.textContent = `${alphabet[i]}`
+    document.querySelector('.crossword__keyboard').append(div);
+  }
 };
 
-
+const rangeRandom = (min, max) => {
+  return Math.floor(min + Math.random() * (max + 1 - min));
+};
