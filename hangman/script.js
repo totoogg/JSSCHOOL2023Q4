@@ -46,6 +46,9 @@ const loadPage = (countQuestion) => {
     } else {
       div.classList.add('hangman__leg-two');
     }
+    if (i !== 0) {
+      div.classList.add('display-none');
+    }
     document.querySelector('.hangman').append(div);
   }
 

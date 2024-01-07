@@ -31,7 +31,7 @@ body.block {
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 5rem;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -39,6 +39,7 @@ h1 {
   display: flex;
   width: 100%;
   justify-content: space-between;
+  min-height: 500px;
 }
 
 .hangman {
@@ -110,6 +111,69 @@ h1 {
   height: 70px;
   background: url(../img/hangman/hand-two.svg) no-repeat center;
   background-size: contain;
+}
+.hangman .display-none {
+  display: none;
+}
+
+.crossword {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  gap: 20px;
+}
+.crossword .crossword__answer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 10px;
+  font-size: 4rem;
+}
+.crossword .crossword__question {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+  font-size: 2.5rem;
+  gap: 10px;
+}
+.crossword .crossword__question .question__current {
+  font-weight: 700;
+}
+.crossword .crossword__miss {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+  font-size: 2.5rem;
+  gap: 10px;
+}
+.crossword .crossword__miss .miss__current {
+  color: red;
+}
+.crossword .crossword__keyboard {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.crossword .crossword__keyboard .keyboard__letter {
+  font-size: 5rem;
+  cursor: pointer;
+  width: 6rem;
+  height: 6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #7e22ce;
+  color: white;
+  border-radius: 10px;
+}
+@media (hover: hover) {
+  .crossword .crossword__keyboard .keyboard__letter:hover {
+    background-color: #c084fc;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

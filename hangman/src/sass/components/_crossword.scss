@@ -1,0 +1,67 @@
+.crossword {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  gap: 20px;
+
+  .crossword__answer {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 10px;
+    font-size: 4rem;
+  }
+
+  .crossword__question {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    font-size: 2.5rem;
+    gap: 10px;
+
+    .question__current {
+      font-weight: 700;
+    }
+  }
+
+  .crossword__miss {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    font-size: 2.5rem;
+    gap: 10px;
+
+    .miss__current {
+      color: red;
+    }
+  }
+
+  .crossword__keyboard {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    .keyboard__letter {
+      font-size: 5rem;
+      cursor: pointer;
+      width: 6rem;
+      height: 6rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #7e22ce;
+      color: white;
+      border-radius: 10px;
+    }
+    
+    @media (hover: hover) {
+      .keyboard__letter:hover {
+        background-color: #c084fc;
+      }
+    }
+  }
+}
