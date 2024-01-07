@@ -1,0 +1,23 @@
+//Abstract
+@import 'abstract/constants';
+@import 'abstract/placeholder';
+@import 'abstract/mixins';
+
+
+//Base
+@import 'base/base';
+@import 'base/buttons';
+
+
+//Layouts
+@import 'layouts/wrapper';
+@import 'layouts/header';
+@import 'layouts/footer';
+
+
+// Components
+@import 'components/favorite';
+@import 'components/choose';
+@import 'components/about';
+@import 'components/mobileApp';
+@import 'components/burger';

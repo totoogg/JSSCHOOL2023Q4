@@ -1,0 +1,10 @@
+.header__wrapper  {
+
+  .header__menu-link {
+    cursor: default;
+
+    &:after {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,51 @@
+.main__mobile_app {
+  margin-top: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 630px;
+  @include media-tablet {
+    flex-direction: column;
+  }
+
+  .mobile_app__content {
+    width: 630px;
+    min-height: 342px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    @include media-tablet {
+      margin-bottom: 100px;
+      width: 100%;
+    }
+    @include media-mobile {
+      margin-bottom: 40px;
+      min-height: 380px;
+    }
+
+    .mobile_app__buttons {
+      display: flex;
+      height: 64px;
+      @include media-mobile {
+        flex-direction: column;
+        height: 148px;
+        justify-content: space-between;
+      }
+    }
+  }
+  
+
+  .mobile_app__image {
+    width: 46.3%;
+    height: 630px;
+    background: url(../img/background/mobile-screens.png) no-repeat center;
+    align-self: stretch;
+    background-size: 100%;
+    @include media-tablet {
+      width: 100%;
+    }
+    @include media-mobile {
+      height: 348px;
+    }
+  }
+}
