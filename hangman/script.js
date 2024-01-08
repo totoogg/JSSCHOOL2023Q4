@@ -172,17 +172,27 @@ const rangeRandom = (min, max) => {
   return Math.floor(min + Math.random() * (max + 1 - min));
 };
 
+const showModal = (str) => {
+  let modal = document.querySelector('.modal');
+  document.querySelector('.backdrop').classList.remove('display-none');
+  modal.classList.remove('display-none');
+  document.querySelector('html').classList.add('block');
+  document.querySelector('body').classList.add('block');
+  if (str === 'loss') {
+    modal.querySelector('.modal__title').textContent = 'FAIL';
+  } else {
+    modal.querySelector('.modal__title').textContent = 'WIN';
+  }
+};
+
 const updateMiss = () => {
   let miss = document.querySelector('.miss__current').textContent[0];
   if (+miss === 5) {
-    console.log('lose');
-    //showModal('loss')
+    showModal('loss');
   }
   document.querySelector('.miss__current').textContent = `${+miss + 1} / 6`;
   let hangman = document.querySelector('.hangman');
-  hangman
-    .querySelectorAll('.display-none')[0]
-    .classList.remove('display-none');
+  hangman.querySelectorAll('.display-none')[0].classList.remove('display-none');
 };
 
 const updateAnswer = (letter, arrAnswer) => {
@@ -196,8 +206,7 @@ const updateAnswer = (letter, arrAnswer) => {
     .map((x) => x.textContent)
     .filter((x) => x === '_');
   if (arr.length === 0) {
-    console.log('win');
-    //showModal('win')
+    showModal('win');
   }
 };
 
