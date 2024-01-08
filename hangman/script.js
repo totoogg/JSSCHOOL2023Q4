@@ -2,11 +2,56 @@ import questions from './src/js/questions.json' assert { type: 'json' };
 
 window.onload = function () {
   let countQuestion = questions[rangeRandom(1, questions.length) - 1];
+  let currentRandom = localStorage.getItem('currentRandomHangman');
+  if (currentRandom === null) {
+    localStorage.setItem('currentRandomHangman', countQuestion.id);
+  } else {
+    if (+currentRandom === countQuestion.id) {
+      if (countQuestion.id !== 10) {
+        countQuestion = questions[countQuestion.id];
+      } else {
+        countQuestion = questions[0];
+      }
+    }
+    localStorage.setItem('currentRandomHangman', countQuestion.id);
+  }
+
+  let alphabet = [
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'F',
+    'G',
+    'H',
+    'I',
+    'J',
+    'K',
+    'L',
+    'M',
+    'N',
+    'O',
+    'P',
+    'Q',
+    'R',
+    'S',
+    'T',
+    'U',
+    'V',
+    'W',
+    'X',
+    'Y',
+    'Z',
+  ];
+
   console.log(countQuestion.answer);
-  loadPage(countQuestion);
+  loadPage(countQuestion, alphabet);
+
+  alphabetClickMouse();
 };
 
-const loadPage = (countQuestion) => {
+const loadPage = (countQuestion, alphabet) => {
   const body = document.querySelector('body');
 
   let div = document.createElement('div');
@@ -85,43 +130,34 @@ const loadPage = (countQuestion) => {
   spanMiss.textContent = `0 / 6`;
   document.querySelector('.crossword__miss').append(spanMiss);
 
-  let alphabet = [
-    'A',
-    'B',
-    'C',
-    'D',
-    'E',
-    'F',
-    'G',
-    'H',
-    'I',
-    'J',
-    'K',
-    'L',
-    'M',
-    'N',
-    'O',
-    'P',
-    'Q',
-    'R',
-    'S',
-    'T',
-    'U',
-    'V',
-    'W',
-    'X',
-    'Y',
-    'Z',
-  ];
-
   for (let i = 0; i < alphabet.length; i++) {
     let div = document.createElement('div');
-    div.classList.add('keyboard__letter')
-    div.textContent = `${alphabet[i]}`
+    div.classList.add('keyboard__letter');
+    div.textContent = `${alphabet[i]}`;
     document.querySelector('.crossword__keyboard').append(div);
   }
 };
 
 const rangeRandom = (min, max) => {
   return Math.floor(min + Math.random() * (max + 1 - min));
+};
+
+const pressingLetter = (letter) => {
+  let letters = document.querySelectorAll('.keyboard__letter')
+  let key = Array.from(letters).find((x) => x.textContent === letter)
+  let current = localStorage.getItem('currentRandomHangman');
+  let currentAnswer = questions[+current - 1].answer;
+  key.classList.add('pressing')
+  
+  console.log(key)
+}
+
+const alphabetClickMouse = () => {
+  document
+    .querySelector('.crossword__keyboard')
+    .addEventListener('click', (event) => {
+      let letter = event.target.closest('.keyboard__letter');
+      if (!letter) return;
+      pressingLetter(letter.textContent);
+    });
 };

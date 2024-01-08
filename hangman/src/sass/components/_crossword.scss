@@ -57,11 +57,16 @@
       color: white;
       border-radius: 10px;
     }
-    
+
     @media (hover: hover) {
       .keyboard__letter:hover {
         background-color: #c084fc;
       }
+    }
+
+    .pressing {
+      background-color: #c084fc;
+      cursor: default;
     }
   }
 }

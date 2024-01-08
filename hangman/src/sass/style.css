@@ -33,7 +33,7 @@ body.block {
 h1 {
   font-size: 5rem;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 }
 .content {
   display: flex;
@@ -174,6 +174,10 @@ h1 {
   .crossword .crossword__keyboard .keyboard__letter:hover {
     background-color: #c084fc;
   }
+}
+.crossword .crossword__keyboard .pressing {
+  background-color: #c084fc;
+  cursor: default;
 }
 
 /*# sourceMappingURL=style.css.map */
