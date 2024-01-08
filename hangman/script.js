@@ -142,15 +142,30 @@ const rangeRandom = (min, max) => {
   return Math.floor(min + Math.random() * (max + 1 - min));
 };
 
+const updateMiss = () => {
+  let miss = document.querySelector('.miss__current').textContent[0]
+  if (+miss === 5) {
+    showModal('lose')
+  }
+  document.querySelector('.miss__current').textContent = `${+miss + 1} / 6`
+
+}
+
 const pressingLetter = (letter) => {
-  let letters = document.querySelectorAll('.keyboard__letter')
-  let key = Array.from(letters).find((x) => x.textContent === letter)
+  let letters = document.querySelectorAll('.keyboard__letter');
+  let key = Array.from(letters).find((x) => x.textContent === letter);
   let current = localStorage.getItem('currentRandomHangman');
   let currentAnswer = questions[+current - 1].answer;
-  key.classList.add('pressing')
-  
-  console.log(key)
-}
+  key.classList.add('pressing');
+  let arrAnswer = currentAnswer.toUpperCase().split('');
+  console.log(arrAnswer)
+
+  if (arrAnswer.includes(letter)) {
+    updateAnswer(letter, currentAnswer);
+  } else {
+    updateMiss();
+  }
+};
 
 const alphabetClickMouse = () => {
   document
@@ -158,6 +173,7 @@ const alphabetClickMouse = () => {
     .addEventListener('click', (event) => {
       let letter = event.target.closest('.keyboard__letter');
       if (!letter) return;
+      if (letter.matches('.pressing')) return;
       pressingLetter(letter.textContent);
     });
 };
