@@ -113,6 +113,7 @@ const loadPage = (countQuestion, alphabet) => {
 
   for (let i = 0; i < countQuestion.answer.length; i++) {
     let div = document.createElement('div');
+    div.classList.add('answer__letter');
     div.textContent = '_';
     document.querySelector('.crossword__answer').append(div);
   }
@@ -143,13 +144,32 @@ const rangeRandom = (min, max) => {
 };
 
 const updateMiss = () => {
-  let miss = document.querySelector('.miss__current').textContent[0]
+  let miss = document.querySelector('.miss__current').textContent[0];
   if (+miss === 5) {
-    showModal('lose')
+    console.log('lose');
+    //showModal('lose')
   }
-  document.querySelector('.miss__current').textContent = `${+miss + 1} / 6`
+  document.querySelector('.miss__current').textContent = `${+miss + 1} / 6`;
+  document
+    .querySelectorAll('.display-none')[0]
+    .classList.remove('display-none');
+};
 
-}
+const updateAnswer = (letter, arrAnswer) => {
+  let answer = document.querySelectorAll('.answer__letter');
+  arrAnswer.forEach((x, i) => {
+    if (x === letter) {
+      answer[i].textContent = letter;
+    }
+  });
+  let arr = Array.from(answer)
+    .map((x) => x.textContent)
+    .filter((x) => x === '_');
+  if (arr.length === 0) {
+    console.log('win');
+    //showModal('win')
+  }
+};
 
 const pressingLetter = (letter) => {
   let letters = document.querySelectorAll('.keyboard__letter');
@@ -158,10 +178,9 @@ const pressingLetter = (letter) => {
   let currentAnswer = questions[+current - 1].answer;
   key.classList.add('pressing');
   let arrAnswer = currentAnswer.toUpperCase().split('');
-  console.log(arrAnswer)
 
   if (arrAnswer.includes(letter)) {
-    updateAnswer(letter, currentAnswer);
+    updateAnswer(letter, arrAnswer);
   } else {
     updateMiss();
   }
