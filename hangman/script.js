@@ -47,7 +47,7 @@ window.onload = function () {
 
   console.log(countQuestion.answer);
   loadPage(countQuestion, alphabet);
-
+  createModal(countQuestion.answer)
   alphabetClickMouse();
 };
 
@@ -138,6 +138,28 @@ const loadPage = (countQuestion, alphabet) => {
     document.querySelector('.crossword__keyboard').append(div);
   }
 };
+
+const createModal = (answer) => {
+  const body = document.querySelector('body');
+
+  let div = document.createElement('div');
+  div.classList.add('modal');
+  body.append(div);
+
+  let title = document.createElement('h2');
+  title.classList.add('modal__title');
+  div.append(title);
+
+  let currentAnswer = document.createElement('p');
+  currentAnswer.classList.add('modal__answer');
+  currentAnswer.textContent = answer.toUpperCase()
+  div.append(currentAnswer);
+
+  let button = document.createElement('button');
+  button.classList.add('modal__button');
+  button.textContent = 'play again'
+  div.append(button);
+}
 
 const rangeRandom = (min, max) => {
   return Math.floor(min + Math.random() * (max + 1 - min));
