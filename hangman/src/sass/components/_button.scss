@@ -1,0 +1,22 @@
+.modal__button {
+  margin-bottom: 20px;
+  width: 200px;
+  height: 64px;
+  background-color: #1d4ed8;
+  border: none;
+  cursor: pointer;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-weight: 600;
+  color: white;
+  font-size: 3rem;
+}
+
+@media (hover: hover) {
+  .modal__button:hover {
+    background-color: #60a5fa;
+  }
+}

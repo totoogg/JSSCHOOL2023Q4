@@ -17,6 +17,7 @@ html {
 }
 
 body {
+  position: relative;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -35,6 +36,16 @@ h1 {
   font-size: 5rem;
   text-align: center;
   margin-bottom: 50px;
+  @include media-mobile {
+    
+  }
+}
+
+h2 {
+  font-size: 7rem;
+  text-align: center;
+  color: white;
+  margin: 20px;
   @include media-mobile {
     
   }

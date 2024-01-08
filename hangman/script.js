@@ -47,7 +47,7 @@ window.onload = function () {
 
   console.log(countQuestion.answer);
   loadPage(countQuestion, alphabet);
-  createModal(countQuestion.answer)
+  createModal(countQuestion.answer);
   alphabetClickMouse();
 };
 
@@ -144,22 +144,29 @@ const createModal = (answer) => {
 
   let div = document.createElement('div');
   div.classList.add('modal');
+  div.classList.add('display-none');
   body.append(div);
+
+  let backdrop = document.createElement('div');
+  backdrop.classList.add('backdrop');
+  backdrop.classList.add('display-none');
+  body.append(backdrop);
 
   let title = document.createElement('h2');
   title.classList.add('modal__title');
+  title.textContent = 'WIN';
   div.append(title);
 
   let currentAnswer = document.createElement('p');
   currentAnswer.classList.add('modal__answer');
-  currentAnswer.textContent = answer.toUpperCase()
+  currentAnswer.textContent = `Answer: ${answer.toUpperCase()}`;
   div.append(currentAnswer);
 
   let button = document.createElement('button');
   button.classList.add('modal__button');
-  button.textContent = 'play again'
+  button.textContent = 'play again';
   div.append(button);
-}
+};
 
 const rangeRandom = (min, max) => {
   return Math.floor(min + Math.random() * (max + 1 - min));
@@ -169,10 +176,11 @@ const updateMiss = () => {
   let miss = document.querySelector('.miss__current').textContent[0];
   if (+miss === 5) {
     console.log('lose');
-    //showModal('lose')
+    //showModal('loss')
   }
   document.querySelector('.miss__current').textContent = `${+miss + 1} / 6`;
-  document
+  let hangman = document.querySelector('.hangman');
+  hangman
     .querySelectorAll('.display-none')[0]
     .classList.remove('display-none');
 };

@@ -16,6 +16,7 @@ html.block {
 }
 
 body {
+  position: relative;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -34,6 +35,12 @@ h1 {
   font-size: 5rem;
   text-align: center;
   margin-bottom: 50px;
+}
+h2 {
+  font-size: 7rem;
+  text-align: center;
+  color: white;
+  margin: 20px;
 }
 .content {
   display: flex;
@@ -178,6 +185,65 @@ h1 {
 .crossword .crossword__keyboard .pressing {
   background-color: #c084fc;
   cursor: default;
+}
+
+.modal {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #3b0764;
+  color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+  padding: 20px;
+}
+.modal .modal__answer {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+.modal.display-none {
+  display: none;
+}
+
+.backdrop {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(64, 63, 61, 0.8);
+  z-index: 2;
+}
+.backdrop.display-none {
+  display: none;
+}
+
+.modal__button {
+  margin-bottom: 20px;
+  width: 200px;
+  height: 64px;
+  background-color: #1d4ed8;
+  border: none;
+  cursor: pointer;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-weight: 600;
+  color: white;
+  font-size: 3rem;
+}
+
+@media (hover: hover) {
+  .modal__button:hover {
+    background-color: #60a5fa;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
