@@ -1,20 +1,7 @@
 import questions from './src/js/questions.json' assert { type: 'json' };
 
 window.onload = function () {
-  let countQuestion = questions[rangeRandom(1, questions.length) - 1];
-  let currentRandom = localStorage.getItem('currentRandomHangman');
-  if (currentRandom === null) {
-    localStorage.setItem('currentRandomHangman', countQuestion.id);
-  } else {
-    if (+currentRandom === countQuestion.id) {
-      if (countQuestion.id !== 10) {
-        countQuestion = questions[countQuestion.id];
-      } else {
-        countQuestion = questions[0];
-      }
-    }
-    localStorage.setItem('currentRandomHangman', countQuestion.id);
-  }
+  let countQuestion = question();
 
   let alphabet = [
     'A',
@@ -49,6 +36,66 @@ window.onload = function () {
   loadPage(countQuestion, alphabet);
   createModal(countQuestion.answer);
   alphabetClickMouse();
+  returnToOriginal();
+};
+
+const rangeRandom = (min, max) => {
+  return Math.floor(min + Math.random() * (max + 1 - min));
+};
+
+const question = () => {
+  let countQuestion = questions[rangeRandom(1, questions.length) - 1];
+  let currentRandom = localStorage.getItem('currentRandomHangman');
+  if (currentRandom === null) {
+    localStorage.setItem('currentRandomHangman', countQuestion.id);
+  } else {
+    if (+currentRandom === countQuestion.id) {
+      if (countQuestion.id !== 10) {
+        countQuestion = questions[countQuestion.id];
+      } else {
+        countQuestion = questions[0];
+      }
+    }
+    localStorage.setItem('currentRandomHangman', countQuestion.id);
+  }
+  return countQuestion;
+};
+
+const returnToOriginal = () => {
+  document.querySelector('.modal__button').addEventListener('click', () => {
+    let countQuestion = question();
+    document.querySelector('.question__current').textContent =
+      countQuestion.question;
+
+    let countAnswer = document.querySelector('.crossword__answer');
+    countAnswer.innerHTML = '';
+
+    for (let i = 0; i < countQuestion.answer.length; i++) {
+      let div = document.createElement('div');
+      div.classList.add('answer__letter');
+      div.textContent = '_';
+      countAnswer.append(div);
+    }
+
+    console.log(countQuestion.answer);
+
+    document
+      .querySelectorAll('.keyboard__letter')
+      .forEach((x) => x.classList.remove('pressing'));
+
+    document.querySelectorAll('.hangman > *').forEach((x, i) => {
+      if (i !== 0) {
+        x.classList.add('display-none');
+      }
+    });
+
+    document.querySelector('.backdrop').classList.add('display-none');
+    document.querySelector('.modal').classList.add('display-none');
+    document.querySelector('html').classList.remove('block');
+    document.querySelector('body').classList.remove('block');
+
+    document.querySelector('.miss__current').textContent = `0 / 6`;
+  });
 };
 
 const loadPage = (countQuestion, alphabet) => {
@@ -166,10 +213,6 @@ const createModal = (answer) => {
   button.classList.add('modal__button');
   button.textContent = 'play again';
   div.append(button);
-};
-
-const rangeRandom = (min, max) => {
-  return Math.floor(min + Math.random() * (max + 1 - min));
 };
 
 const showModal = (str) => {
