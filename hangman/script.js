@@ -36,6 +36,7 @@ window.onload = function () {
   loadPage(countQuestion, alphabet);
   createModal(countQuestion.answer);
   alphabetClickMouse();
+  clickKeyboard();
   returnToOriginal();
 };
 
@@ -277,4 +278,16 @@ const alphabetClickMouse = () => {
       if (letter.matches('.pressing')) return;
       pressingLetter(letter.textContent);
     });
+};
+
+const clickKeyboard = () => {
+  document.addEventListener('keydown', (event) => {
+    let button = event.key.toUpperCase();
+    let alphabetButton = Array.from(
+      document.querySelectorAll('.keyboard__letter:not(.pressing)'),
+    ).map((x) => x.textContent);
+    if (alphabetButton.includes(button)) {
+      pressingLetter(button);
+    }
+  });
 };
