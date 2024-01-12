@@ -21,10 +21,9 @@ body {
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
-  height: 100vh;
+  min-height: 100vh;
   justify-content: center;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 20px;
   max-width: 1440px;
 }
 body.block {
@@ -36,25 +35,51 @@ h1 {
   text-align: center;
   margin-bottom: 50px;
 }
+@media (max-width: 360px) {
+  h1 {
+    margin-bottom: 20px;
+    font-size: 3rem;
+  }
+}
+
 h2 {
   font-size: 7rem;
   text-align: center;
   color: white;
   margin: 20px;
 }
+@media (max-width: 360px) {
+  h2 {
+    font-size: 4rem;
+  }
+}
+
 .content {
   display: flex;
   width: 100%;
   justify-content: space-between;
   min-height: 500px;
+  margin-bottom: 20px;
+}
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
 }
 
 .hangman {
   width: 50%;
+  min-height: 500px;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+@media (max-width: 500px) {
+  .hangman {
+    width: 100%;
+  }
 }
 .hangman .hangman__gallows {
   position: absolute;
@@ -65,6 +90,13 @@ h2 {
   background: url(../img/hangman/gallows.svg) no-repeat center;
   background-size: contain;
 }
+@media (max-width: 360px) {
+  .hangman .hangman__gallows {
+    height: 250px;
+    width: 150px;
+    background-position: 0 0;
+  }
+}
 .hangman .hangman__head {
   position: absolute;
   top: 125px;
@@ -73,6 +105,14 @@ h2 {
   height: 90px;
   background: url(../img/hangman/head.svg) no-repeat center;
   background-size: contain;
+}
+@media (max-width: 360px) {
+  .hangman .hangman__head {
+    top: 63px;
+    left: 106px;
+    width: 45px;
+    height: 45px;
+  }
 }
 .hangman .hangman__body {
   position: absolute;
@@ -83,6 +123,13 @@ h2 {
   background: url(../img/hangman/body.svg) no-repeat center;
   background-size: contain;
 }
+@media (max-width: 360px) {
+  .hangman .hangman__body {
+    top: 107px;
+    left: 123px;
+    height: 75px;
+  }
+}
 .hangman .hangman__hand-one {
   position: absolute;
   top: 215px;
@@ -91,6 +138,14 @@ h2 {
   height: 70px;
   background: url(../img/hangman/hand-one.svg) no-repeat center;
   background-size: contain;
+}
+@media (max-width: 360px) {
+  .hangman .hangman__hand-one {
+    top: 108px;
+    left: 95px;
+    width: 35px;
+    height: 35px;
+  }
 }
 .hangman .hangman__hand-two {
   position: absolute;
@@ -101,6 +156,14 @@ h2 {
   background: url(../img/hangman/hand-two.svg) no-repeat center;
   background-size: contain;
 }
+@media (max-width: 360px) {
+  .hangman .hangman__hand-two {
+    top: 108px;
+    left: 127px;
+    width: 35px;
+    height: 35px;
+  }
+}
 .hangman .hangman__leg-one {
   position: absolute;
   top: 367px;
@@ -110,6 +173,14 @@ h2 {
   background: url(../img/hangman/leg-one.svg) no-repeat center;
   background-size: contain;
 }
+@media (max-width: 360px) {
+  .hangman .hangman__leg-one {
+    top: 180px;
+    left: 95px;
+    width: 35px;
+    height: 35px;
+  }
+}
 .hangman .hangman__leg-two {
   position: absolute;
   top: 367px;
@@ -118,6 +189,14 @@ h2 {
   height: 70px;
   background: url(../img/hangman/hand-two.svg) no-repeat center;
   background-size: contain;
+}
+@media (max-width: 360px) {
+  .hangman .hangman__leg-two {
+    top: 180px;
+    left: 127px;
+    width: 35px;
+    height: 35px;
+  }
 }
 .hangman .display-none {
   display: none;
@@ -130,12 +209,23 @@ h2 {
   width: 50%;
   gap: 20px;
 }
+@media (max-width: 768px) {
+  .crossword {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
 .crossword .crossword__answer {
   display: flex;
   width: 100%;
   justify-content: center;
   gap: 10px;
   font-size: 4rem;
+}
+@media (max-width: 360px) {
+  .crossword .crossword__answer {
+    font-size: 2rem;
+  }
 }
 .crossword .crossword__question {
   display: flex;
@@ -144,6 +234,11 @@ h2 {
   text-align: center;
   font-size: 2.5rem;
   gap: 10px;
+}
+@media (max-width: 360px) {
+  .crossword .crossword__question {
+    font-size: 2rem;
+  }
 }
 .crossword .crossword__question .question__current {
   font-weight: 700;
@@ -155,6 +250,11 @@ h2 {
   text-align: center;
   font-size: 2.5rem;
   gap: 10px;
+}
+@media (max-width: 360px) {
+  .crossword .crossword__miss {
+    font-size: 2rem;
+  }
 }
 .crossword .crossword__miss .miss__current {
   color: red;
@@ -177,6 +277,13 @@ h2 {
   color: white;
   border-radius: 10px;
 }
+@media (max-width: 360px) {
+  .crossword .crossword__keyboard .keyboard__letter {
+    font-size: 2rem;
+    width: 5rem;
+    height: 5rem;
+  }
+}
 @media (hover: hover) {
   .crossword .crossword__keyboard .keyboard__letter:hover {
     background-color: #c084fc;
@@ -188,7 +295,7 @@ h2 {
 }
 
 .modal {
-  position: absolute;
+  position: fixed;
   z-index: 3;
   top: 50%;
   left: 50%;
@@ -205,6 +312,11 @@ h2 {
 .modal .modal__answer {
   font-size: 3rem;
   margin-bottom: 20px;
+}
+@media (max-width: 360px) {
+  .modal .modal__answer {
+    font-size: 2rem;
+  }
 }
 .modal.display-none {
   display: none;
@@ -238,6 +350,11 @@ h2 {
   font-weight: 600;
   color: white;
   font-size: 3rem;
+}
+@media (max-width: 360px) {
+  .modal__button {
+    font-size: 2rem;
+  }
 }
 
 @media (hover: hover) {

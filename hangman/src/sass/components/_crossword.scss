@@ -5,12 +5,21 @@
   width: 50%;
   gap: 20px;
 
+  @include media-tablet {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
   .crossword__answer {
     display: flex;
     width: 100%;
     justify-content: center;
     gap: 10px;
     font-size: 4rem;
+
+    @include media-mobile {
+      font-size: 2rem;
+    }
   }
 
   .crossword__question {
@@ -20,6 +29,10 @@
     text-align: center;
     font-size: 2.5rem;
     gap: 10px;
+
+    @include media-mobile {
+      font-size: 2rem;
+    }
 
     .question__current {
       font-weight: 700;
@@ -33,6 +46,10 @@
     text-align: center;
     font-size: 2.5rem;
     gap: 10px;
+
+    @include media-mobile {
+      font-size: 2rem;
+    }
 
     .miss__current {
       color: red;
@@ -56,6 +73,12 @@
       background-color: #7e22ce;
       color: white;
       border-radius: 10px;
+
+      @include media-mobile {
+        font-size: 2rem;
+        width: 5rem;
+        height: 5rem;
+      }
     }
 
     @media (hover: hover) {

@@ -1,9 +1,14 @@
 .hangman {
   width: 50%;
+  min-height: 500px;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @include media-tablet-hangman {
+    width: 100%;
+  }
 
   .hangman__gallows {
     position: absolute;
@@ -13,6 +18,12 @@
     width: 300px;
     background: url(../img/hangman/gallows.svg) no-repeat center;
     background-size: contain;
+
+    @include media-mobile {
+      height: 250px;
+      width: 150px;
+      background-position: 0 0;
+    }
   }
 
   .hangman__head {
@@ -23,6 +34,13 @@
     height: 90px;
     background: url(../img/hangman/head.svg) no-repeat center;
     background-size: contain;
+
+    @include media-mobile {
+      top: 63px;
+      left: 106px;
+      width: 45px;
+      height: 45px;
+    }
   }
 
   .hangman__body {
@@ -33,6 +51,12 @@
     height: 150px;
     background: url(../img/hangman/body.svg) no-repeat center;
     background-size: contain;
+
+    @include media-mobile {
+      top: 107px;
+      left: 123px;
+      height: 75px;
+    }
   }
 
   .hangman__hand-one {
@@ -43,6 +67,13 @@
     height: 70px;
     background: url(../img/hangman/hand-one.svg) no-repeat center;
     background-size: contain;
+
+    @include media-mobile {
+      top: 108px;
+      left: 95px;
+      width: 35px;
+      height: 35px;
+    }
   }
 
   .hangman__hand-two {
@@ -53,6 +84,13 @@
     height: 70px;
     background: url(../img/hangman/hand-two.svg) no-repeat center;
     background-size: contain;
+
+    @include media-mobile {
+      top: 108px;
+      left: 127px;
+      width: 35px;
+      height: 35px;
+    }
   }
 
   .hangman__leg-one {
@@ -63,6 +101,13 @@
     height: 70px;
     background: url(../img/hangman/leg-one.svg) no-repeat center;
     background-size: contain;
+
+    @include media-mobile {
+      top: 180px;
+      left: 95px;
+      width: 35px;
+      height: 35px;
+    }
   }
 
   .hangman__leg-two {
@@ -73,6 +118,13 @@
     height: 70px;
     background: url(../img/hangman/hand-two.svg) no-repeat center;
     background-size: contain;
+
+    @include media-mobile {
+      top: 180px;
+      left: 127px;
+      width: 35px;
+      height: 35px;
+    }
   }
 
   .display-none {

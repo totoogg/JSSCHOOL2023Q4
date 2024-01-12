@@ -1,5 +1,5 @@
 .modal {
-  position: absolute;
+  position: fixed;
   z-index: 3;
   top: calc(50%);
   left: calc(50%);
@@ -16,7 +16,12 @@
   .modal__answer {
     font-size: 3rem;
     margin-bottom: 20px;
+    
+    @include media-mobile {
+      font-size: 2rem;
+    }
   }
+
 
   &.display-none {
     display: none;
