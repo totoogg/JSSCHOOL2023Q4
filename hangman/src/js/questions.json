@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "question" : "English people celebrate this holiday on th 25th of December.",
+    "answer": "christmas"
+  },
+  {
+    "id": 2,
+    "question" : "In what country is St Patrics day a national holiday.",
+    "answer": "ireland"
+  },
+  {
+    "id": 3,
+    "question" : "During this season people can ski, skate, sledge, play snow balls.",
+    "answer": "winter"
+  },
+  {
+    "id": 4,
+    "question" : "On what holiday do people put pumkins on the windowsills.",
+    "answer": "halloween"
+  },
+  {
+    "id": 5,
+    "question" : "On this holiday children get chocolate eggs or rabbits.",
+    "answer": "easter"
+  },
+  {
+    "id": 6,
+    "question" : "We can see small green leaves on the trees in this season.",
+    "answer": "spring"
+  },
+  {
+    "id": 7,
+    "question" : "This is the hottest season of the year.",
+    "answer": "summer"
+  },
+  {
+    "id": 8,
+    "question" : "What clothes do people wear in summer.",
+    "answer": "light"
+  },
+  {
+    "id": 9,
+    "question" : "In this season leaves on the trees are red and yellow.",
+    "answer": "autumn"
+  },
+  {
+    "id": 10,
+    "question" : "In Mearch there is a holiday for English …",
+    "answer": "women"
+  }
+]
