@@ -1,0 +1,133 @@
+.hangman {
+  width: 50%;
+  min-height: 500px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include media-tablet-hangman {
+    width: 100%;
+  }
+
+  .hangman__gallows {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 512px;
+    width: 300px;
+    background: url(../img/hangman/gallows.svg) no-repeat center;
+    background-size: contain;
+
+    @include media-mobile {
+      height: 250px;
+      width: 150px;
+      background-position: 0 0;
+    }
+  }
+
+  .hangman__head {
+    position: absolute;
+    top: 125px;
+    left: 210px;
+    width: 90px;
+    height: 90px;
+    background: url(../img/hangman/head.svg) no-repeat center;
+    background-size: contain;
+
+    @include media-mobile {
+      top: 63px;
+      left: 106px;
+      width: 45px;
+      height: 45px;
+    }
+  }
+
+  .hangman__body {
+    position: absolute;
+    top: 217px;
+    left: 252px;
+    width: 10px;
+    height: 150px;
+    background: url(../img/hangman/body.svg) no-repeat center;
+    background-size: contain;
+
+    @include media-mobile {
+      top: 107px;
+      left: 123px;
+      height: 75px;
+    }
+  }
+
+  .hangman__hand-one {
+    position: absolute;
+    top: 215px;
+    left: 190px;
+    width: 70px;
+    height: 70px;
+    background: url(../img/hangman/hand-one.svg) no-repeat center;
+    background-size: contain;
+
+    @include media-mobile {
+      top: 108px;
+      left: 95px;
+      width: 35px;
+      height: 35px;
+    }
+  }
+
+  .hangman__hand-two {
+    position: absolute;
+    top: 215px;
+    left: 255px;
+    width: 70px;
+    height: 70px;
+    background: url(../img/hangman/hand-two.svg) no-repeat center;
+    background-size: contain;
+
+    @include media-mobile {
+      top: 108px;
+      left: 127px;
+      width: 35px;
+      height: 35px;
+    }
+  }
+
+  .hangman__leg-one {
+    position: absolute;
+    top: 367px;
+    left: 190px;
+    width: 70px;
+    height: 70px;
+    background: url(../img/hangman/leg-one.svg) no-repeat center;
+    background-size: contain;
+
+    @include media-mobile {
+      top: 180px;
+      left: 95px;
+      width: 35px;
+      height: 35px;
+    }
+  }
+
+  .hangman__leg-two {
+    position: absolute;
+    top: 367px;
+    left: 255px;
+    width: 70px;
+    height: 70px;
+    background: url(../img/hangman/hand-two.svg) no-repeat center;
+    background-size: contain;
+
+    @include media-mobile {
+      top: 180px;
+      left: 127px;
+      width: 35px;
+      height: 35px;
+    }
+  }
+
+  .display-none {
+    display: none;
+  }
+}
