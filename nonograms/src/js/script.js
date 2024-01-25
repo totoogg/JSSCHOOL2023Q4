@@ -8,79 +8,69 @@ window.onload = function () {
 const buildGame = (number) => {
   const playField = schemes[number].scheme;
 
-  const gameFieldPressing = document.querySelector('.field__pressing');
-  const gameFieldLeft = document.querySelector('.game__key-left');
-  const gameFieldKey = document.querySelector('.field__key');
+  const gameTable = document.querySelector('.game');
 
-  gameFieldPressing.innerHTML = '';
-  gameFieldLeft.innerHTML = '';
-  gameFieldKey.innerHTML = '';
-
-  for (let i = 0; i < schemes[number].size / 5; i++) {
-    const field = document.createElement('div');
-    field.classList.add('pressing__part');
-    field.setAttribute('data-part', `${i}`);
-    gameFieldPressing.append(field);
-
-    const fieldKeyLeft = document.createElement('div');
-    fieldKeyLeft.classList.add('key-left__part');
-    gameFieldLeft.append(fieldKeyLeft);
+  for (let i = 0; i < schemes[number].size + 1; i++) {
+    const row = document.createElement('tr');
+    row.classList.add('game__row');
+    gameTable.append(row);
   }
 
-  for (let i = 0; i < playField.length; i++) {
-    const part =
-      document.querySelectorAll('.pressing__part')[Math.floor(i / 5)];
-    const partKeyLeft =
-      document.querySelectorAll('.key-left__part')[
-        +part.getAttribute('data-part')
-      ];
-    const partKeyTop = document.querySelector('.field__key');
+  const gameRow = document.querySelectorAll('.game__row');
 
-    const divLeft = document.createElement('div');
-    divLeft.classList.add('part__key');
-    partKeyLeft.append(divLeft);
+  for (let i = 0; i < gameRow.length; i++) {
+    for (let j = 0; j < gameRow.length; j++) {
+      const data = document.createElement('td');
+      data.classList.add('row__data');
+      gameRow[i].append(data);
+    }
+  }
 
-    const divTop = document.createElement('div');
-    divTop.classList.add('key__content');
-    partKeyTop.append(divTop);
+  for (let i = 1; i < gameRow.length; i++) {
+    let currentRow = gameRow[i];
+    let dates = currentRow.querySelectorAll('.row__data');
 
-    let count = 0;
-    let countLeft = 0
+    let countTop = 0;
+    let countLeft = 0;
 
-    for (let j = 0; j < playField[i].length; j++) {
-
-      if (playField[j][i]) {
-        count++;
+    for (let j = 1; j < dates.length; j++) {
+      if (playField[j - 1][i - 1]) {
+        countTop++;
       }
 
-      if ((j === playField[i].length - 1 || !playField[j][i]) && count > 0) {
+      if (
+        (j === playField[i - 1].length || !playField[j - 1][i - 1]) &&
+        countTop > 0
+      ) {
+        let dataZero = gameRow[0].querySelectorAll('.row__data')[i];
+        dataZero.classList.add('top-key')
         const numberKey = document.createElement('div');
         numberKey.classList.add('key');
-        numberKey.textContent = count;
-        divTop.append(numberKey);
-        count = 0;
+        numberKey.textContent = countTop;
+        dataZero.append(numberKey);
+        countTop = 0;
       }
 
-      if (playField[i][j]) {
+      if (playField[i - 1][j - 1]) {
         countLeft++;
       }
 
-      if ((j === playField[i].length - 1 || !playField[i][j]) && countLeft > 0) {
-        const numberKey = document.createElement('div');
+      if (
+        (j === playField[i - 1].length || !playField[i - 1][j - 1]) &&
+        countLeft > 0
+      ) {
+        let dataZero = gameRow[i].querySelectorAll('.row__data')[0];
+        dataZero.classList.add('left-key')
+        const numberKey = document.createElement('span');
         numberKey.classList.add('key');
         numberKey.textContent = countLeft;
-        divLeft.append(numberKey);
+        dataZero.append(numberKey);
         countLeft = 0;
       }
 
-      const div = document.createElement('div');
-      div.classList.add('part__square');
-
-      if (playField[i][j]) {
-        div.setAttribute('data-true', 'true');
+      if (playField[i - 1][j - 1]) {
+        dates[j].setAttribute('data-true', 'true');
       }
-
-      part.append(div);
     }
   }
 };
@@ -88,25 +78,9 @@ const buildGame = (number) => {
 const buildStartPage = () => {
   const body = document.querySelector('body');
 
-  const game = document.createElement('div');
+  const game = document.createElement('table');
   game.classList.add('game');
   body.append(game);
-
-  const gameKeyLeft = document.createElement('div');
-  gameKeyLeft.classList.add('game__key-left');
-  game.append(gameKeyLeft);
-
-  const gameField = document.createElement('div');
-  gameField.classList.add('game__field');
-  game.append(gameField);
-
-  const gameFieldKey = document.createElement('div');
-  gameFieldKey.classList.add('field__key');
-  gameField.append(gameFieldKey);
-
-  const gameFieldPressing = document.createElement('div');
-  gameFieldPressing.classList.add('field__pressing');
-  gameField.append(gameFieldPressing);
 
   buildGame(14); //random
 };

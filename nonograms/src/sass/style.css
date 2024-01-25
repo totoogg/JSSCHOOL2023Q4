@@ -54,244 +54,49 @@ h2 {
   }
 }
 
-.content {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  min-height: 500px;
-  margin-bottom: 20px;
+.game {
+  font-size: 3rem;
+  margin: auto;
+  border: 4px solid black;
+  border-collapse: collapse;
 }
-@media (max-width: 768px) {
-  .content {
-    flex-direction: column-reverse;
-    align-items: center;
-  }
+.game .game__row:nth-child(5n+1) {
+  border-bottom: 7px solid black;
+}
+.game .game__row:first-child {
+  border-bottom: 1px solid black;
+}
+.game .game__row:last-child {
+  border-bottom: 1px solid black;
+}
+.game .game__row .row__data {
+  border: 1px solid black;
+}
+.game .game__row .row__data:nth-child(5n+1) {
+  border-right: 7px solid black;
+}
+.game .game__row .row__data:first-child {
+  border-right: 1px solid black;
+}
+.game .game__row .row__data:last-child {
+  border-right: 1px solid black;
 }
 
-.hangman {
-  width: 50%;
-  min-height: 500px;
-  position: relative;
+.top-key {
+  vertical-align: bottom;
+}
+
+.left-key {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.key {
+  width: 5rem;
+  height: 5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-@media (max-width: 500px) {
-  .hangman {
-    width: 100%;
-  }
-}
-.hangman .hangman__gallows {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 512px;
-  width: 300px;
-  background: url(../img/hangman/gallows.svg) no-repeat center;
-  background-size: contain;
-}
-@media (max-width: 360px) {
-  .hangman .hangman__gallows {
-    height: 250px;
-    width: 150px;
-    background-position: 0 0;
-  }
-}
-.hangman .hangman__head {
-  position: absolute;
-  top: 125px;
-  left: 210px;
-  width: 90px;
-  height: 90px;
-  background: url(../img/hangman/head.svg) no-repeat center;
-  background-size: contain;
-}
-@media (max-width: 360px) {
-  .hangman .hangman__head {
-    top: 63px;
-    left: 106px;
-    width: 45px;
-    height: 45px;
-  }
-}
-.hangman .hangman__body {
-  position: absolute;
-  top: 217px;
-  left: 252px;
-  width: 10px;
-  height: 150px;
-  background: url(../img/hangman/body.svg) no-repeat center;
-  background-size: contain;
-}
-@media (max-width: 360px) {
-  .hangman .hangman__body {
-    top: 107px;
-    left: 123px;
-    height: 75px;
-  }
-}
-.hangman .hangman__hand-one {
-  position: absolute;
-  top: 215px;
-  left: 190px;
-  width: 70px;
-  height: 70px;
-  background: url(../img/hangman/hand-one.svg) no-repeat center;
-  background-size: contain;
-}
-@media (max-width: 360px) {
-  .hangman .hangman__hand-one {
-    top: 108px;
-    left: 95px;
-    width: 35px;
-    height: 35px;
-  }
-}
-.hangman .hangman__hand-two {
-  position: absolute;
-  top: 215px;
-  left: 255px;
-  width: 70px;
-  height: 70px;
-  background: url(../img/hangman/hand-two.svg) no-repeat center;
-  background-size: contain;
-}
-@media (max-width: 360px) {
-  .hangman .hangman__hand-two {
-    top: 108px;
-    left: 127px;
-    width: 35px;
-    height: 35px;
-  }
-}
-.hangman .hangman__leg-one {
-  position: absolute;
-  top: 367px;
-  left: 190px;
-  width: 70px;
-  height: 70px;
-  background: url(../img/hangman/leg-one.svg) no-repeat center;
-  background-size: contain;
-}
-@media (max-width: 360px) {
-  .hangman .hangman__leg-one {
-    top: 180px;
-    left: 95px;
-    width: 35px;
-    height: 35px;
-  }
-}
-.hangman .hangman__leg-two {
-  position: absolute;
-  top: 367px;
-  left: 255px;
-  width: 70px;
-  height: 70px;
-  background: url(../img/hangman/hand-two.svg) no-repeat center;
-  background-size: contain;
-}
-@media (max-width: 360px) {
-  .hangman .hangman__leg-two {
-    top: 180px;
-    left: 127px;
-    width: 35px;
-    height: 35px;
-  }
-}
-.hangman .display-none {
-  display: none;
-}
-
-.crossword {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 50%;
-  gap: 20px;
-}
-@media (max-width: 768px) {
-  .crossword {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-}
-.crossword .crossword__answer {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  gap: 10px;
-  font-size: 4rem;
-}
-@media (max-width: 360px) {
-  .crossword .crossword__answer {
-    font-size: 2rem;
-  }
-}
-.crossword .crossword__question {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  text-align: center;
-  font-size: 2.5rem;
-  gap: 10px;
-}
-@media (max-width: 360px) {
-  .crossword .crossword__question {
-    font-size: 2rem;
-  }
-}
-.crossword .crossword__question .question__current {
-  font-weight: 700;
-}
-.crossword .crossword__miss {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  text-align: center;
-  font-size: 2.5rem;
-  gap: 10px;
-}
-@media (max-width: 360px) {
-  .crossword .crossword__miss {
-    font-size: 2rem;
-  }
-}
-.crossword .crossword__miss .miss__current {
-  color: red;
-}
-.crossword .crossword__keyboard {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.crossword .crossword__keyboard .keyboard__letter {
-  font-size: 5rem;
-  cursor: pointer;
-  width: 6rem;
-  height: 6rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #7e22ce;
-  color: white;
-  border-radius: 10px;
-}
-@media (max-width: 360px) {
-  .crossword .crossword__keyboard .keyboard__letter {
-    font-size: 2rem;
-    width: 5rem;
-    height: 5rem;
-  }
-}
-@media (hover: hover) {
-  .crossword .crossword__keyboard .keyboard__letter:hover {
-    background-color: #c084fc;
-  }
-}
-.crossword .crossword__keyboard .pressing {
-  background-color: #c084fc;
-  cursor: default;
 }
 
 .modal {
