@@ -99,6 +99,10 @@ h2 {
   align-items: center;
 }
 
+.brill {
+  background-color: #000000;
+}
+
 .modal {
   position: fixed;
   z-index: 3;

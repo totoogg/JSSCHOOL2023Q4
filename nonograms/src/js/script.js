@@ -3,6 +3,17 @@ import schemes from './modules/schemes.json' assert { type: 'json' };
 window.onload = function () {
   console.log(schemes);
   buildStartPage();
+  clickSquare();
+};
+
+const clickSquare = () => {
+  document.querySelector('.game').addEventListener('mousedown', (event) => {
+    let td = event.target.closest('.row__data');
+
+    if (!td || !td.getAttribute('data-click')) return;
+
+    td.classList.toggle('brill');
+  });
 };
 
 const buildGame = (number) => {
@@ -43,7 +54,7 @@ const buildGame = (number) => {
         countTop > 0
       ) {
         let dataZero = gameRow[0].querySelectorAll('.row__data')[i];
-        dataZero.classList.add('top-key')
+        dataZero.classList.add('top-key');
         const numberKey = document.createElement('div');
         numberKey.classList.add('key');
         numberKey.textContent = countTop;
@@ -60,7 +71,7 @@ const buildGame = (number) => {
         countLeft > 0
       ) {
         let dataZero = gameRow[i].querySelectorAll('.row__data')[0];
-        dataZero.classList.add('left-key')
+        dataZero.classList.add('left-key');
         const numberKey = document.createElement('span');
         numberKey.classList.add('key');
         numberKey.textContent = countLeft;
@@ -71,6 +82,8 @@ const buildGame = (number) => {
       if (playField[i - 1][j - 1]) {
         dates[j].setAttribute('data-true', 'true');
       }
+
+      dates[j].setAttribute('data-click', 'true');
     }
   }
 };
