@@ -6,6 +6,21 @@ window.onload = function () {
   clickSquare();
 };
 
+const checkWin = () => {
+  const game = document.querySelector('.game')
+
+  const brillSquare = game.querySelectorAll('.brill').length
+  const brillSquareTrue = game.querySelectorAll('.brill[data-true]').length
+
+  if (brillSquare === brillSquareTrue) {
+    let finishSquare = game.querySelectorAll('.row__data[data-true]').length
+
+    if(brillSquare === finishSquare && brillSquareTrue === finishSquare) {
+      console.log('win')//show modal
+    }
+  }
+};
+
 const clickSquare = () => {
   document.querySelector('.game').addEventListener('mousedown', (event) => {
     let td = event.target.closest('.row__data');
@@ -13,6 +28,8 @@ const clickSquare = () => {
     if (!td || !td.getAttribute('data-click')) return;
 
     td.classList.toggle('brill');
+
+    checkWin();
   });
 };
 
@@ -20,6 +37,7 @@ const buildGame = (number) => {
   const playField = schemes[number].scheme;
 
   const gameTable = document.querySelector('.game');
+  gameTable.innerHTML = '';
 
   for (let i = 0; i < schemes[number].size + 1; i++) {
     const row = document.createElement('tr');
@@ -43,6 +61,12 @@ const buildGame = (number) => {
 
     let countTop = 0;
     let countLeft = 0;
+
+    let dataZeroLeft = gameRow[i].querySelectorAll('.row__data')[0];
+    dataZeroLeft.classList.add('left-key');
+    const containerLeftKey = document.createElement('div');
+    containerLeftKey.classList.add('left-key__container');
+    dataZeroLeft.append(containerLeftKey);
 
     for (let j = 1; j < dates.length; j++) {
       if (playField[j - 1][i - 1]) {
@@ -70,12 +94,10 @@ const buildGame = (number) => {
         (j === playField[i - 1].length || !playField[i - 1][j - 1]) &&
         countLeft > 0
       ) {
-        let dataZero = gameRow[i].querySelectorAll('.row__data')[0];
-        dataZero.classList.add('left-key');
         const numberKey = document.createElement('span');
         numberKey.classList.add('key');
         numberKey.textContent = countLeft;
-        dataZero.append(numberKey);
+        containerLeftKey.append(numberKey);
         countLeft = 0;
       }
 
@@ -95,5 +117,5 @@ const buildStartPage = () => {
   game.classList.add('game');
   body.append(game);
 
-  buildGame(14); //random
+  buildGame(0); //random
 };

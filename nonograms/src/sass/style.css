@@ -61,10 +61,10 @@ h2 {
   border-collapse: collapse;
 }
 .game .game__row:nth-child(5n+1) {
-  border-bottom: 7px solid black;
+  border-bottom: 4px solid black;
 }
 .game .game__row:first-child {
-  border-bottom: 1px solid black;
+  border-bottom: 4px solid black;
 }
 .game .game__row:last-child {
   border-bottom: 1px solid black;
@@ -73,10 +73,10 @@ h2 {
   border: 1px solid black;
 }
 .game .game__row .row__data:nth-child(5n+1) {
-  border-right: 7px solid black;
+  border-right: 4px solid black;
 }
 .game .game__row .row__data:first-child {
-  border-right: 1px solid black;
+  border-right: 4px solid black;
 }
 .game .game__row .row__data:last-child {
   border-right: 1px solid black;
@@ -86,7 +86,7 @@ h2 {
   vertical-align: bottom;
 }
 
-.left-key {
+.left-key__container {
   display: flex;
   justify-content: flex-end;
 }

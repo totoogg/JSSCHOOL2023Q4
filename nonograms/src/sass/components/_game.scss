@@ -10,11 +10,11 @@
 
   .game__row {
     &:nth-child(5n + 1) {
-      border-bottom: 7px solid black;
+      border-bottom: 4px solid black;
     }
 
     &:first-child {
-      border-bottom: 1px solid black;
+      border-bottom: 4px solid black;
     }
 
     &:last-child {
@@ -25,11 +25,11 @@
       border: 1px solid black;
 
       &:nth-child(5n + 1) {
-        border-right: 7px solid black;
+        border-right: 4px solid black;
       }
 
       &:first-child {
-        border-right: 1px solid black;
+        border-right: 4px solid black;
       }
 
       &:last-child {
@@ -43,7 +43,7 @@
   vertical-align: bottom;
 }
 
-.left-key {
+.left-key__container {
   display: flex;
   justify-content: flex-end;
 }
