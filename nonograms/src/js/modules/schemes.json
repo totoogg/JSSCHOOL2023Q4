@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+    "name": "camel",
     "size": 5,
     "scheme": [
       [false, false, false, true, true],
@@ -12,6 +13,7 @@
   },
   {
     "id": 2,
+    "name": "buggy",
     "size": 5,
     "scheme": [
       [false, true, true, false, false],
@@ -23,6 +25,7 @@
   },
   {
     "id": 3,
+    "name": "bomb",
     "size": 5,
     "scheme": [
       [false, false, true, true, false],
@@ -34,6 +37,7 @@
   },
   {
     "id": 4,
+    "name": "propeller",
     "size": 5,
     "scheme": [
       [false, true, false, false, false],
@@ -45,6 +49,7 @@
   },
   {
     "id": 5,
+    "name": "camel №2",
     "size": 5,
     "scheme": [
       [false, true, false, false, false],
@@ -56,6 +61,7 @@
   },
   {
     "id": 6,
+    "name": "rhinoceros",
     "size": 10,
     "scheme": [
       [false, false, true, false, false, false, false, false, false, false],
@@ -72,6 +78,7 @@
   },
   {
     "id": 7,
+    "name": "duck",
     "size": 10,
     "scheme": [
       [false, false, false, true, true, true, false, false, false, false],
@@ -88,6 +95,7 @@
   },
   {
     "id": 8,
+    "name": "puppy",
     "size": 10,
     "scheme": [
       [false, false, false, false, true, true, true, true, false, false],
@@ -104,6 +112,7 @@
   },
   {
     "id": 9,
+    "name": "bass clef",
     "size": 10,
     "scheme": [
       [true, true, false, true, true, true, true, false, false, false],
@@ -120,6 +129,7 @@
   },
   {
     "id": 10,
+    "name": "construction crane",
     "size": 10,
     "scheme": [
       [true, true, true, true, true, true, true, true, true, true],
@@ -136,6 +146,7 @@
   },
   {
     "id": 11,
+    "name": "watch",
     "size": 15,
     "scheme": [
       [
@@ -397,6 +408,7 @@
   },
   {
     "id": 12,
+    "name": "parking",
     "size": 15,
     "scheme": [
       [
@@ -658,6 +670,7 @@
   },
   {
     "id": 13,
+    "name": "butterfly",
     "size": 15,
     "scheme": [
       [
@@ -919,6 +932,7 @@
   },
   {
     "id": 14,
+    "name": "goat",
     "size": 15,
     "scheme": [
       [
@@ -1180,6 +1194,7 @@
   },
   {
     "id": 15,
+    "name": "dog",
     "size": 15,
     "scheme": [
       [

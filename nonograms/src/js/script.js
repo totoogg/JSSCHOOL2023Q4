@@ -4,19 +4,51 @@ window.onload = function () {
   console.log(schemes);
   buildStartPage();
   clickSquare();
+  createModal();
+};
+
+const showModal = (str) => {
+  let question = document.querySelector('.question__current').textContent;
+  let answer = questions.find((x) => question === x.question);
+  let modal = document.querySelector('.modal');
+  document.querySelector('.backdrop').classList.remove('display-none');
+  modal.classList.remove('display-none');
+  modal.querySelector('.modal__answer').textContent =
+    `Answer: ${answer.answer.toUpperCase()}`;
+  document.querySelector('html').classList.add('block');
+  document.querySelector('body').classList.add('block');
+  if (str === 'loss') {
+    modal.querySelector('.modal__title').textContent = 'FAIL';
+  } else {
+    modal.querySelector('.modal__title').textContent = 'WIN';
+  }
+};
+
+const createModal = () => {
+  const body = document.querySelector('body');
+
+  let div = document.createElement('div');
+  div.classList.add('modal-finish');
+  div.classList.add('display-none');
+  body.append(div);
+
+  let title = document.createElement('h2');
+  title.classList.add('modal__title');
+  title.textContent = 'Great! You have solved the nonogram!';
+  div.append(title);
 };
 
 const checkWin = () => {
-  const game = document.querySelector('.game')
+  const game = document.querySelector('.game');
 
-  const brillSquare = game.querySelectorAll('.brill').length
-  const brillSquareTrue = game.querySelectorAll('.brill[data-true]').length
+  const brillSquare = game.querySelectorAll('.brill').length;
+  const brillSquareTrue = game.querySelectorAll('.brill[data-true]').length;
 
   if (brillSquare === brillSquareTrue) {
-    let finishSquare = game.querySelectorAll('.row__data[data-true]').length
+    let finishSquare = game.querySelectorAll('.row__data[data-true]').length;
 
-    if(brillSquare === finishSquare && brillSquareTrue === finishSquare) {
-      console.log('win')//show modal
+    if (brillSquare === finishSquare && brillSquareTrue === finishSquare) {
+      console.log('win'); //show modal
     }
   }
 };
@@ -34,6 +66,8 @@ const clickSquare = () => {
 };
 
 const buildGame = (number) => {
+  const body = document.querySelector('body');
+
   const playField = schemes[number].scheme;
 
   const gameTable = document.querySelector('.game');
@@ -110,8 +144,85 @@ const buildGame = (number) => {
   }
 };
 
+const createModalChooseList = () => {
+  const body = document.querySelector('body');
+
+  let div = document.createElement('div');
+  div.classList.add('modal-choose-list');
+  div.classList.add('display-none');
+  body.append(div);
+};
+
+const createModalStart = () => {
+  const body = document.querySelector('body');
+
+  let div = document.createElement('div');
+  div.classList.add('modal-start');
+  div.classList.add('display-none');
+  body.append(div);
+
+  let title = document.createElement('h2');
+  title.classList.add('modal-start__title');
+  title.textContent = 'Choose the difficulty';
+  div.append(title);
+
+  let choose = document.createElement('div');
+  choose.classList.add('modal-start__choose');
+  div.append(choose);
+
+  let arrSize = Array.from(new Set(schemes.map((x) => x.size)));
+
+  for (let i = 0; i < arrSize.length; i++) {
+    let button = document.createElement('button');
+    button.classList.add('choose__button');
+    button.setAttribute('data-choose', `${i}`);
+    if (i === 0) {
+      button.textContent = `Easy(${arrSize[i]}x${arrSize[i]})`;
+    }
+    if (i === 1) {
+      button.textContent = `Middle(${arrSize[i]}x${arrSize[i]})`;
+    }
+    if (i === 2) {
+      button.textContent = `Hard(${arrSize[i]}x${arrSize[i]})`;
+    }
+
+    choose.append(button);
+
+    button.addEventListener('click', () => {
+      let index = arrSize[i];
+      let choose = document.querySelector('.modal-choose-list');
+      choose.innerHTML = '';
+      let arr = schemes.filter((x) => x.size === index).map((x) => x.name);
+      for (let i = 0; i < arr.length; i++) {
+        let button = document.createElement('button');
+        button.classList.add('modal-choose-list__item');
+        button.textContent = `${arr[i]}`;
+        choose.append(button);
+        button.addEventListener('click', () => {
+          let arrName = schemes.map((x) => x.name);
+          let index = arrName.indexOf(arr[i]);
+          buildGame(index);
+        });
+      }
+    });
+  }
+};
+
 const buildStartPage = () => {
   const body = document.querySelector('body');
+
+  const title = document.createElement('h1');
+  title.classList.add('headline');
+  title.textContent = 'Nonogram';
+  body.append(title);
+
+  let backdrop = document.createElement('div');
+  backdrop.classList.add('backdrop');
+  backdrop.classList.add('display-none');
+  body.append(backdrop);
+
+  createModalStart();
+  createModalChooseList();
 
   const game = document.createElement('table');
   game.classList.add('game');
