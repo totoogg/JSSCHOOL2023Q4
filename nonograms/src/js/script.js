@@ -55,14 +55,28 @@ const checkWin = () => {
 
 const clickSquare = () => {
   document.querySelector('.game').addEventListener('mousedown', (event) => {
+    if (event.defaultPrevented) return;
+    event.preventDefault();
     let td = event.target.closest('.row__data');
 
     if (!td || !td.getAttribute('data-click')) return;
 
-    td.classList.toggle('brill');
+    if (event.button === 2) {
+      td.classList.remove('brill');
+      td.classList.toggle('active')
+      return;
+    } else {
+      td.classList.remove('active')
+      td.classList.toggle('brill');
+    }
 
     checkWin();
   });
+
+  document.querySelector('.game').oncontextmenu = function (event) {
+    if (event.defaultPrevented) return;
+    event.preventDefault();
+  };
 };
 
 const buildGame = (number) => {
@@ -140,6 +154,11 @@ const buildGame = (number) => {
       }
 
       dates[j].setAttribute('data-click', 'true');
+
+      for (let i = 0; i < 2; i++) {
+        let span = document.createElement('span');
+        dates[j].append(span);
+      }
     }
   }
 };
@@ -208,6 +227,38 @@ const createModalStart = () => {
   }
 };
 
+const createButtonReset = () => {
+  const body = document.querySelector('body');
+
+  let button = document.createElement('button');
+  button.classList.add('reset');
+  button.textContent = 'Reset game';
+  body.append(button);
+
+  button.addEventListener('click', () => {
+    let arr = document.querySelectorAll('.brill');
+    arr.forEach((x) => {
+      x.classList.remove('brill');
+    });
+  });
+};
+
+const createButtonSolution = () => {
+  const body = document.querySelector('body');
+
+  let button = document.createElement('button');
+  button.classList.add('solution');
+  button.textContent = 'Solution';
+  body.append(button);
+
+  button.addEventListener('click', () => {
+    let arr = document.querySelectorAll('.row__data[data-true]');
+    arr.forEach((x) => {
+      x.classList.add('brill');
+    });
+  });
+};
+
 const buildStartPage = () => {
   const body = document.querySelector('body');
 
@@ -229,4 +280,7 @@ const buildStartPage = () => {
   body.append(game);
 
   buildGame(0); //random
+
+  createButtonReset();
+  createButtonSolution();
 };
