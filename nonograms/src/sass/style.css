@@ -68,7 +68,26 @@ h2 {
 .content__game .game__row:last-child {
   border-bottom: 1px solid black;
 }
+.content__game .game__row .row__data[data-click] span {
+  position: absolute;
+  width: 100%;
+  height: 0px;
+  background-color: #000000;
+}
+.content__game .game__row .row__data[data-click].active span {
+  height: 1px;
+  transform: scale(0);
+}
+.content__game .game__row .row__data[data-click].active span:first-child {
+  transform: rotate(-45deg);
+  top: calc(50% - 1px);
+}
+.content__game .game__row .row__data[data-click].active span:last-child {
+  bottom: calc(50% - 1px);
+  transform: rotate(45deg);
+}
 .content__game .game__row .row__data {
+  position: relative;
   border: 1px solid black;
 }
 .content__game .game__row .row__data:nth-child(5n+1) {

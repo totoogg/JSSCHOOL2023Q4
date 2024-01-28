@@ -21,7 +21,34 @@
       border-bottom: 1px solid black;
     }
 
+    .row__data[data-click] {
+      span {
+        position: absolute;
+        width: 100%;
+        height: 0px;
+        background-color: #000000;
+      }
+    
+      &.active {
+        span {
+          height: 1px;
+          transform: scale(0);
+    
+          &:first-child {
+            transform: rotate(-45deg);
+            top: calc(50% - 1px);
+          }
+    
+          &:last-child {
+            bottom: calc(50% - 1px);
+            transform: rotate(45deg);
+          }
+        }
+      }
+    }
+
     .row__data {
+      position: relative;
       border: 1px solid black;
 
       &:nth-child(5n + 1) {
