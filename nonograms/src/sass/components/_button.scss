@@ -1,5 +1,5 @@
-.modal__button {
-  margin-bottom: 20px;
+.button {
+  margin: 20px;
   width: 200px;
   height: 64px;
   background-color: #1d4ed8;
@@ -12,15 +12,15 @@
   text-decoration: none;
   font-weight: 600;
   color: white;
-  font-size: 3rem;
+  font-size: 2.5rem;
 
   @include media-mobile {
-    font-size: 2rem;
+    
   }
 }
 
 @media (hover: hover) {
-  .modal__button:hover {
+  .button:hover {
     background-color: #60a5fa;
   }
 }

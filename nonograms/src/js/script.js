@@ -7,21 +7,12 @@ window.onload = function () {
   createModal();
 };
 
-const showModal = (str) => {
-  let question = document.querySelector('.question__current').textContent;
-  let answer = questions.find((x) => question === x.question);
-  let modal = document.querySelector('.modal');
-  document.querySelector('.backdrop').classList.remove('display-none');
-  modal.classList.remove('display-none');
-  modal.querySelector('.modal__answer').textContent =
-    `Answer: ${answer.answer.toUpperCase()}`;
-  document.querySelector('html').classList.add('block');
-  document.querySelector('body').classList.add('block');
-  if (str === 'loss') {
-    modal.querySelector('.modal__title').textContent = 'FAIL';
-  } else {
-    modal.querySelector('.modal__title').textContent = 'WIN';
-  }
+const showModal = () => {
+  let backdrop = document.querySelector('.backdrop');
+  backdrop.classList.remove('display-none');
+
+  let modalFinish = document.querySelector('.modal-finish');
+  modalFinish.classList.remove('display-none');
 };
 
 const createModal = () => {
@@ -39,7 +30,7 @@ const createModal = () => {
 };
 
 const checkWin = () => {
-  const game = document.querySelector('.game');
+  const game = document.querySelector('.content__game');
 
   const brillSquare = game.querySelectorAll('.brill').length;
   const brillSquareTrue = game.querySelectorAll('.brill[data-true]').length;
@@ -48,13 +39,13 @@ const checkWin = () => {
     let finishSquare = game.querySelectorAll('.row__data[data-true]').length;
 
     if (brillSquare === finishSquare && brillSquareTrue === finishSquare) {
-      console.log('win'); //show modal
+      showModal();
     }
   }
 };
 
 const clickSquare = () => {
-  document.querySelector('.game').addEventListener('mousedown', (event) => {
+  document.querySelector('.content__game').addEventListener('mousedown', (event) => {
     if (event.defaultPrevented) return;
     event.preventDefault();
     let td = event.target.closest('.row__data');
@@ -63,17 +54,17 @@ const clickSquare = () => {
 
     if (event.button === 2) {
       td.classList.remove('brill');
-      td.classList.toggle('active')
+      td.classList.toggle('active');
       return;
     } else {
-      td.classList.remove('active')
+      td.classList.remove('active');
       td.classList.toggle('brill');
     }
 
     checkWin();
   });
 
-  document.querySelector('.game').oncontextmenu = function (event) {
+  document.querySelector('.content__game').oncontextmenu = function (event) {
     if (event.defaultPrevented) return;
     event.preventDefault();
   };
@@ -84,7 +75,7 @@ const buildGame = (number) => {
 
   const playField = schemes[number].scheme;
 
-  const gameTable = document.querySelector('.game');
+  const gameTable = document.querySelector('.content__game');
   gameTable.innerHTML = '';
 
   for (let i = 0; i < schemes[number].size + 1; i++) {
@@ -177,7 +168,6 @@ const createModalStart = () => {
 
   let div = document.createElement('div');
   div.classList.add('modal-start');
-  div.classList.add('display-none');
   body.append(div);
 
   let title = document.createElement('h2');
@@ -194,6 +184,7 @@ const createModalStart = () => {
   for (let i = 0; i < arrSize.length; i++) {
     let button = document.createElement('button');
     button.classList.add('choose__button');
+    button.classList.add('button');
     button.setAttribute('data-choose', `${i}`);
     if (i === 0) {
       button.textContent = `Easy(${arrSize[i]}x${arrSize[i]})`;
@@ -208,19 +199,36 @@ const createModalStart = () => {
     choose.append(button);
 
     button.addEventListener('click', () => {
+      let modalStart = document.querySelector('.modal-start');
+      modalStart.classList.add('display-none');
+
+      let modalList = document.querySelector('.modal-choose-list');
+      modalList.classList.remove('display-none');
+
       let index = arrSize[i];
       let choose = document.querySelector('.modal-choose-list');
       choose.innerHTML = '';
+
+      let title = document.createElement('h2');
+      title.classList.add('modal-choose-list__tittle');
+      title.textContent = 'Select scheme';
+      choose.append(title);
       let arr = schemes.filter((x) => x.size === index).map((x) => x.name);
       for (let i = 0; i < arr.length; i++) {
         let button = document.createElement('button');
         button.classList.add('modal-choose-list__item');
+        button.classList.add('button');
         button.textContent = `${arr[i]}`;
         choose.append(button);
         button.addEventListener('click', () => {
           let arrName = schemes.map((x) => x.name);
           let index = arrName.indexOf(arr[i]);
           buildGame(index);
+
+          let modalList = document.querySelector('.modal-choose-list');
+          modalList.classList.add('display-none');
+          let backdrop = document.querySelector('.backdrop');
+          backdrop.classList.add('display-none');
         });
       }
     });
@@ -228,10 +236,11 @@ const createModalStart = () => {
 };
 
 const createButtonReset = () => {
-  const body = document.querySelector('body');
+  const body = document.querySelector('.content__button');
 
   let button = document.createElement('button');
   button.classList.add('reset');
+  button.classList.add('button');
   button.textContent = 'Reset game';
   body.append(button);
 
@@ -244,10 +253,11 @@ const createButtonReset = () => {
 };
 
 const createButtonSolution = () => {
-  const body = document.querySelector('body');
+  const body = document.querySelector('.content__button');
 
   let button = document.createElement('button');
   button.classList.add('solution');
+  button.classList.add('button');
   button.textContent = 'Solution';
   body.append(button);
 
@@ -269,17 +279,24 @@ const buildStartPage = () => {
 
   let backdrop = document.createElement('div');
   backdrop.classList.add('backdrop');
-  backdrop.classList.add('display-none');
   body.append(backdrop);
 
   createModalStart();
   createModalChooseList();
 
-  const game = document.createElement('table');
-  game.classList.add('game');
-  body.append(game);
+  const content = document.createElement('div');
+  content.classList.add('content');
+  body.append(content);
 
-  buildGame(0); //random
+  const game = document.createElement('table');
+  game.classList.add('content__game');
+  content.append(game);
+
+  const button = document.createElement('div');
+  button.classList.add('content__button');
+  content.append(button);
+
+  buildGame(0);
 
   createButtonReset();
   createButtonSolution();
