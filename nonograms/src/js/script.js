@@ -45,24 +45,26 @@ const checkWin = () => {
 };
 
 const clickSquare = () => {
-  document.querySelector('.content__game').addEventListener('mousedown', (event) => {
-    if (event.defaultPrevented) return;
-    event.preventDefault();
-    let td = event.target.closest('.row__data');
+  document
+    .querySelector('.content__game')
+    .addEventListener('mousedown', (event) => {
+      if (event.defaultPrevented) return;
+      event.preventDefault();
+      let td = event.target.closest('.row__data');
 
-    if (!td || !td.getAttribute('data-click')) return;
+      if (!td || !td.getAttribute('data-click')) return;
 
-    if (event.button === 2) {
-      td.classList.remove('brill');
-      td.classList.toggle('active');
-      return;
-    } else {
-      td.classList.remove('active');
-      td.classList.toggle('brill');
-    }
+      if (event.button === 2) {
+        td.classList.remove('brill');
+        td.classList.toggle('active');
+        return;
+      } else {
+        td.classList.remove('active');
+        td.classList.toggle('brill');
+      }
 
-    checkWin();
-  });
+      checkWin();
+    });
 
   document.querySelector('.content__game').oncontextmenu = function (event) {
     if (event.defaultPrevented) return;
@@ -224,6 +226,7 @@ const createModalStart = () => {
           let arrName = schemes.map((x) => x.name);
           let index = arrName.indexOf(arr[i]);
           buildGame(index);
+          localStorage.setItem('nonogramsArrIndex', index);
 
           let modalList = document.querySelector('.modal-choose-list');
           modalList.classList.add('display-none');
@@ -245,6 +248,14 @@ const createButtonReset = () => {
   body.append(button);
 
   button.addEventListener('click', () => {
+    let div = document.querySelector('.solution__block');
+    if (div) {
+      div.remove();
+    }
+    let arrActive = document.querySelectorAll('.active');
+    arrActive.forEach((x) => {
+      x.classList.remove('active');
+    });
     let arr = document.querySelectorAll('.brill');
     arr.forEach((x) => {
       x.classList.remove('brill');
@@ -262,10 +273,118 @@ const createButtonSolution = () => {
   body.append(button);
 
   button.addEventListener('click', () => {
+    let div = document.createElement('div');
+    div.classList.add('solution__block');
+    document.querySelector('.content__game').append(div);
     let arr = document.querySelectorAll('.row__data[data-true]');
     arr.forEach((x) => {
       x.classList.add('brill');
     });
+  });
+};
+
+const createButtonsSave = () => {
+  const block = document.querySelector('.content__button');
+  let div = document.createElement('div');
+  div.classList.add('button__save-content');
+  block.append(div);
+
+  let save = document.createElement('button');
+  save.classList.add('save-content__button-save');
+  save.classList.add('button');
+  save.textContent = 'Save the game';
+  div.append(save);
+
+  save.addEventListener('click', () => {
+    document
+      .querySelector('.save-content__button-loading')
+      .classList.remove('disabled');
+    let clickBlocks = document.querySelectorAll('.row__data[data-click]');
+    let saveArr = Array.from(clickBlocks).map((x) => {
+      if (x.classList.contains('brill')) {
+        return 1;
+      } else if (x.classList.contains('active')) {
+        return 2;
+      } else {
+        return 0;
+      }
+    });
+    const objSave = {
+      index: localStorage.getItem('nonogramsArrIndex'),
+      arrClick: saveArr,
+    };
+    localStorage.setItem('nonogramsArrSaveGame', JSON.stringify(objSave));
+  });
+
+  let loading = document.createElement('button');
+  loading.classList.add('save-content__button-loading');
+  loading.classList.add('button');
+  if (!localStorage.getItem('nonogramsArrSaveGame')) {
+    loading.classList.add('disabled');
+  }
+  loading.textContent = 'Continue the last game';
+  div.append(loading);
+
+  loading.addEventListener('click', () => {
+    if (localStorage.getItem('nonogramsArrSaveGame')) {
+      let save = JSON.parse(localStorage.getItem('nonogramsArrSaveGame'));
+      buildGame(+save.index);
+      let clicks = document.querySelectorAll('.row__data[data-click]')
+      save.arrClick.forEach((x, index) => {
+        if (x === 1) {
+          clicks[index].classList.add('brill')
+        } else if (x === 2) {
+          clicks[index].classList.add('active')
+        }
+      })
+    }
+  });
+};
+
+const createButtonChoseLevel = () => {
+  const block = document.querySelector('.content__button');
+
+  let button = document.createElement('button');
+  button.classList.add('choice-level');
+  button.classList.add('button');
+  button.textContent = 'The choice of level';
+  block.append(button);
+
+  button.addEventListener('click', () => {
+    let modal = document.querySelector('.modal-start');
+    modal.classList.remove('display-none');
+    let backdrop = document.querySelector('.backdrop');
+    backdrop.classList.remove('display-none');
+  });
+};
+
+const rangeRandom = (min, max) => {
+  return Math.floor(min + Math.random() * (max + 1 - min));
+};
+
+const createButtonsRandomGame = () => {
+  const block = document.querySelector('.content__button');
+
+  let button = document.createElement('button');
+  button.classList.add('random');
+  button.classList.add('button');
+  button.textContent = 'Random game';
+  block.append(button);
+
+  button.addEventListener('click', () => {
+    let random = rangeRandom(0, schemes.length - 1);
+    if (random === localStorage.getItem('nonogramsArrIndex')) {
+      if (random === schemes.length - 1) {
+        buildGame(0);
+        localStorage.setItem('nonogramsArrIndex', 0);
+      } else {
+        buildGame(random + 1);
+        localStorage.setItem('nonogramsArrIndex', random + 1);
+      }
+    } else {
+      buildGame(random);
+      localStorage.setItem('nonogramsArrIndex', random);
+    }
   });
 };
 
@@ -280,6 +399,19 @@ const buildStartPage = () => {
   let backdrop = document.createElement('div');
   backdrop.classList.add('backdrop');
   body.append(backdrop);
+
+  backdrop.addEventListener('click', () => {
+    if (
+      localStorage.getItem('nonogramsArrIndex') &&
+      document.querySelector('.modal-finish').classList.contains('display-none')
+    ) {
+      backdrop.classList.add('display-none');
+      document.querySelector('.modal-start').classList.add('display-none');
+      document
+        .querySelector('.modal-choose-list')
+        .classList.add('display-none');
+    }
+  });
 
   createModalStart();
   createModalChooseList();
@@ -296,8 +428,13 @@ const buildStartPage = () => {
   button.classList.add('content__button');
   content.append(button);
 
+  localStorage.removeItem('nonogramsArrIndex');
+
   buildGame(0);
 
+  createButtonChoseLevel();
   createButtonReset();
   createButtonSolution();
+  createButtonsSave();
+  createButtonsRandomGame();
 };
