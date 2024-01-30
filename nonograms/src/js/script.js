@@ -1,13 +1,37 @@
 import schemes from './modules/schemes.json' assert { type: 'json' };
 
+let time;
+let isTime = false;
+
 window.onload = function () {
-  console.log(schemes);
   buildStartPage();
   clickSquare();
   createModal();
 };
 
+const upTimer = () => {
+  let time = document.querySelector('.media__timer');
+  let [hours, minutes, seconds] = time.textContent.split(':').map((x) => +x);
+  seconds++;
+  if (seconds === 60) {
+    minutes++;
+    seconds = 0;
+  }
+  if (minutes === 60) {
+    hours++;
+    minutes = 0;
+  }
+  time.textContent = `${String(hours).padStart(2, '0')}:${String(
+    minutes,
+  ).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+};
+
 const showModal = () => {
+  let time = document.querySelector('.media__timer');
+  let [hours, minutes, seconds] = time.textContent.split(':').map((x) => +x);
+  let sum = seconds + minutes * 60 + hours * 60 * 60;
+  document.querySelector('.modal__title').textContent =
+    `Great! You have solved the nonogram in ${sum} seconds!`;
   let backdrop = document.querySelector('.backdrop');
   backdrop.classList.remove('display-none');
 
@@ -25,7 +49,7 @@ const createModal = () => {
 
   let title = document.createElement('h2');
   title.classList.add('modal__title');
-  title.textContent = 'Great! You have solved the nonogram!';
+  title.textContent = `Great! You have solved the nonogram in ${0} seconds!`;
   div.append(title);
 };
 
@@ -39,6 +63,8 @@ const checkWin = () => {
     let finishSquare = game.querySelectorAll('.row__data[data-true]').length;
 
     if (brillSquare === finishSquare && brillSquareTrue === finishSquare) {
+      clearInterval(time);
+      isTime = false;
       showModal();
     }
   }
@@ -61,6 +87,11 @@ const clickSquare = () => {
       } else {
         td.classList.remove('active');
         td.classList.toggle('brill');
+      }
+
+      if (!isTime) {
+        isTime = true;
+        time = setInterval(upTimer, 1000);
       }
 
       checkWin();
@@ -248,6 +279,9 @@ const createButtonReset = () => {
   body.append(button);
 
   button.addEventListener('click', () => {
+    clearInterval(time);
+    isTime = false;
+    document.querySelector('.media__timer').textContent = '00:00:00';
     let div = document.querySelector('.solution__block');
     if (div) {
       div.remove();
@@ -273,6 +307,9 @@ const createButtonSolution = () => {
   body.append(button);
 
   button.addEventListener('click', () => {
+    clearInterval(time);
+    isTime = false;
+    document.querySelector('.media__timer').textContent = '00:00:00';
     let div = document.createElement('div');
     div.classList.add('solution__block');
     document.querySelector('.content__game').append(div);
@@ -309,9 +346,11 @@ const createButtonsSave = () => {
         return 0;
       }
     });
+
     const objSave = {
       index: localStorage.getItem('nonogramsArrIndex'),
       arrClick: saveArr,
+      time: document.querySelector('.media__timer').textContent,
     };
     localStorage.setItem('nonogramsArrSaveGame', JSON.stringify(objSave));
   });
@@ -328,15 +367,16 @@ const createButtonsSave = () => {
   loading.addEventListener('click', () => {
     if (localStorage.getItem('nonogramsArrSaveGame')) {
       let save = JSON.parse(localStorage.getItem('nonogramsArrSaveGame'));
+      document.querySelector('.media__timer').textContent = save.time;
       buildGame(+save.index);
-      let clicks = document.querySelectorAll('.row__data[data-click]')
+      let clicks = document.querySelectorAll('.row__data[data-click]');
       save.arrClick.forEach((x, index) => {
         if (x === 1) {
-          clicks[index].classList.add('brill')
+          clicks[index].classList.add('brill');
         } else if (x === 2) {
-          clicks[index].classList.add('active')
+          clicks[index].classList.add('active');
         }
-      })
+      });
     }
   });
 };
@@ -372,6 +412,9 @@ const createButtonsRandomGame = () => {
   block.append(button);
 
   button.addEventListener('click', () => {
+    clearInterval(time);
+    isTime = false;
+    document.querySelector('.media__timer').textContent = '00:00:00';
     let random = rangeRandom(0, schemes.length - 1);
     if (random === localStorage.getItem('nonogramsArrIndex')) {
       if (random === schemes.length - 1) {
@@ -388,6 +431,15 @@ const createButtonsRandomGame = () => {
   });
 };
 
+const createTimer = () => {
+  let block = document.querySelector('.media');
+
+  const p = document.createElement('p');
+  p.classList.add('media__timer');
+  p.textContent = '00:00:00';
+  block.append(p);
+};
+
 const buildStartPage = () => {
   const body = document.querySelector('body');
 
@@ -395,6 +447,10 @@ const buildStartPage = () => {
   title.classList.add('headline');
   title.textContent = 'Nonogram';
   body.append(title);
+
+  const contentTimer = document.createElement('div');
+  contentTimer.classList.add('media');
+  body.append(contentTimer);
 
   let backdrop = document.createElement('div');
   backdrop.classList.add('backdrop');
@@ -437,4 +493,5 @@ const buildStartPage = () => {
   createButtonSolution();
   createButtonsSave();
   createButtonsRandomGame();
+  createTimer();
 };
