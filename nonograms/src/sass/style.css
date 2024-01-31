@@ -57,6 +57,7 @@ h2 {
   position: relative;
   font-size: 3rem;
   margin: auto;
+  margin-bottom: 40px;
   border: 4px solid black;
   border-collapse: collapse;
 }
@@ -129,6 +130,12 @@ h2 {
   background-color: #000000;
 }
 
+.content__button {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
 .modal-start {
   position: fixed;
   z-index: 3;
@@ -197,7 +204,7 @@ h2 {
   background-color: #1d4ed8;
   border: none;
   cursor: pointer;
-  border-radius: 100px;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -227,6 +234,33 @@ h2 {
 }
 .backdrop.display-none {
   display: none;
+}
+
+.media {
+  display: flex;
+  height: 64px;
+  justify-content: space-around;
+  margin-bottom: 40px;
+}
+.media .media__timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 5rem;
+}
+.media .media__sound {
+  width: 64px;
+  cursor: pointer;
+}
+.media .media__sound .sun {
+  fill: #000000;
+}
+.media .media__sound .night {
+  fill: #ffffff;
+}
+.media .media__themes {
+  width: 64px;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */

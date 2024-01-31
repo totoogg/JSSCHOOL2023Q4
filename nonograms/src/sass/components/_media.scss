@@ -1,0 +1,31 @@
+.media {
+  display: flex;
+  height: 64px;
+  justify-content: space-around;
+  margin-bottom: 40px;
+
+  .media__timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+  }
+
+  .media__sound {
+    width: 64px;
+    cursor: pointer;
+    
+    .sun {
+      fill: #000000;
+    }
+
+    .night {
+      fill: #ffffff;
+    }
+  }
+
+  .media__themes {
+    width: 64px;
+    cursor: pointer;
+  }
+}
