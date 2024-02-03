@@ -149,6 +149,12 @@ const clickSquare = () => {
         td.classList.toggle('brill');
       }
 
+      if (
+        document.querySelector('.media__themes').classList.contains('night')
+      ) {
+        td.classList.add('night');
+      }
+
       if (!isTime) {
         isTime = true;
         time = setInterval(upTimer, 1000);
@@ -374,6 +380,8 @@ const createButtonSolution = () => {
     div.classList.add('solution__block');
     document.querySelector('.content__game').append(div);
     let arr = document.querySelectorAll('.row__data[data-true]');
+    let arrClick = document.querySelectorAll('.row__data[data-click]');
+    arrClick.forEach((x) => (x.classList = 'row__data'));
     arr.forEach((x) => {
       x.classList.add('brill');
     });
@@ -505,6 +513,25 @@ const createTimer = () => {
   block.append(p);
 };
 
+const changeTheme = () => {
+  let theme = document
+    .querySelector('.media__themes')
+    .classList.contains('sun');
+  let body = document.querySelector('body');
+  let sound = document.querySelector('.media__sound');
+  let timer = document.querySelector('.media__timer');
+  let game = document.querySelector('.content__game');
+  let gameRow = document.querySelectorAll('.game__row');
+  let gameRowData = document.querySelectorAll('.row__data');
+
+  body.classList.toggle('night');
+  sound.classList.toggle('night');
+  timer.classList.toggle('night');
+  game.classList.toggle('night');
+  gameRow.forEach((x) => x.classList.toggle('night'));
+  gameRowData.forEach((x) => x.classList.toggle('night'));
+};
+
 const createButtonThemes = () => {
   let block = document.querySelector('.media');
 
@@ -538,6 +565,7 @@ const createButtonThemes = () => {
       div.classList.add('sun');
       div.classList.remove('night');
     }
+    changeTheme();
   });
 };
 

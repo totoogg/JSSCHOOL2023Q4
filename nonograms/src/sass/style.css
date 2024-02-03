@@ -29,6 +29,9 @@ body {
 body.block {
   overflow: hidden;
 }
+body.night {
+  background-color: #000000;
+}
 
 h1 {
   font-size: 5rem;
@@ -58,8 +61,12 @@ h2 {
   font-size: 3rem;
   margin: auto;
   margin-bottom: 40px;
-  border: 4px solid black;
+  border: 5px solid black;
   border-collapse: collapse;
+}
+.content__game.night {
+  border-color: #ffffff;
+  color: #ffffff;
 }
 .content__game .solution__block {
   position: absolute;
@@ -69,19 +76,25 @@ h2 {
   left: 0;
 }
 .content__game .game__row:nth-child(5n+1) {
-  border-bottom: 4px solid black;
+  border-bottom: 5px solid black;
 }
 .content__game .game__row:first-child {
-  border-bottom: 4px solid black;
+  border-bottom: 5px solid black;
 }
 .content__game .game__row:last-child {
   border-bottom: 1px solid black;
+}
+.content__game .game__row .row__data[data-click] {
+  cursor: pointer;
 }
 .content__game .game__row .row__data[data-click] span {
   position: absolute;
   width: 100%;
   height: 0px;
   background-color: #000000;
+}
+.content__game .game__row .row__data[data-click].night span {
+  background-color: #ffffff;
 }
 .content__game .game__row .row__data[data-click].active span {
   height: 1px;
@@ -100,13 +113,19 @@ h2 {
   border: 1px solid black;
 }
 .content__game .game__row .row__data:nth-child(5n+1) {
-  border-right: 4px solid black;
+  border-right: 5px solid black;
 }
 .content__game .game__row .row__data:first-child {
-  border-right: 4px solid black;
+  border-right: 5px solid black;
 }
 .content__game .game__row .row__data:last-child {
   border-right: 1px solid black;
+}
+.content__game .game__row .row__data.night {
+  border-color: #ffffff;
+}
+.content__game .game__row.night {
+  border-color: #ffffff;
 }
 
 .top-key {
@@ -128,6 +147,9 @@ h2 {
 
 .brill {
   background-color: #000000;
+}
+.brill.night {
+  background-color: #ffffff;
 }
 
 .content__button {
@@ -282,14 +304,14 @@ h2 {
   align-items: center;
   font-size: 5rem;
 }
+.media .media__timer.night {
+  color: #ffffff;
+}
 .media .media__sound {
   width: 64px;
   cursor: pointer;
 }
-.media .media__sound .sun {
-  fill: #000000;
-}
-.media .media__sound .night {
+.media .media__sound.night {
   fill: #ffffff;
 }
 .media .media__themes {

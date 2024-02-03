@@ -29,6 +29,10 @@ body {
   &.block {
     overflow: hidden;
   }
+
+  &.night {
+    background-color: #000000;
+  }
 }
 
 h1 {
