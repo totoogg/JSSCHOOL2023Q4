@@ -52,6 +52,24 @@ const createModal = () => {
   title.classList.add('modal__title');
   title.textContent = `Great! You have solved the nonogram in ${0} seconds!`;
   div.append(title);
+
+  let button = document.createElement('button');
+  button.classList.add('finish__button');
+  button.classList.add('button');
+  button.textContent = 'Play again';
+  div.append(button);
+
+  button.addEventListener('click', () => {
+    div.classList.add('display-none');
+
+    buildGame(0);
+
+    localStorage.removeItem('totooggNonogramsArrIndex');
+
+    document.querySelector('.modal-start').classList.remove('display-none');
+
+    document.querySelector('.media__timer').textContent = '00:00:00';
+  });
 };
 
 const returnRecord = (obj) => {
@@ -180,6 +198,7 @@ const buildGame = (number) => {
   for (let i = 0; i < schemes[number].size + 1; i++) {
     const row = document.createElement('tr');
     row.classList.add('game__row');
+    document.querySelector('.media__themes')?.classList.contains('night') ? row.classList.add('night') : ''
     gameTable.append(row);
   }
 
@@ -189,6 +208,7 @@ const buildGame = (number) => {
     for (let j = 0; j < gameRow.length; j++) {
       const data = document.createElement('td');
       data.classList.add('row__data');
+      document.querySelector('.media__themes')?.classList.contains('night') ? data.classList.add('night') : ''
       gameRow[i].append(data);
     }
   }
@@ -313,23 +333,35 @@ const createModalStart = () => {
       title.textContent = 'Select scheme';
       choose.append(title);
       let arr = schemes.filter((x) => x.size === index).map((x) => x.name);
-      for (let i = 0; i < arr.length; i++) {
+      for (let i = 0; i < arr.length + 1; i++) {
         let button = document.createElement('button');
         button.classList.add('modal-choose-list__item');
         button.classList.add('button');
-        button.textContent = `${arr[i]}`;
-        choose.append(button);
-        button.addEventListener('click', () => {
-          let arrName = schemes.map((x) => x.name);
-          let index = arrName.indexOf(arr[i]);
-          buildGame(index);
-          localStorage.setItem('totooggNonogramsArrIndex', index);
+        if (i !== arr.length) {
+          button.textContent = `${arr[i]}`;
+          button.addEventListener('click', () => {
+            let arrName = schemes.map((x) => x.name);
+            let index = arrName.indexOf(arr[i]);
+            buildGame(index);
+            localStorage.setItem('totooggNonogramsArrIndex', index);
 
-          let modalList = document.querySelector('.modal-choose-list');
-          modalList.classList.add('display-none');
-          let backdrop = document.querySelector('.backdrop');
-          backdrop.classList.add('display-none');
-        });
+            let modalList = document.querySelector('.modal-choose-list');
+            modalList.classList.add('display-none');
+            let backdrop = document.querySelector('.backdrop');
+            backdrop.classList.add('display-none');
+          });
+        } else {
+          button.textContent = `Back`;
+          button.addEventListener('click', () => {
+            document
+              .querySelector('.modal-choose-list')
+              .classList.add('display-none');
+            document
+              .querySelector('.modal-start')
+              .classList.remove('display-none');
+          });
+        }
+        choose.append(button);
       }
     });
   }
