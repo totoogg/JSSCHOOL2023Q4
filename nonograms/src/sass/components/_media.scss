@@ -1,0 +1,39 @@
+.media {
+  display: flex;
+  min-height: 64px;
+  justify-content: space-around;
+  margin-bottom: 40px;
+
+  @include media-tablet {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .media__timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+    margin-bottom: 20px;
+
+    &.night {
+      color: #ffffff;
+    }
+  }
+
+  .media__sound {
+    width: 64px;
+    cursor: pointer;
+    margin-bottom: 20px;
+
+    &.night {
+      fill: #ffffff;
+    }
+  }
+
+  .media__themes {
+    width: 64px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+}
