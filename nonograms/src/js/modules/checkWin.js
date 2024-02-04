@@ -1,5 +1,6 @@
 import { showModal } from "./showModal.js";
 import { writeRecord } from "./writeRecord.js"
+import { musicPlay } from "./musicPlay.js"
 
 export const checkWin = () => {
   const game = document.querySelector('.content__game');
