@@ -10,10 +10,6 @@ html {
   font-size: 10px;
   scroll-behavior: smooth;
   overflow-x: hidden;
-
-  &.block {
-    overflow-y: hidden;
-  }
 }
 
 body {
@@ -26,12 +22,10 @@ body {
   justify-content: center;
   padding: 20px;
   max-width: 1440px;
-  &.block {
-    overflow: hidden;
-  }
 
   &.night {
     background-color: #000000;
+    color: #ffffff;
   }
 }
 
@@ -41,7 +35,6 @@ h1 {
   margin-bottom: 50px;
   @include media-mobile {
     margin-bottom: 20px;
-    font-size: 3rem;
   }
 }
 

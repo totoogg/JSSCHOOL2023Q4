@@ -11,9 +11,6 @@ html {
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
-html.block {
-  overflow-y: hidden;
-}
 
 body {
   position: relative;
@@ -26,11 +23,9 @@ body {
   padding: 20px;
   max-width: 1440px;
 }
-body.block {
-  overflow: hidden;
-}
 body.night {
   background-color: #000000;
+  color: #ffffff;
 }
 
 h1 {
@@ -41,7 +36,6 @@ h1 {
 @media (max-width: 360px) {
   h1 {
     margin-bottom: 20px;
-    font-size: 3rem;
   }
 }
 
@@ -63,6 +57,21 @@ h2 {
   margin-bottom: 40px;
   border: 5px solid black;
   border-collapse: collapse;
+}
+@media (max-width: 1040px) {
+  .content__game {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 768px) {
+  .content__game {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 360px) {
+  .content__game {
+    font-size: 1rem;
+  }
 }
 .content__game.night {
   border-color: #ffffff;
@@ -143,6 +152,24 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+@media (max-width: 1040px) {
+  .key {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+@media (max-width: 768px) {
+  .key {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+@media (max-width: 360px) {
+  .key {
+    width: 1rem;
+    height: 1rem;
+  }
 }
 
 .brill {
@@ -241,12 +268,22 @@ h2 {
   display: flex;
   justify-content: space-around;
 }
+@media (max-width: 768px) {
+  .modal-record .modal-record__buttons {
+    flex-direction: column;
+  }
+}
 .modal-record .modal-record__buttons .active {
   background-color: #60a5fa;
 }
 .modal-record .list__item {
   font-size: 3rem;
   margin: 20px;
+}
+@media (max-width: 768px) {
+  .modal-record .list__item {
+    font-size: 2rem;
+  }
 }
 
 .button {
@@ -294,15 +331,22 @@ h2 {
 
 .media {
   display: flex;
-  height: 64px;
+  min-height: 64px;
   justify-content: space-around;
   margin-bottom: 40px;
+}
+@media (max-width: 768px) {
+  .media {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 .media .media__timer {
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 5rem;
+  margin-bottom: 20px;
 }
 .media .media__timer.night {
   color: #ffffff;
@@ -310,6 +354,7 @@ h2 {
 .media .media__sound {
   width: 64px;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 .media .media__sound.night {
   fill: #ffffff;
@@ -317,6 +362,7 @@ h2 {
 .media .media__themes {
   width: 64px;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 
 /*# sourceMappingURL=style.css.map */
