@@ -1,3 +1,5 @@
+import { returnRecord } from "./returnRecord.js"
+
 export const writeRecord = () => {
   let recordList = localStorage.getItem('totooggNonogramsArrRecordList');
   let recordObj;

@@ -1,3 +1,5 @@
+import schemes from './schemes.json' assert { type: 'json' };
+
 export const returnRecord = (obj) => {
   let time = document.querySelector('.media__timer');
   let [hours, minutes, seconds] = time.textContent.split(':').map((x) => +x);
