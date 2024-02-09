@@ -1,4 +1,4 @@
-https://www.youtube.com/watch?v=Oa88erRVgN8
+[Link to video](https://www.youtube.com/watch?v=Oa88erRVgN8)
 
 Hello. My name is Vladimir, I am a beginner front-end developer.
 I was born in the city of Pinsk, Republic of Belarus.
