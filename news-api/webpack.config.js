@@ -5,9 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const DotenvWebpackPlugin = require('dotenv-webpack');
 
 const baseConfig = {
-    entry: path.resolve(__dirname, './src/index.ts'),
-    mode: 'development',
-    devtool: 'inline-source-map',
+    entry: './src/index.ts',
     module: {
         rules: [
             {
@@ -27,6 +25,9 @@ const baseConfig = {
     output: {
         filename: 'index.js',
         path: path.resolve(__dirname, './dist'),
+    },
+    stats: {
+        errorDetails: false,
     },
     plugins: [
         new DotenvWebpackPlugin(),
