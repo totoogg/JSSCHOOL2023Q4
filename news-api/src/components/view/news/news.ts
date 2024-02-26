@@ -30,9 +30,8 @@ class News implements INews {
 
             if (idx % 2) newsClone.querySelector('.news__item').classList.add('alt');
 
-            (newsClone.querySelector('.news__meta-photo') as HTMLElement).style.backgroundImage = `url(${
-                item.urlToImage || 'img/news_placeholder.jpg'
-            })` as string;
+            (newsClone.querySelector('.news__meta-photo') as HTMLElement).style.backgroundImage =
+                `url(${item.urlToImage})` as string;
             newsClone.querySelector('.news__meta-author').textContent = (item.author || item.source.name) as string;
             newsClone.querySelector('.news__meta-date').textContent = item.publishedAt
                 .slice(0, 10)
