@@ -1,7 +1,12 @@
+
+
 body {
     color: #fff;
     background: #17181c;
     font-family: sans-serif;
+    margin: auto;
+    width: 100%;
+    max-width: 1440px;
 }
 
 header {
