@@ -38,3 +38,35 @@ footer .copyright a:hover {
 footer .copyright:before {
     content: '©';
 }
+
+.footer__author {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-size: 20px;
+  line-height: 20px;
+  letter-spacing: 2px;
+}
+
+.link-school {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+.link-school:hover {
+  color: #BB945F;
+}
+
+.author {
+  display: flex;
+  justify-content: space-between;
+}
+
+.link-github {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+.link-github:hover {
+  color: #BB945F;
+}
