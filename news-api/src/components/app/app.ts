@@ -56,14 +56,9 @@ interface IApp {
 
 class App implements IApp {
 
-    public controller: IController;
+    public controller: IController = new AppController();;
 
-    public view: IAppView;
-
-    constructor() {
-        this.controller = new AppController();
-        this.view = new AppView();
-    }
+    public view: IAppView = new AppView();;
 
     start() {
         document
@@ -71,7 +66,7 @@ class App implements IApp {
             .addEventListener('click', (e) => this.controller.getNews(e, (data) => this.view.drawNews(data)));
         this.controller.getSources((data) => this.view.drawSources(data));
     }
-    
+
 }
 
 export default App;

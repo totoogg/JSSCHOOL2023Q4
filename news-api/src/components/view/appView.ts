@@ -47,14 +47,9 @@ interface IAppView {
 
 export class AppView implements IAppView {
 
-    public news: INews;
+    public news: INews = new News();
 
-    public sources: ISources;
-
-    constructor() {
-        this.news = new News();
-        this.sources = new Sources();
-    }
+    public sources: ISources = new Sources();
 
     drawNews(data: IDrawNewsData) {
         const values: IDataNews[] = data?.articles ? data?.articles : [];
@@ -65,7 +60,7 @@ export class AppView implements IAppView {
         const values: IDataSources[] = data?.sources ? data?.sources : [];
         this.sources.draw(values);
     }
-    
+
 }
 
 export default AppView;
