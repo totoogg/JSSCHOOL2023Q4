@@ -1,22 +1,6 @@
-interface IOption {
-    [apiKey: string]: string;
-}
-
-interface IError {
-    ok: boolean;
-    status: number;
-    statusText: string;
-    json(): void;
-}
-
-interface ILoader {
-    baseLink: string;
-    options: IOption;
-    getResp(first: { endpoint: string; options: object }, callback: (data?: void) => string): void;
-    errorHandler(res: IError): IError;
-    makeUrl(options: IOption, endpoint: string): string;
-    load(method: string, endpoint: string, callback: (data?: void) => void, options: IOption): void;
-}
+import { IOption } from "../interfaces/IOption";
+import { IError } from "../interfaces/IError";
+import { ILoader } from "../interfaces/ILoader";
 
 class Loader implements ILoader {
 

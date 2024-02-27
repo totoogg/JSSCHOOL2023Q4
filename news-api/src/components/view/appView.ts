@@ -1,55 +1,17 @@
 import News from './news/news';
 import Sources from './sources/sources';
-
-interface IDataSources {
-    name: string;
-    id: string;
-}
-
-interface ISources {
-    draw(data: IDataSources[]): void;
-}
-
-interface ISourcesNews {
-    id: string;
-    name: string;
-}
-
-interface IDataNews {
-    author: string;
-    content: string;
-    description: string;
-    publishedAt: string;
-    title: string;
-    url: string;
-    urlToImage: string;
-    source: ISourcesNews;
-}
-
-interface INews {
-    draw(data: IDataNews[]): void;
-}
-
-interface IDrawNewsData {
-    articles: IDataNews[];
-}
-
-interface IDrawSourcesData {
-    sources: IDataSources[];
-}
-
-interface IAppView {
-    news: INews;
-    sources: ISources;
-    drawNews(data: IDrawNewsData): void;
-    drawSources(data: IDrawSourcesData): void;
-}
+import { IData } from '../interfaces/IData'
+import { ISources } from '../interfaces/ISources';
+import { IDataNews } from '../interfaces/IDataNews';
+import { IDrawNewsData } from '../interfaces/IDrawNewsData';
+import { IDrawSourcesData } from '../interfaces/IDrawSourcesData';
+import { IAppView } from '../interfaces/IAppView';
 
 export class AppView implements IAppView {
 
-    public news: INews = new News();
+    public news: ISources<IDataNews> = new News();
 
-    public sources: ISources = new Sources();
+    public sources: ISources<IData> = new Sources();
 
     public drawNews(data: IDrawNewsData): void {
         const values: IDataNews[] = data?.articles ? data?.articles : [];
@@ -57,7 +19,7 @@ export class AppView implements IAppView {
     }
 
     public drawSources(data: IDrawSourcesData): void {
-        const values: IDataSources[] = data?.sources ? data?.sources : [];
+        const values: IData[] = data?.sources ? data?.sources : [];
         this.sources.draw(values);
     }
 

@@ -1,15 +1,8 @@
 import './sources.css';
+import { IData } from '../../interfaces/IData'
+import { ISources } from '../../interfaces/ISources';
 
-interface IData {
-    name: string;
-    id: string;
-}
-
-interface ISources {
-    draw(data: IData[]): void;
-}
-
-class Sources implements ISources {
+class Sources implements ISources<IData> {
   
     public draw(data: IData[]): void {
         const fragment: DocumentFragment = document.createDocumentFragment();

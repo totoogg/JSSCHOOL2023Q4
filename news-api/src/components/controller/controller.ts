@@ -1,9 +1,5 @@
 import AppLoader from './appLoader';
-
-interface IController {
-    getSources(callback: () => void): void;
-    getNews(e: Event, callback: () => void): void;
-}
+import { IController } from '../interfaces/IController';
 
 class AppController extends AppLoader implements IController {
 

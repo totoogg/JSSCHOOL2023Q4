@@ -1,29 +1,11 @@
 import './news.css';
+import { IDataNews } from '../../interfaces/IDataNews';
+import { ISources } from '../../interfaces/ISources';
 
-interface ISources {
-    id: string;
-    name: string;
-}
+class News implements ISources<IDataNews> {
 
-interface IData {
-    author: string;
-    content: string;
-    description: string;
-    publishedAt: string;
-    title: string;
-    url: string;
-    urlToImage: string;
-    source: ISources;
-}
-
-interface INews {
-    draw(data: IData[]): void;
-}
-
-class News implements INews {
-
-    public draw(data: IData[]): void {
-        const news: IData[] = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
+    public draw(data: IDataNews[]): void {
+        const news: IDataNews[] = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
         const fragment: DocumentFragment = document.createDocumentFragment();
         const newsItemTemp: HTMLTemplateElement = document.querySelector('#newsItemTemp');
