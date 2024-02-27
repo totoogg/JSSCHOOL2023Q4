@@ -4,9 +4,9 @@ import { ILoader } from "../interfaces/ILoader";
 
 class Loader implements ILoader {
 
-    public baseLink: string;
+    protected baseLink: string;
 
-    public options: IOption;
+    protected options: IOption;
 
     constructor(baseLink: string, options: IOption) {
         this.baseLink = baseLink;

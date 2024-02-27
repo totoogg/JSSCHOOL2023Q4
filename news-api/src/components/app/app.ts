@@ -6,9 +6,9 @@ import { IController } from '../interfaces/IController';
 
 class App implements IApp {
 
-    public controller: IController = new AppController();;
+    private controller: IController = new AppController();;
 
-    public view: IAppView = new AppView();;
+    private view: IAppView = new AppView();;
 
     public start(): void {
         document

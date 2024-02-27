@@ -2,8 +2,6 @@ import { IOption } from "./IOption";
 import { IError } from "./IError";
 
 export interface ILoader {
-  baseLink: string;
-  options: IOption;
   getResp(first: { endpoint: string; options: object }, callback: (data?: void) => string): void;
   errorHandler(res: IError): IError;
   makeUrl(options: IOption, endpoint: string): string;

@@ -9,9 +9,9 @@ import { IAppView } from '../interfaces/IAppView';
 
 export class AppView implements IAppView {
 
-    public news: ISources<IDataNews> = new News();
+    private news: ISources<IDataNews> = new News();
 
-    public sources: ISources<IData> = new Sources();
+    private sources: ISources<IData> = new Sources();
 
     public drawNews(data: IDrawNewsData): void {
         const values: IDataNews[] = data?.articles ? data?.articles : [];
