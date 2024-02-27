@@ -22,7 +22,7 @@ interface INews {
 
 class News implements INews {
 
-    draw(data: IData[]) {
+    public draw(data: IData[]): void {
         const news: IData[] = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
         const fragment: DocumentFragment = document.createDocumentFragment();
@@ -53,7 +53,7 @@ class News implements INews {
         document.querySelector('.news').innerHTML = '' as string;
         document.querySelector('.news').appendChild(fragment);
     }
-    
+
 }
 
 export default News;

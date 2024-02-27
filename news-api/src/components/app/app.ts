@@ -60,7 +60,7 @@ class App implements IApp {
 
     public view: IAppView = new AppView();;
 
-    start() {
+    public start(): void {
         document
             .querySelector('.sources')
             .addEventListener('click', (e) => this.controller.getNews(e, (data) => this.view.drawNews(data)));

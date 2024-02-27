@@ -29,16 +29,16 @@ class Loader implements ILoader {
         this.options = options;
     }
 
-    getResp(
+    public getResp(
         { endpoint, options = {} }: { endpoint: string; options?: object },
         callback = () => {
             console.error('No callback for GET response');
         }
-    ) {
+    ): void {
         this.load('GET', endpoint, callback, options);
     }
 
-    errorHandler(res: IError) {
+    public errorHandler(res: IError): IError {
         if (!res.ok) {
             if (res.status === 401 || res.status === 404)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
@@ -48,7 +48,7 @@ class Loader implements ILoader {
         return res;
     }
 
-    makeUrl(options: IOption, endpoint: string) {
+    public makeUrl(options: IOption, endpoint: string): string {
         const urlOptions: IOption = { ...this.options, ...options };
         let url: string = `${this.baseLink}${endpoint}?`;
 
@@ -59,14 +59,14 @@ class Loader implements ILoader {
         return url.slice(0, -1);
     }
 
-    load(method: string, endpoint: string, callback: (data: void) => void, options = {}) {
+    public load(method: string, endpoint: string, callback: (data: void) => void, options = {}): void {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
             .then((data) => callback(data))
             .catch((err) => console.error(err));
     }
-    
+
 }
 
 export default Loader;

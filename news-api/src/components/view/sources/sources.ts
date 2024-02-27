@@ -11,7 +11,7 @@ interface ISources {
 
 class Sources implements ISources {
   
-    draw(data: IData[]) {
+    public draw(data: IData[]): void {
         const fragment: DocumentFragment = document.createDocumentFragment();
         const sourceItemTemp: HTMLTemplateElement = document.querySelector('#sourceItemTemp');
 

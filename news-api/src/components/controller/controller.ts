@@ -7,7 +7,7 @@ interface IController {
 
 class AppController extends AppLoader implements IController {
 
-    getSources(callback: () => void) {
+    public getSources(callback: () => void): void {
         super.getResp(
             {
                 endpoint: 'sources',
@@ -16,7 +16,7 @@ class AppController extends AppLoader implements IController {
         );
     }
 
-    getNews(e: Event, callback: () => void) {
+    public getNews(e: Event, callback: () => void): void {
         let target = e.target as Element;
         const newsContainer = e.currentTarget as Element;
 
@@ -40,7 +40,7 @@ class AppController extends AppLoader implements IController {
             target = target.parentNode as Element;
         }
     }
-    
+
 }
 
 export default AppController;
