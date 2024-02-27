@@ -1,12 +1,16 @@
 import './sources.css';
+
 interface IData {
     name: string;
     id: string;
 }
+
 interface ISources {
     draw(data: IData[]): void;
 }
+
 class Sources implements ISources {
+  
     draw(data: IData[]) {
         const fragment: DocumentFragment = document.createDocumentFragment();
         const sourceItemTemp: HTMLTemplateElement = document.querySelector('#sourceItemTemp');
@@ -22,6 +26,7 @@ class Sources implements ISources {
 
         document.querySelector('.sources').append(fragment);
     }
+    
 }
 
 export default Sources;

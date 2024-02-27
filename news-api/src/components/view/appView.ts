@@ -5,9 +5,11 @@ interface IDataSources {
     name: string;
     id: string;
 }
+
 interface ISources {
     draw(data: IDataSources[]): void;
 }
+
 interface ISourcesNews {
     id: string;
     name: string;
@@ -23,15 +25,19 @@ interface IDataNews {
     urlToImage: string;
     source: ISourcesNews;
 }
+
 interface INews {
     draw(data: IDataNews[]): void;
 }
+
 interface IDrawNewsData {
     articles: IDataNews[];
 }
+
 interface IDrawSourcesData {
     sources: IDataSources[];
 }
+
 interface IAppView {
     news: INews;
     sources: ISources;
@@ -40,8 +46,11 @@ interface IAppView {
 }
 
 export class AppView implements IAppView {
+
     public news: INews;
+
     public sources: ISources;
+
     constructor() {
         this.news = new News();
         this.sources = new Sources();
@@ -56,6 +65,7 @@ export class AppView implements IAppView {
         const values: IDataSources[] = data?.sources ? data?.sources : [];
         this.sources.draw(values);
     }
+    
 }
 
 export default AppView;

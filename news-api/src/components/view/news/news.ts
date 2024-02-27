@@ -15,10 +15,13 @@ interface IData {
     urlToImage: string;
     source: ISources;
 }
+
 interface INews {
     draw(data: IData[]): void;
 }
+
 class News implements INews {
+
     draw(data: IData[]) {
         const news: IData[] = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
@@ -50,6 +53,7 @@ class News implements INews {
         document.querySelector('.news').innerHTML = '' as string;
         document.querySelector('.news').appendChild(fragment);
     }
+    
 }
 
 export default News;

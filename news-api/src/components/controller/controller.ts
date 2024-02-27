@@ -4,7 +4,9 @@ interface IController {
     getSources(callback: () => void): void;
     getNews(e: Event, callback: () => void): void;
 }
+
 class AppController extends AppLoader implements IController {
+
     getSources(callback: () => void) {
         super.getResp(
             {
@@ -38,6 +40,7 @@ class AppController extends AppLoader implements IController {
             target = target.parentNode as Element;
         }
     }
+    
 }
 
 export default AppController;

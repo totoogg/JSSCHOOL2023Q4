@@ -1,6 +1,7 @@
 interface IOption {
     [apiKey: string]: string;
 }
+
 interface IError {
     ok: boolean;
     status: number;
@@ -18,8 +19,11 @@ interface ILoader {
 }
 
 class Loader implements ILoader {
+
     public baseLink: string;
+
     public options: IOption;
+
     constructor(baseLink: string, options: IOption) {
         this.baseLink = baseLink;
         this.options = options;
@@ -62,6 +66,7 @@ class Loader implements ILoader {
             .then((data) => callback(data))
             .catch((err) => console.error(err));
     }
+    
 }
 
 export default Loader;
