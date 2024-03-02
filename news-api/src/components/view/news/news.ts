@@ -3,7 +3,6 @@ import { IDataNews } from '../../interfaces/IDataNews';
 import { ISources } from '../../interfaces/ISources';
 
 class News implements ISources<IDataNews> {
-
     public draw(data: IDataNews[]): void {
         const news: IDataNews[] = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
@@ -35,7 +34,6 @@ class News implements ISources<IDataNews> {
         document.querySelector('.news').innerHTML = '' as string;
         document.querySelector('.news').appendChild(fragment);
     }
-
 }
 
 export default News;

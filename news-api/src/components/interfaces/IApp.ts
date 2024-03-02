@@ -1,3 +1,3 @@
 export interface IApp {
-  start(): void;
+    start(): void;
 }

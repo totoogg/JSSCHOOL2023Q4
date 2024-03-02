@@ -1,5 +1,5 @@
-import { IDataNews } from "./IDataNews";
+import { IDataNews } from './IDataNews';
 
 export interface IDrawNewsData {
-  articles: IDataNews[];
+    articles: IDataNews[];
 }

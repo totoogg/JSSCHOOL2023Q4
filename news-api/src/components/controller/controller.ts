@@ -2,7 +2,6 @@ import AppLoader from './appLoader';
 import { IController } from '../interfaces/IController';
 
 class AppController extends AppLoader implements IController {
-
     public getSources(callback: () => void): void {
         super.getResp(
             {
@@ -36,7 +35,6 @@ class AppController extends AppLoader implements IController {
             target = target.parentNode as Element;
         }
     }
-
 }
 
 export default AppController;

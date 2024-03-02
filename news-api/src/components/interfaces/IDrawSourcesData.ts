@@ -1,5 +1,5 @@
-import { IData } from "./IData";
+import { IData } from './IData';
 
 export interface IDrawSourcesData {
-  sources: IData[];
+    sources: IData[];
 }

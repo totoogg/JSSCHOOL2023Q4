@@ -1,9 +1,8 @@
-import { IOption } from "../interfaces/IOption";
-import { IError } from "../interfaces/IError";
-import { ILoader } from "../interfaces/ILoader";
+import { IOption } from '../interfaces/IOption';
+import { IError } from '../interfaces/IError';
+import { ILoader } from '../interfaces/ILoader';
 
 class Loader implements ILoader {
-
     protected baseLink: string;
 
     protected options: IOption;
@@ -50,7 +49,6 @@ class Loader implements ILoader {
             .then((data) => callback(data))
             .catch((err) => console.error(err));
     }
-
 }
 
 export default Loader;

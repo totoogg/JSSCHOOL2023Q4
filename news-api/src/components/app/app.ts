@@ -5,10 +5,9 @@ import { IAppView } from '../interfaces/IAppView';
 import { IController } from '../interfaces/IController';
 
 class App implements IApp {
+    private controller: IController = new AppController();
 
-    private controller: IController = new AppController();;
-
-    private view: IAppView = new AppView();;
+    private view: IAppView = new AppView();
 
     public start(): void {
         document
@@ -16,7 +15,6 @@ class App implements IApp {
             .addEventListener('click', (e) => this.controller.getNews(e, (data) => this.view.drawNews(data)));
         this.controller.getSources((data) => this.view.drawSources(data));
     }
-
 }
 
 export default App;
