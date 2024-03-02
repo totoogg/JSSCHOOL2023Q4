@@ -13,12 +13,12 @@ export class AppView implements IAppView {
     private sources: ISources<IData> = new Sources();
 
     public drawNews(data: IDrawNewsData): void {
-        const values: IDataNews[] = data?.articles ? data?.articles : [];
+        const values: IDataNews[] = data?.articles ?? [];
         this.news.draw(values);
     }
 
     public drawSources(data: IDrawSourcesData): void {
-        const values: IData[] = data?.sources ? data?.sources : [];
+        const values: IData[] = data?.sources ?? [];
         this.sources.draw(values);
     }
 }
