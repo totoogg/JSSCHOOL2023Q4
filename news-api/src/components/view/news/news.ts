@@ -31,8 +31,10 @@ class News implements ISources<IDataNews> {
             fragment.append(newsClone);
         });
 
-        document.querySelector('.news').innerHTML = '' as string;
-        document.querySelector('.news').appendChild(fragment);
+        const newsElement = document.querySelector('.news');
+
+        newsElement.innerHTML = '' as string;
+        newsElement.appendChild(fragment);
     }
 }
 
