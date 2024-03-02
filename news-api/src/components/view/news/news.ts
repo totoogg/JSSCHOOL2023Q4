@@ -1,6 +1,5 @@
 import './news.css';
-import { IDataNews } from '../../interfaces/IDataNews';
-import { ISources } from '../../interfaces/ISources';
+import { ISources, IDataNews } from '../../interfaces/AllInterfaces';
 
 class News implements ISources<IDataNews> {
     public draw(data: IDataNews[]): void {

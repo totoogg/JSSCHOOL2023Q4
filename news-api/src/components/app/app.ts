@@ -1,8 +1,6 @@
 import AppController from '../controller/controller';
 import { AppView } from '../view/appView';
-import { IApp } from '../interfaces/IApp';
-import { IAppView } from '../interfaces/IAppView';
-import { IController } from '../interfaces/IController';
+import { IApp, IAppView, IController } from '../interfaces/AllInterfaces';
 
 class App implements IApp {
     private controller: IController = new AppController();

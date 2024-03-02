@@ -1,4 +1,4 @@
-import { IData } from './IData';
+import { IData } from './AllInterfaces';
 
 export interface IDataNews {
     author: string;

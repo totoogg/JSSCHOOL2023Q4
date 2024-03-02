@@ -1,4 +1,4 @@
-import { IDataNews } from './IDataNews';
+import { IDataNews } from './AllInterfaces';
 
 export interface IDrawNewsData {
     articles: IDataNews[];

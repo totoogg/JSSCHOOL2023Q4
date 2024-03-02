@@ -1,6 +1,5 @@
 import './sources.css';
-import { IData } from '../../interfaces/IData';
-import { ISources } from '../../interfaces/ISources';
+import { IData, ISources } from '../../interfaces/AllInterfaces';
 
 class Sources implements ISources<IData> {
     public draw(data: IData[]): void {

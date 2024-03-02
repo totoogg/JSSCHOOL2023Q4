@@ -1,5 +1,4 @@
-import { IOption } from './IOption';
-import { IError } from './IError';
+import { IOption, IError } from './AllInterfaces';
 
 export interface ILoader {
     getResp(first: { endpoint: string; options: object }, callback: (data?: void) => string): void;

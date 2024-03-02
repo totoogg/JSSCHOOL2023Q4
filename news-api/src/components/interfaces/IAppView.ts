@@ -1,5 +1,4 @@
-import { IDrawNewsData } from './IDrawNewsData';
-import { IDrawSourcesData } from './IDrawSourcesData';
+import { IDrawNewsData, IDrawSourcesData } from './AllInterfaces';
 
 export interface IAppView {
     drawNews(data: IDrawNewsData): void;

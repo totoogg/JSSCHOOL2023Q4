@@ -1,5 +1,5 @@
 import AppLoader from './appLoader';
-import { IController } from '../interfaces/IController';
+import { IController } from '../interfaces/AllInterfaces';
 
 class AppController extends AppLoader implements IController {
     public getSources(callback: () => void): void {

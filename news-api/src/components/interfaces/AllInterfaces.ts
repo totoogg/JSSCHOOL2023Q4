@@ -1,0 +1,11 @@
+export { IApp } from './IApp';
+export { IAppView } from './IAppView';
+export { IController } from './IController';
+export { IData } from './IData';
+export { IDataNews } from './IDataNews';
+export { IDrawNewsData } from './IDrawNewsData';
+export { IDrawSourcesData } from './IDrawSourcesData';
+export { IError } from './IError';
+export { ILoader } from './ILoader';
+export { IOption } from './IOption';
+export { ISources } from './ISources';

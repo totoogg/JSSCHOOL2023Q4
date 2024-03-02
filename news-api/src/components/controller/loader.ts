@@ -1,6 +1,4 @@
-import { IOption } from '../interfaces/IOption';
-import { IError } from '../interfaces/IError';
-import { ILoader } from '../interfaces/ILoader';
+import { IOption, IError, ILoader } from '../interfaces/AllInterfaces';
 
 class Loader implements ILoader {
     protected baseLink: string;

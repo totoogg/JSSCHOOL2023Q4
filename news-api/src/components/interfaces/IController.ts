@@ -1,5 +1,4 @@
-import { IDrawSourcesData } from './IDrawSourcesData';
-import { IDrawNewsData } from './IDrawNewsData';
+import { IDrawNewsData, IDrawSourcesData } from './AllInterfaces';
 
 export interface IController {
     getSources(callback: (data?: IDrawSourcesData) => void): void;
