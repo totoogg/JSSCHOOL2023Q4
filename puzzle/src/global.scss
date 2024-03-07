@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all .3s ease-out;
+}
+
+html {
+  font-size: 10px;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  margin: auto;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 150%;
+  font-family: 'Inter', sans-serif;
+  background-color: #E1D4C9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-x: hidden;
+  min-height: 100vh;
+}

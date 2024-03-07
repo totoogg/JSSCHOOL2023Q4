@@ -15,14 +15,33 @@
     "sourceType": "module"
   },
   "plugins": ["babel", "import", "@typescript-eslint", "prettier"],
-
+  "settings": {
+    "react": {
+        "version": "detect"
+    },
+    "import/resolver": {
+        "node": {
+            "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        }
+    }
+},
   "rules": {
     "max-lines-per-function": ["error", 40],
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/no-var-requires": 0,
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": ["error"],
-    "prettier/prettier": ["error"]
+    "prettier/prettier": ["error"],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+          "js": "never",
+          "jsx": "never",
+          "ts": "never",
+          "tsx": "never"
+      }
+  ]
   },
   "noInlineConfig": true
 }
