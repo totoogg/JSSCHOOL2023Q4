@@ -52,9 +52,13 @@ export default class ButtonLogin extends Listener implements IButtonLogin {
 
   public loginToTheGame(): void {
     const form = document.querySelector('.form') as HTMLElement;
-    const header = document.querySelector('header') as HTMLElement;
+    const header = document.querySelector('.header') as HTMLElement;
+    const blockDescription = document.querySelector('.description') as HTMLElement;
+    const body = document.body as HTMLElement;
 
     form.classList.add('display-none');
     header.classList.remove('display-none');
+    blockDescription.classList.remove('display-none');
+    body.classList.add('background');
   }
 }

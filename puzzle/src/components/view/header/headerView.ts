@@ -14,7 +14,7 @@ const buttonParams: IParams = {
 export default class HeaderView implements IHTMLElement {
   public header: ElementCreation;
 
-  public buttonLogout!: ElementCreation;
+  public buttonLogout: ElementCreation = new ElementCreation(buttonParams);
 
   constructor(param: IParams) {
     this.header = new ElementCreation(param);
@@ -29,8 +29,6 @@ export default class HeaderView implements IHTMLElement {
   }
 
   public createElements(): void {
-    this.buttonLogout = new ElementCreation(buttonParams);
-
     this.header.getElement()?.append(this.buttonLogout.getElement()!);
   }
 }

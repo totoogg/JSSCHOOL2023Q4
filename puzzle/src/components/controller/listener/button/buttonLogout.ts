@@ -22,6 +22,8 @@ export default class ButtonLogout extends Listener implements IEventElement {
       }
     });
 
+    document.body.classList.remove('background');
+
     const users = localStorage.getItem('rssPuzzleUsersTotooggJSFE2023Q4') as string;
     const usersArr: IUserSave[] = JSON.parse(users);
     const filetUser = usersArr.filter((el) => !el.login);

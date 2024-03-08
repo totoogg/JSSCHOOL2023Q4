@@ -1,5 +1,6 @@
 import StartForm from '../view/startForm/startForm';
 import HeaderView from '../view/header/headerView';
+import StartPage from '../view/pages/startPage/startPage';
 import { IParams, IApp, IUserSave } from '../interfaces/interfaces';
 
 const formParams: IParams = {
@@ -14,23 +15,31 @@ const headerParams: IParams = {
   action: null,
 };
 
-export default class App implements IApp {
-  public start!: StartForm;
+const descriptionParams: IParams = {
+  tag: 'div',
+  classNames: ['description', 'display-none'],
+  action: null,
+};
 
-  public header!: HeaderView;
+export default class App implements IApp {
+  public start: StartForm = new StartForm(formParams);
+
+  public header: HeaderView = new HeaderView(headerParams);
+
+  public description: StartPage = new StartPage(descriptionParams);
 
   public createPage() {
     if (this.checkUsers()) {
-      formParams.classNames?.push('display-none');
-      headerParams.classNames?.pop();
+      this.start.form.getElement()!.classList.add('display-none');
+      this.header.header.getElement()!.classList.remove('display-none');
+      this.description.blockDescription.getElement()!.classList.remove('display-none');
+      document.body.classList.add('background');
     }
 
-    this.header = new HeaderView(headerParams);
-    this.start = new StartForm(formParams);
-
     document.body.append(
-      this.start.form.getElement() as HTMLElement,
       this.header.header.getElement() as HTMLElement,
+      this.description.blockDescription.getElement() as HTMLElement,
+      this.start.form.getElement() as HTMLElement,
     );
   }
 

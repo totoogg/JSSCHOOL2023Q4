@@ -62,21 +62,21 @@ const divErrorSurname: IParams = {
 export default class StartForm implements IStartForm {
   public form: ElementCreation;
 
-  public inputElementName!: ElementCreation;
+  public inputElementName: ElementCreation = new ElementCreation(inputParamsName);
 
-  public labelElementName!: ElementCreation;
+  public labelElementName: ElementCreation = new ElementCreation(labelParamsName);
 
-  public inputElementSurname!: ElementCreation;
+  public inputElementSurname: ElementCreation = new ElementCreation(inputParamsSurname);
 
-  public labelElementSurname!: ElementCreation;
+  public labelElementSurname: ElementCreation = new ElementCreation(labelParamsSurname);
 
-  public buttonElement!: ElementCreation;
+  public buttonElement: ElementCreation = new ElementCreation(buttonParams);
 
-  public title!: ElementCreation;
+  public title: ElementCreation = new ElementCreation(labelParams);
 
-  public errorElementName!: ElementCreation;
+  public errorElementName: ElementCreation = new ElementCreation(divErrorName);
 
-  public errorElementSurname!: ElementCreation;
+  public errorElementSurname: ElementCreation = new ElementCreation(divErrorSurname);
 
   constructor(param: IParams) {
     this.form = new ElementCreation(param);
@@ -91,22 +91,6 @@ export default class StartForm implements IStartForm {
   }
 
   public createElements(): void {
-    this.title = new ElementCreation(labelParams);
-
-    this.inputElementName = new ElementCreation(inputParamsName);
-
-    this.errorElementName = new ElementCreation(divErrorName);
-
-    this.labelElementName = new ElementCreation(labelParamsName);
-
-    this.inputElementSurname = new ElementCreation(inputParamsSurname);
-
-    this.errorElementSurname = new ElementCreation(divErrorSurname);
-
-    this.labelElementSurname = new ElementCreation(labelParamsSurname);
-
-    this.buttonElement = new ElementCreation(buttonParams);
-
     this.setAtt();
 
     this.form
