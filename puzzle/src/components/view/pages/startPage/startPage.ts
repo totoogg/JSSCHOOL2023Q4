@@ -1,4 +1,5 @@
 import ElementCreation from '../../util/element-creation';
+import ButtonStart from '../../../controller/listener/button/buttonStart';
 import { IHTMLElement, IParams } from '../../../interfaces/interfaces';
 
 import './startPage.scss';
@@ -29,7 +30,7 @@ const buttonParams: IParams = {
   tag: 'button',
   classNames: ['description__button', 'button'],
   textContent: 'Start Game',
-  action: null, // new ButtonLogout('click')
+  action: new ButtonStart('click'),
 };
 
 export default class StartPage implements IHTMLElement {
