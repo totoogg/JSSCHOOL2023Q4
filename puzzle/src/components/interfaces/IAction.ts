@@ -1,6 +1,6 @@
 import { Action } from './interfaces';
 
 export interface IAction {
-  eventLister: string;
+  eventListener: string;
   callback: Action;
 }

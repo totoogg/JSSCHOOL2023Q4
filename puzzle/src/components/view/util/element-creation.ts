@@ -38,7 +38,7 @@ export default class ElementCreation implements IElementCreation {
 
   public setAction(action: IAction | null): void {
     if (action && typeof action.callback === 'function' && this.element) {
-      this.element.addEventListener(action.eventLister, (event) => action.callback(event));
+      this.element.addEventListener(action.eventListener, (event) => action.callback(event));
     }
   }
 }

@@ -1,4 +1,4 @@
-import StartForm from '../view/util/startForm/startForm';
+import StartForm from '../view/startForm/startForm';
 import { IParams, IApp } from '../interfaces/interfaces';
 
 const formParams: IParams = {

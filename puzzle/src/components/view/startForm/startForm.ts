@@ -1,5 +1,7 @@
-import ElementCreation from '../element-creation';
-import { IParams, IStartForm, IAction } from '../../../interfaces/interfaces';
+import ElementCreation from '../util/element-creation';
+import ButtonLogin from '../../controller/listener/button/buttonLogin';
+import InputStart from '../../controller/listener/input/inputStart';
+import { IParams, IStartForm } from '../../interfaces/interfaces';
 
 import './startForm.scss';
 
@@ -13,7 +15,7 @@ const labelParams: IParams = {
 const inputParamsName: IParams = {
   tag: 'input',
   classNames: ['form__input-name', 'input'],
-  action: null,
+  action: new InputStart('blur'),
 };
 
 const labelParamsName: IParams = {
@@ -25,38 +27,56 @@ const labelParamsName: IParams = {
 
 const inputParamsSurname: IParams = {
   tag: 'input',
-  classNames: ['form__input-name', 'input'],
-  action: null,
+  classNames: ['form__input-surname', 'input'],
+  action: new InputStart('blur'),
 };
 
 const labelParamsSurname: IParams = {
   tag: 'label',
-  classNames: ['form__label-name', 'label'],
+  classNames: ['form__label-surname', 'label'],
   textContent: 'Surname',
   action: null,
 };
 
 const buttonParams: IParams = {
   tag: 'button',
-  classNames: ['form__button'],
+  classNames: ['form__button', 'disable'],
   textContent: 'Login',
+  action: new ButtonLogin('click'),
+};
+
+const divErrorName: IParams = {
+  tag: 'div',
+  classNames: ['form__error', 'error-name'],
+  textContent: 'The name field requires at least 3 characters',
+  action: null,
+};
+
+const divErrorSurname: IParams = {
+  tag: 'div',
+  classNames: ['form__error', 'error-surname'],
+  textContent: 'The surname field requires at least 4 characters',
   action: null,
 };
 
 export default class StartForm implements IStartForm {
   public form: ElementCreation;
 
-  public inputElementName!: IAction | ElementCreation;
+  public inputElementName!: ElementCreation;
 
   public labelElementName!: ElementCreation;
 
-  public inputElementSurname!: IAction | ElementCreation;
+  public inputElementSurname!: ElementCreation;
 
   public labelElementSurname!: ElementCreation;
 
   public buttonElement!: ElementCreation;
 
   public title!: ElementCreation;
+
+  public errorElementName!: ElementCreation;
+
+  public errorElementSurname!: ElementCreation;
 
   constructor(param: IParams) {
     this.form = new ElementCreation(param);
@@ -74,18 +94,20 @@ export default class StartForm implements IStartForm {
     this.title = new ElementCreation(labelParams);
 
     this.inputElementName = new ElementCreation(inputParamsName);
-    this.inputElementName.getElement()!.setAttribute('id', 'name');
+
+    this.errorElementName = new ElementCreation(divErrorName);
 
     this.labelElementName = new ElementCreation(labelParamsName);
-    this.labelElementName.getElement()!.setAttribute('for', 'name');
 
     this.inputElementSurname = new ElementCreation(inputParamsSurname);
-    this.inputElementSurname.getElement()!.setAttribute('id', 'surname');
+
+    this.errorElementSurname = new ElementCreation(divErrorSurname);
 
     this.labelElementSurname = new ElementCreation(labelParamsSurname);
-    this.labelElementSurname.getElement()!.setAttribute('for', 'surname');
 
     this.buttonElement = new ElementCreation(buttonParams);
+
+    this.setAtt();
 
     this.form
       .getElement()!
@@ -93,9 +115,23 @@ export default class StartForm implements IStartForm {
         this.title.getElement()!,
         this.labelElementName.getElement()!,
         this.inputElementName.getElement()!,
+        this.errorElementName.getElement()!,
         this.labelElementSurname.getElement()!,
         this.inputElementSurname.getElement()!,
+        this.errorElementSurname.getElement()!,
         this.buttonElement.getElement()!,
       );
+  }
+
+  public setAtt(): void {
+    this.inputElementName.getElement()!.setAttribute('id', 'name');
+    this.inputElementName.getElement()!.setAttribute('required', 'true');
+
+    this.labelElementName.getElement()!.setAttribute('for', 'name');
+
+    this.inputElementSurname.getElement()!.setAttribute('id', 'surname');
+    this.inputElementSurname.getElement()!.setAttribute('required', 'true');
+
+    this.labelElementSurname.getElement()!.setAttribute('for', 'surname');
   }
 }
