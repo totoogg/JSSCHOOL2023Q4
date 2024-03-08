@@ -60,5 +60,26 @@ export default class ButtonLogin extends Listener implements IButtonLogin {
     header.classList.remove('display-none');
     blockDescription.classList.remove('display-none');
     body.classList.add('background');
+
+    this.settingName();
+  }
+
+  public settingName(): void {
+    const users = localStorage.getItem('rssPuzzleUsersTotooggJSFE2023Q4');
+    let usersArr: IUserSave[] | [];
+
+    if (users) {
+      usersArr = JSON.parse(users);
+    } else {
+      usersArr = [];
+    }
+
+    const name = usersArr.find((el) => el.login);
+
+    const greeting = document.querySelector('.description__greeting');
+
+    if (greeting) {
+      greeting.textContent = `Hello ${name?.name} ${name?.surname}`;
+    }
   }
 }

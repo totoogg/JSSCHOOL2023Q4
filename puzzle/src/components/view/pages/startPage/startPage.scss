@@ -19,6 +19,28 @@
   display: flex;
   font-size: 20px;
 
+  .description__greeting {
+    margin-bottom: 100px;
+    font-size: 30px;
+    animation-name: greeting;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes greeting {
+    0%   {color: #9f1239; }
+    10%  {color: #831843; }
+    20%  {color: #701a75; }
+    30%  {color: #581c87; }
+    40%  {color: #4c1d95; }
+    50%  {color: #312e81; }
+    60%  {color: #1e3a8a; }
+    70%  {color: #0c4a6e; }
+    80%  {color: #164e63; }
+    90%  {color: #134e4a; }
+    100% {color: #134e4a; }
+  }
+
   .description__title {
     font-size: 40px;
   }

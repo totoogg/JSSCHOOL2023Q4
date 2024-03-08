@@ -4,4 +4,5 @@ export interface IButtonLogin extends IEventElement {
   highlightError(elem: HTMLElement): void;
   saveData(user: IUserSave): void;
   loginToTheGame(): void;
+  settingName(): void;
 }

@@ -18,6 +18,13 @@ const descriptionParams: IParams = {
   action: null,
 };
 
+const greetingParams: IParams = {
+  tag: 'p',
+  classNames: ['description__greeting'],
+  textContent: '',
+  action: null,
+};
+
 const buttonParams: IParams = {
   tag: 'button',
   classNames: ['description__button', 'button'],
@@ -33,6 +40,8 @@ export default class StartPage implements IHTMLElement {
   public titleStart: ElementCreation = new ElementCreation(titleParams);
 
   public textStart: ElementCreation = new ElementCreation(descriptionParams);
+
+  public greeting: ElementCreation = new ElementCreation(greetingParams);
 
   constructor(param: IParams) {
     this.blockDescription = new ElementCreation(param);
@@ -50,6 +59,7 @@ export default class StartPage implements IHTMLElement {
     this.blockDescription
       .getElement()
       ?.append(
+        this.greeting.getElement()!,
         this.titleStart.getElement()!,
         this.textStart.getElement()!,
         this.buttonStart.getElement()!,

@@ -29,21 +29,40 @@ export default class App implements IApp {
   public description: StartPage = new StartPage(descriptionParams);
 
   public createPage() {
-    if (this.checkUsers()) {
-      this.start.form.getElement()!.classList.add('display-none');
-      this.header.header.getElement()!.classList.remove('display-none');
-      this.description.blockDescription.getElement()!.classList.remove('display-none');
-      document.body.classList.add('background');
-    }
-
     document.body.append(
       this.header.header.getElement() as HTMLElement,
       this.description.blockDescription.getElement() as HTMLElement,
       this.start.form.getElement() as HTMLElement,
     );
+
+    if (this.checkUsers()) {
+      this.settingName();
+      this.start.form.getElement()!.classList.add('display-none');
+      this.header.header.getElement()!.classList.remove('display-none');
+      this.description.blockDescription.getElement()!.classList.remove('display-none');
+      document.body.classList.add('background');
+    }
   }
 
   public checkUsers(): boolean {
+    const usersArr: IUserSave[] | [] = this.localData();
+
+    return usersArr.some((el) => el.login);
+  }
+
+  public settingName(): void {
+    const usersArr: IUserSave[] | [] = this.localData();
+
+    const name = usersArr.find((el) => el.login);
+
+    const greeting = document.querySelector('.description__greeting');
+
+    if (greeting) {
+      greeting.textContent = `Hello ${name?.name} ${name?.surname}`;
+    }
+  }
+
+  public localData(): IUserSave[] | [] {
     const users = localStorage.getItem('rssPuzzleUsersTotooggJSFE2023Q4');
     let usersArr: IUserSave[] | [];
 
@@ -53,6 +72,6 @@ export default class App implements IApp {
       usersArr = [];
     }
 
-    return usersArr.some((el) => el.login);
+    return usersArr;
   }
 }
