@@ -8,3 +8,5 @@ export { IButtonLogin } from './IButtonLogin';
 export { ICheckInput } from './ICheckInput';
 export { IInputStart } from './IInputStart';
 export { IUserSave } from './IUserSave';
+export { IHTMLElement } from './IHTMLElement';
+export { IEventElement } from './IEventElement';

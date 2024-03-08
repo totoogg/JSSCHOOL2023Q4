@@ -40,7 +40,7 @@ const labelParamsSurname: IParams = {
 
 const buttonParams: IParams = {
   tag: 'button',
-  classNames: ['form__button', 'disable'],
+  classNames: ['form__button', 'button', 'disable'],
   textContent: 'Login',
   action: new ButtonLogin('click'),
 };

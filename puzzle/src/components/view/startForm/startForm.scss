@@ -52,31 +52,35 @@
     margin-bottom: 20px;
   }
 
-  .form__button {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    background-color: #e1d4c9;
-    width: 75px;
-    height: 30px;
-    border-radius: 2px;
-    border: 1px solid #0c0c0e;
-    font-family: Inter;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    cursor: pointer;
-
-    &:hover {
-      color: #a18a76;
-      background: antiquewhite;
-      border: 1px solid antiquewhite;
-    }
-  }
-
   .disable {
     cursor: default;
     color: #a18a76;
     background: antiquewhite;
     border: 1px solid antiquewhite;
   }
+}
+
+.button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #e1d4c9;
+  width: 75px;
+  height: 30px;
+  border-radius: 2px;
+  border: 1px solid #0c0c0e;
+  font-family: Inter;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+
+  &:hover {
+    color: #a18a76;
+    background: antiquewhite;
+    border: 1px solid antiquewhite;
+  }
+}
+
+.display-none {
+  display: none;
 }

@@ -26,8 +26,12 @@ export default class ButtonLogin extends Listener implements IButtonLogin {
       const user: IUserSave = {
         name: name.value,
         surname: surname.value,
+        login: true,
       };
+
       this.saveData(user);
+
+      this.loginToTheGame();
     }
   }
 
@@ -36,6 +40,21 @@ export default class ButtonLogin extends Listener implements IButtonLogin {
   }
 
   public saveData(user: IUserSave): void {
-    localStorage.setItem('rssPuzzleUserTotooggJSFE2023Q4', JSON.stringify(user));
+    const users: string | null = localStorage.getItem('rssPuzzleUsersTotooggJSFE2023Q4');
+    const arrData: IUserSave[] = [user];
+
+    if (users) {
+      arrData.push(...JSON.parse(users));
+    }
+
+    localStorage.setItem('rssPuzzleUsersTotooggJSFE2023Q4', JSON.stringify(arrData));
+  }
+
+  public loginToTheGame(): void {
+    const form = document.querySelector('.form') as HTMLElement;
+    const header = document.querySelector('header') as HTMLElement;
+
+    form.classList.add('display-none');
+    header.classList.remove('display-none');
   }
 }

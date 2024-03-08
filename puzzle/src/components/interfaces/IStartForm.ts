@@ -1,7 +1,5 @@
-import ElementCreation from '../view/util/element-creation';
+import { IHTMLElement } from './interfaces';
 
-export interface IStartForm {
-  getElement(): ElementCreation | null;
-  createElements(): void;
+export interface IStartForm extends IHTMLElement {
   setAtt(): void;
 }
