@@ -7,3 +7,4 @@ export { IElementCreation } from './IElementCreation';
 export { IButtonLogin } from './IButtonLogin';
 export { ICheckInput } from './ICheckInput';
 export { IInputStart } from './IInputStart';
+export { IUserSave } from './IUserSave';
