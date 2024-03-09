@@ -1,6 +1,6 @@
-import sentences from '../../model/data/wordCollectionLevel1.json';
+import sentences from '../../model/data/wordCollectionLevel6.json';
 import ElementCreation from '../../view/util/element-creation';
-import ClickBlock from '../listener/word/clickBlock';
+import ClickBlock from './clickBlock';
 import { IParams, IFieldResult } from '../../interfaces/interfaces';
 
 const blockClickParams: IParams = {
@@ -19,7 +19,7 @@ const blockParams: IParams = {
 
 export default class FieldResult implements IFieldResult {
   public setSentence(): void {
-    const current = sentences.rounds[0].words;
+    const current = sentences.rounds[22].words;
 
     const linesTotal = Array.from(document.querySelectorAll('.field-total__line')) as Element[];
 
@@ -28,7 +28,7 @@ export default class FieldResult implements IFieldResult {
       element.textContent = current[index].textExample;
     });
 
-    this.setClickField(linesTotal[0].textContent!);
+    this.setClickField(linesTotal[8].textContent!);
   }
 
   public getIndexFirstNotResolved(): number {
@@ -40,7 +40,7 @@ export default class FieldResult implements IFieldResult {
   public setClickField(text: string): void {
     const arrText = this.shuffleArr(text);
     const fieldClick = document.querySelector('.main__field-click');
-    const widthBlockClick = 710 / arrText.length;
+    const widthBlockClick = 768 / arrText.length;
 
     this.addBlocksFieldResult(arrText.length, widthBlockClick);
 

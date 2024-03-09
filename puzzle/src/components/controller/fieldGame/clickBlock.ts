@@ -1,5 +1,5 @@
-import Listener from '../listener';
-import { IClickBlock, ITranslate } from '../../../interfaces/interfaces';
+import Listener from '../listener/listener';
+import { IClickBlock, ITranslate } from '../../interfaces/interfaces';
 
 export default class ClickBlock extends Listener implements IClickBlock {
   public eventListener: string;

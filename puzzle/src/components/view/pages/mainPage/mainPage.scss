@@ -6,7 +6,7 @@
   width: 100%;
 
   .main__field-result {
-    width: 720px;
+    width: 768px;
     height: 400px;
     background-color: white;
     margin-bottom: 50px;
@@ -30,13 +30,14 @@
   }
 
   .main__field-click {
-    width: 768px;
+    width: 600px;
     height: 80px;
     border-radius: 10px;
     background-color: white;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    flex-wrap: wrap;
 
     .field-click__block {
       position: relative;
@@ -46,7 +47,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-
+      font-size: 1rem;
+      
       &:hover {
         background-color: chartreuse;
       }
