@@ -1,4 +1,5 @@
 import Listener from '../listener';
+import FieldResult from '../../fieldGame/fieldResult';
 import { IEventElement } from '../../../interfaces/interfaces';
 
 export default class ButtonStart extends Listener implements IEventElement {
@@ -15,11 +16,14 @@ export default class ButtonStart extends Listener implements IEventElement {
     const childrenBody: Element[] = Array.from(document.body.children);
 
     childrenBody.forEach((el) => {
-      if (el.classList.contains('header')) {
+      if (el.classList.contains('header') || el.classList.contains('main')) {
         el.classList.remove('display-none');
       } else {
         el.classList.add('display-none');
       }
     });
+
+    const start = new FieldResult();
+    start.setSentence();
   }
 }

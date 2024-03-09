@@ -1,0 +1,59 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  .main__field-result {
+    width: 720px;
+    height: 400px;
+    background-color: white;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+
+    .field-result__line {
+      width: 100%;
+      height: 40px;
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      color: rgba($color: #000000, $alpha: 0.0);
+    }
+  }
+
+  .main__field-total {
+    position: absolute;
+    z-index: -1;
+    color: rgba($color: #000000, $alpha: 0.0);
+  }
+
+  .main__field-click {
+    width: 768px;
+    height: 80px;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .field-click__block {
+      position: relative;
+      cursor: pointer;
+      background-color: aqua;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        background-color: chartreuse;
+      }
+    }
+  }
+}
+
+.display-none {
+  display: none;
+}

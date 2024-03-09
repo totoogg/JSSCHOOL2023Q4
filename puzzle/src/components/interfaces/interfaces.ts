@@ -10,3 +10,7 @@ export { IInputStart } from './IInputStart';
 export { IUserSave } from './IUserSave';
 export { IHTMLElement } from './IHTMLElement';
 export { IEventElement } from './IEventElement';
+export { IMainPage } from './IMainPage';
+export { ITranslate } from './ITranslate';
+export { IClickBlock } from './IClickBlock';
+export { IFieldResult } from './IFieldResult';

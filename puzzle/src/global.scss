@@ -12,6 +12,8 @@ html {
 }
 
 body {
+  position: relative;
+  z-index: 1;
   margin: auto;
   font-size: 1.6rem;
   font-weight: 400;
@@ -20,7 +22,6 @@ body {
   background-color: #E1D4C9;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   overflow-x: hidden;
   min-height: 100vh;
 }

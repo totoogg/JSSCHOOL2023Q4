@@ -1,6 +1,7 @@
 import StartForm from '../view/startForm/startForm';
 import HeaderView from '../view/header/headerView';
 import StartPage from '../view/pages/startPage/startPage';
+import MainPage from '../view/pages/mainPage/mainPage';
 import { IParams, IApp, IUserSave } from '../interfaces/interfaces';
 
 const formParams: IParams = {
@@ -21,6 +22,12 @@ const descriptionParams: IParams = {
   action: null,
 };
 
+const mainParams: IParams = {
+  tag: 'main',
+  classNames: ['main', 'display-none'],
+  action: null,
+};
+
 export default class App implements IApp {
   public start: StartForm = new StartForm(formParams);
 
@@ -28,11 +35,14 @@ export default class App implements IApp {
 
   public description: StartPage = new StartPage(descriptionParams);
 
+  public main: MainPage = new MainPage(mainParams);
+
   public createPage() {
     document.body.append(
       this.header.header.getElement() as HTMLElement,
       this.description.blockDescription.getElement() as HTMLElement,
       this.start.form.getElement() as HTMLElement,
+      this.main.main.getElement() as HTMLElement,
     );
 
     if (this.checkUsers()) {
