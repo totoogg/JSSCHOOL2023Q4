@@ -67,6 +67,14 @@
         background-color: chartreuse;
       }
     }
+
+    .wrong {
+      box-shadow: 0px 0px 2px 2px red;
+    }
+
+    .right {
+      box-shadow: 0px 0px 2px 2px green;
+    }
   }
 }
 

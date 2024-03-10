@@ -1,7 +1,8 @@
 import FieldResult from '../../fieldGame/fieldResult';
 import Listener from '../listener';
+import { IButtonCheckContinue } from '../../../interfaces/interfaces';
 
-export default class ButtonCheckContinue extends Listener {
+export default class ButtonCheckContinue extends Listener implements IButtonCheckContinue {
   public eventListener: string;
 
   public game = new FieldResult();
@@ -15,12 +16,18 @@ export default class ButtonCheckContinue extends Listener {
     event.preventDefault();
 
     const button = document.querySelector('.field-buttons__check-continue') as HTMLElement;
-    button.classList.add('display-none');
 
-    this.updateGame();
+    if (button.textContent === 'Check') {
+      this.checkResult();
+    } else {
+      button.textContent = 'Check';
+      button.classList.add('display-none');
+
+      this.updateGame();
+    }
   }
 
-  updateGame(): void {
+  public updateGame(): void {
     const fieldResult = document.querySelector('.main__field-result') as HTMLElement;
     const countRounds = Number(fieldResult?.getAttribute('data-countrounds'));
     let currentWords = Number(fieldResult?.getAttribute('data-currentwords'));
@@ -52,7 +59,7 @@ export default class ButtonCheckContinue extends Listener {
     this.game.setSentence(level, round, currentWords);
   }
 
-  updateElements(currentWords: number): void {
+  public updateElements(currentWords: number): void {
     const lineResult = Array.from(
       document.querySelectorAll('.field-result__line'),
     ) as HTMLElement[];
@@ -73,5 +80,48 @@ export default class ButtonCheckContinue extends Listener {
         el.classList.add('properly');
       });
     }
+  }
+
+  public checkResult(): void {
+    const resultLine = Array.from(document.querySelectorAll('.field-result__line'));
+    const checkLineIndex = resultLine.filter((el) => el.children.length > 0).length - 1;
+    const checkLine = Array.from(resultLine[checkLineIndex].children)
+      .map((el) => el.textContent)
+      .join(' ');
+    const totalLine = Array.from(document.querySelectorAll('.field-total__line'))[checkLineIndex]
+      .textContent;
+
+    if (checkLine === totalLine) {
+      const button = document.querySelector('.field-buttons__check-continue') as HTMLElement;
+      button.textContent = 'Continue';
+      this.errorHighlighting();
+    } else {
+      this.errorHighlighting();
+    }
+  }
+
+  public errorHighlighting(): void {
+    const fieldResult = document.querySelector('.main__field-result') as HTMLElement;
+    const fieldTotal = Array.from(document.querySelectorAll('.field-total__line')) as HTMLElement[];
+    const currentIndex = Number(fieldResult.getAttribute('data-currentwords'));
+    const totalArr = fieldTotal[currentIndex].textContent!.split(' ');
+    const lineBlock = Array.from(
+      document.querySelectorAll('.line__block:not(.properly)'),
+    ) as HTMLElement[];
+    const clickBlock = Array.from(
+      document.querySelectorAll('.field-click__block'),
+    ) as HTMLElement[];
+
+    totalArr.forEach((el, index) => {
+      if (el !== lineBlock[index].textContent) {
+        clickBlock
+          .find((element) => Number(element.getAttribute('data-index')) === index)!
+          .classList.add('wrong');
+      } else {
+        clickBlock
+          .find((element) => Number(element.getAttribute('data-index')) === index)!
+          .classList.add('right');
+      }
+    });
   }
 }

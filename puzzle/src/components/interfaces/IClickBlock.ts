@@ -4,4 +4,5 @@ export interface IClickBlock extends IEventElement {
   translateTarget(el: HTMLElement): ITranslate;
   writeInEmptyPlace(el: HTMLElement): void;
   getEmptyPlace(): HTMLElement;
+  checkingResult(): void;
 }

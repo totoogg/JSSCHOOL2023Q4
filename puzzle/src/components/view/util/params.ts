@@ -120,7 +120,7 @@ export const fieldButtonsParams: IParams = {
 export const buttonContinueParams: IParams = {
   tag: 'button',
   classNames: ['field-buttons__check-continue', 'button', 'display-none'],
-  textContent: 'Continue',
+  textContent: 'Check',
   action: new ButtonCheckContinue('click'),
 };
 

@@ -48,7 +48,11 @@ export default class ClickBlock extends Listener implements IClickBlock {
 
   public writeInEmptyPlace(el: HTMLElement): void {
     if (el.classList.contains('add')) {
+      const lineBlocks = Array.from(
+        document.querySelectorAll('.line__block:not(.properly)'),
+      ) as HTMLElement[];
       const emptyPlace = this.getEmptyPlace();
+      el.setAttribute('data-index', `${lineBlocks.indexOf(emptyPlace)}`);
       emptyPlace.textContent = el.textContent;
     } else {
       const elResult = Array.from(document.querySelectorAll('.line__block')).find(
@@ -59,6 +63,19 @@ export default class ClickBlock extends Listener implements IClickBlock {
 
     if (!this.getEmptyPlace()) {
       this.checkingResult();
+    } else {
+      const button = document.querySelector('.field-buttons__check-continue') as HTMLElement;
+      button.classList.add('display-none');
+      button.textContent = 'Check';
+
+      const clickBlock = Array.from(
+        document.querySelectorAll('.field-click__block'),
+      ) as HTMLElement[];
+
+      clickBlock.forEach((element) => {
+        element.classList.remove('right');
+        element.classList.remove('wrong');
+      });
     }
   }
 
@@ -69,18 +86,8 @@ export default class ClickBlock extends Listener implements IClickBlock {
     return emptyPlace;
   }
 
-  checkingResult(): void {
-    const resultLine = Array.from(document.querySelectorAll('.field-result__line'));
-    const checkLineIndex = resultLine.filter((el) => el.children.length > 0).length - 1;
-    const checkLine = Array.from(resultLine[checkLineIndex].children)
-      .map((el) => el.textContent)
-      .join(' ');
-    const totalLine = Array.from(document.querySelectorAll('.field-total__line'))[checkLineIndex]
-      .textContent;
-
-    if (checkLine === totalLine) {
-      const button = document.querySelector('.field-buttons__check-continue');
-      button?.classList.remove('display-none');
-    }
+  public checkingResult(): void {
+    const button = document.querySelector('.field-buttons__check-continue') as HTMLElement;
+    button.classList.remove('display-none');
   }
 }
