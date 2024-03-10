@@ -1,63 +1,17 @@
 import ElementCreation from '../util/element-creation';
-import ButtonLogin from '../../controller/listener/button/buttonLogin';
-import InputStart from '../../controller/listener/input/inputStart';
 import { IParams, IStartForm } from '../../interfaces/interfaces';
+import {
+  buttonParams,
+  divErrorName,
+  divErrorSurname,
+  inputParamsName,
+  inputParamsSurname,
+  labelParams,
+  labelParamsName,
+  labelParamsSurname,
+} from '../util/params';
 
 import './startForm.scss';
-
-const labelParams: IParams = {
-  tag: 'h1',
-  classNames: ['form__title'],
-  textContent: 'ENGLISH PUZZLE',
-  action: null,
-};
-
-const inputParamsName: IParams = {
-  tag: 'input',
-  classNames: ['form__input-name', 'input'],
-  action: new InputStart('blur'),
-};
-
-const labelParamsName: IParams = {
-  tag: 'label',
-  classNames: ['form__label-name', 'label'],
-  textContent: 'First Name',
-  action: null,
-};
-
-const inputParamsSurname: IParams = {
-  tag: 'input',
-  classNames: ['form__input-surname', 'input'],
-  action: new InputStart('blur'),
-};
-
-const labelParamsSurname: IParams = {
-  tag: 'label',
-  classNames: ['form__label-surname', 'label'],
-  textContent: 'Surname',
-  action: null,
-};
-
-const buttonParams: IParams = {
-  tag: 'button',
-  classNames: ['form__button', 'button', 'disable'],
-  textContent: 'Login',
-  action: new ButtonLogin('click'),
-};
-
-const divErrorName: IParams = {
-  tag: 'div',
-  classNames: ['form__error', 'error-name'],
-  textContent: 'The name field requires at least 3 characters',
-  action: null,
-};
-
-const divErrorSurname: IParams = {
-  tag: 'div',
-  classNames: ['form__error', 'error-surname'],
-  textContent: 'The surname field requires at least 4 characters',
-  action: null,
-};
 
 export default class StartForm implements IStartForm {
   public form: ElementCreation;

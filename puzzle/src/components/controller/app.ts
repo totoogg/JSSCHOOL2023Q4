@@ -2,31 +2,8 @@ import StartForm from '../view/startForm/startForm';
 import HeaderView from '../view/header/headerView';
 import StartPage from '../view/pages/startPage/startPage';
 import MainPage from '../view/pages/mainPage/mainPage';
-import { IParams, IApp, IUserSave } from '../interfaces/interfaces';
-
-const formParams: IParams = {
-  tag: 'form',
-  classNames: ['form'],
-  action: null,
-};
-
-const headerParams: IParams = {
-  tag: 'header',
-  classNames: ['header', 'display-none'],
-  action: null,
-};
-
-const descriptionParams: IParams = {
-  tag: 'div',
-  classNames: ['description', 'display-none'],
-  action: null,
-};
-
-const mainParams: IParams = {
-  tag: 'main',
-  classNames: ['main', 'display-none'],
-  action: null,
-};
+import { IApp, IUserSave } from '../interfaces/interfaces';
+import { descriptionParams, formParams, headerParams, mainParams } from '../view/util/params';
 
 export default class App implements IApp {
   public start: StartForm = new StartForm(formParams);

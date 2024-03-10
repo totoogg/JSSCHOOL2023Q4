@@ -1,20 +1,13 @@
-import ButtonLogout from '../../controller/listener/button/buttonLogout';
 import ElementCreation from '../util/element-creation';
 import { IHTMLElement, IParams } from '../../interfaces/interfaces';
+import { buttonLogoutParams } from '../util/params';
 
 import './headerView.scss';
-
-const buttonParams: IParams = {
-  tag: 'button',
-  classNames: ['header__button', 'button'],
-  textContent: 'Logout',
-  action: new ButtonLogout('click'),
-};
 
 export default class HeaderView implements IHTMLElement {
   public header: ElementCreation;
 
-  public buttonLogout: ElementCreation = new ElementCreation(buttonParams);
+  public buttonLogout: ElementCreation = new ElementCreation(buttonLogoutParams);
 
   constructor(param: IParams) {
     this.header = new ElementCreation(param);

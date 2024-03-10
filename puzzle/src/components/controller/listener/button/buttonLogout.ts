@@ -1,7 +1,7 @@
 import Listener from '../listener';
-import { IEventElement, IUserSave } from '../../../interfaces/interfaces';
+import { IButtonLogout, IUserSave } from '../../../interfaces/interfaces';
 
-export default class ButtonLogout extends Listener implements IEventElement {
+export default class ButtonLogout extends Listener implements IButtonLogout {
   public eventListener: string;
 
   constructor(key: string) {
@@ -22,6 +22,8 @@ export default class ButtonLogout extends Listener implements IEventElement {
       }
     });
 
+    this.cleanFieldGame();
+
     document.body.classList.remove('background');
 
     const users = localStorage.getItem('rssPuzzleUsersTotooggJSFE2023Q4') as string;
@@ -29,5 +31,19 @@ export default class ButtonLogout extends Listener implements IEventElement {
     const filetUser = usersArr.filter((el) => !el.login);
 
     localStorage.setItem('rssPuzzleUsersTotooggJSFE2023Q4', JSON.stringify(filetUser));
+  }
+
+  cleanFieldGame(): void {
+    const fieldClick = document.querySelector('.main__field-click') as HTMLElement;
+    const lineResult = Array.from(
+      document.querySelectorAll('.field-result__line'),
+    ) as HTMLElement[];
+
+    fieldClick.innerHTML = '';
+
+    lineResult.forEach((el) => {
+      const element = el;
+      element.innerHTML = '';
+    });
   }
 }

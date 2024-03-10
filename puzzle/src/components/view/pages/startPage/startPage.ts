@@ -1,46 +1,22 @@
 import ElementCreation from '../../util/element-creation';
-import ButtonStart from '../../../controller/listener/button/buttonStart';
 import { IHTMLElement, IParams } from '../../../interfaces/interfaces';
+import {
+  buttonStartParams,
+  descriptionTextParams,
+  greetingParams,
+  titleParams,
+} from '../../util/params';
 
 import './startPage.scss';
-
-const titleParams: IParams = {
-  tag: 'h2',
-  classNames: ['description__title'],
-  textContent: 'ENGLISH PUZZLE',
-  action: null,
-};
-
-const descriptionParams: IParams = {
-  tag: 'p',
-  classNames: ['description__text'],
-  textContent:
-    'Click on words, collect phases. Words can be drag and drop. Select tooltips in the menu',
-  action: null,
-};
-
-const greetingParams: IParams = {
-  tag: 'p',
-  classNames: ['description__greeting'],
-  textContent: '',
-  action: null,
-};
-
-const buttonParams: IParams = {
-  tag: 'button',
-  classNames: ['description__button', 'button'],
-  textContent: 'Start Game',
-  action: new ButtonStart('click'),
-};
 
 export default class StartPage implements IHTMLElement {
   public blockDescription: ElementCreation;
 
-  public buttonStart: ElementCreation = new ElementCreation(buttonParams);
+  public buttonStart: ElementCreation = new ElementCreation(buttonStartParams);
 
   public titleStart: ElementCreation = new ElementCreation(titleParams);
 
-  public textStart: ElementCreation = new ElementCreation(descriptionParams);
+  public textStart: ElementCreation = new ElementCreation(descriptionTextParams);
 
   public greeting: ElementCreation = new ElementCreation(greetingParams);
 

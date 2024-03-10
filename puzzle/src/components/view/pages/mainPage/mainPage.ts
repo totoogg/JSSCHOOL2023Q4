@@ -1,42 +1,14 @@
 import ElementCreation from '../../util/element-creation';
 import { IMainPage, IParams } from '../../../interfaces/interfaces';
+import {
+  fieldClickParams,
+  fieldResultParams,
+  fieldTotalParams,
+  lineResultParams,
+  lineTotalParams,
+} from '../../util/params';
 
 import './mainPage.scss';
-
-const fieldResultParams: IParams = {
-  tag: 'div',
-  classNames: ['main__field-result'],
-  textContent: '',
-  action: null,
-};
-
-const fieldClickParams: IParams = {
-  tag: 'div',
-  classNames: ['main__field-click'],
-  textContent: '',
-  action: null,
-};
-
-const fieldTotalParams: IParams = {
-  tag: 'div',
-  classNames: ['main__field-total'],
-  textContent: '',
-  action: null,
-};
-
-const lineTotalParams: IParams = {
-  tag: 'div',
-  classNames: ['field-total__line'],
-  textContent: '',
-  action: null,
-};
-
-const lineResultParams: IParams = {
-  tag: 'div',
-  classNames: ['field-result__line'],
-  textContent: '',
-  action: null,
-};
 
 export default class MainPage implements IMainPage {
   public main: ElementCreation;

@@ -1,21 +1,7 @@
 import sentences from '../../model/data/wordCollectionLevel6.json';
 import ElementCreation from '../../view/util/element-creation';
-import ClickBlock from './clickBlock';
-import { IParams, IFieldResult } from '../../interfaces/interfaces';
-
-const blockClickParams: IParams = {
-  tag: 'div',
-  classNames: ['field-click__block'],
-  textContent: '',
-  action: new ClickBlock('click'),
-};
-
-const blockParams: IParams = {
-  tag: 'div',
-  classNames: ['line__block'],
-  textContent: '',
-  action: null,
-};
+import { IFieldResult } from '../../interfaces/interfaces';
+import { blockClickParams, blockParams } from '../../view/util/params';
 
 export default class FieldResult implements IFieldResult {
   public setSentence(): void {
