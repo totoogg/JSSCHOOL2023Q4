@@ -1,6 +1,8 @@
 import ElementCreation from '../../util/element-creation';
 import { IMainPage, IParams } from '../../../interfaces/interfaces';
 import {
+  buttonContinueParams,
+  fieldButtonsParams,
   fieldClickParams,
   fieldResultParams,
   fieldTotalParams,
@@ -19,6 +21,8 @@ export default class MainPage implements IMainPage {
 
   public fieldTotal: ElementCreation = new ElementCreation(fieldTotalParams);
 
+  public fieldButtons: ElementCreation = new ElementCreation(fieldButtonsParams);
+
   constructor(param: IParams) {
     this.main = new ElementCreation(param);
     this.createElements();
@@ -33,6 +37,7 @@ export default class MainPage implements IMainPage {
 
   public createElements(): void {
     this.createLine();
+    this.createButtons();
 
     this.main
       .getElement()
@@ -40,6 +45,7 @@ export default class MainPage implements IMainPage {
         this.fieldResult.getElement()!,
         this.fieldTotal.getElement()!,
         this.fieldClick.getElement()!,
+        this.fieldButtons.getElement()!,
       );
   }
 
@@ -51,5 +57,11 @@ export default class MainPage implements IMainPage {
       const elementResult = new ElementCreation(lineResultParams);
       this.fieldResult.getElement()?.append(elementResult.getElement()!);
     }
+  }
+
+  public createButtons(): void {
+    const continueButton = new ElementCreation(buttonContinueParams);
+
+    this.fieldButtons.getElement()?.append(continueButton.getElement()!);
   }
 }

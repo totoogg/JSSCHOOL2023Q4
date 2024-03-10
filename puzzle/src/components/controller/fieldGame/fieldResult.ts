@@ -1,11 +1,21 @@
-import sentences from '../../model/data/wordCollectionLevel6.json';
+import sentences1 from '../../model/data/wordCollectionLevel1.json';
+import sentences2 from '../../model/data/wordCollectionLevel2.json';
+import sentences3 from '../../model/data/wordCollectionLevel3.json';
+import sentences4 from '../../model/data/wordCollectionLevel4.json';
+import sentences5 from '../../model/data/wordCollectionLevel5.json';
+import sentences6 from '../../model/data/wordCollectionLevel6.json';
 import ElementCreation from '../../view/util/element-creation';
 import { IFieldResult } from '../../interfaces/interfaces';
 import { blockClickParams, blockParams } from '../../view/util/params';
 
 export default class FieldResult implements IFieldResult {
-  public setSentence(): void {
-    const current = sentences.rounds[22].words;
+  public setSentence(level: number, rounds: number, currentWords: number): void {
+    const levelSentences = [sentences1, sentences2, sentences3, sentences4, sentences5, sentences6];
+
+    const current = levelSentences[level].rounds[rounds].words;
+    const countRounds = levelSentences[level].roundsCount;
+
+    this.setAttributeResult(level, rounds, currentWords, countRounds);
 
     const linesTotal = Array.from(document.querySelectorAll('.field-total__line')) as Element[];
 
@@ -14,7 +24,7 @@ export default class FieldResult implements IFieldResult {
       element.textContent = current[index].textExample;
     });
 
-    this.setClickField(linesTotal[8].textContent!);
+    this.setClickField(linesTotal[currentWords].textContent!);
   }
 
   public getIndexFirstNotResolved(): number {
@@ -57,5 +67,18 @@ export default class FieldResult implements IFieldResult {
     }
 
     return arrText;
+  }
+
+  public setAttributeResult(
+    level: number,
+    rounds: number,
+    currentWords: number,
+    countRounds: number,
+  ): void {
+    const fieldResult = document.querySelector('.main__field-result');
+    fieldResult?.setAttribute('data-level', `${level}`);
+    fieldResult?.setAttribute('data-round', `${rounds}`);
+    fieldResult?.setAttribute('data-currentWords', `${currentWords}`);
+    fieldResult?.setAttribute('data-countRounds', `${countRounds}`);
   }
 }

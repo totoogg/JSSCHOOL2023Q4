@@ -20,6 +20,20 @@
       justify-content: space-around;
       align-items: flex-start;
       color: rgba($color: #000000, $alpha: 0.0);
+
+      .line__block {
+        height: 100%;
+      }
+
+      .properly {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 38px;
+        font-size: 1rem;
+        background-color: aqua;
+        color: rgba($color: #000000, $alpha: 1.0);
+      }
     }
   }
 
@@ -32,8 +46,8 @@
   .main__field-click {
     width: 600px;
     height: 80px;
-    border-radius: 10px;
     background-color: white;
+    margin-bottom: 50px;
     display: flex;
     justify-content: space-around;
     align-items: center;

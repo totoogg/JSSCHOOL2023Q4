@@ -112,7 +112,7 @@
         },
         {
           "audioExample": "files/01_0614_example.mp3",
-          "textExample": ".The total cost of the items she bought was $52",
+          "textExample": "The total cost of the items she bought was $52",
           "textExampleTranslate": "Общая стоимость предметов, которые она купила, составила 52 доллара",
           "id": 614,
           "word": "total",

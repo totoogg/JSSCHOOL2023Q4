@@ -1,4 +1,5 @@
 import ClickBlock from '../../controller/fieldGame/clickBlock';
+import ButtonCheckContinue from '../../controller/listener/button/buttonCheckContinue';
 import ButtonLogin from '../../controller/listener/button/buttonLogin';
 import ButtonLogout from '../../controller/listener/button/buttonLogout';
 import ButtonStart from '../../controller/listener/button/buttonStart';
@@ -107,6 +108,20 @@ export const fieldTotalParams: IParams = {
   classNames: ['main__field-total'],
   textContent: '',
   action: null,
+};
+
+export const fieldButtonsParams: IParams = {
+  tag: 'div',
+  classNames: ['main__field-buttons'],
+  textContent: '',
+  action: null,
+};
+
+export const buttonContinueParams: IParams = {
+  tag: 'button',
+  classNames: ['field-buttons__check-continue', 'button', 'display-none'],
+  textContent: 'Continue',
+  action: new ButtonCheckContinue('click'),
 };
 
 export const lineTotalParams: IParams = {

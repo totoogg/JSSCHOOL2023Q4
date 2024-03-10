@@ -56,6 +56,10 @@ export default class ClickBlock extends Listener implements IClickBlock {
       ) as HTMLElement;
       elResult.textContent = '';
     }
+
+    if (!this.getEmptyPlace()) {
+      this.checkingResult();
+    }
   }
 
   public getEmptyPlace(): HTMLElement {
@@ -63,5 +67,20 @@ export default class ClickBlock extends Listener implements IClickBlock {
       (el) => !el.textContent,
     ) as HTMLElement;
     return emptyPlace;
+  }
+
+  checkingResult(): void {
+    const resultLine = Array.from(document.querySelectorAll('.field-result__line'));
+    const checkLineIndex = resultLine.filter((el) => el.children.length > 0).length - 1;
+    const checkLine = Array.from(resultLine[checkLineIndex].children)
+      .map((el) => el.textContent)
+      .join(' ');
+    const totalLine = Array.from(document.querySelectorAll('.field-total__line'))[checkLineIndex]
+      .textContent;
+
+    if (checkLine === totalLine) {
+      const button = document.querySelector('.field-buttons__check-continue');
+      button?.classList.remove('display-none');
+    }
   }
 }

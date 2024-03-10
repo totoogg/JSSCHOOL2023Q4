@@ -24,6 +24,6 @@ export default class ButtonStart extends Listener implements IEventElement {
     });
 
     const start = new FieldResult();
-    start.setSentence();
+    start.setSentence(0, 0, 0);
   }
 }
