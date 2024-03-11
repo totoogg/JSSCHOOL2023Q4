@@ -1,7 +1,8 @@
-import ClickBlock from '../../controller/fieldGame/clickBlock';
+import ClickBlock from '../../controller/listener/button/clickBlock';
 import ButtonCheckContinue from '../../controller/listener/button/buttonCheckContinue';
 import ButtonLogin from '../../controller/listener/button/buttonLogin';
 import ButtonLogout from '../../controller/listener/button/buttonLogout';
+import ButtonSolution from '../../controller/listener/button/buttonSolution';
 import ButtonStart from '../../controller/listener/button/buttonStart';
 import InputStart from '../../controller/listener/input/inputStart';
 import { IParams } from '../../interfaces/interfaces';
@@ -122,6 +123,13 @@ export const buttonContinueParams: IParams = {
   classNames: ['field-buttons__check-continue', 'button', 'display-none'],
   textContent: 'Check',
   action: new ButtonCheckContinue('click'),
+};
+
+export const buttonSolutionParams: IParams = {
+  tag: 'button',
+  classNames: ['field-buttons__solution', 'button'],
+  textContent: `I don't know`,
+  action: new ButtonSolution('click'),
 };
 
 export const lineTotalParams: IParams = {

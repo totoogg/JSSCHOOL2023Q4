@@ -1,5 +1,5 @@
-import Listener from '../listener/listener';
-import { IClickBlock, ITranslate } from '../../interfaces/interfaces';
+import Listener from '../listener';
+import { IClickBlock, ITranslate } from '../../../interfaces/interfaces';
 
 export default class ClickBlock extends Listener implements IClickBlock {
   public eventListener: string;
@@ -55,9 +55,11 @@ export default class ClickBlock extends Listener implements IClickBlock {
       el.setAttribute('data-index', `${lineBlocks.indexOf(emptyPlace)}`);
       emptyPlace.textContent = el.textContent;
     } else {
-      const elResult = Array.from(document.querySelectorAll('.line__block')).find(
-        (element) => element.textContent === el.textContent,
+      const elResult = Array.from(document.querySelectorAll('.line__block:not(.properly)')).find(
+        (element, index) =>
+          element.textContent === el.textContent && index === Number(el.getAttribute('data-index')),
       ) as HTMLElement;
+      el.removeAttribute('data-index');
       elResult.textContent = '';
     }
 

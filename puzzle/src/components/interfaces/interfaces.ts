@@ -16,3 +16,4 @@ export { IClickBlock } from './IClickBlock';
 export { IFieldResult } from './IFieldResult';
 export { IButtonLogout } from './IButtonLogout';
 export { IButtonCheckContinue } from './IButtonCheckContinue';
+export { IButtonSolution } from './IButtonSolution';
