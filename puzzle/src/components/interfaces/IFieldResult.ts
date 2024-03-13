@@ -10,4 +10,5 @@ export interface IFieldResult {
     currentWords: number,
     countRounds: number,
   ): void;
+  addClassItemClick(): void;
 }

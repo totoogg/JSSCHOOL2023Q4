@@ -27,6 +27,8 @@ export default class FieldResult implements IFieldResult {
     });
 
     this.setClickField(linesTotal[currentWords].textContent!);
+
+    this.addClassItemClick();
   }
 
   public getIndexFirstNotResolved(): number {
@@ -45,7 +47,7 @@ export default class FieldResult implements IFieldResult {
     for (let index = 0; index < arrText.length; index += 1) {
       const element = new ElementCreation(blockClickParams);
       element.setText(arrText[index]);
-      element.getElement()!.style.width = `${Math.floor(widthBlockClick)}px`;
+      element.getElement()!.style.width = `${widthBlockClick}px`;
       element.getElement()?.setAttribute('draggable', 'true');
       fieldClick?.append(element.getElement()!);
     }
@@ -83,5 +85,19 @@ export default class FieldResult implements IFieldResult {
     fieldResult?.setAttribute('data-round', `${rounds}`);
     fieldResult?.setAttribute('data-currentWords', `${currentWords}`);
     fieldResult?.setAttribute('data-countRounds', `${countRounds}`);
+  }
+
+  public addClassItemClick(): void {
+    const total: HTMLElement = Array.from(document.querySelectorAll('.field-total__line'))[
+      Number(document.querySelector('.main__field-result')?.getAttribute('data-currentwords'))
+    ] as HTMLElement;
+    const totalArr: string[] = total.textContent?.split(' ') as string[];
+    const first: string = totalArr[0] as string;
+    const last: string = totalArr.at(-1) as string;
+    const clickBlock: HTMLElement[] = Array.from(
+      document.querySelectorAll('.field-click__block'),
+    ) as HTMLElement[];
+    clickBlock.find((el) => el.textContent === first)?.classList.add('first-item');
+    clickBlock.find((el) => el.textContent === last)?.classList.add('last-item');
   }
 }
