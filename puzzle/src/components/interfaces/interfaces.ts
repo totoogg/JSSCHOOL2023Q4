@@ -17,3 +17,4 @@ export { IFieldResult } from './IFieldResult';
 export { IButtonLogout } from './IButtonLogout';
 export { IButtonCheckContinue } from './IButtonCheckContinue';
 export { IButtonSolution } from './IButtonSolution';
+export { IDragDrop } from './IDragDrop';

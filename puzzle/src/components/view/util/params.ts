@@ -6,6 +6,7 @@ import ButtonSolution from '../../controller/listener/button/buttonSolution';
 import ButtonStart from '../../controller/listener/button/buttonStart';
 import InputStart from '../../controller/listener/input/inputStart';
 import { IParams } from '../../interfaces/interfaces';
+import DragDrop from '../../controller/listener/dragDrop/dragDrop';
 
 export const labelParams: IParams = {
   tag: 'h1',
@@ -94,14 +95,14 @@ export const fieldResultParams: IParams = {
   tag: 'div',
   classNames: ['main__field-result'],
   textContent: '',
-  action: null,
+  action: [new DragDrop('dragstart'), new DragDrop('dragend'), new DragDrop('dragover')],
 };
 
 export const fieldClickParams: IParams = {
   tag: 'div',
   classNames: ['main__field-click'],
   textContent: '',
-  action: null,
+  action: [new DragDrop('dragstart'), new DragDrop('dragend'), new DragDrop('dragover')],
 };
 
 export const fieldTotalParams: IParams = {
@@ -181,7 +182,7 @@ export const blockClickParams: IParams = {
   tag: 'div',
   classNames: ['field-click__block'],
   textContent: '',
-  action: new ClickBlock('click'),
+  action: [new ClickBlock('mouseup')],
 };
 
 export const blockParams: IParams = {

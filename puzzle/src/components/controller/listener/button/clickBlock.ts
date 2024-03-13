@@ -4,24 +4,30 @@ import { IClickBlock, ITranslate } from '../../../interfaces/interfaces';
 export default class ClickBlock extends Listener implements IClickBlock {
   public eventListener: string;
 
+  public currentDroppable: null | HTMLElement = null;
+
+  public targetBlock: null | HTMLElement = null;
+
   constructor(key: string) {
     super();
     this.eventListener = key;
   }
 
-  public callback(event: Event): void {
+  public callback(event: Event | MouseEvent): void {
     event.preventDefault();
 
     const target = event.target as HTMLElement;
 
-    if (target.classList.contains('field-click__block')) {
-      const translate = this.translateTarget(target);
+    if (this.eventListener === 'mouseup') {
+      if (target.classList.contains('field-click__block')) {
+        const translate = this.translateTarget(target);
 
-      target.style.transform = `translate(${translate.scrollX}px, ${translate.scrollY}px)`;
+        target.style.transform = `translate(${translate.scrollX}px, ${translate.scrollY}px)`;
 
-      target.classList.toggle('add');
+        target.classList.toggle('add');
 
-      this.writeInEmptyPlace(target);
+        this.writeInEmptyPlace(target);
+      }
     }
   }
 

@@ -1,3 +1,3 @@
 export interface IEventElement {
-  callback(event: Event): void;
+  callback(event: Event | MouseEvent): void;
 }

@@ -45,7 +45,8 @@
 
   .main__field-click {
     width: 600px;
-    height: 80px;
+    min-height: 150px;
+    padding: 20px;
     background-color: white;
     margin-bottom: 50px;
     display: flex;
@@ -66,6 +67,10 @@
       &:hover {
         background-color: chartreuse;
       }
+    }
+
+    .selected {
+      opacity: 0;
     }
 
     .wrong {

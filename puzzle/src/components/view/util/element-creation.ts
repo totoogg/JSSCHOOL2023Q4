@@ -36,9 +36,17 @@ export default class ElementCreation implements IElementCreation {
     }
   }
 
-  public setAction(action: IAction | null): void {
-    if (action && typeof action.callback === 'function' && this.element) {
-      this.element.addEventListener(action.eventListener, (event) => action.callback(event));
+  public setAction(action: IAction | null | IAction[]): void {
+    if (!Array.isArray(action)) {
+      if (action && typeof action.callback === 'function' && this.element) {
+        this.element.addEventListener(action.eventListener, (event) => action.callback(event));
+      }
+    } else {
+      action.forEach((el) => {
+        if (el && typeof el.callback === 'function' && this.element) {
+          this.element.addEventListener(el.eventListener, (event) => el.callback(event));
+        }
+      });
     }
   }
 }

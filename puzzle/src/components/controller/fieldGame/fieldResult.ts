@@ -9,6 +9,8 @@ import { IFieldResult } from '../../interfaces/interfaces';
 import { blockClickParams, blockParams } from '../../view/util/params';
 
 export default class FieldResult implements IFieldResult {
+  public currentDrop: HTMLElement | null = null;
+
   public setSentence(level: number, rounds: number, currentWords: number): void {
     const levelSentences = [sentences1, sentences2, sentences3, sentences4, sentences5, sentences6];
 
@@ -44,6 +46,7 @@ export default class FieldResult implements IFieldResult {
       const element = new ElementCreation(blockClickParams);
       element.setText(arrText[index]);
       element.getElement()!.style.width = `${Math.floor(widthBlockClick)}px`;
+      element.getElement()?.setAttribute('draggable', 'true');
       fieldClick?.append(element.getElement()!);
     }
   }
