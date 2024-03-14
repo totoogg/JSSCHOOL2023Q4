@@ -12,16 +12,27 @@
     align-items: center;
 
     .field-help__sound-help {
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 100%;
+      background-image: url('../../../model/images/icon/sound.svg');
+      cursor: pointer;
       margin-bottom: 20px;
       width: 50px;
       height: 50px;
+      
+      &:hover {
+        background-color: antiquewhite;
+      }
     }
+
 
     .field-help__text-help {
       font-style: italic;
     }
 
     .hide {
+      cursor: default;
       opacity: 0;
     }
   }

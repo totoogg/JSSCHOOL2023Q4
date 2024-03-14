@@ -1,4 +1,5 @@
 const path = require('path');
+const SRC = path.resolve(__dirname, 'node_modules');
 const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -22,6 +23,11 @@ const baseConfig = {
         test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/,
+      },
+      {
+        test: /\.mp3$/,
+        include: SRC,
+        loader: 'file-loader'
       },
     ],
   },

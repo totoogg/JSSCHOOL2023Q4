@@ -8,6 +8,7 @@ import InputStart from '../../controller/listener/input/inputStart';
 import { IParams } from '../../interfaces/interfaces';
 import DragDrop from '../../controller/listener/dragDrop/dragDrop';
 import TextHelpButton from '../../controller/listener/button/buttonsHelp/textHelpButton';
+import SoundHelpButton from '../../controller/listener/button/buttonsHelp/soundHelp';
 
 export const labelParams: IParams = {
   tag: 'h1',
@@ -211,7 +212,7 @@ export const soundButtonParams: IParams = {
   tag: 'div',
   classNames: ['field-help__sound-help', 'hide'],
   textContent: '',
-  action: null,
+  action: new SoundHelpButton('click'),
 };
 
 export const textHelpParams: IParams = {
@@ -232,7 +233,7 @@ export const soundHelpButtonParams: IParams = {
   tag: 'button',
   classNames: ['text-help__sound', 'button-help'],
   textContent: '',
-  action: null,
+  action: new SoundHelpButton('click'),
 };
 
 export const imageHelpButtonParams: IParams = {
