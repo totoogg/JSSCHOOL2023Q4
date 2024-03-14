@@ -28,7 +28,7 @@ export default class ButtonCheckContinue extends Listener implements IButtonChec
 
       this.updateGame();
       this.updateText.textHelp();
-      this.hideTextHelp();
+      this.hideHelp();
     }
   }
 
@@ -100,7 +100,7 @@ export default class ButtonCheckContinue extends Listener implements IButtonChec
       const button = document.querySelector('.field-buttons__check-continue') as HTMLElement;
       button.textContent = 'Continue';
       this.errorHighlighting();
-      this.showTextHelp();
+      this.showHelp();
     } else {
       this.errorHighlighting();
     }
@@ -131,18 +131,25 @@ export default class ButtonCheckContinue extends Listener implements IButtonChec
     });
   }
 
-  public showTextHelp(): void {
+  public showHelp(): void {
     const textHelp = document.querySelector('.field-help__text-help') as HTMLElement;
+    const soundHelp = document.querySelector('.field-help__sound-help') as HTMLElement;
 
     textHelp.classList.remove('hide');
+    soundHelp.classList.remove('hide');
   }
 
-  public hideTextHelp(): void {
+  public hideHelp(): void {
     const textHelpButton = document.querySelector('.text-help__text') as HTMLElement;
     const textHelp = document.querySelector('.field-help__text-help') as HTMLElement;
+    const soundHelpButton = document.querySelector('.text-help__sound') as HTMLElement;
+    const soundHelp = document.querySelector('.field-help__sound-help') as HTMLElement;
 
     if (!textHelpButton.classList.contains('active')) {
       textHelp.classList.add('hide');
+    }
+    if (!soundHelpButton.classList.contains('active')) {
+      soundHelp.classList.add('hide');
     }
   }
 }

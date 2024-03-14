@@ -34,6 +34,12 @@ export default class SoundHelpButton extends Listener implements ISoundHelpButto
       currentElement.classList.add('play');
       this.sound.play();
     }
+
+    if (currentElement.classList.contains('text-help__sound')) {
+      const buttonSound = document.querySelector('.field-help__sound-help') as HTMLElement;
+      buttonSound.classList.toggle('hide');
+      currentElement.classList.toggle('active');
+    }
   }
 
   public endedSound(element: HTMLElement): void {

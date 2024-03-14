@@ -210,7 +210,7 @@ export const blockParams: IParams = {
 
 export const soundButtonParams: IParams = {
   tag: 'div',
-  classNames: ['field-help__sound-help'],
+  classNames: ['field-help__sound-help', 'hide'],
   textContent: '',
   action: new SoundHelpButton('click'),
 };
