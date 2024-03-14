@@ -1,8 +1,8 @@
 import Listener from '../../listener';
 import * as sentences from '../../../../model/data/wordCollection';
-import { IEventElement } from '../../../../interfaces/interfaces';
+import { ISoundHelpButton } from '../../../../interfaces/interfaces';
 
-export default class SoundHelpButton extends Listener implements IEventElement {
+export default class SoundHelpButton extends Listener implements ISoundHelpButton {
   public eventListener: string;
 
   public sound!: HTMLAudioElement;
@@ -25,12 +25,20 @@ export default class SoundHelpButton extends Listener implements IEventElement {
     this.sound = new Audio(
       `https://raw.githubusercontent.com/rolling-scopes-school/rss-puzzle-data/main/${currentSound}`,
     );
+    this.endedSound(currentElement);
 
     if (
       currentElement.classList.contains('field-help__sound-help') &&
       !currentElement.classList.contains('hide')
     ) {
+      currentElement.classList.add('play');
       this.sound.play();
     }
+  }
+
+  public endedSound(element: HTMLElement): void {
+    this.sound.addEventListener('ended', () => {
+      element.classList.remove('play');
+    });
   }
 }

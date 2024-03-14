@@ -20,12 +20,16 @@
       margin-bottom: 20px;
       width: 50px;
       height: 50px;
+
       
       &:hover {
         background-color: antiquewhite;
       }
     }
-
+    
+    .play {
+      background-image: url('../../../model/images/icon/gif.gif');
+    }
 
     .field-help__text-help {
       font-style: italic;
