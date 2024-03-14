@@ -1,12 +1,14 @@
 import FieldResult from '../../fieldGame/fieldResult';
 import Listener from '../listener';
-import * as sentences from '../../../model/data/wordCollection';
 import { IButtonCheckContinue } from '../../../interfaces/interfaces';
+import ButtonStart from './buttonStart';
 
 export default class ButtonCheckContinue extends Listener implements IButtonCheckContinue {
   public eventListener: string;
 
   public game = new FieldResult();
+
+  public updateText = new ButtonStart('click');
 
   constructor(key: string) {
     super();
@@ -25,7 +27,8 @@ export default class ButtonCheckContinue extends Listener implements IButtonChec
       button.classList.add('display-none');
 
       this.updateGame();
-      this.updateHelps();
+      this.updateText.textHelp();
+      this.hideTextHelp();
     }
   }
 
@@ -97,6 +100,7 @@ export default class ButtonCheckContinue extends Listener implements IButtonChec
       const button = document.querySelector('.field-buttons__check-continue') as HTMLElement;
       button.textContent = 'Continue';
       this.errorHighlighting();
+      this.showTextHelp();
     } else {
       this.errorHighlighting();
     }
@@ -127,14 +131,18 @@ export default class ButtonCheckContinue extends Listener implements IButtonChec
     });
   }
 
-  public updateHelps(): void {
-    const text = Object.values(sentences);
-    const currentResult = document.querySelector('.main__field-result') as HTMLElement;
-    const currentText: string =
-      text[Number(currentResult.getAttribute('data-level'))].rounds[
-        Number(currentResult.getAttribute('data-round'))
-      ].words[Number(currentResult.getAttribute('data-currentwords'))].textExampleTranslate;
-    const textHelpBlock = document.querySelector('.field-help__text-help') as HTMLElement;
-    textHelpBlock.textContent = currentText;
+  public showTextHelp(): void {
+    const textHelp = document.querySelector('.field-help__text-help') as HTMLElement;
+
+    textHelp.classList.remove('hide');
+  }
+
+  public hideTextHelp(): void {
+    const textHelpButton = document.querySelector('.text-help__text') as HTMLElement;
+    const textHelp = document.querySelector('.field-help__text-help') as HTMLElement;
+
+    if (!textHelpButton.classList.contains('active')) {
+      textHelp.classList.add('hide');
+    }
   }
 }

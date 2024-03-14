@@ -74,8 +74,10 @@ export default class ButtonSolution extends Listener implements IButtonSolution 
   }
 
   public updateButtonContinue(): void {
+    const textHelp = document.querySelector('.field-help__text-help') as HTMLElement;
     const button = document.querySelector('.field-buttons__check-continue') as HTMLElement;
 
+    textHelp.classList.remove('hide');
     button.textContent = 'Continue';
     button.classList.remove('display-none');
   }

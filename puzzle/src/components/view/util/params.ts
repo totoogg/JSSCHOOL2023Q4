@@ -7,6 +7,7 @@ import ButtonStart from '../../controller/listener/button/buttonStart';
 import InputStart from '../../controller/listener/input/inputStart';
 import { IParams } from '../../interfaces/interfaces';
 import DragDrop from '../../controller/listener/dragDrop/dragDrop';
+import TextHelpButton from '../../controller/listener/button/buttonsHelp/textHelpButton';
 
 export const labelParams: IParams = {
   tag: 'h1',
@@ -161,6 +162,13 @@ export const buttonLogoutParams: IParams = {
   action: new ButtonLogout('click'),
 };
 
+export const blocksHelpParams: IParams = {
+  tag: 'div',
+  classNames: ['header__block-help', 'display-none'],
+  textContent: '',
+  action: null,
+};
+
 export const formParams: IParams = {
   tag: 'form',
   classNames: ['form'],
@@ -201,14 +209,35 @@ export const blockParams: IParams = {
 
 export const soundButtonParams: IParams = {
   tag: 'div',
-  classNames: ['field-help__sound-help'],
+  classNames: ['field-help__sound-help', 'hide'],
   textContent: '',
   action: null,
 };
 
 export const textHelpParams: IParams = {
   tag: 'p',
-  classNames: ['field-help__text-help'],
+  classNames: ['field-help__text-help', 'hide'],
+  textContent: '',
+  action: null,
+};
+
+export const textHelpButtonParams: IParams = {
+  tag: 'button',
+  classNames: ['text-help__text', 'button-help'],
+  textContent: '',
+  action: new TextHelpButton('click'),
+};
+
+export const soundHelpButtonParams: IParams = {
+  tag: 'button',
+  classNames: ['text-help__sound', 'button-help'],
+  textContent: '',
+  action: null,
+};
+
+export const imageHelpButtonParams: IParams = {
+  tag: 'button',
+  classNames: ['text-help__image', 'button-help'],
   textContent: '',
   action: null,
 };

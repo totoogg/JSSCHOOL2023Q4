@@ -15,6 +15,9 @@ export default class ButtonStart extends Listener implements IButtonStart {
     event.preventDefault();
 
     const childrenBody: Element[] = Array.from(document.body.children);
+    const blockHelp = document.querySelector('.header__block-help') as HTMLElement;
+
+    blockHelp.classList.remove('display-none');
 
     childrenBody.forEach((el) => {
       if (el.classList.contains('header') || el.classList.contains('main')) {
