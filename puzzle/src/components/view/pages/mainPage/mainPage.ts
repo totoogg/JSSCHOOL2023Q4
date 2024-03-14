@@ -5,10 +5,13 @@ import {
   buttonSolutionParams,
   fieldButtonsParams,
   fieldClickParams,
+  fieldHelpParams,
   fieldResultParams,
   fieldTotalParams,
   lineResultParams,
   lineTotalParams,
+  soundButtonParams,
+  textHelpParams,
 } from '../../util/params';
 
 import './mainPage.scss';
@@ -23,6 +26,8 @@ export default class MainPage implements IMainPage {
   public fieldTotal: ElementCreation = new ElementCreation(fieldTotalParams);
 
   public fieldButtons: ElementCreation = new ElementCreation(fieldButtonsParams);
+
+  public fieldHelp: ElementCreation = new ElementCreation(fieldHelpParams);
 
   constructor(param: IParams) {
     this.main = new ElementCreation(param);
@@ -39,10 +44,12 @@ export default class MainPage implements IMainPage {
   public createElements(): void {
     this.createLine();
     this.createButtons();
+    this.createHelp();
 
     this.main
       .getElement()
       ?.append(
+        this.fieldHelp.getElement()!,
         this.fieldResult.getElement()!,
         this.fieldTotal.getElement()!,
         this.fieldClick.getElement()!,
@@ -67,5 +74,12 @@ export default class MainPage implements IMainPage {
     this.fieldButtons
       .getElement()
       ?.append(solutionButton.getElement()!, continueButton.getElement()!);
+  }
+
+  public createHelp(): void {
+    const soundButton = new ElementCreation(soundButtonParams);
+    const textHelp = new ElementCreation(textHelpParams);
+
+    this.fieldHelp.getElement()?.append(soundButton.getElement()!, textHelp.getElement()!);
   }
 }

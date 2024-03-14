@@ -1,5 +1,6 @@
 import FieldResult from '../../fieldGame/fieldResult';
 import Listener from '../listener';
+import * as sentences from '../../../model/data/wordCollection';
 import { IButtonCheckContinue } from '../../../interfaces/interfaces';
 
 export default class ButtonCheckContinue extends Listener implements IButtonCheckContinue {
@@ -24,6 +25,7 @@ export default class ButtonCheckContinue extends Listener implements IButtonChec
       button.classList.add('display-none');
 
       this.updateGame();
+      this.updateHelps();
     }
   }
 
@@ -123,5 +125,16 @@ export default class ButtonCheckContinue extends Listener implements IButtonChec
           .classList.add('right');
       }
     });
+  }
+
+  public updateHelps(): void {
+    const text = Object.values(sentences);
+    const currentResult = document.querySelector('.main__field-result') as HTMLElement;
+    const currentText: string =
+      text[Number(currentResult.getAttribute('data-level'))].rounds[
+        Number(currentResult.getAttribute('data-round'))
+      ].words[Number(currentResult.getAttribute('data-currentwords'))].textExampleTranslate;
+    const textHelpBlock = document.querySelector('.field-help__text-help') as HTMLElement;
+    textHelpBlock.textContent = currentText;
   }
 }

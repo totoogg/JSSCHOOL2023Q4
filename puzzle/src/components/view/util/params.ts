@@ -119,6 +119,13 @@ export const fieldButtonsParams: IParams = {
   action: null,
 };
 
+export const fieldHelpParams: IParams = {
+  tag: 'div',
+  classNames: ['main__field-help'],
+  textContent: '',
+  action: null,
+};
+
 export const buttonContinueParams: IParams = {
   tag: 'button',
   classNames: ['field-buttons__check-continue', 'button', 'display-none'],
@@ -188,6 +195,20 @@ export const blockClickParams: IParams = {
 export const blockParams: IParams = {
   tag: 'div',
   classNames: ['line__block'],
+  textContent: '',
+  action: null,
+};
+
+export const soundButtonParams: IParams = {
+  tag: 'div',
+  classNames: ['field-help__sound-help'],
+  textContent: '',
+  action: null,
+};
+
+export const textHelpParams: IParams = {
+  tag: 'p',
+  classNames: ['field-help__text-help'],
   textContent: '',
   action: null,
 };

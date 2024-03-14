@@ -5,6 +5,20 @@
   align-items: center;
   width: 100%;
 
+  .main__field-help {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+
+    .field-help__sound-help {
+      margin-bottom: 20px;
+    }
+
+    .field-help__text-help {
+      font-style: italic;
+    }
+  }
+
   .main__field-result {
     width: 768px;
     height: 400px;
@@ -33,6 +47,15 @@
         font-size: 1rem;
         background-color: aqua;
         color: rgba($color: #000000, $alpha: 1.0);
+        clip-path: polygon(5% 50%, 0 0, 95% 0, 100% 50%, 95% 100%, 0 100%);
+      }
+
+      .properly:first-child {
+        clip-path: polygon(0% 50%, 0 0, 95% 0, 100% 50%, 95% 100%, 0 100%);
+      }
+
+      .properly:last-child {
+        clip-path: polygon(5% 50%, 0 0, 100% 0, 100% 50%, 100% 100%, 0 100%);
       }
     }
   }

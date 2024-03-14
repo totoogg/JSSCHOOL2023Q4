@@ -18,3 +18,4 @@ export { IButtonLogout } from './IButtonLogout';
 export { IButtonCheckContinue } from './IButtonCheckContinue';
 export { IButtonSolution } from './IButtonSolution';
 export { IDragDrop } from './IDragDrop';
+export { IButtonStart } from './IButtonStart';

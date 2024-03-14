@@ -5,4 +5,5 @@ export interface IButtonCheckContinue extends IEventElement {
   updateElements(currentWords: number): void;
   checkResult(): void;
   errorHighlighting(): void;
+  updateHelps(): void;
 }

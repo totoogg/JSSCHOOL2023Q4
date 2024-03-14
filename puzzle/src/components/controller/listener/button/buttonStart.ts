@@ -1,8 +1,9 @@
 import Listener from '../listener';
 import FieldResult from '../../fieldGame/fieldResult';
-import { IEventElement } from '../../../interfaces/interfaces';
+import * as sentences from '../../../model/data/wordCollection';
+import { IButtonStart } from '../../../interfaces/interfaces';
 
-export default class ButtonStart extends Listener implements IEventElement {
+export default class ButtonStart extends Listener implements IButtonStart {
   public eventListener: string;
 
   constructor(key: string) {
@@ -25,5 +26,18 @@ export default class ButtonStart extends Listener implements IEventElement {
 
     const start = new FieldResult();
     start.setSentence(0, 0, 0);
+
+    this.textHelp();
+  }
+
+  public textHelp(): void {
+    const text = Object.values(sentences);
+    const currentResult = document.querySelector('.main__field-result') as HTMLElement;
+    const currentText: string =
+      text[Number(currentResult.getAttribute('data-level'))].rounds[
+        Number(currentResult.getAttribute('data-round'))
+      ].words[Number(currentResult.getAttribute('data-currentwords'))].textExampleTranslate;
+    const textHelpBlock = document.querySelector('.field-help__text-help') as HTMLElement;
+    textHelpBlock.textContent = currentText;
   }
 }

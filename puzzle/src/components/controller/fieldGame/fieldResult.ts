@@ -1,9 +1,4 @@
-import sentences1 from '../../model/data/wordCollectionLevel1.json';
-import sentences2 from '../../model/data/wordCollectionLevel2.json';
-import sentences3 from '../../model/data/wordCollectionLevel3.json';
-import sentences4 from '../../model/data/wordCollectionLevel4.json';
-import sentences5 from '../../model/data/wordCollectionLevel5.json';
-import sentences6 from '../../model/data/wordCollectionLevel6.json';
+import * as sentences from '../../model/data/wordCollection';
 import ElementCreation from '../../view/util/element-creation';
 import { IFieldResult } from '../../interfaces/interfaces';
 import { blockClickParams, blockParams } from '../../view/util/params';
@@ -12,7 +7,7 @@ export default class FieldResult implements IFieldResult {
   public currentDrop: HTMLElement | null = null;
 
   public setSentence(level: number, rounds: number, currentWords: number): void {
-    const levelSentences = [sentences1, sentences2, sentences3, sentences4, sentences5, sentences6];
+    const levelSentences = Object.values(sentences);
 
     const current = levelSentences[level].rounds[rounds].words;
     const countRounds = levelSentences[level].roundsCount;
