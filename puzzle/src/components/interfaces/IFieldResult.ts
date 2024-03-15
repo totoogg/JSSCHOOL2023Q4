@@ -11,4 +11,6 @@ export interface IFieldResult {
     countRounds: number,
   ): void;
   addClassItemClick(): void;
+  addBackgroundResult(): void;
+  addBackgroundClickBlock(): void;
 }
