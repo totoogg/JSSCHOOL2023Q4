@@ -23,6 +23,7 @@ export default class ButtonCheckContinue extends Listener implements IButtonChec
     if (button.textContent === 'Check') {
       this.checkResult();
     } else {
+      this.game.showBackgroundBlock();
       button.textContent = 'Check';
       button.classList.add('display-none');
 
@@ -77,6 +78,7 @@ export default class ButtonCheckContinue extends Listener implements IButtonChec
         const element = el;
         element.classList.remove('solution');
         element.innerHTML = '';
+        element.removeAttribute('data-solution');
       });
     } else {
       lineResult[currentWords].classList.add('solution');

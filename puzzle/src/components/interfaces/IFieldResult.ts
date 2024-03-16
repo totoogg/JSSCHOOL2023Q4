@@ -13,4 +13,5 @@ export interface IFieldResult {
   addClassItemClick(): void;
   addBackgroundResult(): void;
   addBackgroundClickBlock(): void;
+  showBackgroundBlock(): void;
 }

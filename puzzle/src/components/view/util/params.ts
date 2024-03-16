@@ -9,6 +9,7 @@ import { IParams } from '../../interfaces/interfaces';
 import DragDrop from '../../controller/listener/dragDrop/dragDrop';
 import TextHelpButton from '../../controller/listener/button/buttonsHelp/textHelpButton';
 import SoundHelpButton from '../../controller/listener/button/buttonsHelp/soundHelp';
+import ImageHelpButton from '../../controller/listener/button/buttonsHelp/imageHelp';
 
 export const labelParams: IParams = {
   tag: 'h1',
@@ -240,5 +241,5 @@ export const imageHelpButtonParams: IParams = {
   tag: 'button',
   classNames: ['text-help__image', 'button-help'],
   textContent: '',
-  action: null,
+  action: new ImageHelpButton('click'),
 };

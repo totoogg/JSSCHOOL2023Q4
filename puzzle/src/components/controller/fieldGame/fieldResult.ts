@@ -116,18 +116,57 @@ export default class FieldResult implements IFieldResult {
     const clickBlocks = Array.from(
       document.querySelectorAll('.field-click__block'),
     ) as HTMLElement[];
-    const urlImage = levelSentences[level].rounds[round].levelData.cutSrc;
     const arrTotal: string[] =
       levelSentences[level].rounds[round].words[currentWord].textExample.split(' ');
     const width: number = parseInt(clickBlocks[0].style.width, 10);
     const height = 40 * currentWord;
+    const lineResult = Array.from(document.querySelectorAll('.field-result__line'))[
+      currentWord
+    ] as HTMLElement;
+    const lineBlocksResult = Array.from(lineResult.children) as HTMLElement[];
+
+    clickBlocks.forEach((element, index) => {
+      const el = element;
+      const indexEl = arrTotal.findIndex((text) => text === el.textContent);
+      el.style.backgroundPosition = `${-width * indexEl}px ${-height}px`;
+      arrTotal[indexEl] = '';
+      lineBlocksResult[index].style.backgroundPosition = `${-width * index}px ${-height}px`;
+    });
+
+    this.showBackgroundBlock();
+  }
+
+  public showBackgroundBlock(): void {
+    const imageHelp = document.querySelector('.text-help__image') as HTMLElement;
+    const levelSentences = Object.values(sentences);
+    const fieldResult = document.querySelector('.main__field-result') as HTMLElement;
+    const level = Number(fieldResult.getAttribute('data-level'));
+    const round = Number(fieldResult.getAttribute('data-round'));
+    const clickBlocks = Array.from(
+      document.querySelectorAll('.field-click__block'),
+    ) as HTMLElement[];
+    const urlImage = levelSentences[level].rounds[round].levelData.cutSrc;
+    const continueButton = document.querySelector('.field-buttons__check-continue') as HTMLElement;
+
+    if (continueButton.textContent === 'Continue') {
+      const currentWord = Number(fieldResult.getAttribute('data-currentwords'));
+      const lineSolution = Array.from(document.querySelectorAll('.field-result__line'))[
+        currentWord
+      ] as HTMLElement;
+      const block = Array.from(lineSolution.children) as HTMLElement[];
+      block.forEach((el) => {
+        const element = el;
+        element.style.backgroundImage = `url(https://raw.githubusercontent.com/rolling-scopes-school/rss-puzzle-data/main/images/${urlImage})`;
+      });
+    }
 
     clickBlocks.forEach((element) => {
       const el = element;
-      el.style.backgroundImage = `url(https://raw.githubusercontent.com/rolling-scopes-school/rss-puzzle-data/main/images/${urlImage})`;
-      const index = arrTotal.findIndex((text) => text === el.textContent);
-      el.style.backgroundPosition = `${-width * index}px ${-height}px`;
-      arrTotal[index] = '';
+      if (imageHelp.classList.contains('active')) {
+        el.style.backgroundImage = `url(https://raw.githubusercontent.com/rolling-scopes-school/rss-puzzle-data/main/images/${urlImage})`;
+      } else {
+        el.style.backgroundImage = ``;
+      }
     });
   }
 }
