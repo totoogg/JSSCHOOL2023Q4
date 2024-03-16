@@ -1,7 +1,7 @@
 import FieldResult from '../../fieldGame/fieldResult';
 import Listener from '../listener';
-import { IButtonCheckContinue } from '../../../interfaces/interfaces';
 import ButtonStart from './buttonStart';
+import { IButtonCheckContinue } from '../../../interfaces/interfaces';
 
 export default class ButtonCheckContinue extends Listener implements IButtonCheckContinue {
   public eventListener: string;

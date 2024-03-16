@@ -21,3 +21,4 @@ export { IDragDrop } from './IDragDrop';
 export { IButtonStart } from './IButtonStart';
 export { IHeaderView } from './IHeaderView';
 export { ISoundHelpButton } from './ISoundHelpButton';
+export { ISelectBlock } from './ISelectBlock';

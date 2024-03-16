@@ -10,6 +10,7 @@ import DragDrop from '../../controller/listener/dragDrop/dragDrop';
 import TextHelpButton from '../../controller/listener/button/buttonsHelp/textHelpButton';
 import SoundHelpButton from '../../controller/listener/button/buttonsHelp/soundHelp';
 import ImageHelpButton from '../../controller/listener/button/buttonsHelp/imageHelp';
+import SelectBlock from '../../controller/listener/select/selectBlock';
 
 export const labelParams: IParams = {
   tag: 'h1',
@@ -242,4 +243,67 @@ export const imageHelpButtonParams: IParams = {
   classNames: ['text-help__image', 'button-help'],
   textContent: '',
   action: new ImageHelpButton('click'),
+};
+
+export const selectBlockParams: IParams = {
+  tag: 'div',
+  classNames: ['header__select-block', 'display-none'],
+  textContent: '',
+  action: null,
+};
+
+export const selectLevelParams: IParams = {
+  tag: 'div',
+  classNames: ['select-block__level'],
+  textContent: '',
+  action: null,
+};
+
+export const selectLevelTextParams: IParams = {
+  tag: 'p',
+  classNames: ['level__text'],
+  textContent: 'Level',
+  action: null,
+};
+
+export const selectLevelChoiceParams: IParams = {
+  tag: 'select',
+  classNames: ['level__choice'],
+  textContent: '',
+  action: new SelectBlock('change'),
+};
+
+export const selectLevelOptionParams: IParams = {
+  tag: 'option',
+  classNames: ['choice__option'],
+  textContent: '',
+  action: null,
+};
+
+export const selectPageParams: IParams = {
+  tag: 'div',
+  classNames: ['select-block__page'],
+  textContent: '',
+  action: null,
+};
+
+export const selectPageTextParams: IParams = {
+  tag: 'p',
+  classNames: ['page__text'],
+  textContent: 'Page',
+  action: null,
+};
+
+export const selectPageChoiceParams: IParams = {
+  tag: 'select',
+  classNames: ['page__choice'],
+  textContent: '',
+  action: new SelectBlock('change'),
+};
+
+export const selectPageOptionParams: IParams = {
+  tag: 'option',
+  classNames: ['choice__option'],
+  textContent: '',
+  action: null,
 };

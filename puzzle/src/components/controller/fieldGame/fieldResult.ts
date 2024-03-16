@@ -36,6 +36,7 @@ export default class FieldResult implements IFieldResult {
   public setClickField(text: string): void {
     const arrText = this.shuffleArr(text);
     const fieldClick = document.querySelector('.main__field-click');
+    fieldClick!.innerHTML = '';
     const widthBlockClick = 768 / arrText.length;
 
     this.addBlocksFieldResult(arrText.length, widthBlockClick);

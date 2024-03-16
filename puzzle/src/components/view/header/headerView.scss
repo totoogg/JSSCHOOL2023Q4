@@ -3,6 +3,41 @@
   justify-content: space-around;
   margin-bottom: 20px;
 
+  .header__select-block {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .select-block__level {
+      display: flex;
+      justify-content: space-around;
+      margin-right: 20px;
+
+      .level__text {
+        margin-right: 5px;
+      }
+
+      .level__choice {
+        width: 80px;
+        text-align: center;
+      }
+    }
+
+    .select-block__page {
+      display: flex;
+      justify-content: space-around;
+
+      .page__text {
+        margin-right: 5px;
+      }
+
+      .page__choice {
+        width: 80px;
+        text-align: center;
+      }
+    }
+  }
+
   .header__block-help {
     display: flex;
     justify-content: space-around;

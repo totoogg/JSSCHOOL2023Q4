@@ -2,7 +2,9 @@ import Listener from '../listener';
 import FieldResult from '../../fieldGame/fieldResult';
 import * as sentences from '../../../model/data/wordCollection';
 import SoundHelpButton from './buttonsHelp/soundHelp';
+import ElementCreation from '../../../view/util/element-creation';
 import { IButtonStart, IUserSave } from '../../../interfaces/interfaces';
+import { selectPageOptionParams } from '../../../view/util/params';
 
 export default class ButtonStart extends Listener implements IButtonStart {
   public eventListener: string;
@@ -17,7 +19,9 @@ export default class ButtonStart extends Listener implements IButtonStart {
 
     const childrenBody: Element[] = Array.from(document.body.children);
     const blockHelp = document.querySelector('.header__block-help') as HTMLElement;
+    const body = document.querySelector('body');
 
+    body?.classList.remove('background');
     blockHelp.classList.remove('display-none');
 
     childrenBody.forEach((el) => {
@@ -33,6 +37,7 @@ export default class ButtonStart extends Listener implements IButtonStart {
     this.settingHelps();
     start.setSentence(0, 0, 0);
     this.textHelp();
+    this.settingSelect();
   }
 
   public textHelp(): void {
@@ -70,5 +75,24 @@ export default class ButtonStart extends Listener implements IButtonStart {
       const sound = new SoundHelpButton('click');
       sound.showSound();
     }
+  }
+
+  public settingSelect(): void {
+    const text = Object.values(sentences);
+    const selectBlock = document.querySelector('.header__select-block') as HTMLElement;
+    const levelSelect = document.querySelector('.level__choice') as HTMLElement;
+    const pageSelect = document.querySelector('.page__choice') as HTMLElement;
+    const fieldResult = document.querySelector('.main__field-result') as HTMLElement;
+
+    const countWord = Number(fieldResult.getAttribute('data-countrounds'));
+
+    for (let index = 0; index < countWord; index += 1) {
+      const element = new ElementCreation(selectPageOptionParams);
+      element.getElement()!.textContent = `${index + 1}`;
+      element.getElement()!.setAttribute('value', `${index}`);
+      pageSelect.append(element.getElement()!);
+    }
+
+    selectBlock.classList.remove('display-none');
   }
 }

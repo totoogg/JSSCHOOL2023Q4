@@ -58,10 +58,12 @@ export default class ButtonLogin extends Listener implements IButtonLogin {
     const header = document.querySelector('.header') as HTMLElement;
     const blockDescription = document.querySelector('.description') as HTMLElement;
     const blockHelp = document.querySelector('.header__block-help') as HTMLElement;
+    const selectHelp = document.querySelector('.header__select-block') as HTMLElement;
     const body = document.body as HTMLElement;
 
     form.classList.add('display-none');
     blockHelp.classList.add('display-none');
+    selectHelp.classList.add('display-none');
     header.classList.remove('display-none');
     blockDescription.classList.remove('display-none');
     body.classList.add('background');
