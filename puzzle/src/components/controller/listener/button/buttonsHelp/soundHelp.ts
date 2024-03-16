@@ -1,6 +1,6 @@
 import Listener from '../../listener';
 import * as sentences from '../../../../model/data/wordCollection';
-import { ISoundHelpButton } from '../../../../interfaces/interfaces';
+import { ISoundHelpButton, IUserSave } from '../../../../interfaces/interfaces';
 
 export default class SoundHelpButton extends Listener implements ISoundHelpButton {
   public eventListener: string;
@@ -39,6 +39,16 @@ export default class SoundHelpButton extends Listener implements ISoundHelpButto
       const buttonSound = document.querySelector('.field-help__sound-help') as HTMLElement;
       buttonSound.classList.toggle('hide');
       currentElement.classList.toggle('active');
+      this.saveState();
+    }
+  }
+
+  public showSound(): void {
+    const soundHelp = document.querySelector('.text-help__sound') as HTMLElement;
+    const sound = document.querySelector('.field-help__sound-help') as HTMLElement;
+
+    if (soundHelp.classList.contains('active')) {
+      sound.classList.remove('hide');
     }
   }
 
@@ -46,5 +56,21 @@ export default class SoundHelpButton extends Listener implements ISoundHelpButto
     this.sound.addEventListener('ended', () => {
       element.classList.remove('play');
     });
+  }
+
+  public saveState(): void {
+    const soundButton = document.querySelector('.text-help__sound') as HTMLElement;
+    const localData: IUserSave[] = JSON.parse(
+      localStorage.getItem('rssPuzzleUsersTotooggJSFE2023Q4')!,
+    );
+    const index = localData.findIndex((el) => el.login);
+
+    if (soundButton.classList.contains('active')) {
+      localData[index].soundHelp = true;
+    } else {
+      localData[index].soundHelp = false;
+    }
+
+    localStorage.setItem('rssPuzzleUsersTotooggJSFE2023Q4', JSON.stringify(localData));
   }
 }

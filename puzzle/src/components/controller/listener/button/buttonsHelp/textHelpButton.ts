@@ -1,5 +1,5 @@
 import Listener from '../../listener';
-import { IEventElement } from '../../../../interfaces/interfaces';
+import { IEventElement, IUserSave } from '../../../../interfaces/interfaces';
 
 export default class TextHelpButton extends Listener implements IEventElement {
   public eventListener: string;
@@ -17,5 +17,18 @@ export default class TextHelpButton extends Listener implements IEventElement {
 
     textHelpButton.classList.toggle('active');
     textHelp.classList.toggle('hide');
+
+    const localData: IUserSave[] = JSON.parse(
+      localStorage.getItem('rssPuzzleUsersTotooggJSFE2023Q4')!,
+    );
+    const index = localData.findIndex((el) => el.login);
+
+    if (textHelpButton.classList.contains('active')) {
+      localData[index].textHelp = true;
+    } else {
+      localData[index].textHelp = false;
+    }
+
+    localStorage.setItem('rssPuzzleUsersTotooggJSFE2023Q4', JSON.stringify(localData));
   }
 }
