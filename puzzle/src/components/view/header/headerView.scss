@@ -20,6 +20,10 @@
       .level__choice {
         width: 80px;
         text-align: center;
+
+        .solution {
+          background: green;
+        }
       }
     }
 
@@ -34,6 +38,10 @@
       .page__choice {
         width: 80px;
         text-align: center;
+
+        .solution {
+          background: green;
+        }
       }
     }
   }

@@ -83,8 +83,9 @@ export default class ButtonStart extends Listener implements IButtonStart {
     const levelSelect = document.querySelector('.level__choice') as HTMLElement;
     const pageSelect = document.querySelector('.page__choice') as HTMLElement;
     const fieldResult = document.querySelector('.main__field-result') as HTMLElement;
-
     const countWord = Number(fieldResult.getAttribute('data-countrounds'));
+
+    pageSelect.innerHTML = '';
 
     for (let index = 0; index < countWord; index += 1) {
       const element = new ElementCreation(selectPageOptionParams);

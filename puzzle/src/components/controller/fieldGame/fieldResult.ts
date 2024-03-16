@@ -1,3 +1,4 @@
+import ButtonStart from '../listener/button/buttonStart';
 import * as sentences from '../../model/data/wordCollection';
 import ElementCreation from '../../view/util/element-creation';
 import { IFieldResult } from '../../interfaces/interfaces';
@@ -77,11 +78,19 @@ export default class FieldResult implements IFieldResult {
     currentWords: number,
     countRounds: number,
   ): void {
+    const start = new ButtonStart('click');
     const fieldResult = document.querySelector('.main__field-result');
+    const levelPrev = Number(fieldResult?.getAttribute('data-level'));
+
+    if (level !== levelPrev) {
+      fieldResult?.setAttribute('data-countRounds', `${countRounds}`);
+      start.settingSelect();
+    } else {
+      fieldResult?.setAttribute('data-countRounds', `${countRounds}`);
+    }
     fieldResult?.setAttribute('data-level', `${level}`);
     fieldResult?.setAttribute('data-round', `${rounds}`);
     fieldResult?.setAttribute('data-currentWords', `${currentWords}`);
-    fieldResult?.setAttribute('data-countRounds', `${countRounds}`);
   }
 
   public addClassItemClick(): void {

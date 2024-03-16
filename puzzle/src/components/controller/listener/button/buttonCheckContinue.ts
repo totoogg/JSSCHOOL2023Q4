@@ -36,6 +36,11 @@ export default class ButtonCheckContinue extends Listener implements IButtonChec
   public updateGame(): void {
     const fieldResult = document.querySelector('.main__field-result') as HTMLElement;
     const countRounds = Number(fieldResult?.getAttribute('data-countrounds'));
+    const levelSelect = document.querySelector('.level__choice') as HTMLSelectElement;
+    const levelOptionSolution = Array.from(
+      document.querySelectorAll('.solution'),
+    ) as HTMLSelectElement[];
+    const pageSelect = document.querySelector('.page__choice') as HTMLSelectElement;
     let currentWords = Number(fieldResult?.getAttribute('data-currentwords'));
     let round = Number(fieldResult?.getAttribute('data-round'));
     let level = Number(fieldResult?.getAttribute('data-level'));
@@ -43,21 +48,23 @@ export default class ButtonCheckContinue extends Listener implements IButtonChec
     this.updateElements(currentWords);
 
     if (round === countRounds - 1 && currentWords === 9) {
-      round = 0;
-      if (level === 5) {
-        level = 0;
-      } else {
-        level += 1;
+      if (countRounds === levelOptionSolution.length) {
+        levelSelect[level].classList.add('solution');
       }
+      round = 0;
+      level = level === 5 ? 0 : (level += 1);
+      this.updateLevelSelect(level);
     }
 
     if (currentWords === 9) {
+      pageSelect[round].classList.add('solution');
       currentWords = 0;
       if (Number(fieldResult?.getAttribute('data-round')) === countRounds - 1) {
         round = 0;
       } else {
         round += 1;
       }
+      this.updatePageSelect(round);
     } else {
       currentWords += 1;
     }
@@ -153,5 +160,17 @@ export default class ButtonCheckContinue extends Listener implements IButtonChec
     if (!soundHelpButton.classList.contains('active')) {
       soundHelp.classList.add('hide');
     }
+  }
+
+  public updatePageSelect(round: number): void {
+    const pageSelect = document.querySelector('.page__choice') as HTMLSelectElement;
+
+    pageSelect.value = `${round}`;
+  }
+
+  public updateLevelSelect(level: number): void {
+    const levelSelect = document.querySelector('.level__choice') as HTMLSelectElement;
+
+    levelSelect.value = `${level}`;
   }
 }
