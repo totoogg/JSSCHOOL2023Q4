@@ -1,7 +1,7 @@
 import FieldResult from '../../fieldGame/fieldResult';
 import Listener from '../listener';
 import ButtonStart from './buttonStart';
-import { IButtonCheckContinue } from '../../../interfaces/interfaces';
+import { IButtonCheckContinue, IUserSave } from '../../../interfaces/interfaces';
 
 export default class ButtonCheckContinue extends Listener implements IButtonCheckContinue {
   public eventListener: string;
@@ -50,26 +50,26 @@ export default class ButtonCheckContinue extends Listener implements IButtonChec
     if (round === countRounds - 1 && currentWords === 9) {
       if (countRounds === levelOptionSolution.length) {
         levelSelect[level].classList.add('solution');
+        this.saveLocalSelectLevel();
       }
       round = 0;
       level = level === 5 ? 0 : (level += 1);
-      this.updateLevelSelect(level);
     }
 
     if (currentWords === 9) {
       pageSelect[round].classList.add('solution');
+      this.saveLocalSelectRound();
       currentWords = 0;
-      if (Number(fieldResult?.getAttribute('data-round')) === countRounds - 1) {
-        round = 0;
-      } else {
-        round += 1;
-      }
-      this.updatePageSelect(round);
+      round =
+        Number(fieldResult?.getAttribute('data-round')) === countRounds - 1 ? 0 : (round += 1);
     } else {
       currentWords += 1;
     }
 
+    this.saveLocal(level, round, countRounds);
     this.game.setSentence(level, round, currentWords);
+    this.updateLevelSelect(level);
+    this.updatePageSelect(round);
   }
 
   public updateElements(currentWords: number): void {
@@ -172,5 +172,55 @@ export default class ButtonCheckContinue extends Listener implements IButtonChec
     const levelSelect = document.querySelector('.level__choice') as HTMLSelectElement;
 
     levelSelect.value = `${level}`;
+  }
+
+  public saveLocal(level: number, round: number, countRounds: number): void {
+    const localData: IUserSave[] = JSON.parse(
+      localStorage.getItem('rssPuzzleUsersTotooggJSFE2023Q4')!,
+    );
+    const index = localData.findIndex((el) => el.login);
+    const user = localData[index];
+    user.saveData = {
+      countRounds,
+      level,
+      round,
+    };
+
+    localStorage.setItem('rssPuzzleUsersTotooggJSFE2023Q4', JSON.stringify(localData));
+  }
+
+  public saveLocalSelectLevel(): void {
+    const arrLevel = Array.from(
+      document.querySelectorAll('.level__choice > .choice__option'),
+    ) as HTMLOptionElement[];
+    const localData: IUserSave[] = JSON.parse(
+      localStorage.getItem('rssPuzzleUsersTotooggJSFE2023Q4')!,
+    );
+    const indexLogin = localData.findIndex((el) => el.login);
+    const user = localData[indexLogin];
+
+    arrLevel.forEach((el, index) => {
+      if (el.classList.contains('solution')) {
+        user.level![index] = Array(user.level![index].length).fill(true);
+      }
+    });
+
+    localStorage.setItem('rssPuzzleUsersTotooggJSFE2023Q4', JSON.stringify(localData));
+  }
+
+  public saveLocalSelectRound(): void {
+    const levelSelect = document.querySelector('.level__choice') as HTMLSelectElement;
+    const valueLevel = Number(levelSelect.value);
+    const pageSelect = document.querySelector('.page__choice') as HTMLSelectElement;
+    const valuePage = Number(pageSelect.value);
+    const localData: IUserSave[] = JSON.parse(
+      localStorage.getItem('rssPuzzleUsersTotooggJSFE2023Q4')!,
+    );
+    const indexLogin = localData.findIndex((el) => el.login);
+    const user = localData[indexLogin];
+
+    user.level![valueLevel][valuePage] = true;
+
+    localStorage.setItem('rssPuzzleUsersTotooggJSFE2023Q4', JSON.stringify(localData));
   }
 }

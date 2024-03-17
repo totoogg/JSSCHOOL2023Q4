@@ -9,6 +9,8 @@ import { selectPageOptionParams } from '../../../view/util/params';
 export default class ButtonStart extends Listener implements IButtonStart {
   public eventListener: string;
 
+  public startGame: boolean = true;
+
   constructor(key: string) {
     super();
     this.eventListener = key;
@@ -20,6 +22,11 @@ export default class ButtonStart extends Listener implements IButtonStart {
     const childrenBody: Element[] = Array.from(document.body.children);
     const blockHelp = document.querySelector('.header__block-help') as HTMLElement;
     const body = document.querySelector('body');
+    const localData: IUserSave[] = JSON.parse(
+      localStorage.getItem('rssPuzzleUsersTotooggJSFE2023Q4')!,
+    );
+    const indexLogin = localData.findIndex((el) => el.login);
+    const user = localData[indexLogin];
 
     body?.classList.remove('background');
     blockHelp.classList.remove('display-none');
@@ -35,9 +42,15 @@ export default class ButtonStart extends Listener implements IButtonStart {
     const start = new FieldResult();
 
     this.settingHelps();
-    start.setSentence(0, 0, 0);
-    this.textHelp();
-    this.settingSelect();
+
+    if (user.saveData) {
+      start.setSentence(user.saveData!.level, user.saveData!.round, 0);
+      this.settingSelect();
+      this.updateSelect(user.saveData!.level, user.saveData!.round);
+    } else {
+      start.setSentence(0, 0, 0);
+      this.settingSelect();
+    }
   }
 
   public textHelp(): void {
@@ -78,10 +91,16 @@ export default class ButtonStart extends Listener implements IButtonStart {
   }
 
   public settingSelect(): void {
-    const text = Object.values(sentences);
+    const localData: IUserSave[] = JSON.parse(
+      localStorage.getItem('rssPuzzleUsersTotooggJSFE2023Q4')!,
+    );
+    const indexLogin = localData.findIndex((el) => el.login);
+    const user = localData[indexLogin];
     const selectBlock = document.querySelector('.header__select-block') as HTMLElement;
-    const levelSelect = document.querySelector('.level__choice') as HTMLElement;
-    const pageSelect = document.querySelector('.page__choice') as HTMLElement;
+    const levelSelect = document.querySelector('.level__choice') as HTMLSelectElement;
+    const valueSelect = Number(levelSelect.value);
+    const arrSelect = user.level![valueSelect];
+    const pageSelect = document.querySelector('.page__choice') as HTMLSelectElement;
     const fieldResult = document.querySelector('.main__field-result') as HTMLElement;
     const countWord = Number(fieldResult.getAttribute('data-countrounds'));
 
@@ -91,9 +110,22 @@ export default class ButtonStart extends Listener implements IButtonStart {
       const element = new ElementCreation(selectPageOptionParams);
       element.getElement()!.textContent = `${index + 1}`;
       element.getElement()!.setAttribute('value', `${index}`);
+
+      if (arrSelect[index]) {
+        element.getElement()!.classList.add('solution');
+      }
+
       pageSelect.append(element.getElement()!);
     }
 
     selectBlock.classList.remove('display-none');
+  }
+
+  public updateSelect(level: number, round: number): void {
+    const levelSelect = document.querySelector('.level__choice') as HTMLSelectElement;
+    const pageSelect = document.querySelector('.page__choice') as HTMLSelectElement;
+
+    levelSelect.value = `${level}`;
+    pageSelect.value = `${round}`;
   }
 }

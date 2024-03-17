@@ -5,4 +5,5 @@ export interface IButtonLogin extends IEventElement {
   saveData(user: IUserSave): void;
   loginToTheGame(): void;
   settingName(): void;
+  getArrSelect(): boolean[][];
 }

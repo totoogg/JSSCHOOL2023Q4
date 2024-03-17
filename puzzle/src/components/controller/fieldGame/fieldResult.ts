@@ -10,10 +10,13 @@ export default class FieldResult implements IFieldResult {
   public setSentence(level: number, rounds: number, currentWords: number): void {
     const levelSentences = Object.values(sentences);
 
-    const current = levelSentences[level].rounds[rounds].words;
+    const current =
+      levelSentences[level].rounds[rounds]?.words ?? levelSentences[level].rounds.at(-1)!.words;
     const countRounds = levelSentences[level].roundsCount;
+    const currentRounds =
+      levelSentences[level].roundsCount > rounds ? rounds : levelSentences[level].roundsCount - 1;
 
-    this.setAttributeResult(level, rounds, currentWords, countRounds);
+    this.setAttributeResult(level, currentRounds, currentWords, countRounds);
 
     const linesTotal = Array.from(document.querySelectorAll('.field-total__line')) as Element[];
 
@@ -91,6 +94,7 @@ export default class FieldResult implements IFieldResult {
     fieldResult?.setAttribute('data-level', `${level}`);
     fieldResult?.setAttribute('data-round', `${rounds}`);
     fieldResult?.setAttribute('data-currentWords', `${currentWords}`);
+    start.updateSelect(level, rounds);
   }
 
   public addClassItemClick(): void {

@@ -1,3 +1,4 @@
+import * as sentences from '../../../model/data/wordCollection';
 import Listener from '../listener';
 import { IButtonLogin, IUserSave } from '../../../interfaces/interfaces';
 
@@ -30,6 +31,7 @@ export default class ButtonLogin extends Listener implements IButtonLogin {
         textHelp: true,
         soundHelp: true,
         imageHelp: true,
+        level: this.getArrSelect(),
       };
 
       this.saveData(user);
@@ -88,5 +90,15 @@ export default class ButtonLogin extends Listener implements IButtonLogin {
     if (greeting) {
       greeting.textContent = `Hello ${name?.name} ${name?.surname}`;
     }
+  }
+
+  public getArrSelect(): boolean[][] {
+    const text = Object.values(sentences);
+    const arr = Array(text.length).fill(false);
+    const arrSelect = arr.map((el, index) => {
+      const arrOption = Array(text[index].rounds.length).fill(false);
+      return arrOption;
+    });
+    return arrSelect;
   }
 }
