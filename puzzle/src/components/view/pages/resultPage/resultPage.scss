@@ -47,6 +47,19 @@
         width: 30px;
         height: 30px;
         margin-right: 30px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        background-image: url('../../../model/images/icon/sound.svg');
+        cursor: pointer;
+        
+        &:hover {
+          background-color: antiquewhite;
+        }
+      }
+      
+      .play {
+        background-image: url('../../../model/images/icon/gif.gif');
       }
     }
   }

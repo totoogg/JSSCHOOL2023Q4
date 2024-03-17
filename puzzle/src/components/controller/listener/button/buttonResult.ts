@@ -1,9 +1,12 @@
 import Listener from '../listener';
-import { IButtonResult } from '../../../interfaces/interfaces';
+import * as sentences from '../../../model/data/wordCollection';
 import ElementCreation from '../../../view/util/element-creation';
+import { IButtonResult } from '../../../interfaces/interfaces';
 
 export default class ButtonResult extends Listener implements IButtonResult {
   public eventListener: string;
+
+  public fieldResult!: HTMLElement;
 
   public line = new ElementCreation({
     tag: 'div',
@@ -19,6 +22,8 @@ export default class ButtonResult extends Listener implements IButtonResult {
 
   public callback(event: Event): void {
     event.preventDefault();
+
+    this.fieldResult = document.querySelector('.main__field-result') as HTMLElement;
 
     this.hideElements();
     this.createLine();
@@ -49,10 +54,22 @@ export default class ButtonResult extends Listener implements IButtonResult {
     );
     const notKnow = document.querySelector('.result__not-know') as HTMLElement;
     const know = document.querySelector('.result__know') as HTMLElement;
+    const sounds = this.getSound();
 
     total.forEach((el, index) => {
       const element = this.line.getElement()!.cloneNode(true);
       element.lastChild!.textContent = el;
+      const sound = new Audio(
+        `https://raw.githubusercontent.com/rolling-scopes-school/rss-puzzle-data/main/${sounds[index]}`,
+      );
+      const currentAudio = element.firstChild! as HTMLElement;
+      currentAudio.addEventListener('click', () => {
+        currentAudio.classList.add('play');
+        sound.play();
+      });
+      sound.addEventListener('ended', () => {
+        currentAudio.classList.remove('play');
+      });
 
       if (totalResult[index]) {
         notKnow.append(element);
@@ -77,5 +94,15 @@ export default class ButtonResult extends Listener implements IButtonResult {
     });
 
     this.line.getElement()?.append(sound.getElement()!, text.getElement()!);
+  }
+
+  public getSound(): string[] {
+    const text = Object.values(sentences);
+    const level = Number(this.fieldResult.getAttribute('data-level'));
+    const round = Number(this.fieldResult.getAttribute('data-round'));
+
+    const sound = text[level].rounds[round].words.map((el) => el.audioExample);
+
+    return sound;
   }
 }
