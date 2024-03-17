@@ -11,6 +11,7 @@ import TextHelpButton from '../../controller/listener/button/buttonsHelp/textHel
 import SoundHelpButton from '../../controller/listener/button/buttonsHelp/soundHelp';
 import ImageHelpButton from '../../controller/listener/button/buttonsHelp/imageHelp';
 import SelectBlock from '../../controller/listener/select/selectBlock';
+import ButtonResult from '../../controller/listener/button/buttonResult';
 
 export const labelParams: IParams = {
   tag: 'h1',
@@ -142,6 +143,13 @@ export const buttonSolutionParams: IParams = {
   classNames: ['field-buttons__solution', 'button'],
   textContent: `I don't know`,
   action: new ButtonSolution('click'),
+};
+
+export const buttonResultParams: IParams = {
+  tag: 'button',
+  classNames: ['field-buttons__result', 'button', 'display-none'],
+  textContent: `Result`,
+  action: new ButtonResult('click'),
 };
 
 export const lineTotalParams: IParams = {
@@ -304,6 +312,67 @@ export const selectPageChoiceParams: IParams = {
 export const selectPageOptionParams: IParams = {
   tag: 'option',
   classNames: ['choice__option'],
+  textContent: '',
+  action: null,
+};
+
+export const totalParams: IParams = {
+  tag: 'div',
+  classNames: ['total', 'display-none'],
+  textContent: '',
+  action: null,
+};
+
+export const totalDescriptionParams: IParams = {
+  tag: 'div',
+  classNames: ['total__description'],
+  textContent: '',
+  action: null,
+};
+
+export const descriptionImageParams: IParams = {
+  tag: 'div',
+  classNames: ['description__image'],
+  textContent: '',
+  action: null,
+};
+
+export const descriptionTextTotalParams: IParams = {
+  tag: 'div',
+  classNames: ['description__text'],
+  textContent: '',
+  action: null,
+};
+
+export const totalResultParams: IParams = {
+  tag: 'div',
+  classNames: ['total__result'],
+  textContent: '',
+  action: null,
+};
+
+export const notKnowTitleParams: IParams = {
+  tag: 'p',
+  classNames: ['result__not-know-title'],
+  textContent: `I don't know`,
+  action: null,
+};
+export const totalKnowParams: IParams = {
+  tag: 'div',
+  classNames: ['result__know'],
+  textContent: '',
+  action: null,
+};
+
+export const knowTitleParams: IParams = {
+  tag: 'p',
+  classNames: ['result__know-title'],
+  textContent: 'I know',
+  action: null,
+};
+export const totalNotKnowParams: IParams = {
+  tag: 'div',
+  classNames: ['result__not-know'],
   textContent: '',
   action: null,
 };

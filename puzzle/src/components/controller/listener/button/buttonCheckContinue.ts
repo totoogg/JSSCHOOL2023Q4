@@ -234,11 +234,13 @@ export default class ButtonCheckContinue extends Listener implements IButtonChec
       document.querySelectorAll('.field-result__line'),
     ) as HTMLElement[];
     const buttonSolution = document.querySelector('.field-buttons__solution') as HTMLElement;
+    const buttonResult = document.querySelector('.field-buttons__result') as HTMLElement;
 
     if (currentWords === 9 && !fieldResult.getAttribute('data-solution')) {
       this.showResult();
 
       fieldResult.setAttribute('data-solution', 'true');
+      buttonResult.classList.remove('display-none');
 
       return false;
     }
@@ -248,6 +250,7 @@ export default class ButtonCheckContinue extends Listener implements IButtonChec
     });
 
     buttonSolution.classList.remove('display-none');
+    buttonResult.classList.add('display-none');
     helpBlock.classList.remove('hide');
     fieldResult.setAttribute('data-solution', '');
 

@@ -2,6 +2,7 @@ import ElementCreation from '../../util/element-creation';
 import { IMainPage, IParams } from '../../../interfaces/interfaces';
 import {
   buttonContinueParams,
+  buttonResultParams,
   buttonSolutionParams,
   fieldButtonsParams,
   fieldClickParams,
@@ -70,10 +71,15 @@ export default class MainPage implements IMainPage {
   public createButtons(): void {
     const continueButton = new ElementCreation(buttonContinueParams);
     const solutionButton = new ElementCreation(buttonSolutionParams);
+    const resultButton = new ElementCreation(buttonResultParams);
 
     this.fieldButtons
       .getElement()
-      ?.append(solutionButton.getElement()!, continueButton.getElement()!);
+      ?.append(
+        solutionButton.getElement()!,
+        continueButton.getElement()!,
+        resultButton.getElement()!,
+      );
   }
 
   public createHelp(): void {

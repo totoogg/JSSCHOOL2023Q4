@@ -3,7 +3,14 @@ import HeaderView from '../view/header/headerView';
 import StartPage from '../view/pages/startPage/startPage';
 import MainPage from '../view/pages/mainPage/mainPage';
 import { IApp, IUserSave } from '../interfaces/interfaces';
-import { descriptionParams, formParams, headerParams, mainParams } from '../view/util/params';
+import ResultPage from '../view/pages/resultPage/resultPage';
+import {
+  descriptionParams,
+  formParams,
+  headerParams,
+  mainParams,
+  totalParams,
+} from '../view/util/params';
 
 export default class App implements IApp {
   public start: StartForm = new StartForm(formParams);
@@ -14,12 +21,15 @@ export default class App implements IApp {
 
   public main: MainPage = new MainPage(mainParams);
 
+  public total: ResultPage = new ResultPage(totalParams);
+
   public createPage() {
     document.body.append(
       this.header.header.getElement() as HTMLElement,
       this.description.blockDescription.getElement() as HTMLElement,
       this.start.form.getElement() as HTMLElement,
       this.main.main.getElement() as HTMLElement,
+      this.total.result.getElement() as HTMLElement,
     );
 
     if (this.checkUsers()) {
