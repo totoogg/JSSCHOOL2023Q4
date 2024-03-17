@@ -14,6 +14,16 @@
 
   .total__description {
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .description__image {
+      width: 400px;
+      height: 200px;
+      background-size: 400px 200px;
+      margin-bottom: 10px;
+    }
   }
 
   .total__result {

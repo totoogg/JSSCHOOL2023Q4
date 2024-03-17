@@ -8,6 +8,8 @@ export default class ButtonResult extends Listener implements IButtonResult {
 
   public fieldResult!: HTMLElement;
 
+  public currentGame!: { imageSrc: string; name: string; author: string; year: string };
+
   public line = new ElementCreation({
     tag: 'div',
     classNames: ['line'],
@@ -28,6 +30,7 @@ export default class ButtonResult extends Listener implements IButtonResult {
     this.hideElements();
     this.createLine();
     this.getResultText();
+    this.setImage();
   }
 
   public hideElements(): void {
@@ -100,9 +103,17 @@ export default class ButtonResult extends Listener implements IButtonResult {
     const text = Object.values(sentences);
     const level = Number(this.fieldResult.getAttribute('data-level'));
     const round = Number(this.fieldResult.getAttribute('data-round'));
-
     const sound = text[level].rounds[round].words.map((el) => el.audioExample);
+    this.currentGame = text[level].rounds[round].levelData;
 
     return sound;
+  }
+
+  public setImage(): void {
+    const image = document.querySelector('.description__image') as HTMLElement;
+    const text = document.querySelector('.total__description > .description__text') as HTMLElement;
+
+    image.style.backgroundImage = `url('https://raw.githubusercontent.com/rolling-scopes-school/rss-puzzle-data/main/images/${this.currentGame.imageSrc}')`;
+    text.textContent = `${this.currentGame.author} - ${this.currentGame.name} (${this.currentGame.year})`;
   }
 }

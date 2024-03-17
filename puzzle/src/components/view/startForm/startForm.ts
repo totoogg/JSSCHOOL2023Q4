@@ -1,5 +1,5 @@
 import ElementCreation from '../util/element-creation';
-import { IParams, IStartForm } from '../../interfaces/interfaces';
+import { IHTMLElement, IParams } from '../../interfaces/interfaces';
 import {
   buttonParams,
   divErrorName,
@@ -13,24 +13,24 @@ import {
 
 import './startForm.scss';
 
-export default class StartForm implements IStartForm {
+export default class StartForm implements IHTMLElement {
   public form: ElementCreation;
 
-  public inputElementName: ElementCreation = new ElementCreation(inputParamsName);
+  private inputElementName: ElementCreation = new ElementCreation(inputParamsName);
 
-  public labelElementName: ElementCreation = new ElementCreation(labelParamsName);
+  private labelElementName: ElementCreation = new ElementCreation(labelParamsName);
 
-  public inputElementSurname: ElementCreation = new ElementCreation(inputParamsSurname);
+  private inputElementSurname: ElementCreation = new ElementCreation(inputParamsSurname);
 
-  public labelElementSurname: ElementCreation = new ElementCreation(labelParamsSurname);
+  private labelElementSurname: ElementCreation = new ElementCreation(labelParamsSurname);
 
-  public buttonElement: ElementCreation = new ElementCreation(buttonParams);
+  private buttonElement: ElementCreation = new ElementCreation(buttonParams);
 
-  public title: ElementCreation = new ElementCreation(labelParams);
+  private title: ElementCreation = new ElementCreation(labelParams);
 
-  public errorElementName: ElementCreation = new ElementCreation(divErrorName);
+  private errorElementName: ElementCreation = new ElementCreation(divErrorName);
 
-  public errorElementSurname: ElementCreation = new ElementCreation(divErrorSurname);
+  private errorElementSurname: ElementCreation = new ElementCreation(divErrorSurname);
 
   constructor(param: IParams) {
     this.form = new ElementCreation(param);
@@ -61,7 +61,7 @@ export default class StartForm implements IStartForm {
       );
   }
 
-  public setAtt(): void {
+  private setAtt(): void {
     this.inputElementName.getElement()!.setAttribute('id', 'name');
     this.inputElementName.getElement()!.setAttribute('required', 'true');
 
