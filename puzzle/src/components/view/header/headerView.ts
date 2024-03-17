@@ -1,5 +1,5 @@
 import ElementCreation from '../util/element-creation';
-import { IHeaderView, IParams } from '../../interfaces/interfaces';
+import { IHTMLElement, IParams } from '../../interfaces/interfaces';
 import {
   blocksHelpParams,
   buttonLogoutParams,
@@ -18,14 +18,14 @@ import {
 
 import './headerView.scss';
 
-export default class HeaderView implements IHeaderView {
+export default class HeaderView implements IHTMLElement {
   public header: ElementCreation;
 
-  public buttonLogout: ElementCreation = new ElementCreation(buttonLogoutParams);
+  private buttonLogout: ElementCreation = new ElementCreation(buttonLogoutParams);
 
-  public blocksHelp: ElementCreation = new ElementCreation(blocksHelpParams);
+  private blocksHelp: ElementCreation = new ElementCreation(blocksHelpParams);
 
-  public blocksSelect: ElementCreation = new ElementCreation(selectBlockParams);
+  private blocksSelect: ElementCreation = new ElementCreation(selectBlockParams);
 
   constructor(param: IParams) {
     this.header = new ElementCreation(param);
@@ -51,35 +51,30 @@ export default class HeaderView implements IHeaderView {
     this.createSelectBlock();
   }
 
-  public createButtonsHelp(): void {
-    for (let index = 0; index < 3; index += 1) {
-      let element: ElementCreation;
-      if (index === 0) {
-        element = new ElementCreation(textHelpButtonParams);
-      }
-      if (index === 1) {
-        element = new ElementCreation(soundHelpButtonParams);
-      }
-      if (index === 2) {
-        element = new ElementCreation(imageHelpButtonParams);
-      }
-      this.blocksHelp.getElement()?.append(element!.getElement()!);
-    }
+  private createButtonsHelp(): void {
+    const textHelp = new ElementCreation(textHelpButtonParams);
+    const soundHelp = new ElementCreation(soundHelpButtonParams);
+    const imageHelp = new ElementCreation(imageHelpButtonParams);
+
+    this.blocksHelp
+      .getElement()
+      ?.append(textHelp.getElement()!, soundHelp.getElement()!, imageHelp.getElement()!);
   }
 
-  public createSelectBlock(): void {
+  private createSelectBlock(): void {
     const level = new ElementCreation(selectLevelParams);
     const page = new ElementCreation(selectPageParams);
     const levelText = new ElementCreation(selectLevelTextParams);
     const pageText = new ElementCreation(selectPageTextParams);
     const levelSelect = new ElementCreation(selectLevelChoiceParams);
     const pageSelect = new ElementCreation(selectPageChoiceParams);
+    const element = new ElementCreation(selectLevelOptionParams);
 
     for (let index = 0; index < 6; index += 1) {
-      const element = new ElementCreation(selectLevelOptionParams);
-      element.getElement()!.textContent = `${index + 1}`;
-      element.getElement()!.setAttribute('value', `${index}`);
-      levelSelect.getElement()?.append(element.getElement()!);
+      const copyElement = element.getElement()!.cloneNode(true) as HTMLElement;
+      copyElement.textContent = `${index + 1}`;
+      copyElement.setAttribute('value', `${index}`);
+      levelSelect.getElement()?.append(copyElement);
     }
 
     level.getElement()?.append(levelText.getElement()!, levelSelect.getElement()!);

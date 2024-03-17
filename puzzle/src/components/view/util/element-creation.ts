@@ -36,7 +36,7 @@ export default class ElementCreation implements IElementCreation {
     }
   }
 
-  public setAction(action: IAction | null | IAction[]): void {
+  public setAction(action: IAction | null | IAction[] = null): void {
     if (!Array.isArray(action)) {
       if (action && typeof action.callback === 'function' && this.element) {
         this.element.addEventListener(action.eventListener, (event) => action.callback(event));

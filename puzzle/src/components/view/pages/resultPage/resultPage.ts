@@ -1,5 +1,5 @@
 import ElementCreation from '../../util/element-creation';
-import { IParams, IResultPage } from '../../../interfaces/interfaces';
+import { IHTMLElement, IParams } from '../../../interfaces/interfaces';
 import {
   buttonTotalParams,
   descriptionImageParams,
@@ -14,14 +14,14 @@ import {
 
 import './resultPage.scss';
 
-export default class ResultPage implements IResultPage {
+export default class ResultPage implements IHTMLElement {
   public result: ElementCreation;
 
-  public totalDescription: ElementCreation = new ElementCreation(totalDescriptionParams);
+  private totalDescription: ElementCreation = new ElementCreation(totalDescriptionParams);
 
-  public totalResult: ElementCreation = new ElementCreation(totalResultParams);
+  private totalResult: ElementCreation = new ElementCreation(totalResultParams);
 
-  public totalButtonContinue: ElementCreation = new ElementCreation(buttonTotalParams);
+  private totalButtonContinue: ElementCreation = new ElementCreation(buttonTotalParams);
 
   constructor(param: IParams) {
     this.result = new ElementCreation(param);
@@ -48,14 +48,14 @@ export default class ResultPage implements IResultPage {
       );
   }
 
-  public createDescription(): void {
+  private createDescription(): void {
     const image = new ElementCreation(descriptionImageParams);
     const text = new ElementCreation(descriptionTextTotalParams);
 
     this.totalDescription.getElement()?.append(image.getElement()!, text.getElement()!);
   }
 
-  public createResult(): void {
+  private createResult(): void {
     const notKnow = new ElementCreation(totalNotKnowParams);
     const know = new ElementCreation(totalKnowParams);
     const notKnowTitle = new ElementCreation(notKnowTitleParams);

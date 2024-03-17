@@ -2,14 +2,10 @@ import Listener from '../listener';
 import FieldResult from '../../fieldGame/fieldResult';
 import ButtonStart from '../button/buttonStart';
 import ButtonCheckContinue from '../button/buttonCheckContinue';
-import { ISelectBlock } from '../../../interfaces/interfaces';
+import { IEventElement } from '../../../interfaces/interfaces';
 
-export default class SelectBlock extends Listener implements ISelectBlock {
+export default class SelectBlock extends Listener implements IEventElement {
   public eventListener: string;
-
-  public game = new FieldResult();
-
-  public updateText = new ButtonStart('click');
 
   constructor(key: string) {
     super();
@@ -29,7 +25,9 @@ export default class SelectBlock extends Listener implements ISelectBlock {
     }
   }
 
-  public changeGameField(): void {
+  private changeGameField(): void {
+    const game = new FieldResult();
+    const updateText = new ButtonStart('click');
     const fieldResult = document.querySelector('.main__field-result') as HTMLElement;
     const level = document.querySelector('.level__choice') as HTMLSelectElement;
     const round = document.querySelector('.page__choice') as HTMLSelectElement;
@@ -41,16 +39,17 @@ export default class SelectBlock extends Listener implements ISelectBlock {
     if (changeLevel !== currentLevel || changeRound !== currentRound) {
       this.updateFieldGame();
       if (changeLevel !== currentLevel) {
-        this.game.setSentence(changeLevel, currentRound, 0);
+        game.setSentence(changeLevel, currentRound, 0);
       }
       if (changeRound !== currentRound) {
-        this.game.setSentence(currentLevel, changeRound, 0);
+        game.setSentence(currentLevel, changeRound, 0);
       }
-      this.updateText.textHelp();
+
+      updateText.textHelp();
     }
   }
 
-  public updateFieldGame(): void {
+  private updateFieldGame(): void {
     const continueButton = new ButtonCheckContinue('click');
     const lines = Array.from(document.querySelectorAll('.field-result__line'));
     const button = document.querySelector('.field-buttons__check-continue') as HTMLElement;

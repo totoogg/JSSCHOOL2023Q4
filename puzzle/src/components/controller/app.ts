@@ -2,7 +2,7 @@ import StartForm from '../view/startForm/startForm';
 import HeaderView from '../view/header/headerView';
 import StartPage from '../view/pages/startPage/startPage';
 import MainPage from '../view/pages/mainPage/mainPage';
-import { IApp, IUserSave } from '../interfaces/interfaces';
+import { IUserSave } from '../interfaces/interfaces';
 import ResultPage from '../view/pages/resultPage/resultPage';
 import {
   descriptionParams,
@@ -12,16 +12,16 @@ import {
   totalParams,
 } from '../view/util/params';
 
-export default class App implements IApp {
-  public start: StartForm = new StartForm(formParams);
+export default class App {
+  private start: StartForm = new StartForm(formParams);
 
-  public header: HeaderView = new HeaderView(headerParams);
+  private header: HeaderView = new HeaderView(headerParams);
 
-  public description: StartPage = new StartPage(descriptionParams);
+  private description: StartPage = new StartPage(descriptionParams);
 
-  public main: MainPage = new MainPage(mainParams);
+  private main: MainPage = new MainPage(mainParams);
 
-  public total: ResultPage = new ResultPage(totalParams);
+  private total: ResultPage = new ResultPage(totalParams);
 
   public createPage() {
     document.body.append(
@@ -41,13 +41,13 @@ export default class App implements IApp {
     }
   }
 
-  public checkUsers(): boolean {
+  private checkUsers(): boolean {
     const usersArr: IUserSave[] | [] = this.localData();
 
     return usersArr.some((el) => el.login);
   }
 
-  public settingName(): void {
+  private settingName(): void {
     const usersArr: IUserSave[] | [] = this.localData();
 
     const name = usersArr.find((el) => el.login);
@@ -59,7 +59,7 @@ export default class App implements IApp {
     }
   }
 
-  public localData(): IUserSave[] | [] {
+  private localData(): IUserSave[] | [] {
     const users = localStorage.getItem('rssPuzzleUsersTotooggJSFE2023Q4');
     let usersArr: IUserSave[] | [];
 

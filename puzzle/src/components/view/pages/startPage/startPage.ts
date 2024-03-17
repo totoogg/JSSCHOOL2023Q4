@@ -12,13 +12,13 @@ import './startPage.scss';
 export default class StartPage implements IHTMLElement {
   public blockDescription: ElementCreation;
 
-  public buttonStart: ElementCreation = new ElementCreation(buttonStartParams);
+  private buttonStart: ElementCreation = new ElementCreation(buttonStartParams);
 
-  public titleStart: ElementCreation = new ElementCreation(titleParams);
+  private titleStart: ElementCreation = new ElementCreation(titleParams);
 
-  public textStart: ElementCreation = new ElementCreation(descriptionTextParams);
+  private textStart: ElementCreation = new ElementCreation(descriptionTextParams);
 
-  public greeting: ElementCreation = new ElementCreation(greetingParams);
+  private greeting: ElementCreation = new ElementCreation(greetingParams);
 
   constructor(param: IParams) {
     this.blockDescription = new ElementCreation(param);
