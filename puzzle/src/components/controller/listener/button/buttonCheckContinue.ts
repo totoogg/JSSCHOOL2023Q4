@@ -1,4 +1,5 @@
 import FieldResult from '../../fieldGame/fieldResult';
+import * as sentences from '../../../model/data/wordCollection';
 import Listener from '../listener';
 import ButtonStart from './buttonStart';
 import { IButtonCheckContinue, IUserSave } from '../../../interfaces/interfaces';
@@ -45,31 +46,33 @@ export default class ButtonCheckContinue extends Listener implements IButtonChec
     let round = Number(fieldResult?.getAttribute('data-round'));
     let level = Number(fieldResult?.getAttribute('data-level'));
 
-    this.updateElements(currentWords);
+    if (this.checkResultRound(currentWords)) {
+      this.updateElements(currentWords);
 
-    if (round === countRounds - 1 && currentWords === 9) {
-      if (countRounds === levelOptionSolution.length) {
-        levelSelect[level].classList.add('solution');
-        this.saveLocalSelectLevel();
+      if (round === countRounds - 1 && currentWords === 9) {
+        if (countRounds === levelOptionSolution.length) {
+          levelSelect[level].classList.add('solution');
+          this.saveLocalSelectLevel();
+        }
+        round = 0;
+        level = level === 5 ? 0 : (level += 1);
       }
-      round = 0;
-      level = level === 5 ? 0 : (level += 1);
-    }
 
-    if (currentWords === 9) {
-      pageSelect[round].classList.add('solution');
-      this.saveLocalSelectRound();
-      currentWords = 0;
-      round =
-        Number(fieldResult?.getAttribute('data-round')) === countRounds - 1 ? 0 : (round += 1);
-    } else {
-      currentWords += 1;
-    }
+      if (currentWords === 9) {
+        pageSelect[round].classList.add('solution');
+        this.saveLocalSelectRound();
+        currentWords = 0;
+        round =
+          Number(fieldResult?.getAttribute('data-round')) === countRounds - 1 ? 0 : (round += 1);
+      } else {
+        currentWords += 1;
+      }
 
-    this.saveLocal(level, round, countRounds);
-    this.game.setSentence(level, round, currentWords);
-    this.updateLevelSelect(level);
-    this.updatePageSelect(round);
+      this.saveLocal(level, round, countRounds);
+      this.game.setSentence(level, round, currentWords);
+      this.updateLevelSelect(level);
+      this.updatePageSelect(round);
+    }
   }
 
   public updateElements(currentWords: number): void {
@@ -222,5 +225,58 @@ export default class ButtonCheckContinue extends Listener implements IButtonChec
     user.level![valueLevel][valuePage] = true;
 
     localStorage.setItem('rssPuzzleUsersTotooggJSFE2023Q4', JSON.stringify(localData));
+  }
+
+  public checkResultRound(currentWords: number): boolean {
+    const fieldResult = document.querySelector('.main__field-result') as HTMLElement;
+    const helpBlock = document.querySelector('.main__field-help') as HTMLElement;
+    const fieldResultLine = Array.from(
+      document.querySelectorAll('.field-result__line'),
+    ) as HTMLElement[];
+    const buttonSolution = document.querySelector('.field-buttons__solution') as HTMLElement;
+
+    if (currentWords === 9 && !fieldResult.getAttribute('data-solution')) {
+      this.showResult();
+
+      fieldResult.setAttribute('data-solution', 'true');
+
+      return false;
+    }
+
+    fieldResultLine.forEach((el) => {
+      el.classList.remove('hide');
+    });
+
+    buttonSolution.classList.remove('display-none');
+    helpBlock.classList.remove('hide');
+    fieldResult.setAttribute('data-solution', '');
+
+    return true;
+  }
+
+  public showResult(): void {
+    const text = Object.values(sentences);
+    const fieldResult = document.querySelector('.main__field-result') as HTMLElement;
+    const buttonSolution = document.querySelector('.field-buttons__solution') as HTMLElement;
+    const buttonContinue = document.querySelector('.field-buttons__check-continue') as HTMLElement;
+    const round = Number(fieldResult?.getAttribute('data-round'));
+    const level = Number(fieldResult?.getAttribute('data-level'));
+    const helpBlock = document.querySelector('.main__field-help') as HTMLElement;
+    const clickBlock = document.querySelector('.main__field-click') as HTMLElement;
+    const fieldResultLine = Array.from(
+      document.querySelectorAll('.field-result__line'),
+    ) as HTMLElement[];
+    const description = text[level].rounds[round].levelData;
+
+    fieldResultLine.forEach((el) => {
+      el.classList.add('hide');
+    });
+
+    clickBlock.innerHTML = '';
+    clickBlock.textContent = `${description.author} - ${description.name} (${description.year})`;
+    helpBlock.classList.add('hide');
+    buttonSolution.classList.add('display-none');
+    buttonContinue.classList.remove('display-none');
+    buttonContinue.textContent = 'Continue';
   }
 }

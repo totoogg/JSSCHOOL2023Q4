@@ -5,8 +5,6 @@ import { IFieldResult } from '../../interfaces/interfaces';
 import { blockClickParams, blockParams } from '../../view/util/params';
 
 export default class FieldResult implements IFieldResult {
-  public currentDrop: HTMLElement | null = null;
-
   public setSentence(level: number, rounds: number, currentWords: number): void {
     const levelSentences = Object.values(sentences);
 
@@ -29,6 +27,7 @@ export default class FieldResult implements IFieldResult {
     this.addClassItemClick();
     this.addBackgroundResult();
     this.addBackgroundClickBlock();
+    this.addTextHelp(level, currentRounds, currentWords);
   }
 
   public getIndexFirstNotResolved(): number {
@@ -182,5 +181,12 @@ export default class FieldResult implements IFieldResult {
         el.style.backgroundImage = ``;
       }
     });
+  }
+
+  public addTextHelp(level: number, round: number, word: number): void {
+    const levelSentences = Object.values(sentences);
+    const helpText = document.querySelector('.field-help__text-help') as HTMLElement;
+
+    helpText.textContent = `${levelSentences[level].rounds[round].words[word].textExampleTranslate}`;
   }
 }

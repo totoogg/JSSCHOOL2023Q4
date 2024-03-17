@@ -14,4 +14,5 @@ export interface IFieldResult {
   addBackgroundResult(): void;
   addBackgroundClickBlock(): void;
   showBackgroundBlock(): void;
+  addTextHelp(level: number, round: number, word: number): void;
 }
