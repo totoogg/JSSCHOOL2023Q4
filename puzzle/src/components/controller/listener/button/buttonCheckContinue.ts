@@ -238,6 +238,7 @@ export default class ButtonCheckContinue extends Listener implements IButtonChec
 
     if (currentWords === 9 && !fieldResult.getAttribute('data-solution')) {
       this.showResult();
+      this.updateLocal();
 
       fieldResult.setAttribute('data-solution', 'true');
       buttonResult.classList.remove('display-none');
@@ -281,5 +282,32 @@ export default class ButtonCheckContinue extends Listener implements IButtonChec
     buttonSolution.classList.add('display-none');
     buttonContinue.classList.remove('display-none');
     buttonContinue.textContent = 'Continue';
+  }
+
+  public updateLocal(): void {
+    const localData: IUserSave[] = JSON.parse(
+      localStorage.getItem('rssPuzzleUsersTotooggJSFE2023Q4')!,
+    );
+    const indexLogin = localData.findIndex((el) => el.login);
+    const user = localData[indexLogin];
+    const fieldResult = document.querySelector('.main__field-result') as HTMLElement;
+    const countRounds = Number(fieldResult?.getAttribute('data-countrounds'));
+    const round = Number(fieldResult?.getAttribute('data-round'));
+    const level = Number(fieldResult?.getAttribute('data-level'));
+
+    user.level![level][round] = true;
+
+    if (round + 2 >= countRounds) {
+      if (level === 5) {
+        user.saveData!.level = 0;
+      } else {
+        user.saveData!.level += 1;
+      }
+      user.saveData!.round = 0;
+    } else {
+      user.saveData!.round += 1;
+    }
+
+    localStorage.setItem('rssPuzzleUsersTotooggJSFE2023Q4', JSON.stringify(localData));
   }
 }

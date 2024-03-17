@@ -23,3 +23,6 @@ export { IHeaderView } from './IHeaderView';
 export { ISoundHelpButton } from './ISoundHelpButton';
 export { ISelectBlock } from './ISelectBlock';
 export { ISaveData } from './ISaveData';
+export { IResultPage } from './IResultPage';
+export { IButtonTotalContinue } from './IButtonTotalContinue';
+export { IButtonResult } from './IButtonResult';

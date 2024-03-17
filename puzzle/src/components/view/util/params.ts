@@ -12,6 +12,7 @@ import SoundHelpButton from '../../controller/listener/button/buttonsHelp/soundH
 import ImageHelpButton from '../../controller/listener/button/buttonsHelp/imageHelp';
 import SelectBlock from '../../controller/listener/select/selectBlock';
 import ButtonResult from '../../controller/listener/button/buttonResult';
+import ButtonTotalContinue from '../../controller/listener/button/buttonTotalContinue';
 
 export const labelParams: IParams = {
   tag: 'h1',
@@ -357,6 +358,7 @@ export const notKnowTitleParams: IParams = {
   textContent: `I don't know`,
   action: null,
 };
+
 export const totalKnowParams: IParams = {
   tag: 'div',
   classNames: ['result__know'],
@@ -370,9 +372,17 @@ export const knowTitleParams: IParams = {
   textContent: 'I know',
   action: null,
 };
+
 export const totalNotKnowParams: IParams = {
   tag: 'div',
   classNames: ['result__not-know'],
   textContent: '',
   action: null,
+};
+
+export const buttonTotalParams: IParams = {
+  tag: 'button',
+  classNames: ['total__button', 'button'],
+  textContent: 'Continue',
+  action: new ButtonTotalContinue('click'),
 };

@@ -12,4 +12,7 @@ export interface IButtonCheckContinue extends IEventElement {
   saveLocal(level: number, round: number, countRounds: number): void;
   saveLocalSelectLevel(): void;
   saveLocalSelectRound(): void;
+  checkResultRound(currentWords: number): boolean;
+  showResult(): void;
+  updateLocal(): void;
 }

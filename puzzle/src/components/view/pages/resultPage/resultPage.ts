@@ -1,6 +1,7 @@
 import ElementCreation from '../../util/element-creation';
-import { IParams } from '../../../interfaces/interfaces';
+import { IParams, IResultPage } from '../../../interfaces/interfaces';
 import {
+  buttonTotalParams,
   descriptionImageParams,
   descriptionTextTotalParams,
   knowTitleParams,
@@ -13,12 +14,14 @@ import {
 
 import './resultPage.scss';
 
-export default class ResultPage {
+export default class ResultPage implements IResultPage {
   public result: ElementCreation;
 
   public totalDescription: ElementCreation = new ElementCreation(totalDescriptionParams);
 
   public totalResult: ElementCreation = new ElementCreation(totalResultParams);
+
+  public totalButtonContinue: ElementCreation = new ElementCreation(buttonTotalParams);
 
   constructor(param: IParams) {
     this.result = new ElementCreation(param);
@@ -35,9 +38,14 @@ export default class ResultPage {
   public createElements(): void {
     this.createDescription();
     this.createResult();
+
     this.result
       .getElement()
-      ?.append(this.totalDescription.getElement()!, this.totalResult.getElement()!);
+      ?.append(
+        this.totalDescription.getElement()!,
+        this.totalResult.getElement()!,
+        this.totalButtonContinue.getElement()!,
+      );
   }
 
   public createDescription(): void {

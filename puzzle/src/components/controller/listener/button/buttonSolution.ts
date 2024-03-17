@@ -29,7 +29,11 @@ export default class ButtonSolution extends Listener implements IButtonSolution 
     const solutionLine = Array.from(document.querySelectorAll('.field-result__line'))[currentWord];
     solutionLine.setAttribute('data-solution', 'resolution');
 
-    clickBlocks.forEach((el) => el.removeAttribute('data-index'));
+    clickBlocks.forEach((el) => {
+      el.removeAttribute('data-index');
+      el.classList.remove('wrong');
+      el.classList.remove('right');
+    });
 
     solutionLineBlock.forEach((el, index) => {
       const element = el;

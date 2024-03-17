@@ -1,0 +1,30 @@
+.total {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 16px;
+  background-color: #e0f2fe;
+  min-width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+
+  .total__description {
+    margin-bottom: 20px;
+  }
+
+  .total__result {
+    margin-bottom: 20px;
+
+    .result__not-know {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.display-none {
+  display: none;
+}

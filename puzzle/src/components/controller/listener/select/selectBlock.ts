@@ -1,6 +1,7 @@
 import Listener from '../listener';
 import FieldResult from '../../fieldGame/fieldResult';
 import ButtonStart from '../button/buttonStart';
+import ButtonCheckContinue from '../button/buttonCheckContinue';
 import { ISelectBlock } from '../../../interfaces/interfaces';
 
 export default class SelectBlock extends Listener implements ISelectBlock {
@@ -50,9 +51,11 @@ export default class SelectBlock extends Listener implements ISelectBlock {
   }
 
   public updateFieldGame(): void {
+    const continueButton = new ButtonCheckContinue('click');
     const lines = Array.from(document.querySelectorAll('.field-result__line'));
     const button = document.querySelector('.field-buttons__check-continue') as HTMLElement;
 
+    continueButton.checkResultRound(0);
     button.textContent = `Check`;
     button.classList.add('display-none');
 

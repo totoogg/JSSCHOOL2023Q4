@@ -1,11 +1,8 @@
 import Listener from '../listener';
+import { IButtonResult } from '../../../interfaces/interfaces';
 
-export default class ButtonResult extends Listener {
+export default class ButtonResult extends Listener implements IButtonResult {
   public eventListener: string;
-
-  /*   public game = new FieldResult();
-
-  public updateText = new ButtonStart('click'); */
 
   constructor(key: string) {
     super();
@@ -14,5 +11,22 @@ export default class ButtonResult extends Listener {
 
   public callback(event: Event): void {
     event.preventDefault();
+
+    this.hideElements();
+  }
+
+  public hideElements(): void {
+    const body = document.querySelector('body') as HTMLElement;
+    const child = Array.from(body.children);
+
+    body.classList.add('background');
+
+    child.forEach((el) => {
+      if (!el.classList.contains('total')) {
+        el.classList.add('display-none');
+      } else {
+        el.classList.remove('display-none');
+      }
+    });
   }
 }
