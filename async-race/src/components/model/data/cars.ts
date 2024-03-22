@@ -1,4 +1,4 @@
-export const carCompany = [
+export const carCompany: string[] = [
   'Aaglander',
   'Abadal',
   'Abarth',
@@ -331,7 +331,7 @@ export const carCompany = [
   'Zotye',
 ];
 
-export const carModel = [
+export const carModel: string[] = [
   'S7',
   'Corrado',
   'F',
