@@ -79,3 +79,39 @@ export const mainWinnerParams: IParams = {
   tag: 'div',
   classNames: ['main__winner', 'display-none'],
 };
+
+export const winnerTitleParams: IParams = {
+  tag: 'h2',
+  classNames: ['winner__title'],
+  textContent: 'Winners',
+};
+
+export const winnerCurrentParams: IParams = {
+  tag: 'p',
+  classNames: ['winner__current-page'],
+  textContent: 'Page #',
+};
+
+export const winnerCarsParams: IParams = {
+  tag: 'div',
+  classNames: ['winner__table'],
+};
+
+export const winnerButtonsParams: IParams = {
+  tag: 'div',
+  classNames: ['winner__buttons'],
+};
+
+export const buttonsNextWinnerParams: IParams = {
+  tag: 'button',
+  classNames: ['buttons__next-winner', 'button'],
+  textContent: 'NEXT',
+  action: null,
+};
+
+export const buttonsPrevWinnerParams: IParams = {
+  tag: 'button',
+  classNames: ['buttons__prev-winner', 'button', 'disabled'],
+  textContent: 'PREV',
+  action: null,
+};

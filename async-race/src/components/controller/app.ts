@@ -2,6 +2,7 @@ import WorkWithServer from '../model/workWithServer';
 import HeaderView from '../view/headerView/headerView';
 import GarageView from '../view/mainView/garageView/garageView';
 import MainView from '../view/mainView/mainView';
+import WinnerView from '../view/mainView/winnerView/winnerView';
 import { headerParams, mainParams } from '../view/util/params';
 
 export default class App {
@@ -12,8 +13,12 @@ export default class App {
   public createPage() {
     const res = new WorkWithServer();
     const garage = new GarageView(mainParams);
+    const winner = new WinnerView(mainParams);
     res.getCarsServer().then((answer) => {
       garage.updateText(answer.total, 1);
+    });
+    res.getWinnersServer().then((answer) => {
+      winner.updateText(answer.total, 1);
     });
 
     document.body.append(
