@@ -16,9 +16,15 @@ export default class App {
     const winner = new WinnerView(mainParams);
     res.getCarsServer().then((answer) => {
       garage.updateText(answer.total, 1);
+      garage.createCars(answer.cars);
     });
     res.getWinnersServer().then((answer) => {
       winner.updateText(answer.total, 1);
+      answer.cars.forEach((el, index) => {
+        res.getCarServer(el.id).then((car) => {
+          winner.createLineCar(car, el, index);
+        });
+      });
     });
 
     document.body.append(

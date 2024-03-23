@@ -5,11 +5,12 @@ import { mainFormParams, mainGarageParams, mainWinnerParams } from '../util/para
 
 import './mainView.scss';
 import WinnerView from './winnerView/winnerView';
+import FormView from './formView/formView';
 
 export default class MainView implements IHTMLElement {
   public main: ElementCreation;
 
-  private formGarage: ElementCreation = new ElementCreation(mainFormParams);
+  private formGarage: FormView = new FormView(mainFormParams);
 
   private garagePage: GarageView = new GarageView(mainGarageParams);
 
@@ -31,7 +32,7 @@ export default class MainView implements IHTMLElement {
     this.main
       .getElement()
       ?.append(
-        this.formGarage.getElement()!,
+        this.formGarage.form.getElement()!,
         this.garagePage.garage.getElement()!,
         this.winnerPage.winner.getElement()!,
       );

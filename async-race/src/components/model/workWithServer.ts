@@ -28,4 +28,16 @@ export default class WorkWithServer {
     }
     throw Error(`Error HTTP: ${res.status}`);
   }
+
+  public async getCarServer(id: number): Promise<IGetDataCar> {
+    const res = await fetch(`http://127.0.0.1:3000/garage/${id}`, {
+      method: 'GET',
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      return data;
+    }
+    throw Error(`Error HTTP: ${res.status}`);
+  }
 }
