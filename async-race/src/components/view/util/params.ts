@@ -1,9 +1,11 @@
 import ButtonRemoveCar from '../../controller/listeners/buttons/controlCar/buttonRemoveCar';
 import ButtonSelectCar from '../../controller/listeners/buttons/controlCar/buttonSelectCar';
 import ButtonCreateCar from '../../controller/listeners/buttons/form/buttonCreateCar';
+import ButtonGenerateCars from '../../controller/listeners/buttons/form/buttonGenerateCars';
 import ButtonUpdateCar from '../../controller/listeners/buttons/form/buttonUpdateCar';
 import ButtonToGarage from '../../controller/listeners/buttons/pages/buttonToGarage';
 import ButtonToWinner from '../../controller/listeners/buttons/pages/buttonToWinner';
+import InputUpdateColor from '../../controller/listeners/input/inputUpdateColor';
 import { IParams } from '../../interfaces/IParams';
 
 export const headerParams: IParams = {
@@ -70,6 +72,7 @@ export const updateInputParams: IParams = {
 export const updateColorParams: IParams = {
   tag: 'input',
   classNames: ['update__color', 'disabled'],
+  action: new InputUpdateColor('click'),
 };
 
 export const updateButtonParams: IParams = {
@@ -102,7 +105,7 @@ export const buttonsGeneratorParams: IParams = {
   tag: 'button',
   classNames: ['buttons__generator-cars', 'button'],
   textContent: 'GENERATE CARS',
-  action: null,
+  action: new ButtonGenerateCars('click'),
 };
 
 export const mainGarageParams: IParams = {
