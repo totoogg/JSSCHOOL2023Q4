@@ -19,6 +19,7 @@ export default class ButtonCreateCar extends Listener {
 
     if (name.value.trim() !== '') {
       this.util.createCar(name.value.trim(), color.value);
+      name.value = '';
     }
   }
 }

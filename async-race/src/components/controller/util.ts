@@ -20,6 +20,9 @@ export default class Util {
       }
       this.server.getCarsServer(this.getCurrentGaragePage()).then((answer) => {
         garageView.updateText(answer.total, this.getCurrentGaragePage());
+        if (this.getCountCars() > 7) {
+          document.querySelector('.buttons__next-garage')?.classList.remove('disabled');
+        }
       });
     });
   }
@@ -51,6 +54,17 @@ export default class Util {
 
     if (text) {
       return Number(text.split(' ').at(-1)!.slice(1));
+    }
+
+    return 1;
+  }
+
+  public getCountCars(): number {
+    const cars = document.querySelector('.garage__title') as HTMLElement;
+    const text = cars.textContent;
+
+    if (text) {
+      return Number(text.split(' ').at(-1)!.slice(1, -1));
     }
 
     return 1;

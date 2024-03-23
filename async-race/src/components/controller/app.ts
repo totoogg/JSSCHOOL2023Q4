@@ -3,12 +3,15 @@ import HeaderView from '../view/headerView/headerView';
 import GarageView from '../view/mainView/garageView/garageView';
 import MainView from '../view/mainView/mainView';
 import WinnerView from '../view/mainView/winnerView/winnerView';
+import Util from './util';
 import { headerParams, mainParams } from '../view/util/params';
 
 export default class App {
   private header: HeaderView = new HeaderView(headerParams);
 
   private main: MainView = new MainView(mainParams);
+
+  private util = new Util();
 
   public createPage() {
     const res = new WorkWithServer();
@@ -19,6 +22,9 @@ export default class App {
       answer.cars.forEach((el) => {
         garage.createLineCar(el);
       });
+      if (this.util.getCountCars() > 7) {
+        document.querySelector('.buttons__next-garage')?.classList.remove('disabled');
+      }
     });
     res.getWinnersServer(1).then((answer) => {
       winner.updateText(answer.total, 1);

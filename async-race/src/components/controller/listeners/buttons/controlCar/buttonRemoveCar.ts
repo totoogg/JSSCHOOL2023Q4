@@ -68,6 +68,9 @@ export default class ButtonRemoveCar extends Listener {
       cars.cars.forEach((el) => {
         if (!arrCarsId.includes(`${el.id}`)) garageView.createLineCar(el);
       });
+      if (this.util.getCountCars() < 8) {
+        document.querySelector('.buttons__next-garage')?.classList.add('disabled');
+      }
     });
     this.server.getWinnersServer(this.currentWinnerPage).then((cars) => {
       winnerView.updateText(cars.total, this.currentWinnerPage);

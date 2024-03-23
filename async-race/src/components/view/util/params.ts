@@ -3,6 +3,7 @@ import ButtonSelectCar from '../../controller/listeners/buttons/controlCar/butto
 import ButtonCreateCar from '../../controller/listeners/buttons/form/buttonCreateCar';
 import ButtonGenerateCars from '../../controller/listeners/buttons/form/buttonGenerateCars';
 import ButtonUpdateCar from '../../controller/listeners/buttons/form/buttonUpdateCar';
+import SwitchingGarage from '../../controller/listeners/buttons/garage/switchingGarage';
 import ButtonToGarage from '../../controller/listeners/buttons/pages/buttonToGarage';
 import ButtonToWinner from '../../controller/listeners/buttons/pages/buttonToWinner';
 import InputUpdateColor from '../../controller/listeners/input/inputUpdateColor';
@@ -200,16 +201,16 @@ export const garageButtonsParams: IParams = {
 
 export const buttonsNextGarageParams: IParams = {
   tag: 'button',
-  classNames: ['buttons__next-garage', 'button'],
+  classNames: ['buttons__next-garage', 'button', 'disabled'],
   textContent: 'NEXT',
-  action: null,
+  action: new SwitchingGarage('click'),
 };
 
 export const buttonsPrevGarageParams: IParams = {
   tag: 'button',
   classNames: ['buttons__prev-garage', 'button', 'disabled'],
   textContent: 'PREV',
-  action: null,
+  action: new SwitchingGarage('click'),
 };
 
 export const mainWinnerParams: IParams = {
