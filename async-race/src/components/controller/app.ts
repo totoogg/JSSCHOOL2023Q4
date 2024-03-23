@@ -14,11 +14,13 @@ export default class App {
     const res = new WorkWithServer();
     const garage = new GarageView(mainParams);
     const winner = new WinnerView(mainParams);
-    res.getCarsServer().then((answer) => {
+    res.getCarsServer(1).then((answer) => {
       garage.updateText(answer.total, 1);
-      garage.createCars(answer.cars);
+      answer.cars.forEach((el) => {
+        garage.createLineCar(el);
+      });
     });
-    res.getWinnersServer().then((answer) => {
+    res.getWinnersServer(1).then((answer) => {
       winner.updateText(answer.total, 1);
       answer.cars.forEach((el, index) => {
         res.getCarServer(el.id).then((car) => {

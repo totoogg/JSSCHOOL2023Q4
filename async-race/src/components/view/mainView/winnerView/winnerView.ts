@@ -80,6 +80,12 @@ export default class WinnerView {
     const win = new ElementCreation(carWinsHeadParams);
     const time = new ElementCreation(carTimeHeadParams);
 
+    number.getElement()!.setAttribute('data-head', 'true');
+    car.getElement()!.setAttribute('data-head', 'true');
+    name.getElement()!.setAttribute('data-head', 'true');
+    win.getElement()!.setAttribute('data-head', 'true');
+    time.getElement()!.setAttribute('data-head', 'true');
+
     this.winnerCars
       .getElement()!
       .append(

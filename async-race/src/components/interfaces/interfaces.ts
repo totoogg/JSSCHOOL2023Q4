@@ -6,3 +6,4 @@ export { IHTMLElement } from './IHTMLElement';
 export { IEventElement } from './IEventElement';
 export { IGetDataCar } from './IGetData';
 export { IGetDataWinner } from './IGetDataWinner';
+export { ICreateCar } from './ICreateCar';

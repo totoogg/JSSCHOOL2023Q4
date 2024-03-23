@@ -1,9 +1,9 @@
 import { IGetDataCar } from '../interfaces/IGetData';
-import { IGetDataWinner } from '../interfaces/interfaces';
+import { ICreateCar, IGetDataWinner } from '../interfaces/interfaces';
 
 export default class WorkWithServer {
-  public async getCarsServer(): Promise<{ cars: IGetDataCar[]; total: number }> {
-    const res = await fetch('http://127.0.0.1:3000/garage?_limit=7&_page=1', {
+  public async getCarsServer(page: number): Promise<{ cars: IGetDataCar[]; total: number }> {
+    const res = await fetch(`http://127.0.0.1:3000/garage?_limit=7&_page=${page}`, {
       method: 'GET',
     });
 
@@ -14,9 +14,9 @@ export default class WorkWithServer {
     throw Error(`Error HTTP: ${res.status}`);
   }
 
-  public async getWinnersServer(): Promise<{ cars: IGetDataWinner[]; total: number }> {
+  public async getWinnersServer(page: number): Promise<{ cars: IGetDataWinner[]; total: number }> {
     const res = await fetch(
-      `http://127.0.0.1:3000/winners?_limit=10&_page=1&_sort=time&_order=ASC`,
+      `http://127.0.0.1:3000/winners?_limit=10&_page=${page}&_sort=time&_order=ASC`,
       {
         method: 'GET',
       },
@@ -39,5 +39,59 @@ export default class WorkWithServer {
       return data;
     }
     throw Error(`Error HTTP: ${res.status}`);
+  }
+
+  public async createCarServer(car: ICreateCar): Promise<IGetDataCar> {
+    const res = await fetch(`http://127.0.0.1:3000/garage`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(car),
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      return data;
+    }
+    throw Error(`Error HTTP: ${res.status}`);
+  }
+
+  public async updateCarServer(car: ICreateCar, id: number): Promise<IGetDataCar> {
+    const res = await fetch(`http://127.0.0.1:3000/garage/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(car),
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      return data;
+    }
+    throw Error(`Error HTTP: ${res.status}`);
+  }
+
+  public async deleteCarServer(id: number): Promise<boolean> {
+    const garage = await fetch(`http://127.0.0.1:3000/garage/${id}`, {
+      method: 'DELETE',
+    });
+
+    if (garage.ok) {
+      return true;
+    }
+    throw Error(`Error HTTP: ${garage.status}`);
+  }
+
+  public async deleteWinnerServer(id: number): Promise<boolean> {
+    const winner = await fetch(`http://127.0.0.1:3000/winners/${id}`, {
+      method: 'DELETE',
+    });
+
+    if (winner.ok) {
+      return true;
+    }
+    throw Error(`Error HTTP: ${winner.status}`);
   }
 }

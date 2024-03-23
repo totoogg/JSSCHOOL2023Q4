@@ -1,5 +1,9 @@
-import ButtonToGarage from '../../controller/listeners/buttons/buttonToGarage';
-import ButtonToWinner from '../../controller/listeners/buttons/buttonToWinner';
+import ButtonRemoveCar from '../../controller/listeners/buttons/controlCar/buttonRemoveCar';
+import ButtonSelectCar from '../../controller/listeners/buttons/controlCar/buttonSelectCar';
+import ButtonCreateCar from '../../controller/listeners/buttons/form/buttonCreateCar';
+import ButtonUpdateCar from '../../controller/listeners/buttons/form/buttonUpdateCar';
+import ButtonToGarage from '../../controller/listeners/buttons/pages/buttonToGarage';
+import ButtonToWinner from '../../controller/listeners/buttons/pages/buttonToWinner';
 import { IParams } from '../../interfaces/IParams';
 
 export const headerParams: IParams = {
@@ -50,7 +54,7 @@ export const createButtonParams: IParams = {
   tag: 'button',
   classNames: ['create__button', 'button'],
   textContent: 'CREATE',
-  action: null,
+  action: new ButtonCreateCar('click'),
 };
 
 export const formUpdateParams: IParams = {
@@ -72,7 +76,7 @@ export const updateButtonParams: IParams = {
   tag: 'button',
   classNames: ['update__button', 'button', 'disabled'],
   textContent: 'UPDATE',
-  action: null,
+  action: new ButtonUpdateCar('click'),
 };
 
 export const formButtonsParams: IParams = {
@@ -142,14 +146,14 @@ export const blockSelectParams: IParams = {
   tag: 'button',
   classNames: ['block__select', 'button'],
   textContent: 'SELECT',
-  action: null,
+  action: new ButtonSelectCar('click'),
 };
 
 export const blockRemoveParams: IParams = {
   tag: 'button',
   classNames: ['block__remove', 'button'],
   textContent: 'REMOVE',
-  action: null,
+  action: new ButtonRemoveCar('click'),
 };
 
 export const blockTextParams: IParams = {

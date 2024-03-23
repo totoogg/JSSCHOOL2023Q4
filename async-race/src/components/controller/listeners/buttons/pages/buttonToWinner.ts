@@ -1,6 +1,6 @@
-import Listener from '../listener';
+import Listener from '../../listener';
 
-export default class ButtonToGarage extends Listener {
+export default class ButtonToWinner extends Listener {
   public eventListener: string;
 
   constructor(key: string) {
@@ -17,12 +17,12 @@ export default class ButtonToGarage extends Listener {
       const form = document.querySelector('.main__form') as HTMLElement;
       const garage = document.querySelector('.main__garage') as HTMLElement;
       const winners = document.querySelector('.main__winner') as HTMLElement;
-      const toWinner = document.querySelector('.header__winner') as HTMLElement;
+      const toGarage = document.querySelector('.header__garage') as HTMLElement;
 
-      form.classList.remove('display-none');
-      garage.classList.remove('display-none');
-      toWinner.classList.remove('disabled');
-      winners.classList.add('display-none');
+      form.classList.add('display-none');
+      garage.classList.add('display-none');
+      toGarage.classList.remove('disabled');
+      winners.classList.remove('display-none');
       target.classList.add('disabled');
     }
   }
