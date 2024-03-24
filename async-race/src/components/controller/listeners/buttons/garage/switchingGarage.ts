@@ -24,14 +24,16 @@ export default class SwitchingGarage extends Listener {
     const garage = document.querySelector('.garage__cars') as HTMLElement;
     const countCarsPage = Math.ceil(this.util.getCountCars() / 7);
 
-    if (target.textContent === 'PREV' && currentPage !== 1) {
-      garage.innerHTML = '';
-      this.updateGarage(currentPage - 1);
-    }
+    if (!target.classList.contains('disabled')) {
+      if (target.textContent === 'PREV' && currentPage !== 1) {
+        garage.innerHTML = '';
+        this.updateGarage(currentPage - 1);
+      }
 
-    if (target.textContent === 'NEXT' && currentPage !== countCarsPage) {
-      garage.innerHTML = '';
-      this.updateGarage(currentPage + 1);
+      if (target.textContent === 'NEXT' && currentPage !== countCarsPage) {
+        garage.innerHTML = '';
+        this.updateGarage(currentPage + 1);
+      }
     }
   }
 

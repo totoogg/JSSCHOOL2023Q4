@@ -1,5 +1,6 @@
 import WorkWithServer from '../../../../model/workWithServer';
 import Listener from '../../listener';
+import ButtonRemoveCar from '../controlCar/buttonRemoveCar';
 
 export default class ButtonUpdateCar extends Listener {
   public eventListener: string;
@@ -18,12 +19,15 @@ export default class ButtonUpdateCar extends Listener {
     const nameCar = document.querySelector('.update__text') as HTMLInputElement;
     const colorCar = document.querySelector('.update__color') as HTMLInputElement;
     const id = Number(target.getAttribute('data-id'));
+    const winner = new ButtonRemoveCar('click');
 
     if (!target.classList.contains('disabled')) {
       if (nameCar.value.trim() !== '') {
         const name = nameCar.value.trim();
         const color = colorCar.value;
-        this.server.updateCarServer({ name, color }, id);
+        this.server.updateCarServer({ name, color }, id).then((car) => {
+          if (car) winner.updateWinner();
+        });
         this.updateGarage(name, color, id);
       }
     }

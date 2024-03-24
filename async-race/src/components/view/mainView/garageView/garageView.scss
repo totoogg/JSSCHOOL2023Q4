@@ -131,6 +131,8 @@
 
       .block__text {
         align-self: center;
+        width: 100px;
+        word-break:break-all;
       }
     }
 

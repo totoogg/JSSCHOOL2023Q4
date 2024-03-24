@@ -33,36 +33,33 @@ export default class ButtonRemoveCar extends Listener {
     this.currentGaragePage = this.util.getCurrentGaragePage();
     this.currentWinnerPage = this.util.getCurrentWinnerPage();
 
-    if (
-      id === Number(buttonUpdate.getAttribute('data-id')) &&
-      !buttonUpdate.classList.contains('disabled')
-    ) {
-      this.updateForm();
-    }
+    if (!target.classList.contains('disabled')) {
+      if (
+        id === Number(buttonUpdate.getAttribute('data-id')) &&
+        !buttonUpdate.classList.contains('disabled')
+      ) {
+        this.updateForm();
+      }
 
-    this.server.getWinnersServer(this.currentWinnerPage).then((cars) => {
-      cars.cars.forEach((el) => {
-        if (el.id === id) this.server.deleteWinnerServer(id);
+      this.server.getWinnersServer(this.currentWinnerPage).then((cars) => {
+        cars.cars.forEach((el) => {
+          if (el.id === id) this.server.deleteWinnerServer(id);
+        });
       });
-    });
 
-    this.server.deleteCarServer(id).then((el) => {
-      if (el) this.updateCars();
-    });
-    current.remove();
+      this.server.deleteCarServer(id).then((el) => {
+        if (el) this.updateCars();
+      });
+      current.remove();
+    }
   }
 
   private updateCars(): void {
     const garageView = new GarageView(mainParams);
-    const winnerView = new WinnerView(mainParams);
     const arrCarsId = Array.from(document.querySelectorAll('.cars__line')).map((el) =>
       el.getAttribute('data-id'),
     ) as string[];
-    const table = document.querySelector('.winner__table') as HTMLElement;
 
-    Array.from(table.children).forEach((el) => {
-      if (!el.getAttribute('data-head')) el.remove();
-    });
     this.server.getCarsServer(this.currentGaragePage).then((cars) => {
       garageView.updateText(cars.total, this.currentGaragePage);
       cars.cars.forEach((el) => {
@@ -71,6 +68,17 @@ export default class ButtonRemoveCar extends Listener {
       if (this.util.getCountCars() < 8) {
         document.querySelector('.buttons__next-garage')?.classList.add('disabled');
       }
+    });
+
+    this.updateWinner();
+  }
+
+  public updateWinner(): void {
+    const winnerView = new WinnerView(mainParams);
+    const table = document.querySelector('.winner__table') as HTMLElement;
+
+    Array.from(table.children).forEach((el) => {
+      if (!el.getAttribute('data-head')) el.remove();
     });
     this.server.getWinnersServer(this.currentWinnerPage).then((cars) => {
       winnerView.updateText(cars.total, this.currentWinnerPage);

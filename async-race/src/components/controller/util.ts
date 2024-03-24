@@ -69,4 +69,39 @@ export default class Util {
 
     return 1;
   }
+
+  public driveStartCar(line: HTMLElement): void {
+    const car = line.querySelector('.car__image') as HTMLElement;
+    const finish = line.querySelector('.line__finish') as HTMLElement;
+    const coordCar = car.getBoundingClientRect();
+    const coordFinish = finish.getBoundingClientRect();
+    const totalDist = coordFinish.right - coordCar.left;
+    const id = line.getAttribute('data-id') as string;
+
+    this.server.startStopCarServer(id, 'started').then((carSpeed) => {
+      const time = Number((carSpeed.distance / carSpeed.velocity / 1000).toFixed(2));
+      const delay = 1000 / (totalDist / 10 / time);
+
+      let drive = setTimeout(function go() {
+        if (line) {
+          const current = Number(car.style.transform.slice(10, -3));
+
+          if (current > totalDist) {
+            line.setAttribute('data-drive', 'stop');
+            clearTimeout(drive);
+            // todo
+          } else {
+            car.style.transform = `translate(${current + 10}px)`;
+            drive = setTimeout(go, delay);
+          }
+        } else {
+          clearTimeout(drive);
+        }
+      }, delay);
+
+      this.server.checkDriveServer(id).then((status) => {
+        if (!status) clearTimeout(drive);
+      });
+    });
+  }
 }

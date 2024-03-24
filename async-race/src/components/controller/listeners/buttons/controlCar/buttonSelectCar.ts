@@ -13,14 +13,16 @@ export default class ButtonSelectCar extends Listener {
 
     const target = event.target as HTMLElement;
 
-    Array.from(document.querySelectorAll('.block__select')).forEach((el) =>
-      el.classList.remove('disabled'),
-    );
-    target.classList.add('disabled');
+    if (!target.classList.contains('disabled')) {
+      Array.from(document.querySelectorAll('.block__select')).forEach((el) =>
+        el.classList.remove('disabled'),
+      );
+      target.classList.add('disabled');
 
-    const currentLine = target.parentElement?.parentElement as HTMLElement;
+      const currentLine = target.parentElement?.parentElement as HTMLElement;
 
-    this.selectElement(currentLine);
+      this.selectElement(currentLine);
+    }
   }
 
   private selectElement(line: HTMLElement): void {

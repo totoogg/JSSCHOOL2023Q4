@@ -12,7 +12,7 @@
   .winner__table {
     display: grid;
     margin-bottom: 20px;
-    grid-template-columns: 90px 90px 90px 90px 90px;
+    grid-template-columns: 70px 90px 130px 90px 90px;
     row-gap: 10px;
 
     .table__number-head, .table__color-head, .table__name-head, .table__wins-head, .table__time-head {
@@ -43,6 +43,11 @@
     .table__color {
       padding-right: 10px;
       padding-left: 10px;
+    }
+
+    .table__name {
+      width: 130px;
+      word-break:break-all;
     }
   }
 

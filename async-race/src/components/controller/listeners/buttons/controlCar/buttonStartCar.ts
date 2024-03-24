@@ -1,7 +1,7 @@
 import Util from '../../../util';
 import Listener from '../../listener';
 
-export default class ButtonCreateCar extends Listener {
+export default class ButtonStartCar extends Listener {
   public eventListener: string;
 
   private util = new Util();
@@ -14,15 +14,14 @@ export default class ButtonCreateCar extends Listener {
   public callback(event: Event): void {
     event.preventDefault();
 
-    const name = document.querySelector('.create__text') as HTMLInputElement;
-    const color = document.querySelector('.create__color') as HTMLInputElement;
     const target = event.target as HTMLElement;
 
     if (!target.classList.contains('disabled')) {
-      if (name.value.trim() !== '') {
-        this.util.createCar(name.value.trim(), color.value);
-        name.value = '';
-      }
+      const line = target.parentElement?.parentElement?.parentElement as HTMLElement;
+
+      line.setAttribute('data-drive', 'start');
+
+      this.util.driveStartCar(line);
     }
   }
 }

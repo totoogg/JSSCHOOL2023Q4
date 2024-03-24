@@ -94,4 +94,36 @@ export default class WorkWithServer {
     }
     throw Error(`Error HTTP: ${winner.status}`);
   }
+
+  public async startStopCarServer(
+    id: string,
+    status: string,
+  ): Promise<{ velocity: number; distance: number }> {
+    const res = await fetch(`http://127.0.0.1:3000/engine?id=${id}&status=${status}`, {
+      method: 'PATCH',
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      return { velocity: data.velocity, distance: data.distance };
+    }
+    throw Error(`Error HTTP: ${res.status}`);
+  }
+
+  public async checkDriveServer(
+    id: string,
+  ): Promise<{ velocity: number; distance: number } | boolean> {
+    const res = await fetch(`http://127.0.0.1:3000/engine?id=${id}&status=drive`, {
+      method: 'PATCH',
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      return { velocity: data.velocity, distance: data.distance };
+    }
+    if (res.status === 500) {
+      return false;
+    }
+    throw Error(`Error HTTP: ${res.status}`);
+  }
 }
