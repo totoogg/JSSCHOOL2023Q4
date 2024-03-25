@@ -1,7 +1,7 @@
 import WorkWithServer from '../../../../model/workWithServer';
 import Listener from '../../listener';
 
-export default class ButtonRace extends Listener {
+export default class ButtonReset extends Listener {
   public eventListener: string;
 
   private server = new WorkWithServer();
@@ -17,13 +17,10 @@ export default class ButtonRace extends Listener {
     const target = event.target as HTMLElement;
 
     if (!target.classList.contains('disabled')) {
-      target?.classList.add('disabled');
-      target?.setAttribute('data-race', 'race');
-
+      const arrButtons = Array.from(document.querySelectorAll('.button')) as HTMLElement[];
       const arrLine = Array.from(document.querySelectorAll('.cars__line')) as HTMLElement[];
-      const startButton = Array.from(document.querySelectorAll('.car__start')) as HTMLElement[];
 
-      this.blockButton();
+      this.blockButton(arrButtons);
 
       Promise.all(
         arrLine.map((el) => {
@@ -40,23 +37,31 @@ export default class ButtonRace extends Listener {
         }),
       ).then((el) => {
         if (el) {
-          startButton.forEach((start) => {
-            start.classList.remove('disabled');
-            const click = new Event('click');
-            start.dispatchEvent(click);
-          });
+          this.returnButton(arrButtons);
         }
       });
     }
   }
 
-  private blockButton(): void {
-    Array.from(document.querySelectorAll('.button')).forEach((el) => {
+  private blockButton(arrButtons: HTMLElement[]): void {
+    arrButtons.forEach((el) => {
       if (el.classList.contains('disabled')) {
-        el.setAttribute('data-disabled', 'true');
+        el.setAttribute('data-disabled-reset', 'true');
       }
 
       el.classList.add('disabled');
+    });
+  }
+
+  private returnButton(arrButtons: HTMLElement[]): void {
+    arrButtons.forEach((el) => {
+      if (
+        (el.getAttribute('data-disabled-reset') !== 'true' ||
+          el.classList.contains('car__start')) &&
+        !el.classList.contains('car__stop')
+      ) {
+        el.classList.remove('disabled');
+      }
     });
   }
 }

@@ -130,14 +130,20 @@ export default class Util {
   }
 
   private checkDriveCar(line: HTMLElement, id: string, win?: string): void {
+    const buttonRace = document.querySelector('.buttons__race') as HTMLElement;
+
     line.setAttribute('data-drive', 'stop');
-    if (Array.from(document.querySelectorAll('.cars__line[data-drive="start"]')).length === 0) {
+    if (
+      Array.from(document.querySelectorAll('.cars__line[data-drive="start"]')).length === 0 &&
+      buttonRace.getAttribute('data-race') === 'race'
+    ) {
+      buttonRace.setAttribute('data-race', 'finish');
       Array.from(document.querySelectorAll('.button')).forEach((el) => {
         if (
           (el.getAttribute('data-disabled') !== 'true' ||
             el.classList.contains('car__stop') ||
             el.classList.contains('buttons__race')) &&
-          !el.classList.contains('.car__start')
+          !el.classList.contains('car__start')
         ) {
           el.classList.remove('disabled');
         }
