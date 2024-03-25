@@ -21,8 +21,6 @@ export default class ButtonStartCar extends Listener {
 
       const line = target.parentElement?.parentElement?.parentElement as HTMLElement;
 
-      line.querySelector('.car__stop')?.classList.remove('disabled');
-
       line.setAttribute('data-drive', 'start');
 
       this.util.driveStartCar(line);

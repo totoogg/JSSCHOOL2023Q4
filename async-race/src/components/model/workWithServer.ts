@@ -124,6 +124,9 @@ export default class WorkWithServer {
     if (res.status === 500) {
       return false;
     }
+    if (res.status === 404) {
+      return true;
+    }
     throw Error(`Error HTTP: ${res.status}`);
   }
 }

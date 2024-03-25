@@ -4,6 +4,7 @@ import ButtonStartCar from '../../controller/listeners/buttons/controlCar/button
 import ButtonStopCar from '../../controller/listeners/buttons/controlCar/buttonStopCar';
 import ButtonCreateCar from '../../controller/listeners/buttons/form/buttonCreateCar';
 import ButtonGenerateCars from '../../controller/listeners/buttons/form/buttonGenerateCars';
+import ButtonRace from '../../controller/listeners/buttons/form/buttonRace';
 import ButtonUpdateCar from '../../controller/listeners/buttons/form/buttonUpdateCar';
 import SwitchingGarage from '../../controller/listeners/buttons/garage/switchingGarage';
 import ButtonToGarage from '../../controller/listeners/buttons/pages/buttonToGarage';
@@ -94,7 +95,7 @@ export const buttonsRaceParams: IParams = {
   tag: 'button',
   classNames: ['buttons__race', 'button'],
   textContent: 'RACE',
-  action: null,
+  action: new ButtonRace('click'),
 };
 
 export const buttonsResetParams: IParams = {

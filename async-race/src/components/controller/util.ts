@@ -73,10 +73,11 @@ export default class Util {
   public driveStartCar(line: HTMLElement): void {
     const car = line.querySelector('.car__image') as HTMLElement;
     const finish = line.querySelector('.line__finish') as HTMLElement;
-    const totalDist = finish.getBoundingClientRect().right - car.getBoundingClientRect().left;
     const id = line.getAttribute('data-id') as string;
 
     this.server.startStopCarServer(id, 'started').then((carSpeed) => {
+      const totalDist = finish.getBoundingClientRect().right - car.getBoundingClientRect().left;
+      this.checkRaceButton(line);
       const time = Number((carSpeed.distance / carSpeed.velocity / 1000).toFixed(2));
       const delay = 1000 / (totalDist / 10 / time);
 
@@ -85,12 +86,10 @@ export default class Util {
           const current = Number(car.style.transform.slice(10, -3));
 
           if (current > totalDist) {
-            const server = new WorkWithServer();
+            const util = new Util();
 
-            line.setAttribute('data-drive', 'stop');
+            util.checkDriveCar(line, id, 'win');
             clearTimeout(drive);
-            server.startStopCarServer(id, 'stopped');
-            // todo
           } else {
             car.style.transform = `translate(${current + 10}px)`;
             drive = setTimeout(go, delay);
@@ -103,7 +102,7 @@ export default class Util {
       this.server.checkDriveServer(id).then((status) => {
         if (!status) {
           clearTimeout(drive);
-          this.server.startStopCarServer(id, 'stopped');
+          this.checkDriveCar(line, id);
         }
       });
     });
@@ -120,5 +119,34 @@ export default class Util {
         buttonStart.classList.remove('disabled');
       }
     });
+  }
+
+  private checkRaceButton(line: HTMLElement): void {
+    const buttonRace = document.querySelector('.buttons__race') as HTMLElement;
+
+    if (!buttonRace.classList.contains('disabled')) {
+      line.querySelector('.car__stop')?.classList.remove('disabled');
+    }
+  }
+
+  private checkDriveCar(line: HTMLElement, id: string, win?: string): void {
+    line.setAttribute('data-drive', 'stop');
+    if (Array.from(document.querySelectorAll('.cars__line[data-drive="start"]')).length === 0) {
+      Array.from(document.querySelectorAll('.button')).forEach((el) => {
+        if (
+          (el.getAttribute('data-disabled') !== 'true' ||
+            el.classList.contains('car__stop') ||
+            el.classList.contains('buttons__race')) &&
+          !el.classList.contains('.car__start')
+        ) {
+          el.classList.remove('disabled');
+        }
+      });
+    }
+
+    if (win) {
+      console.log(2);
+      // todo
+    }
   }
 }
