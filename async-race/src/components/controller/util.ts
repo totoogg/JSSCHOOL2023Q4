@@ -73,9 +73,7 @@ export default class Util {
   public driveStartCar(line: HTMLElement): void {
     const car = line.querySelector('.car__image') as HTMLElement;
     const finish = line.querySelector('.line__finish') as HTMLElement;
-    const coordCar = car.getBoundingClientRect();
-    const coordFinish = finish.getBoundingClientRect();
-    const totalDist = coordFinish.right - coordCar.left;
+    const totalDist = finish.getBoundingClientRect().right - car.getBoundingClientRect().left;
     const id = line.getAttribute('data-id') as string;
 
     this.server.startStopCarServer(id, 'started').then((carSpeed) => {
@@ -83,12 +81,15 @@ export default class Util {
       const delay = 1000 / (totalDist / 10 / time);
 
       let drive = setTimeout(function go() {
-        if (line) {
+        if (line && line.getAttribute('data-drive') === 'start') {
           const current = Number(car.style.transform.slice(10, -3));
 
           if (current > totalDist) {
+            const server = new WorkWithServer();
+
             line.setAttribute('data-drive', 'stop');
             clearTimeout(drive);
+            server.startStopCarServer(id, 'stopped');
             // todo
           } else {
             car.style.transform = `translate(${current + 10}px)`;
@@ -100,8 +101,24 @@ export default class Util {
       }, delay);
 
       this.server.checkDriveServer(id).then((status) => {
-        if (!status) clearTimeout(drive);
+        if (!status) {
+          clearTimeout(drive);
+          this.server.startStopCarServer(id, 'stopped');
+        }
       });
+    });
+  }
+
+  public driveStopCar(line: HTMLElement): void {
+    const car = line.querySelector('.car__image') as HTMLElement;
+    const buttonStart = line.querySelector('.car__start') as HTMLElement;
+    const id = line.getAttribute('data-id') as string;
+
+    this.server.startStopCarServer(id, 'stopped').then((stop) => {
+      if (stop) {
+        car.style.transform = `translate(0px)`;
+        buttonStart.classList.remove('disabled');
+      }
     });
   }
 }

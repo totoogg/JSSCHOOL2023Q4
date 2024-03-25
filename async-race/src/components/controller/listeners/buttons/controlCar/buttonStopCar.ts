@@ -1,7 +1,7 @@
 import Util from '../../../util';
 import Listener from '../../listener';
 
-export default class ButtonStartCar extends Listener {
+export default class ButtonStopCar extends Listener {
   public eventListener: string;
 
   private util = new Util();
@@ -21,11 +21,9 @@ export default class ButtonStartCar extends Listener {
 
       const line = target.parentElement?.parentElement?.parentElement as HTMLElement;
 
-      line.querySelector('.car__stop')?.classList.remove('disabled');
+      line.setAttribute('data-drive', 'stop');
 
-      line.setAttribute('data-drive', 'start');
-
-      this.util.driveStartCar(line);
+      this.util.driveStopCar(line);
     }
   }
 }

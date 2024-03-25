@@ -1,6 +1,7 @@
 import ButtonRemoveCar from '../../controller/listeners/buttons/controlCar/buttonRemoveCar';
 import ButtonSelectCar from '../../controller/listeners/buttons/controlCar/buttonSelectCar';
 import ButtonStartCar from '../../controller/listeners/buttons/controlCar/buttonStartCar';
+import ButtonStopCar from '../../controller/listeners/buttons/controlCar/buttonStopCar';
 import ButtonCreateCar from '../../controller/listeners/buttons/form/buttonCreateCar';
 import ButtonGenerateCars from '../../controller/listeners/buttons/form/buttonGenerateCars';
 import ButtonUpdateCar from '../../controller/listeners/buttons/form/buttonUpdateCar';
@@ -182,7 +183,7 @@ export const carStopParams: IParams = {
   tag: 'button',
   classNames: ['car__stop', 'button', 'disabled'],
   textContent: 'B',
-  action: null,
+  action: new ButtonStopCar('click'),
 };
 
 export const carImageParams: IParams = {
