@@ -39,5 +39,16 @@ export default class App {
       this.header.header.getElement() as HTMLElement,
       this.main.main.getElement() as HTMLElement,
     );
+
+    document.addEventListener('click', () => {
+      const winnerPopUp = document.querySelector('.garage__winner') as HTMLElement;
+      const lineArr = Array.from(
+        document.querySelectorAll('.cars__line[data-drive="start"]'),
+      ) as HTMLElement[];
+
+      if (!winnerPopUp.classList.contains('display-none') && lineArr.length === 0) {
+        winnerPopUp.classList.add('display-none');
+      }
+    });
   }
 }

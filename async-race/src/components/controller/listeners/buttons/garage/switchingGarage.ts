@@ -48,7 +48,7 @@ export default class SwitchingGarage extends Listener {
     });
   }
 
-  private updateSwitchingButton(): void {
+  public updateSwitchingButton(): void {
     const currentPage = this.util.getCurrentGaragePage();
     const countCarsPage = Math.ceil(this.util.getCountCars() / 7);
 

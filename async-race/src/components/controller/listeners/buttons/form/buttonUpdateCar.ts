@@ -29,6 +29,7 @@ export default class ButtonUpdateCar extends Listener {
           if (car) winner.updateWinner();
         });
         this.updateGarage(name, color, id);
+        target.removeAttribute('data-id');
       }
     }
   }

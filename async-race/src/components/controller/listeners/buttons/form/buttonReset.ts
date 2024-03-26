@@ -1,5 +1,6 @@
 import WorkWithServer from '../../../../model/workWithServer';
 import Listener from '../../listener';
+import SwitchingGarage from '../garage/switchingGarage';
 
 export default class ButtonReset extends Listener {
   public eventListener: string;
@@ -16,16 +17,22 @@ export default class ButtonReset extends Listener {
 
     const target = event.target as HTMLElement;
 
-    if (!target.classList.contains('disabled')) {
+    if (!target.classList.contains('disabled') && document.querySelector('.cars__line')) {
       const arrButtons = Array.from(document.querySelectorAll('.button')) as HTMLElement[];
       const arrLine = Array.from(document.querySelectorAll('.cars__line')) as HTMLElement[];
+      const winnerPopUp = document.querySelector('.garage__winner') as HTMLElement;
+
+      target.setAttribute('data-click', 'click');
+      winnerPopUp.classList.add('display-none');
 
       this.blockButton(arrButtons);
 
       Promise.all(
         arrLine.map((el) => {
           const element = el;
+
           el.setAttribute('data-drive', 'stop');
+
           return this.server
             .startStopCarServer(el.getAttribute('data-id')!, 'stopped')
             .then((stop) => {
@@ -45,23 +52,30 @@ export default class ButtonReset extends Listener {
 
   private blockButton(arrButtons: HTMLElement[]): void {
     arrButtons.forEach((el) => {
-      if (el.classList.contains('disabled')) {
-        el.setAttribute('data-disabled-reset', 'true');
-      }
-
       el.classList.add('disabled');
     });
   }
 
   private returnButton(arrButtons: HTMLElement[]): void {
+    const page = new SwitchingGarage('click');
+    const id = document.querySelector('.update__button')?.getAttribute('data-id');
+    const resetButton = document.querySelector('.buttons__reset') as HTMLElement;
+
     arrButtons.forEach((el) => {
+      el.classList.remove('disabled');
+
       if (
-        (el.getAttribute('data-disabled-reset') !== 'true' ||
-          el.classList.contains('car__start')) &&
-        !el.classList.contains('car__stop')
+        (el.classList.contains('update__button') && !el.getAttribute('data-id')) ||
+        el.classList.contains('car__stop') ||
+        el.classList.contains('header__garage') ||
+        (el.classList.contains('block__select') && el.getAttribute('data-id') === id)
       ) {
-        el.classList.remove('disabled');
+        el.classList.add('disabled');
       }
     });
+
+    page.updateSwitchingButton();
+
+    resetButton.removeAttribute('data-click');
   }
 }

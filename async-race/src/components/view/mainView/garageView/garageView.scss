@@ -98,6 +98,26 @@
   margin-right: 20px;
 }
 
+.garage__winner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 450px;
+  padding: 16px;
+  text-align: center;
+  z-index: 3;
+  font-size: 30px;
+  line-height: 35px;
+  word-break: break-all;
+  text-shadow:
+    1px 1px white,
+    2px 2px #777;
+  color: #333;
+  background-color: #fef9c3;
+  border-radius: 30px;
+}
+
 .display-none {
   display: none;
 }

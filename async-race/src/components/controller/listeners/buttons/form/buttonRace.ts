@@ -16,7 +16,7 @@ export default class ButtonRace extends Listener {
 
     const target = event.target as HTMLElement;
 
-    if (!target.classList.contains('disabled')) {
+    if (!target.classList.contains('disabled') && document.querySelector('.cars__line')) {
       target?.classList.add('disabled');
       target?.setAttribute('data-race', 'race');
 

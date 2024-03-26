@@ -217,6 +217,11 @@ export const buttonsPrevGarageParams: IParams = {
   action: new SwitchingGarage('click'),
 };
 
+export const winnerCarParams: IParams = {
+  tag: 'p',
+  classNames: ['garage__winner', 'display-none'],
+};
+
 export const mainWinnerParams: IParams = {
   tag: 'div',
   classNames: ['main__winner', 'display-none'],

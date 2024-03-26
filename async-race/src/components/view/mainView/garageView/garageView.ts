@@ -18,6 +18,7 @@ import {
   garageTitleParams,
   lineControlParams,
   lineFinishParams,
+  winnerCarParams,
 } from '../../util/params';
 
 import './garageView.scss';
@@ -32,6 +33,8 @@ export default class GarageView {
   private garageCars: ElementCreation = new ElementCreation(garageCarsParams);
 
   private garageButtons: ElementCreation = new ElementCreation(garageButtonsParams);
+
+  private garageWinner: ElementCreation = new ElementCreation(winnerCarParams);
 
   constructor(param: IParams) {
     this.garage = new ElementCreation(param);
@@ -55,6 +58,7 @@ export default class GarageView {
         this.garageCurrent.getElement()!,
         this.garageCars.getElement()!,
         this.garageButtons.getElement()!,
+        this.garageWinner.getElement()!,
       );
   }
 

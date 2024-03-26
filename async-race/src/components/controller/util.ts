@@ -88,7 +88,7 @@ export default class Util {
           if (current > totalDist) {
             const util = new Util();
 
-            util.checkDriveCar(line, id, 'win');
+            util.checkDriveCar(line, id, 'win', time);
             clearTimeout(drive);
           } else {
             car.style.transform = `translate(${current + 10}px)`;
@@ -129,13 +129,16 @@ export default class Util {
     }
   }
 
-  private checkDriveCar(line: HTMLElement, id: string, win?: string): void {
+  private checkDriveCar(line: HTMLElement, id: string, win?: string, time?: number): void {
     const buttonRace = document.querySelector('.buttons__race') as HTMLElement;
+    const buttonReset = document.querySelector('.buttons__reset') as HTMLElement;
+    const winnerPopUp = document.querySelector('.garage__winner') as HTMLElement;
 
     line.setAttribute('data-drive', 'stop');
     if (
       Array.from(document.querySelectorAll('.cars__line[data-drive="start"]')).length === 0 &&
-      buttonRace.getAttribute('data-race') === 'race'
+      buttonRace.getAttribute('data-race') === 'race' &&
+      buttonReset.getAttribute('data-click') !== 'click'
     ) {
       buttonRace.setAttribute('data-race', 'finish');
       Array.from(document.querySelectorAll('.button')).forEach((el) => {
@@ -147,12 +150,27 @@ export default class Util {
         ) {
           el.classList.remove('disabled');
         }
+
+        el.removeAttribute('data-disabled');
       });
     }
 
-    if (win) {
-      console.log(2);
-      // todo
+    if (
+      win &&
+      winnerPopUp.classList.contains('display-none') &&
+      buttonRace.getAttribute('data-race') === 'race'
+    ) {
+      buttonReset.classList.remove('disabled');
+
+      this.showWinnerPopUp(line.querySelector('.block__text')!.textContent!, time!);
     }
+  }
+
+  private showWinnerPopUp(name: string, time: number): void {
+    const winnerPopUp = document.querySelector('.garage__winner') as HTMLElement;
+
+    winnerPopUp.classList.remove('display-none');
+
+    winnerPopUp.textContent = `${name} went first (${time}s)`;
   }
 }
