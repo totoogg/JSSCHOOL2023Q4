@@ -236,7 +236,7 @@ export const winnerTitleParams: IParams = {
 export const winnerCurrentParams: IParams = {
   tag: 'p',
   classNames: ['winner__current-page'],
-  textContent: 'Page #',
+  textContent: 'Page #1',
 };
 
 export const winnerCarsParams: IParams = {
@@ -308,7 +308,7 @@ export const winnerButtonsParams: IParams = {
 
 export const buttonsNextWinnerParams: IParams = {
   tag: 'button',
-  classNames: ['buttons__next-winner', 'button'],
+  classNames: ['buttons__next-winner', 'button', 'disabled'],
   textContent: 'NEXT',
   action: null,
 };

@@ -41,7 +41,7 @@ export default class ButtonRemoveCar extends Listener {
         this.updateForm();
       }
 
-      this.server.getWinnersServer(this.currentWinnerPage).then((cars) => {
+      this.server.getWinnersServer(this.currentWinnerPage, 10, 'time', 'ASC').then((cars) => {
         cars.cars.forEach((el) => {
           if (el.id === id) this.server.deleteWinnerServer(id);
         });
@@ -76,15 +76,19 @@ export default class ButtonRemoveCar extends Listener {
   public updateWinner(): void {
     const winnerView = new WinnerView(mainParams);
     const table = document.querySelector('.winner__table') as HTMLElement;
+    this.currentWinnerPage = this.util.getCurrentWinnerPage();
 
     Array.from(table.children).forEach((el) => {
       if (!el.getAttribute('data-head')) el.remove();
     });
-    this.server.getWinnersServer(this.currentWinnerPage).then((cars) => {
+    this.server.getWinnersServer(this.currentWinnerPage, 10, 'time', 'ASC').then((cars) => {
       winnerView.updateText(cars.total, this.currentWinnerPage);
-      cars.cars.forEach((el, index) => {
-        this.server.getCarServer(el.id).then((car) => {
-          winnerView.createLineCar(car, el, index);
+      if (this.util.getCountWinner() > 10) {
+        document.querySelector('.buttons__next-winner')?.classList.remove('disabled');
+      }
+      Promise.all(cars.cars.map((el) => this.server.getCarServer(el.id))).then((carsID) => {
+        carsID.forEach((car, index) => {
+          winnerView.createLineCar(car, cars.cars[index], index, this.currentWinnerPage);
         });
       });
     });

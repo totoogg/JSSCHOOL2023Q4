@@ -2,6 +2,7 @@ import WorkWithServer from '../model/workWithServer';
 import GarageView from '../view/mainView/garageView/garageView';
 import { ICreateCar } from '../interfaces/interfaces';
 import { mainParams } from '../view/util/params';
+import ButtonRemoveCar from './listeners/buttons/controlCar/buttonRemoveCar';
 
 export default class Util {
   private server = new WorkWithServer();
@@ -61,6 +62,17 @@ export default class Util {
 
   public getCountCars(): number {
     const cars = document.querySelector('.garage__title') as HTMLElement;
+    const text = cars.textContent;
+
+    if (text) {
+      return Number(text.split(' ').at(-1)!.slice(1, -1));
+    }
+
+    return 1;
+  }
+
+  public getCountWinner(): number {
+    const cars = document.querySelector('.winner__title') as HTMLElement;
     const text = cars.textContent;
 
     if (text) {
@@ -163,6 +175,7 @@ export default class Util {
       buttonReset.classList.remove('disabled');
 
       this.showWinnerPopUp(line.querySelector('.block__text')!.textContent!, time!);
+      this.updateWinnerTable(id, time!);
     }
   }
 
@@ -172,5 +185,26 @@ export default class Util {
     winnerPopUp.classList.remove('display-none');
 
     winnerPopUp.textContent = `${name} went first (${time}s)`;
+  }
+
+  private updateWinnerTable(id: string, time: number): void {
+    const buttonRemove = new ButtonRemoveCar('click');
+    const countWinner = this.getCountWinner();
+
+    this.server
+      .getWinnersServer(1, countWinner + 1, 'time', 'ASC')
+      .then((winners) => {
+        const winCar = winners.cars.find((el) => el.id === Number(id));
+        if (winCar) {
+          const timeWin = time < winCar?.time ? time : winCar.time;
+          return this.server.updateWinnerServer({ wins: winCar.wins + 1, time: timeWin }, id);
+        }
+        return this.server.createWinnerServer({ id: Number(id), wins: 1, time });
+      })
+      .then((el) => {
+        if (el) {
+          buttonRemove.updateWinner();
+        }
+      });
   }
 }

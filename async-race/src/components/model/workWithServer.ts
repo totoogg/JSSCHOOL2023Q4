@@ -1,5 +1,5 @@
 import { IGetDataCar } from '../interfaces/IGetData';
-import { ICreateCar, IGetDataWinner } from '../interfaces/interfaces';
+import { ICreateCar, ICreateWin, IGetDataWinner } from '../interfaces/interfaces';
 
 export default class WorkWithServer {
   public async getCarsServer(page: number): Promise<{ cars: IGetDataCar[]; total: number }> {
@@ -14,9 +14,14 @@ export default class WorkWithServer {
     throw Error(`Error HTTP: ${res.status}`);
   }
 
-  public async getWinnersServer(page: number): Promise<{ cars: IGetDataWinner[]; total: number }> {
+  public async getWinnersServer(
+    page: number,
+    limit: number,
+    sort: string,
+    order: string,
+  ): Promise<{ cars: IGetDataWinner[]; total: number }> {
     const res = await fetch(
-      `http://127.0.0.1:3000/winners?_limit=10&_page=${page}&_sort=time&_order=ASC`,
+      `http://127.0.0.1:3000/winners?_limit=${limit}&_page=${page}&_sort=${sort}&_order=${order}`,
       {
         method: 'GET',
       },
@@ -57,8 +62,40 @@ export default class WorkWithServer {
     throw Error(`Error HTTP: ${res.status}`);
   }
 
+  public async createWinnerServer(car: ICreateWin): Promise<ICreateWin> {
+    const res = await fetch(`http://127.0.0.1:3000/winners`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(car),
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      return data;
+    }
+    throw Error(`Error HTTP: ${res.status}`);
+  }
+
   public async updateCarServer(car: ICreateCar, id: number): Promise<IGetDataCar> {
     const res = await fetch(`http://127.0.0.1:3000/garage/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(car),
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      return data;
+    }
+    throw Error(`Error HTTP: ${res.status}`);
+  }
+
+  public async updateWinnerServer(car: ICreateWin, id: string): Promise<ICreateWin> {
+    const res = await fetch(`http://127.0.0.1:3000/winners/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

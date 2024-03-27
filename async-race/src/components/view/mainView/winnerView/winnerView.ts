@@ -97,7 +97,12 @@ export default class WinnerView {
       );
   }
 
-  public createLineCar(car: IGetDataCar, carWin: IGetDataWinner, index: number): void {
+  public createLineCar(
+    car: IGetDataCar,
+    carWin: IGetDataWinner,
+    index: number,
+    page: number,
+  ): void {
     const table = document.querySelector('.winner__table') as HTMLElement;
     const number = new ElementCreation(carNumberParams);
     const color = new ElementCreation(carColorParams);
@@ -105,7 +110,7 @@ export default class WinnerView {
     const win = new ElementCreation(carWinsParams);
     const time = new ElementCreation(carTimeParams);
 
-    number.getElement()!.textContent = `${index + 1}`;
+    number.getElement()!.textContent = `${(page - 1) * 10 + index + 1}`;
     win.getElement()!.textContent = `${carWin.wins}`;
     time.getElement()!.textContent = `${carWin.time}`;
     color.getElement()!.innerHTML = this.garage.setImageCar(car.color);

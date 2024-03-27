@@ -2,9 +2,9 @@ import WorkWithServer from '../model/workWithServer';
 import HeaderView from '../view/headerView/headerView';
 import GarageView from '../view/mainView/garageView/garageView';
 import MainView from '../view/mainView/mainView';
-import WinnerView from '../view/mainView/winnerView/winnerView';
 import Util from './util';
 import { headerParams, mainParams } from '../view/util/params';
+import ButtonRemoveCar from './listeners/buttons/controlCar/buttonRemoveCar';
 
 export default class App {
   private header: HeaderView = new HeaderView(headerParams);
@@ -13,11 +13,12 @@ export default class App {
 
   private util = new Util();
 
+  private server = new WorkWithServer();
+
   public createPage() {
-    const res = new WorkWithServer();
     const garage = new GarageView(mainParams);
-    const winner = new WinnerView(mainParams);
-    res.getCarsServer(1).then((answer) => {
+    const buttonRemove = new ButtonRemoveCar('click');
+    this.server.getCarsServer(1).then((answer) => {
       garage.updateText(answer.total, 1);
       answer.cars.forEach((el) => {
         garage.createLineCar(el);
@@ -26,19 +27,13 @@ export default class App {
         document.querySelector('.buttons__next-garage')?.classList.remove('disabled');
       }
     });
-    res.getWinnersServer(1).then((answer) => {
-      winner.updateText(answer.total, 1);
-      answer.cars.forEach((el, index) => {
-        res.getCarServer(el.id).then((car) => {
-          winner.createLineCar(car, el, index);
-        });
-      });
-    });
 
     document.body.append(
       this.header.header.getElement() as HTMLElement,
       this.main.main.getElement() as HTMLElement,
     );
+
+    buttonRemove.updateWinner();
 
     document.addEventListener('click', () => {
       const winnerPopUp = document.querySelector('.garage__winner') as HTMLElement;
