@@ -1,6 +1,7 @@
 import WorkWithServer from '../../../../model/workWithServer';
 import Listener from '../../listener';
 import SwitchingGarage from '../garage/switchingGarage';
+import SwitchingWinner from '../winner/switchingWinner';
 
 export default class ButtonReset extends Listener {
   public eventListener: string;
@@ -57,9 +58,9 @@ export default class ButtonReset extends Listener {
   }
 
   private returnButton(arrButtons: HTMLElement[]): void {
-    const page = new SwitchingGarage('click');
+    const pageGarage = new SwitchingGarage('click');
+    const pageWinner = new SwitchingWinner('click');
     const id = document.querySelector('.update__button')?.getAttribute('data-id');
-    const resetButton = document.querySelector('.buttons__reset') as HTMLElement;
 
     arrButtons.forEach((el) => {
       el.classList.remove('disabled');
@@ -74,8 +75,7 @@ export default class ButtonReset extends Listener {
       }
     });
 
-    page.updateSwitchingButton();
-
-    resetButton.removeAttribute('data-click');
+    pageGarage.updateSwitchingButton();
+    pageWinner.updateSwitchingButton();
   }
 }
