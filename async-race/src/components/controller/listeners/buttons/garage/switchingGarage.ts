@@ -3,8 +3,9 @@ import Listener from '../../listener';
 import WorkWithServer from '../../../../model/workWithServer';
 import GarageView from '../../../../view/mainView/garageView/garageView';
 import { mainParams } from '../../../../view/util/params';
+import { ISwitchingGarage } from '../../../../interfaces/interfaces';
 
-export default class SwitchingGarage extends Listener {
+export default class SwitchingGarage extends Listener implements ISwitchingGarage {
   public eventListener: string;
 
   private util = new Util();

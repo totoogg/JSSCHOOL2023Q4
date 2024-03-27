@@ -4,8 +4,9 @@ import Util from '../../../util';
 import Listener from '../../listener';
 import WinnerView from '../../../../view/mainView/winnerView/winnerView';
 import { mainParams } from '../../../../view/util/params';
+import { IButtonRemoveCar } from '../../../../interfaces/interfaces';
 
-export default class ButtonRemoveCar extends Listener {
+export default class ButtonRemoveCar extends Listener implements IButtonRemoveCar {
   public eventListener: string;
 
   private server = new WorkWithServer();
@@ -41,11 +42,13 @@ export default class ButtonRemoveCar extends Listener {
         this.updateForm();
       }
 
-      this.server.getWinnersServer(this.currentWinnerPage, 10, 'time', 'ASC').then((cars) => {
-        cars.cars.forEach((el) => {
-          if (el.id === id) this.server.deleteWinnerServer(id);
+      this.server
+        .getWinnersServer(1, this.util.getCountWinner() + 1, 'time', 'ASC')
+        .then((cars) => {
+          cars.cars.forEach((el) => {
+            if (el.id === id) this.server.deleteWinnerServer(id);
+          });
         });
-      });
 
       this.server.deleteCarServer(id).then((el) => {
         if (el) this.updateCars();
@@ -59,6 +62,11 @@ export default class ButtonRemoveCar extends Listener {
     const arrCarsId = Array.from(document.querySelectorAll('.cars__line')).map((el) =>
       el.getAttribute('data-id'),
     ) as string[];
+    const arrow = Array.from(document.querySelectorAll('.arrow')).find(
+      (element) => !element.classList.contains('display-none'),
+    ) as HTMLElement;
+    const sort = arrow!.parentElement?.getAttribute('data-sort') as string;
+    const order = arrow?.classList.contains('ASC') ? 'ASC' : 'DESC';
 
     this.server.getCarsServer(this.currentGaragePage).then((cars) => {
       garageView.updateText(cars.total, this.currentGaragePage);
@@ -70,10 +78,10 @@ export default class ButtonRemoveCar extends Listener {
       }
     });
 
-    this.updateWinner();
+    this.updateWinner(sort, order);
   }
 
-  public updateWinner(): void {
+  public updateWinner(sort: string, order: string): void {
     const winnerView = new WinnerView(mainParams);
     const table = document.querySelector('.winner__table') as HTMLElement;
     this.currentWinnerPage = this.util.getCurrentWinnerPage();
@@ -81,7 +89,7 @@ export default class ButtonRemoveCar extends Listener {
     Array.from(table.children).forEach((el) => {
       if (!el.getAttribute('data-head')) el.remove();
     });
-    this.server.getWinnersServer(this.currentWinnerPage, 10, 'time', 'ASC').then((cars) => {
+    this.server.getWinnersServer(this.currentWinnerPage, 10, sort, order).then((cars) => {
       winnerView.updateText(cars.total, this.currentWinnerPage);
       if (this.util.getCountWinner() > 10) {
         document.querySelector('.buttons__next-winner')?.classList.remove('disabled');

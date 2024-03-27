@@ -1,7 +1,8 @@
 import WorkWithServer from '../../../../model/workWithServer';
 import Listener from '../../listener';
+import { IEventElement } from '../../../../interfaces/interfaces';
 
-export default class ButtonRace extends Listener {
+export default class ButtonRace extends Listener implements IEventElement {
   public eventListener: string;
 
   private server = new WorkWithServer();

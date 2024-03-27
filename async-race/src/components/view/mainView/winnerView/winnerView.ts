@@ -1,5 +1,6 @@
+import GarageView from '../garageView/garageView';
 import ElementCreation from '../../util/element-creation';
-import { IGetDataCar, IGetDataWinner, IParams } from '../../../interfaces/interfaces';
+import { IGetDataCar, IGetDataWinner, IParams, IWinnerView } from '../../../interfaces/interfaces';
 import {
   buttonsNextWinnerParams,
   buttonsPrevWinnerParams,
@@ -13,16 +14,17 @@ import {
   carTimeParams,
   carWinsHeadParams,
   carWinsParams,
+  timeHeadArrowParams,
   winnerButtonsParams,
   winnerCarsParams,
   winnerCurrentParams,
   winnerTitleParams,
+  winsHeadArrowParams,
 } from '../../util/params';
 
 import './winnerView.scss';
-import GarageView from '../garageView/garageView';
 
-export default class WinnerView {
+export default class WinnerView implements IWinnerView {
   public winner: ElementCreation;
 
   private winnerTitle: ElementCreation = new ElementCreation(winnerTitleParams);
@@ -79,12 +81,19 @@ export default class WinnerView {
     const name = new ElementCreation(carNameHeadParams);
     const win = new ElementCreation(carWinsHeadParams);
     const time = new ElementCreation(carTimeHeadParams);
+    const winArrow = new ElementCreation(winsHeadArrowParams);
+    const timeArrow = new ElementCreation(timeHeadArrowParams);
+
+    win.getElement()!.append(winArrow.getElement()!);
+    time.getElement()!.append(timeArrow.getElement()!);
 
     number.getElement()!.setAttribute('data-head', 'true');
     car.getElement()!.setAttribute('data-head', 'true');
     name.getElement()!.setAttribute('data-head', 'true');
     win.getElement()!.setAttribute('data-head', 'true');
     time.getElement()!.setAttribute('data-head', 'true');
+    time.getElement()!.setAttribute('data-sort', 'time');
+    win.getElement()!.setAttribute('data-sort', 'wins');
 
     this.winnerCars
       .getElement()!

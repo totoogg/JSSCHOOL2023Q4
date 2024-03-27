@@ -1,6 +1,7 @@
 import Listener from '../listener';
+import { IEventElement } from '../../../interfaces/interfaces';
 
-export default class InputUpdateColor extends Listener {
+export default class InputUpdateColor extends Listener implements IEventElement {
   public eventListener: string;
 
   constructor(key: string) {

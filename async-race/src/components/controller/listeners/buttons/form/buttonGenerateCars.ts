@@ -1,8 +1,9 @@
 import Util from '../../../util';
 import Listener from '../../listener';
 import { carCompany, carModel } from '../../../../model/data/cars';
+import { IEventElement } from '../../../../interfaces/interfaces';
 
-export default class ButtonGenerateCars extends Listener {
+export default class ButtonGenerateCars extends Listener implements IEventElement {
   public eventListener: string;
 
   private util = new Util();

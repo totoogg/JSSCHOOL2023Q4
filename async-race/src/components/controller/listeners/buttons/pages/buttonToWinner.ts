@@ -1,13 +1,8 @@
-import WorkWithServer from '../../../../model/workWithServer';
-import Util from '../../../util';
 import Listener from '../../listener';
+import { IEventElement } from '../../../../interfaces/interfaces';
 
-export default class ButtonToWinner extends Listener {
+export default class ButtonToWinner extends Listener implements IEventElement {
   public eventListener: string;
-
-  private server = new WorkWithServer();
-
-  private util = new Util();
 
   constructor(key: string) {
     super();

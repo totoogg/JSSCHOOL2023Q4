@@ -3,8 +3,9 @@ import Listener from '../../listener';
 import WorkWithServer from '../../../../model/workWithServer';
 import WinnerView from '../../../../view/mainView/winnerView/winnerView';
 import { mainParams } from '../../../../view/util/params';
+import { ISwitchingWinner } from '../../../../interfaces/interfaces';
 
-export default class SwitchingWinner extends Listener {
+export default class SwitchingWinner extends Listener implements ISwitchingWinner {
   public eventListener: string;
 
   private util = new Util();
@@ -37,11 +38,16 @@ export default class SwitchingWinner extends Listener {
   private updateWinner(page: number): void {
     const winnerView = new WinnerView(mainParams);
     const table = document.querySelector('.winner__table') as HTMLElement;
+    const arrow = Array.from(document.querySelectorAll('.arrow')).find(
+      (element) => !element.classList.contains('display-none'),
+    ) as HTMLElement;
+    const sort = arrow!.parentElement?.getAttribute('data-sort') as string;
+    const order = arrow?.classList.contains('ASC') ? 'ASC' : 'DESC';
 
     Array.from(table.children).forEach((el) => {
       if (!el.getAttribute('data-head')) el.remove();
     });
-    this.server.getWinnersServer(page, 10, 'time', 'ASC').then((cars) => {
+    this.server.getWinnersServer(page, 10, sort, order).then((cars) => {
       winnerView.updateText(cars.total, page);
       if (this.util.getCountWinner() > 10) {
         document.querySelector('.buttons__next-winner')?.classList.remove('disabled');

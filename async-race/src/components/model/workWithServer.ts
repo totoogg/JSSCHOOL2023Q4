@@ -1,7 +1,7 @@
 import { IGetDataCar } from '../interfaces/IGetData';
-import { ICreateCar, ICreateWin, IGetDataWinner } from '../interfaces/interfaces';
+import { ICreateCar, ICreateWin, IGetDataWinner, IWorkWithServer } from '../interfaces/interfaces';
 
-export default class WorkWithServer {
+export default class WorkWithServer implements IWorkWithServer {
   public async getCarsServer(page: number): Promise<{ cars: IGetDataCar[]; total: number }> {
     const res = await fetch(`http://127.0.0.1:3000/garage?_limit=7&_page=${page}`, {
       method: 'GET',

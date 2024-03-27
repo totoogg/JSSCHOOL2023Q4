@@ -26,12 +26,105 @@
       cursor: pointer;
 
       &:hover {
-        background-color: antiquewhite;
+        background-color: rgb(25, 211, 165);
+      }
+    }
+
+    .table__wins-head {
+      position: relative;
+
+      .wins-head__arrow {
+        position: absolute;
+        top: 20px;
+        right: -7px;
+        width: 30px;
+        height: 2px;
+        background-color: #FFFFFF;
+        display: block;
+      
+        &::after {
+          content: '';
+          position: absolute;
+          width: 10px;
+          height: 2px;
+          top: -3px;
+          right: -2px;
+          background-color: #FFFFFF;
+          transform: rotate(45deg);
+        }
+
+        &::before {
+          content: '';
+          position: absolute;
+          width: 10px;
+          height: 2px;
+          top: 3px;
+          right: -2px;
+          background-color: #FFFFFF;
+          transform: rotate(-45deg);
+        }
+      }
+
+      .ASC {
+        transform: rotate(90deg);
+      }
+
+      .DESC {
+        transform: rotate(270deg);
+      }
+
+      .display-none {
+        display: none;
       }
     }
 
     .table__time-head {
       border-right: none;
+      position: relative;
+
+      .time-head__arrow {
+        position: absolute;
+        top: 20px;
+        right: -7px;
+        width: 30px;
+        height: 2px;
+        background-color: #FFFFFF;
+        display: block;
+      
+        &::after {
+          content: '';
+          position: absolute;
+          width: 10px;
+          height: 2px;
+          top: -3px;
+          right: -2px;
+          background-color: #FFFFFF;
+          transform: rotate(45deg);
+        }
+
+        &::before {
+          content: '';
+          position: absolute;
+          width: 10px;
+          height: 2px;
+          top: 3px;
+          right: -2px;
+          background-color: #FFFFFF;
+          transform: rotate(-45deg);
+        }
+      }
+
+      .ASC {
+        transform: rotate(90deg);
+      }
+
+      .DESC {
+        transform: rotate(270deg);
+      }
+
+      .display-none {
+        display: none;
+      }
     }
 
     & > * {

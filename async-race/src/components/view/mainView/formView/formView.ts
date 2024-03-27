@@ -1,5 +1,6 @@
 import ElementCreation from '../../util/element-creation';
 import { IParams } from '../../../interfaces/IParams';
+import { IHTMLElement } from '../../../interfaces/IHTMLElement';
 import {
   buttonsGeneratorParams,
   buttonsRaceParams,
@@ -17,7 +18,7 @@ import {
 
 import './formView.scss';
 
-export default class FormView {
+export default class FormView implements IHTMLElement {
   public form: ElementCreation;
 
   private createDiv: ElementCreation = new ElementCreation(formCreateParams);

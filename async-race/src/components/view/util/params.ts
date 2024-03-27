@@ -10,6 +10,8 @@ import ButtonUpdateCar from '../../controller/listeners/buttons/form/buttonUpdat
 import SwitchingGarage from '../../controller/listeners/buttons/garage/switchingGarage';
 import ButtonToGarage from '../../controller/listeners/buttons/pages/buttonToGarage';
 import ButtonToWinner from '../../controller/listeners/buttons/pages/buttonToWinner';
+import SortTime from '../../controller/listeners/buttons/winner/sortTime';
+import SortWins from '../../controller/listeners/buttons/winner/sortWins';
 import SwitchingWinner from '../../controller/listeners/buttons/winner/switchingWinner';
 import InputUpdateColor from '../../controller/listeners/input/inputUpdateColor';
 import { IParams } from '../../interfaces/IParams';
@@ -267,14 +269,24 @@ export const carWinsHeadParams: IParams = {
   tag: 'div',
   classNames: ['table__wins-head'],
   textContent: 'Wins',
-  action: null,
+  action: new SortWins('click'),
+};
+
+export const winsHeadArrowParams: IParams = {
+  tag: 'div',
+  classNames: ['wins-head__arrow', 'display-none', 'arrow'],
 };
 
 export const carTimeHeadParams: IParams = {
   tag: 'div',
   classNames: ['table__time-head'],
   textContent: 'Best time (seconds)',
-  action: null,
+  action: new SortTime('click'),
+};
+
+export const timeHeadArrowParams: IParams = {
+  tag: 'div',
+  classNames: ['time-head__arrow', 'ASC', 'arrow'],
 };
 
 export const carNumberParams: IParams = {

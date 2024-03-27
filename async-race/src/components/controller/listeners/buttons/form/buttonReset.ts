@@ -2,8 +2,9 @@ import WorkWithServer from '../../../../model/workWithServer';
 import Listener from '../../listener';
 import SwitchingGarage from '../garage/switchingGarage';
 import SwitchingWinner from '../winner/switchingWinner';
+import { IEventElement } from '../../../../interfaces/interfaces';
 
-export default class ButtonReset extends Listener {
+export default class ButtonReset extends Listener implements IEventElement {
   public eventListener: string;
 
   private server = new WorkWithServer();

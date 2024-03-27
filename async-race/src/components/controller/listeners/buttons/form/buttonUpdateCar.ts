@@ -1,8 +1,9 @@
 import WorkWithServer from '../../../../model/workWithServer';
 import Listener from '../../listener';
 import ButtonRemoveCar from '../controlCar/buttonRemoveCar';
+import { IEventElement } from '../../../../interfaces/interfaces';
 
-export default class ButtonUpdateCar extends Listener {
+export default class ButtonUpdateCar extends Listener implements IEventElement {
   public eventListener: string;
 
   private server = new WorkWithServer();
@@ -26,7 +27,14 @@ export default class ButtonUpdateCar extends Listener {
         const name = nameCar.value.trim();
         const color = colorCar.value;
         this.server.updateCarServer({ name, color }, id).then((car) => {
-          if (car) winner.updateWinner();
+          if (car) {
+            const arrow = Array.from(document.querySelectorAll('.arrow')).find(
+              (el) => !el.classList.contains('display-none'),
+            );
+            const sort = arrow!.parentElement?.getAttribute('data-sort');
+            const order = arrow?.classList.contains('ASC') ? 'ASC' : 'DESC';
+            winner.updateWinner(sort!, order);
+          }
         });
         this.updateGarage(name, color, id);
         target.removeAttribute('data-id');

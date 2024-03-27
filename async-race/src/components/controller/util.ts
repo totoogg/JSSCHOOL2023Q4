@@ -1,10 +1,10 @@
 import WorkWithServer from '../model/workWithServer';
 import GarageView from '../view/mainView/garageView/garageView';
-import { ICreateCar } from '../interfaces/interfaces';
-import { mainParams } from '../view/util/params';
 import ButtonRemoveCar from './listeners/buttons/controlCar/buttonRemoveCar';
+import { ICreateCar, IUtil } from '../interfaces/interfaces';
+import { mainParams } from '../view/util/params';
 
-export default class Util {
+export default class Util implements IUtil {
   private server = new WorkWithServer();
 
   public randomRange(min: number, max: number): number {
@@ -203,7 +203,13 @@ export default class Util {
       })
       .then((el) => {
         if (el) {
-          buttonRemove.updateWinner();
+          const arrow = Array.from(document.querySelectorAll('.arrow')).find(
+            (element) => !element.classList.contains('display-none'),
+          ) as HTMLElement;
+          const sort = arrow!.parentElement?.getAttribute('data-sort') as string;
+          const order = arrow?.classList.contains('ASC') ? 'ASC' : 'DESC';
+
+          buttonRemove.updateWinner(sort, order);
         }
       });
   }

@@ -3,10 +3,11 @@ import HeaderView from '../view/headerView/headerView';
 import GarageView from '../view/mainView/garageView/garageView';
 import MainView from '../view/mainView/mainView';
 import Util from './util';
-import { headerParams, mainParams } from '../view/util/params';
 import ButtonRemoveCar from './listeners/buttons/controlCar/buttonRemoveCar';
+import { headerParams, mainParams } from '../view/util/params';
+import { IApp } from '../interfaces/interfaces';
 
-export default class App {
+export default class App implements IApp {
   private header: HeaderView = new HeaderView(headerParams);
 
   private main: MainView = new MainView(mainParams);
@@ -15,7 +16,7 @@ export default class App {
 
   private server = new WorkWithServer();
 
-  public createPage() {
+  public createPage(): void {
     const garage = new GarageView(mainParams);
     const buttonRemove = new ButtonRemoveCar('click');
     this.server.getCarsServer(1).then((answer) => {
@@ -33,7 +34,7 @@ export default class App {
       this.main.main.getElement() as HTMLElement,
     );
 
-    buttonRemove.updateWinner();
+    buttonRemove.updateWinner('time', 'ASC');
 
     document.addEventListener('click', () => {
       const winnerPopUp = document.querySelector('.garage__winner') as HTMLElement;

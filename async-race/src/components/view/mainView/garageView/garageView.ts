@@ -1,5 +1,5 @@
 import ElementCreation from '../../util/element-creation';
-import { IGetDataCar, IParams } from '../../../interfaces/interfaces';
+import { IGarageView, IGetDataCar, IParams } from '../../../interfaces/interfaces';
 import {
   blockRemoveParams,
   blockSelectParams,
@@ -23,7 +23,7 @@ import {
 
 import './garageView.scss';
 
-export default class GarageView {
+export default class GarageView implements IGarageView {
   public garage: ElementCreation;
 
   private garageTitle: ElementCreation = new ElementCreation(garageTitleParams);
