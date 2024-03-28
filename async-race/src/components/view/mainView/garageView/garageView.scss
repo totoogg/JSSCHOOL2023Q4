@@ -52,16 +52,18 @@
       .block__select {
         width: 80px;
         margin-right: 10px;
+        flex-shrink: 0;
       }
 
       .block__remove {
         width: 80px;
         margin-right: 10px;
+        flex-shrink: 0;
       }
 
       .block__text {
         align-self: center;
-        width: 100px;
+        width: 100%;
         word-break:break-all;
       }
     }
@@ -90,6 +92,7 @@
     width: 50px;
     margin-right: 100px;
     align-self: flex-end;
+    flex-shrink: 0;
   }
 
 }
