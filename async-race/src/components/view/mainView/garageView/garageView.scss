@@ -1,0 +1,126 @@
+.garage__title {
+  margin-bottom: 20px;
+}
+
+.garage__current-page {
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+
+.button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #e1d4c9;
+  width: 100px;
+  height: 30px;
+  border-radius: 20px;
+  border: 1px solid #0c0c0e;
+  font-family: Inter;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+
+  &:hover {
+    color: #a18a76;
+    background: antiquewhite;
+    border: 1px solid antiquewhite;
+  }
+}
+
+.disabled {
+  cursor: default;
+  color: #a18a76;
+  background: antiquewhite;
+  border: 1px solid antiquewhite;
+}
+
+.cars__line {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 3px dashed black;
+  margin-bottom: 20px;
+
+  .line__control {
+    display: flex;
+    flex-direction: column;
+
+    .control__block {
+      display: flex;
+      justify-content: space-between;
+
+      .block__select {
+        width: 80px;
+        margin-right: 10px;
+        flex-shrink: 0;
+      }
+
+      .block__remove {
+        width: 80px;
+        margin-right: 10px;
+        flex-shrink: 0;
+      }
+
+      .block__text {
+        align-self: center;
+        width: 100%;
+        word-break:break-all;
+      }
+    }
+
+    .control__car {
+      display: flex;
+
+      .car__start {
+        width: 30px;
+        margin-right: 10px;
+      }
+
+      .car__stop {
+        width: 30px;
+        margin-right: 10px;
+      }
+
+      .car__image {
+        width: 80px;
+        align-self: flex-end;
+      }
+    }
+  }
+
+  .line__finish {
+    width: 50px;
+    margin-right: 100px;
+    align-self: flex-end;
+    flex-shrink: 0;
+  }
+
+}
+
+.buttons__prev-garage {
+  margin-right: 20px;
+}
+
+.garage__winner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 450px;
+  padding: 16px;
+  text-align: center;
+  z-index: 3;
+  font-size: 30px;
+  line-height: 35px;
+  word-break: break-all;
+  text-shadow:
+    1px 1px white,
+    2px 2px #777;
+  color: #333;
+  background-color: #fef9c3;
+  border-radius: 30px;
+}
+
+.display-none {
+  display: none;
+}
