@@ -48,11 +48,13 @@ export default class ButtonRemoveCar extends Listener implements IButtonRemoveCa
           cars.cars.forEach((el) => {
             if (el.id === id) this.server.deleteWinnerServer(id);
           });
+        })
+        .then(() => {
+          this.server.deleteCarServer(id).then(() => {
+            this.updateCars();
+          });
         });
 
-      this.server.deleteCarServer(id).then((el) => {
-        if (el) this.updateCars();
-      });
       current.remove();
     }
   }
