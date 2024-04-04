@@ -10,6 +10,11 @@
     "type-check": "eslint",
     "prepare": "cd .. && husky fun-chat/.husky"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
     "*.ts": "npx tsc --noEmit",
     "*.{ts}": "npx prettier --check"
