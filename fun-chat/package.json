@@ -8,7 +8,7 @@
     "build": "webpack --config ./webpack.config.js --env mode=prod",
     "lint": "eslint . --ext .ts",
     "type-check": "eslint",
-    "prepare": "cd .. && husky fun-chat/.husky"
+    "prepare": "husky"
   },
   "lint-staged": {
     "*.ts": "npx tsc --noEmit",
@@ -32,8 +32,7 @@
     "file-loader": "^6.2.0",
     "filemanager-webpack-plugin": "^8.0.0",
     "html-webpack-plugin": "^5.6.0",
-    "husky": "^6.0.0",
-    "husky-init": "^8.0.0",
+    "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "mini-css-extract-plugin": "^2.8.1",
     "postcss-loader": "^8.1.1",
