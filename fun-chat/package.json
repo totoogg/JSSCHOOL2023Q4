@@ -12,7 +12,7 @@
   },
   "lint-staged": {
     "*.ts": "npx tsc --noEmit",
-    "*.{ts}": "npx prettier --check"
+    "*.{ts}": ["npx prettier --check", "eslint . --ext .ts"]
   },
   "author": "",
   "license": "ISC",
