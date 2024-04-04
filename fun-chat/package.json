@@ -8,7 +8,7 @@
     "build": "webpack --config ./webpack.config.js --env mode=prod",
     "lint": "eslint . --ext .ts",
     "type-check": "eslint",
-    "prepare": "husky"
+    "prepare": "cd .. && husky fun-chat/.husky"
   },
   "lint-staged": {
     "*.ts": "npx tsc --noEmit",
