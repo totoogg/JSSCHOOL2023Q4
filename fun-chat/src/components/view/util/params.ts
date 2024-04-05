@@ -1,8 +1,13 @@
+import ButtonError from '../../controller/listeners/errorPopUp/buttonError';
+import ButtonInfo from '../../controller/listeners/startForm/buttonInfo';
+import KeyboardStartForm from '../../controller/listeners/startForm/keyboardStartForm';
+import SubmitStartForm from '../../controller/listeners/startForm/submitStartForm';
 import { IParams } from '../../interfaces/interfaces';
 
 export const formParams: IParams = {
   tag: 'form',
   classNames: ['form'],
+  action: new SubmitStartForm('submit'),
 };
 
 export const formTittleParams: IParams = {
@@ -25,12 +30,12 @@ export const nameLabelParams: IParams = {
 export const nameInputParams: IParams = {
   tag: 'input',
   classNames: ['name__input'],
-  action: null,
+  action: new KeyboardStartForm('keyup'),
 };
 
 export const formNameErrorParams: IParams = {
   tag: 'div',
-  classNames: ['form__error', 'error-name', 'visibility'],
+  classNames: ['form__error', 'error-name'],
   textContent: 'The name field requires at least 4 characters',
 };
 
@@ -48,13 +53,13 @@ export const passwordLabelParams: IParams = {
 export const passwordInputParams: IParams = {
   tag: 'input',
   classNames: ['password__input'],
-  action: null,
+  action: new KeyboardStartForm('keyup'),
 };
 
 export const formPasswordErrorParams: IParams = {
   tag: 'div',
-  classNames: ['form__error', 'error-password', 'visibility'],
-  textContent: 'Length must be more than 4 characters. Use uppercase and uppercase letters',
+  classNames: ['form__error', 'error-password'],
+  textContent: 'Length must be more than 4 characters. Use uppercase and lowercase letters',
 };
 
 export const formButtonsParams: IParams = {
@@ -64,14 +69,35 @@ export const formButtonsParams: IParams = {
 
 export const buttonLoginParams: IParams = {
   tag: 'button',
-  classNames: ['buttons__login', 'button'],
+  classNames: ['buttons__login', 'button', 'disable'],
   textContent: 'Login',
-  action: null,
 };
 
 export const buttonInfoParams: IParams = {
   tag: 'button',
   classNames: ['buttons__info', 'button'],
   textContent: 'Info',
-  action: null,
+  action: new ButtonInfo('click'),
+};
+
+export const wrapperParams: IParams = {
+  tag: 'div',
+  classNames: ['wrapper', 'display-none'],
+};
+
+export const errorParams: IParams = {
+  tag: 'div',
+  classNames: ['error', 'display-none'],
+};
+
+export const errorTextParams: IParams = {
+  tag: 'p',
+  classNames: ['error__text'],
+};
+
+export const errorButtonParams: IParams = {
+  tag: 'button',
+  classNames: ['error__button', 'button'],
+  textContent: 'Ok',
+  action: new ButtonError('click'),
 };

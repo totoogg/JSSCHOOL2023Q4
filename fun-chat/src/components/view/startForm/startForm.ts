@@ -20,29 +20,29 @@ import './startForm.scss';
 export default class StartForm implements IHTMLElement {
   public form: ElementCreation;
 
-  private title: ElementCreation = new ElementCreation(formTittleParams);
+  private title = new ElementCreation(formTittleParams);
 
-  private blockName: ElementCreation = new ElementCreation(formNameParams);
+  private blockName = new ElementCreation(formNameParams);
 
-  private labelName: ElementCreation = new ElementCreation(nameLabelParams);
+  private labelName = new ElementCreation(nameLabelParams);
 
-  private inputName: ElementCreation = new ElementCreation(nameInputParams);
+  private inputName = new ElementCreation(nameInputParams);
 
-  private errorName: ElementCreation = new ElementCreation(formNameErrorParams);
+  private errorName = new ElementCreation(formNameErrorParams);
 
-  private blockPassword: ElementCreation = new ElementCreation(formPasswordParams);
+  private blockPassword = new ElementCreation(formPasswordParams);
 
-  private labelPassword: ElementCreation = new ElementCreation(passwordLabelParams);
+  private labelPassword = new ElementCreation(passwordLabelParams);
 
-  private inputPassword: ElementCreation = new ElementCreation(passwordInputParams);
+  private inputPassword = new ElementCreation(passwordInputParams);
 
-  private errorPassword: ElementCreation = new ElementCreation(formPasswordErrorParams);
+  private errorPassword = new ElementCreation(formPasswordErrorParams);
 
-  private buttonsBlock: ElementCreation = new ElementCreation(formButtonsParams);
+  private buttonsBlock = new ElementCreation(formButtonsParams);
 
-  private buttonLogin: ElementCreation = new ElementCreation(buttonLoginParams);
+  private buttonLogin = new ElementCreation(buttonLoginParams);
 
-  private buttonInfo: ElementCreation = new ElementCreation(buttonInfoParams);
+  private buttonInfo = new ElementCreation(buttonInfoParams);
 
   constructor(param: IParams) {
     this.form = new ElementCreation(param);
@@ -78,6 +78,7 @@ export default class StartForm implements IHTMLElement {
 
     this.inputName.getElement()!.setAttribute('id', 'name');
     this.inputName.getElement()!.setAttribute('required', 'true');
+    this.inputName.getElement()!.setAttribute('placeholder', 'Enter your name');
 
     this.blockName.getElement()!.append(this.labelName.getElement()!, this.inputName.getElement()!);
   }
@@ -88,6 +89,7 @@ export default class StartForm implements IHTMLElement {
     this.inputPassword.getElement()!.setAttribute('id', 'password');
     this.inputPassword.getElement()!.setAttribute('required', 'true');
     this.inputPassword.getElement()!.setAttribute('type', 'password');
+    this.inputPassword.getElement()!.setAttribute('placeholder', 'Enter your password');
 
     this.blockPassword
       .getElement()!
