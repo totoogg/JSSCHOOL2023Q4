@@ -1,7 +1,7 @@
 import ManipulationFormStart from '../../../view/util/manipulationFormStart';
 import Listener from '../listener';
 
-export default class ButtonInfo extends Listener {
+export default class ButtonInfoBack extends Listener {
   public eventListener: string;
 
   private formStart = new ManipulationFormStart();
@@ -14,6 +14,6 @@ export default class ButtonInfo extends Listener {
   public callback(event: Event): void {
     event.preventDefault();
 
-    this.formStart.showInfo();
+    this.formStart.hiddenInfo();
   }
 }

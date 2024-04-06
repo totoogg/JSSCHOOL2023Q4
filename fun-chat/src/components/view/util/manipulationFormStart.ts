@@ -92,4 +92,30 @@ export default class ManipulationFormStart extends Unit {
     wrapper.classList.add('display-none');
     error.classList.add('display-none');
   }
+
+  public showInfo(): void {
+    const info = document.querySelector('.info') as HTMLDivElement;
+    const body = document.querySelector('body') as HTMLBodyElement;
+    Array.from(body.children).forEach((el) => {
+      if (!el.classList.contains('info') && !el.classList.contains('display-none')) {
+        el.setAttribute('data-display', 'none');
+        el.classList.add('display-none');
+      }
+    });
+
+    info.classList.remove('display-none');
+  }
+
+  public hiddenInfo(): void {
+    const info = document.querySelector('.info') as HTMLDivElement;
+    const body = document.querySelector('body') as HTMLBodyElement;
+    Array.from(body.children).forEach((el) => {
+      if (el.getAttribute('data-display') === 'none') {
+        el.classList.remove('display-none');
+        el.removeAttribute('data-display');
+      }
+    });
+
+    info.classList.add('display-none');
+  }
 }

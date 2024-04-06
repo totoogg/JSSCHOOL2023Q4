@@ -1,41 +1,29 @@
 import StartForm from '../view/startForm/startForm';
 import ElementCreation from '../view/util/element-creation';
+import ErrorBlock from '../view/errorBlock/errorBlock';
+import InfoBlock from '../view/infoBlock/infoBlock';
 import { IApp } from '../interfaces/interfaces';
-import {
-  errorButtonParams,
-  errorParams,
-  errorTextParams,
-  formParams,
-  wrapperParams,
-} from '../view/util/params';
+import { errorParams, formParams, infoParams, wrapperParams } from '../view/util/params';
 
 export default class App implements IApp {
   private start = new StartForm(formParams);
 
   private wrapper = new ElementCreation(wrapperParams);
 
-  private errorBlock = new ElementCreation(errorParams);
+  private errorBlock = new ErrorBlock(errorParams);
 
-  private errorText = new ElementCreation(errorTextParams);
-
-  private errorBottom = new ElementCreation(errorButtonParams);
+  private infoBlock = new InfoBlock(infoParams);
 
   public createPage(): void {
-    this.createErrorField();
     console.log(window.location.href);
     document.addEventListener('DOMContentLoaded', () => {
       console.log(1);
     });
     document.body.append(
-      this.errorBlock.getElement()!,
+      this.errorBlock.errorBlock.getElement()!,
       this.wrapper.getElement()!,
+      this.infoBlock.infoBlock.getElement()!,
       this.start.form.getElement()!,
     );
-  }
-
-  private createErrorField(): void {
-    this.errorBlock
-      .getElement()!
-      .append(this.errorText.getElement()!, this.errorBottom.getElement()!);
   }
 }

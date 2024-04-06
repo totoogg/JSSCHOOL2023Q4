@@ -1,4 +1,5 @@
 import ButtonError from '../../controller/listeners/errorPopUp/buttonError';
+import ButtonInfoBack from '../../controller/listeners/infoPopUp/buttonInfoBack';
 import ButtonInfo from '../../controller/listeners/startForm/buttonInfo';
 import KeyboardStartForm from '../../controller/listeners/startForm/keyboardStartForm';
 import SubmitStartForm from '../../controller/listeners/startForm/submitStartForm';
@@ -100,4 +101,35 @@ export const errorButtonParams: IParams = {
   classNames: ['error__button', 'button'],
   textContent: 'Ok',
   action: new ButtonError('click'),
+};
+
+export const infoParams: IParams = {
+  tag: 'div',
+  classNames: ['info', 'display-none'],
+};
+
+export const infoTitleParams: IParams = {
+  tag: 'h2',
+  classNames: ['info__title'],
+  textContent: 'Fun Chat',
+};
+
+export const infoTextParams: IParams = {
+  tag: 'p',
+  classNames: ['info__text'],
+  textContent:
+    'What could be better than chatting with friends using a chat app? On your own server.',
+};
+
+export const infoLinkParams: IParams = {
+  tag: 'a',
+  classNames: ['info__link'],
+  textContent: 'Author totoogg',
+};
+
+export const infoButtonParams: IParams = {
+  tag: 'button',
+  classNames: ['info__button', 'button'],
+  textContent: 'Come back',
+  action: new ButtonInfoBack('click'),
 };
