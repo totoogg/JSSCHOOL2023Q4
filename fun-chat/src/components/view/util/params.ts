@@ -1,5 +1,6 @@
 import ButtonError from '../../controller/listeners/errorPopUp/buttonError';
 import ButtonInfoBack from '../../controller/listeners/infoPopUp/buttonInfoBack';
+import ButtonLogout from '../../controller/listeners/mainPage/header/buttonLogout';
 import ButtonInfo from '../../controller/listeners/startForm/buttonInfo';
 import KeyboardStartForm from '../../controller/listeners/startForm/keyboardStartForm';
 import SubmitStartForm from '../../controller/listeners/startForm/submitStartForm';
@@ -124,7 +125,7 @@ export const infoTextParams: IParams = {
 export const infoLinkParams: IParams = {
   tag: 'a',
   classNames: ['info__link'],
-  textContent: 'Author totoogg',
+  textContent: 'Author Vladimir Goncharov',
 };
 
 export const infoButtonParams: IParams = {
@@ -132,4 +133,80 @@ export const infoButtonParams: IParams = {
   classNames: ['info__button', 'button'],
   textContent: 'Come back',
   action: new ButtonInfoBack('click'),
+};
+
+export const headerParams: IParams = {
+  tag: 'div',
+  classNames: ['main__header'],
+};
+
+export const headerUserParams: IParams = {
+  tag: 'p',
+  classNames: ['header__user'],
+  textContent: 'User: ',
+};
+
+export const headerNameParams: IParams = {
+  tag: 'h2',
+  classNames: ['header__name'],
+  textContent: 'Fun Chat',
+};
+
+export const headerButtonsParams: IParams = {
+  tag: 'div',
+  classNames: ['header__buttons'],
+};
+
+export const headerLogoutParams: IParams = {
+  tag: 'button',
+  classNames: ['buttons__logout', 'button'],
+  textContent: 'Logout',
+  action: new ButtonLogout('click'),
+};
+
+export const mainParams: IParams = {
+  tag: 'div',
+  classNames: ['main', 'display-none'],
+};
+
+export const mainInteractionParams: IParams = {
+  tag: 'div',
+  classNames: ['main__interaction'],
+};
+
+export const interactionUsersParams: IParams = {
+  tag: 'div',
+  classNames: ['interaction__users'],
+};
+
+export const interactionMessagesParams: IParams = {
+  tag: 'div',
+  classNames: ['interaction__messages'],
+};
+
+export const footerParams: IParams = {
+  tag: 'div',
+  classNames: ['main__footer'],
+};
+
+export const footerSchoolLinkParams: IParams = {
+  tag: 'a',
+  classNames: ['footer__school-link'],
+};
+
+export const footerSchoolLogoParams: IParams = {
+  tag: 'img',
+  classNames: ['school-link__logo'],
+};
+
+export const footerNameParams: IParams = {
+  tag: 'a',
+  classNames: ['footer__author'],
+  textContent: 'Vladimir Goncharov',
+};
+
+export const footerYearParams: IParams = {
+  tag: 'p',
+  classNames: ['footer__year'],
+  textContent: '2024',
 };

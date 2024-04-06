@@ -40,9 +40,8 @@ export default class SubmitStartForm extends Listener {
   }
 
   private userLogin(arg: IEventUnit): void {
-    console.log(arg);
-
-    // this.formStart.hiddenFormStart();
+    this.formStart.hiddenFormStart();
+    this.formStart.showMain(arg.id);
   }
 
   private userShowError(arg: IEventUnit): void {

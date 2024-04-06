@@ -3,7 +3,14 @@ import ElementCreation from '../view/util/element-creation';
 import ErrorBlock from '../view/errorBlock/errorBlock';
 import InfoBlock from '../view/infoBlock/infoBlock';
 import { IApp } from '../interfaces/interfaces';
-import { errorParams, formParams, infoParams, wrapperParams } from '../view/util/params';
+import {
+  errorParams,
+  formParams,
+  infoParams,
+  mainParams,
+  wrapperParams,
+} from '../view/util/params';
+import MainPage from '../view/mainPage/main';
 
 export default class App implements IApp {
   private start = new StartForm(formParams);
@@ -13,6 +20,8 @@ export default class App implements IApp {
   private errorBlock = new ErrorBlock(errorParams);
 
   private infoBlock = new InfoBlock(infoParams);
+
+  private main = new MainPage(mainParams);
 
   public createPage(): void {
     console.log(window.location.href);
@@ -24,6 +33,7 @@ export default class App implements IApp {
       this.wrapper.getElement()!,
       this.infoBlock.infoBlock.getElement()!,
       this.start.form.getElement()!,
+      this.main.mainPage.getElement()!,
     );
   }
 }

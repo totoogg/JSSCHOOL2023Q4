@@ -118,4 +118,58 @@ export default class ManipulationFormStart extends Unit {
 
     info.classList.add('display-none');
   }
+
+  public showMain(id: string | null): void {
+    const main = document.querySelector('.main') as HTMLDivElement;
+    const name = document.querySelector('.name__input') as HTMLInputElement;
+    const password = document.querySelector('.password__input') as HTMLInputElement;
+
+    const user = document.querySelector('.header__user') as HTMLParagraphElement;
+
+    user.textContent += name.value;
+
+    main.setAttribute('data-name', name.value);
+    main.setAttribute('data-password', password.value);
+    main.setAttribute('data-id', String(id));
+
+    main.classList.remove('display-none');
+  }
+
+  public startPage(): void {
+    const body = document.querySelector('body') as HTMLBodyElement;
+
+    Array.from(body.children).forEach((el) => {
+      if (el.classList.contains('form')) {
+        const name = el.querySelector('.name__input') as HTMLInputElement;
+        const password = el.querySelector('.password__input') as HTMLInputElement;
+        const button = el.querySelector('.buttons__login') as HTMLButtonElement;
+
+        name.value = '';
+        password.value = '';
+
+        el.classList.remove('display-none');
+        button.classList.add('disable');
+      } else {
+        el.classList.add('display-none');
+      }
+    });
+  }
+
+  public getUserData(): { name: string; password: string; id: string } {
+    const main = document.querySelector('.main') as HTMLDivElement;
+
+    return {
+      name: main.getAttribute('data-name') as string,
+      password: main.getAttribute('data-password') as string,
+      id: main.getAttribute('data-id') as string,
+    };
+  }
+
+  public removeAttUserData(): void {
+    const main = document.querySelector('.main') as HTMLDivElement;
+
+    main.removeAttribute('data-name');
+    main.removeAttribute('data-password');
+    main.removeAttribute('data-id');
+  }
 }

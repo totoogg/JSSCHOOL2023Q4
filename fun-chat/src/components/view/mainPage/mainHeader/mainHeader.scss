@@ -1,0 +1,20 @@
+.main__header {
+  background-color: #f5f3ff;
+  width: 100%;
+  max-width: 1440px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 10px;
+  border: 1px solid #000000;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  
+  .header__buttons {
+    width: 250px;
+    display: flex;
+    justify-content: space-around;
+  }
+}
