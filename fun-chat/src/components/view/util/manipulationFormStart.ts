@@ -1,4 +1,6 @@
 import Unit from '../../controller/listeners/unit';
+import MainUsers from '../mainPage/mainUsers/mainUsers';
+import { userAuthenticationParams } from './params';
 
 export default class ManipulationFormStart extends Unit {
   public getNameValue(): string {
@@ -119,18 +121,13 @@ export default class ManipulationFormStart extends Unit {
     info.classList.add('display-none');
   }
 
-  public showMain(id: string | null): void {
+  public showMain(): void {
     const main = document.querySelector('.main') as HTMLDivElement;
     const name = document.querySelector('.name__input') as HTMLInputElement;
-    const password = document.querySelector('.password__input') as HTMLInputElement;
 
     const user = document.querySelector('.header__user') as HTMLParagraphElement;
 
     user.textContent += name.value;
-
-    main.setAttribute('data-name', name.value);
-    main.setAttribute('data-password', password.value);
-    main.setAttribute('data-id', String(id));
 
     main.classList.remove('display-none');
   }
@@ -155,21 +152,16 @@ export default class ManipulationFormStart extends Unit {
     });
   }
 
-  public getUserData(): { name: string; password: string; id: string } {
-    const main = document.querySelector('.main') as HTMLDivElement;
+  public clearUsers(): void {
+    const content = document.querySelector('.users__content') as HTMLDivElement;
 
-    return {
-      name: main.getAttribute('data-name') as string,
-      password: main.getAttribute('data-password') as string,
-      id: main.getAttribute('data-id') as string,
-    };
+    content.innerHTML = '';
   }
 
-  public removeAttUserData(): void {
-    const main = document.querySelector('.main') as HTMLDivElement;
+  public addUser(info: { status: boolean; name: string; count: number }): void {
+    const content = document.querySelector('.users__content') as HTMLDivElement;
+    const user = new MainUsers(userAuthenticationParams, info);
 
-    main.removeAttribute('data-name');
-    main.removeAttribute('data-password');
-    main.removeAttribute('data-id');
+    content.append(user.mainUsers.getElement()!);
   }
 }

@@ -1,6 +1,7 @@
 import ButtonError from '../../controller/listeners/errorPopUp/buttonError';
 import ButtonInfoBack from '../../controller/listeners/infoPopUp/buttonInfoBack';
 import ButtonLogout from '../../controller/listeners/mainPage/header/buttonLogout';
+import InputSearch from '../../controller/listeners/mainPage/main/users/inputSearch';
 import ButtonInfo from '../../controller/listeners/startForm/buttonInfo';
 import KeyboardStartForm from '../../controller/listeners/startForm/keyboardStartForm';
 import SubmitStartForm from '../../controller/listeners/startForm/submitStartForm';
@@ -177,6 +178,38 @@ export const mainInteractionParams: IParams = {
 export const interactionUsersParams: IParams = {
   tag: 'div',
   classNames: ['interaction__users'],
+};
+
+export const usersSearchParams: IParams = {
+  tag: 'input',
+  classNames: ['users__search'],
+  action: new InputSearch('keyup'),
+};
+
+export const usersContentParams: IParams = {
+  tag: 'div',
+  classNames: ['users__content'],
+  action: null,
+};
+
+export const userAuthenticationParams: IParams = {
+  tag: 'div',
+  classNames: ['content__user'],
+};
+
+export const userAuthenticationStatusParams: IParams = {
+  tag: 'div',
+  classNames: ['user__status'],
+};
+
+export const userAuthenticationNameParams: IParams = {
+  tag: 'p',
+  classNames: ['user__name'],
+};
+
+export const userAuthenticationMessageParams: IParams = {
+  tag: 'div',
+  classNames: ['user__count-message'],
 };
 
 export const interactionMessagesParams: IParams = {

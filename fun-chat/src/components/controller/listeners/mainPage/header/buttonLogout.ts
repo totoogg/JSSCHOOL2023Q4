@@ -19,25 +19,29 @@ export default class ButtonLogout extends Listener {
   public callback(event: Event): void {
     event.preventDefault();
 
-    const userData = this.formStart.getUserData();
-    const user = {
-      id: userData.id,
-      type: 'USER_LOGOUT',
-      payload: {
-        user: {
-          login: userData.name,
-          password: userData.password,
-        },
-      },
-    };
+    const userLocation = sessionStorage.getItem('totoogg-JSFE2023Q4');
 
-    this.server.connectServer(JSON.stringify(user));
+    if (userLocation) {
+      const userData = JSON.parse(userLocation);
+      const user = {
+        id: userData.id,
+        type: 'USER_LOGOUT',
+        payload: {
+          user: {
+            login: userData.login,
+            password: userData.password,
+          },
+        },
+      };
+
+      this.server.connectServer(JSON.stringify(user));
+    }
   }
 
   private userLogout(arg: IEventUnit): void {
-    if (!arg.payload.user?.isLogined) {
+    if (!arg.payload!.user?.isLogined) {
       this.formStart.startPage();
-      this.formStart.removeAttUserData();
+      sessionStorage.removeItem('totoogg-JSFE2023Q4');
     }
   }
 }

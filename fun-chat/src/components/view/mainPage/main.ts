@@ -8,6 +8,8 @@ import {
   interactionMessagesParams,
   interactionUsersParams,
   mainInteractionParams,
+  usersContentParams,
+  usersSearchParams,
 } from '../util/params';
 
 import './main.scss';
@@ -20,6 +22,10 @@ export default class MainPage implements IHTMLElement {
   private main = new ElementCreation(mainInteractionParams);
 
   private users = new ElementCreation(interactionUsersParams);
+
+  private usersSearch = new ElementCreation(usersSearchParams);
+
+  private usersBlock = new ElementCreation(usersContentParams);
 
   private massages = new ElementCreation(interactionMessagesParams);
 
@@ -39,6 +45,7 @@ export default class MainPage implements IHTMLElement {
 
   public createElements(): void {
     this.createInteraction();
+    this.createUsersBlock();
 
     this.mainPage
       .getElement()!
@@ -51,5 +58,14 @@ export default class MainPage implements IHTMLElement {
 
   private createInteraction(): void {
     this.main.getElement()!.append(this.users.getElement()!, this.massages.getElement()!);
+  }
+
+  private createUsersBlock(): void {
+    const input = this.usersSearch.getElement()!;
+
+    input.setAttribute('type', 'text');
+    input.setAttribute('placeholder', 'Search...');
+
+    this.users.getElement()!.append(input, this.usersBlock.getElement()!);
   }
 }

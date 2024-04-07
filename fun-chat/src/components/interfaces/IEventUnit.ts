@@ -5,6 +5,7 @@ export interface IEventUnit {
   type: Types;
   payload: {
     user?: { login: string; password?: string; isLogined?: boolean };
+    users?: { login: string; isLogined?: boolean }[];
     error?: string;
-  };
+  } | null;
 }
