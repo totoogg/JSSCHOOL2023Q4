@@ -44,6 +44,6 @@ export default class MainHeader implements IHTMLElement {
   }
 
   private createButtons(): void {
-    this.buttons.getElement()!.append(this.logout.getElement()!, this.info.getElement()!);
+    this.buttons.getElement()!.append(this.info.getElement()!, this.logout.getElement()!);
   }
 }

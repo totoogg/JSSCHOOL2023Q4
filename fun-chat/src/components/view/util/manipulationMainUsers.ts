@@ -43,4 +43,48 @@ export default class ManipulationMainUsers extends Unit {
       }
     });
   }
+
+  public updateStatus(bool: boolean): void {
+    const userStatus = document.querySelector('.header__status-user') as HTMLParagraphElement;
+
+    if (bool) {
+      userStatus.classList.remove('offline');
+      userStatus.classList.add('online');
+      userStatus.textContent = 'Online';
+    } else {
+      userStatus.classList.add('offline');
+      userStatus.classList.remove('online');
+      userStatus.textContent = 'Offline';
+    }
+  }
+
+  public updateUser(user: string, bool: boolean): void {
+    const name = document.querySelector('.header__name-user') as HTMLParagraphElement;
+    const att = name.getAttribute('data-login');
+
+    if (att && att === user) {
+      this.updateStatus(bool);
+    }
+
+    if (name.textContent === user) {
+      this.updateStatus(bool);
+    }
+  }
+
+  public selectUser(status: boolean, name: string, nameFull: string | null): void {
+    const user = document.querySelector('.header__name-user') as HTMLParagraphElement;
+    const mainMessage = document.querySelector('.messages__main') as HTMLDivElement;
+    const massageInput = document.querySelector('.footer__message-input') as HTMLInputElement;
+
+    user.textContent = name;
+    massageInput.removeAttribute('disabled');
+    mainMessage.textContent = `Write your first message...`;
+    this.updateStatus(status);
+
+    if (nameFull) {
+      user.setAttribute('data-login', nameFull);
+    } else {
+      user.removeAttribute('data-login');
+    }
+  }
 }

@@ -1,6 +1,7 @@
 import ElementCreation from '../util/element-creation';
 import MainFooter from './mainFooter/mainFooter';
 import MainHeader from './mainHeader/mainHeader';
+import MainMessage from './mainMessage/mainMessage';
 import { IHTMLElement, IParams } from '../../interfaces/interfaces';
 import {
   footerParams,
@@ -27,7 +28,7 @@ export default class MainPage implements IHTMLElement {
 
   private usersBlock = new ElementCreation(usersContentParams);
 
-  private massages = new ElementCreation(interactionMessagesParams);
+  private massages = new MainMessage(interactionMessagesParams);
 
   private footer = new MainFooter(footerParams);
 
@@ -57,7 +58,9 @@ export default class MainPage implements IHTMLElement {
   }
 
   private createInteraction(): void {
-    this.main.getElement()!.append(this.users.getElement()!, this.massages.getElement()!);
+    this.main
+      .getElement()!
+      .append(this.users.getElement()!, this.massages.mainMessage.getElement()!);
   }
 
   private createUsersBlock(): void {

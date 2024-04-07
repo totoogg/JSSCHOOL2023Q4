@@ -29,6 +29,7 @@ export default class InputSearch extends Listener {
 
     this.formStart.addUser({ status: user!.isLogined!, name: user!.login, count: 0 });
     this.mainUsers.sortUsers();
+    this.mainUsers.updateUser(user!.login, true);
     this.checkUsers();
   }
 
@@ -37,6 +38,7 @@ export default class InputSearch extends Listener {
 
     this.mainUsers.changeUserStatusOffline(user!.login);
     this.mainUsers.sortUsers();
+    this.mainUsers.updateUser(user!.login, false);
     this.checkUsers();
   }
 

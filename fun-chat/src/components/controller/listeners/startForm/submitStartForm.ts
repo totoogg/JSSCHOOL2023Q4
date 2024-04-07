@@ -1,12 +1,15 @@
 import WebSocketConnect from '../../../model/webSocketConnect';
 import ManipulationFormStart from '../../../view/util/manipulationFormStart';
 import Listener from '../listener';
+import ManipulationMainUsers from '../../../view/util/manipulationMainUsers';
 import { IEventUnit } from '../../../interfaces/interfaces';
 
 export default class SubmitStartForm extends Listener {
   public eventListener: string;
 
   private formStart = new ManipulationFormStart();
+
+  private mainUsers = new ManipulationMainUsers();
 
   private server = new WebSocketConnect();
 
@@ -74,8 +77,6 @@ export default class SubmitStartForm extends Listener {
     const { users } = arg.payload!;
     const login = this.formStart.getNameValue();
 
-    this.formStart.clearUsers();
-
     if (users!.length > 0) {
       users?.forEach((el) => {
         if (el.login !== login) {
@@ -83,6 +84,7 @@ export default class SubmitStartForm extends Listener {
         }
       });
     }
+    this.mainUsers.sortUsers();
   }
 
   private usersInactive(arg: IEventUnit): void {
@@ -92,5 +94,6 @@ export default class SubmitStartForm extends Listener {
         this.formStart.addUser({ status: el.isLogined!, name: el.login, count: 0 });
       });
     }
+    this.mainUsers.sortUsers();
   }
 }

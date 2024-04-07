@@ -127,7 +127,11 @@ export default class ManipulationFormStart extends Unit {
 
     const user = document.querySelector('.header__user') as HTMLParagraphElement;
 
-    user.textContent += name.value;
+    if (name.value.length > 10) {
+      user.textContent += `${name.value.slice(0, 10)}...`;
+    } else {
+      user.textContent += name.value;
+    }
 
     main.classList.remove('display-none');
   }
@@ -152,16 +156,16 @@ export default class ManipulationFormStart extends Unit {
     });
   }
 
-  public clearUsers(): void {
-    const content = document.querySelector('.users__content') as HTMLDivElement;
-
-    content.innerHTML = '';
-  }
-
   public addUser(info: { status: boolean; name: string; count: number }): void {
     const content = document.querySelector('.users__content') as HTMLDivElement;
     const user = new MainUsers(userAuthenticationParams, info);
+    const userBlock = user.mainUsers.getElement()!;
 
-    content.append(user.mainUsers.getElement()!);
+    if (userBlock.children[1].textContent!.length > 10) {
+      userBlock.children[1].setAttribute('data-login', userBlock.children[1].textContent!);
+      userBlock.children[1].textContent! = `${userBlock.children[1].textContent!.slice(0, 10)}...`;
+    }
+
+    content.append(userBlock);
   }
 }

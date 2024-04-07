@@ -1,6 +1,8 @@
 import ButtonError from '../../controller/listeners/errorPopUp/buttonError';
 import ButtonInfoBack from '../../controller/listeners/infoPopUp/buttonInfoBack';
 import ButtonLogout from '../../controller/listeners/mainPage/header/buttonLogout';
+import SubmitMessage from '../../controller/listeners/mainPage/main/massage/submitMessage';
+import ClickUser from '../../controller/listeners/mainPage/main/users/clickUser';
 import InputSearch from '../../controller/listeners/mainPage/main/users/inputSearch';
 import ButtonInfo from '../../controller/listeners/startForm/buttonInfo';
 import KeyboardStartForm from '../../controller/listeners/startForm/keyboardStartForm';
@@ -189,7 +191,7 @@ export const usersSearchParams: IParams = {
 export const usersContentParams: IParams = {
   tag: 'div',
   classNames: ['users__content'],
-  action: null,
+  action: new ClickUser('click'),
 };
 
 export const userAuthenticationParams: IParams = {
@@ -215,6 +217,44 @@ export const userAuthenticationMessageParams: IParams = {
 export const interactionMessagesParams: IParams = {
   tag: 'div',
   classNames: ['interaction__messages'],
+};
+
+export const messagesHeaderParams: IParams = {
+  tag: 'div',
+  classNames: ['messages__header'],
+};
+
+export const messagesHeaderNameParams: IParams = {
+  tag: 'p',
+  classNames: ['header__name-user'],
+};
+
+export const headerStatusParams: IParams = {
+  tag: 'p',
+  classNames: ['header__status-user', 'offline'],
+};
+
+export const messagesMainParams: IParams = {
+  tag: 'div',
+  classNames: ['messages__main', 'start'],
+  textContent: 'Select a user to send a message...',
+};
+
+export const messagesFooterParams: IParams = {
+  tag: 'form',
+  classNames: ['messages__footer'],
+  action: new SubmitMessage('submit'),
+};
+
+export const footerInputParams: IParams = {
+  tag: 'input',
+  classNames: ['footer__message-input'],
+};
+
+export const footerButtonParams: IParams = {
+  tag: 'button',
+  classNames: ['footer__message-button', 'button'],
+  textContent: 'Send',
 };
 
 export const footerParams: IParams = {
