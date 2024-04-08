@@ -16,8 +16,6 @@ export default class WebSocketConnect extends UnitListeners {
   private serverMessage(event: MessageEvent): void {
     const data = JSON.parse(event.data);
     const type = data.type as Types;
-    console.log(type);
-    console.log(this.events);
 
     this.emit(type, data);
   }

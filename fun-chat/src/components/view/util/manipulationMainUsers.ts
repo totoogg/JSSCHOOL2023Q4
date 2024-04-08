@@ -78,7 +78,9 @@ export default class ManipulationMainUsers {
     const users = Array.from(document.querySelectorAll('.user__name')) as HTMLParagraphElement[];
 
     users.forEach((el) => {
-      if (el.textContent === user) {
+      const att = el.getAttribute('data-login');
+
+      if ((att && att === user) || el.textContent === user) {
         el.previousElementSibling!.classList.remove('online');
         el.previousElementSibling!.classList.add('offline');
       }
