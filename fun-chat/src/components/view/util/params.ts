@@ -253,7 +253,7 @@ export const footerInputParams: IParams = {
 
 export const footerButtonParams: IParams = {
   tag: 'button',
-  classNames: ['footer__message-button', 'button'],
+  classNames: ['footer__message-button', 'button', 'disable'],
   textContent: 'Send',
 };
 

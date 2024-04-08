@@ -1,7 +1,7 @@
-import { IEventUnit } from '../../../../interfaces/interfaces';
 import WebSocketConnect from '../../../../model/webSocketConnect';
 import ManipulationFormStart from '../../../../view/util/manipulationFormStart';
 import Listener from '../../listener';
+import { IEventUnit } from '../../../../interfaces/interfaces';
 
 export default class ButtonLogout extends Listener {
   public eventListener: string;

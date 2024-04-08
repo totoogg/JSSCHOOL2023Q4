@@ -1,6 +1,4 @@
-import Unit from '../../controller/listeners/unit';
-
-export default class ManipulationMainUsers extends Unit {
+export default class ManipulationMainUsers {
   public getSearchUser(): string {
     const input = document.querySelector('.users__search') as HTMLInputElement;
 
@@ -25,12 +23,49 @@ export default class ManipulationMainUsers extends Unit {
     });
   }
 
-  public sortUsers(): void {
-    const users = Array.from(
-      document.getElementsByClassName('content__user'),
-    ) as HTMLParagraphElement[];
+  public checkUser(login: string): boolean {
+    const users = Array.from(document.querySelectorAll('.content__user')) as HTMLDivElement[];
+    let result = false;
 
-    users.sort((a) => (a.children[0].classList.contains('offline') ? 1 : -1));
+    users.forEach((el) => {
+      const name = el.children[1];
+      const att = name.getAttribute('data-login');
+      if ((att && att === login) || name.textContent === login) {
+        result = true;
+      }
+    });
+
+    return result;
+  }
+
+  public updateStatusUser(login: string): void {
+    const users = Array.from(document.querySelectorAll('.content__user')) as HTMLDivElement[];
+
+    users.forEach((el) => {
+      const name = el.children[1];
+      const att = name.getAttribute('data-login');
+      if ((att && att === login) || name.textContent === login) {
+        el.children[0].classList.add('online');
+        el.children[0].classList.remove('offline');
+      }
+    });
+  }
+
+  public sortUsers(): void {
+    const block = document.querySelector('.users__content') as HTMLDivElement;
+    const users = Array.from(document.querySelectorAll('.content__user')) as HTMLDivElement[];
+
+    users.forEach((el) => {
+      const clone = el.cloneNode(true);
+
+      if (el.children[0].classList.contains('online')) {
+        block.prepend(clone);
+      } else {
+        block.append(clone);
+      }
+
+      el.remove();
+    });
   }
 
   public changeUserStatusOffline(user: string): void {
@@ -38,8 +73,8 @@ export default class ManipulationMainUsers extends Unit {
 
     users.forEach((el) => {
       if (el.textContent === user) {
-        el.classList.add('online');
-        el.classList.remove('offline');
+        el.previousElementSibling!.classList.remove('online');
+        el.previousElementSibling!.classList.add('offline');
       }
     });
   }
@@ -58,15 +93,11 @@ export default class ManipulationMainUsers extends Unit {
     }
   }
 
-  public updateUser(user: string, bool: boolean): void {
+  public updateUserMessage(user: string, bool: boolean): void {
     const name = document.querySelector('.header__name-user') as HTMLParagraphElement;
     const att = name.getAttribute('data-login');
 
-    if (att && att === user) {
-      this.updateStatus(bool);
-    }
-
-    if (name.textContent === user) {
+    if ((att && att === user) || name.textContent === user) {
       this.updateStatus(bool);
     }
   }
@@ -75,9 +106,11 @@ export default class ManipulationMainUsers extends Unit {
     const user = document.querySelector('.header__name-user') as HTMLParagraphElement;
     const mainMessage = document.querySelector('.messages__main') as HTMLDivElement;
     const massageInput = document.querySelector('.footer__message-input') as HTMLInputElement;
+    const massageButton = document.querySelector('.footer__message-button') as HTMLButtonElement;
 
     user.textContent = name;
     massageInput.removeAttribute('disabled');
+    massageButton.classList.remove('disable');
     mainMessage.textContent = `Write your first message...`;
     this.updateStatus(status);
 

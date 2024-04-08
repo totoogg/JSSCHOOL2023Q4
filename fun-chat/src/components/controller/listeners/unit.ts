@@ -1,18 +1,13 @@
-import { IEventUnit, IEvents, Types } from '../../interfaces/interfaces';
+import ManipulationMainUsers from '../../view/util/manipulationMainUsers';
 
 export default class Unit {
-  private events: IEvents = {};
+  private mainUsers = new ManipulationMainUsers();
 
-  on(type: Types, listener: (arg: IEventUnit) => void): void {
-    this.events[type] = (this.events[type] || []) as ((arg: IEventUnit) => void)[] | [];
-    if (this.events[type]) {
-      this.events[type]!.push(listener);
-    }
-  }
+  public checkUsers(): void {
+    const search = this.mainUsers.getSearchUser();
+    const users = this.mainUsers.getUsers();
+    const needUsers = users.filter((el) => el?.includes(search));
 
-  emit(type: Types, arg: IEventUnit) {
-    if (this.events[type]) {
-      this.events[type]!.forEach((el) => el(arg));
-    }
+    this.mainUsers.showUsers(needUsers);
   }
 }

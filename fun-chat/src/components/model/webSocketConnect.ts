@@ -1,7 +1,7 @@
-import Unit from '../controller/listeners/unit';
+import UnitListeners from '../controller/listeners/unitListeners';
 import { Types } from '../interfaces/interfaces';
 
-export default class WebSocketConnect extends Unit {
+export default class WebSocketConnect extends UnitListeners {
   private socket = new WebSocket('ws://127.0.0.1:4000');
 
   constructor() {
@@ -16,6 +16,8 @@ export default class WebSocketConnect extends Unit {
   private serverMessage(event: MessageEvent): void {
     const data = JSON.parse(event.data);
     const type = data.type as Types;
+    /*     console.log(type);
+    console.log(this.events); */
 
     this.emit(type, data);
   }

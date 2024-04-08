@@ -2,6 +2,7 @@ import StartForm from '../view/startForm/startForm';
 import ElementCreation from '../view/util/element-creation';
 import ErrorBlock from '../view/errorBlock/errorBlock';
 import InfoBlock from '../view/infoBlock/infoBlock';
+import MainPage from '../view/mainPage/main';
 import { IApp } from '../interfaces/interfaces';
 import {
   errorParams,
@@ -10,7 +11,6 @@ import {
   mainParams,
   wrapperParams,
 } from '../view/util/params';
-import MainPage from '../view/mainPage/main';
 
 export default class App implements IApp {
   private start = new StartForm(formParams);

@@ -2,6 +2,7 @@ import WebSocketConnect from '../../../model/webSocketConnect';
 import ManipulationFormStart from '../../../view/util/manipulationFormStart';
 import Listener from '../listener';
 import ManipulationMainUsers from '../../../view/util/manipulationMainUsers';
+import Unit from '../unit';
 import { IEventUnit } from '../../../interfaces/interfaces';
 
 export default class SubmitStartForm extends Listener {
@@ -12,6 +13,8 @@ export default class SubmitStartForm extends Listener {
   private mainUsers = new ManipulationMainUsers();
 
   private server = new WebSocketConnect();
+
+  private unit = new Unit();
 
   constructor(key: string) {
     super();
@@ -54,6 +57,8 @@ export default class SubmitStartForm extends Listener {
     this.server.on('ERROR', this.userShowError.bind(this));
     this.server.on('USER_ACTIVE', this.usersActive.bind(this));
     this.server.on('USER_INACTIVE', this.usersInactive.bind(this));
+    this.server.on('USER_EXTERNAL_LOGIN', this.userExternalLogin.bind(this));
+    this.server.on('USER_EXTERNAL_LOGOUT', this.userExternalLogout.bind(this));
   }
 
   private userLogin(arg: IEventUnit): void {
@@ -95,5 +100,28 @@ export default class SubmitStartForm extends Listener {
       });
     }
     this.mainUsers.sortUsers();
+  }
+
+  private userExternalLogin(arg: IEventUnit): void {
+    const { user } = arg.payload!;
+
+    if (!this.mainUsers.checkUser(user!.login)) {
+      this.formStart.addUser({ status: user!.isLogined!, name: user!.login, count: 0 });
+    } else {
+      this.mainUsers.updateStatusUser(user!.login);
+    }
+
+    this.mainUsers.sortUsers();
+    this.mainUsers.updateUserMessage(user!.login, true);
+    this.unit.checkUsers();
+  }
+
+  private userExternalLogout(arg: IEventUnit): void {
+    const { user } = arg.payload!;
+
+    this.mainUsers.changeUserStatusOffline(user!.login);
+    this.mainUsers.sortUsers();
+    this.mainUsers.updateUserMessage(user!.login, false);
+    this.unit.checkUsers();
   }
 }

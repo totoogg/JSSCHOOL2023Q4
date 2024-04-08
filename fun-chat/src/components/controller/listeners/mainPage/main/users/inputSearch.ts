@@ -2,7 +2,7 @@ import WebSocketConnect from '../../../../../model/webSocketConnect';
 import ManipulationFormStart from '../../../../../view/util/manipulationFormStart';
 import ManipulationMainUsers from '../../../../../view/util/manipulationMainUsers';
 import Listener from '../../../listener';
-import { IEventUnit } from '../../../../../interfaces/interfaces';
+import Unit from '../../../unit';
 
 export default class InputSearch extends Listener {
   public eventListener: string;
@@ -13,40 +13,14 @@ export default class InputSearch extends Listener {
 
   private server = new WebSocketConnect();
 
+  private unit = new Unit();
+
   constructor(key: string) {
     super();
     this.eventListener = key;
-    this.server.on('USER_EXTERNAL_LOGIN', this.userExternalLogin.bind(this));
-    this.server.on('USER_EXTERNAL_LOGOUT', this.userExternalLogout.bind(this));
   }
 
   public callback(): void {
-    this.checkUsers();
-  }
-
-  private userExternalLogin(arg: IEventUnit): void {
-    const { user } = arg.payload!;
-
-    this.formStart.addUser({ status: user!.isLogined!, name: user!.login, count: 0 });
-    this.mainUsers.sortUsers();
-    this.mainUsers.updateUser(user!.login, true);
-    this.checkUsers();
-  }
-
-  private userExternalLogout(arg: IEventUnit): void {
-    const { user } = arg.payload!;
-
-    this.mainUsers.changeUserStatusOffline(user!.login);
-    this.mainUsers.sortUsers();
-    this.mainUsers.updateUser(user!.login, false);
-    this.checkUsers();
-  }
-
-  private checkUsers(): void {
-    const search = this.mainUsers.getSearchUser();
-    const users = this.mainUsers.getUsers();
-    const needUsers = users.filter((el) => el?.includes(search));
-
-    this.mainUsers.showUsers(needUsers);
+    this.unit.checkUsers();
   }
 }

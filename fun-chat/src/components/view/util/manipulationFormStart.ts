@@ -1,8 +1,7 @@
-import Unit from '../../controller/listeners/unit';
 import MainUsers from '../mainPage/mainUsers/mainUsers';
 import { userAuthenticationParams } from './params';
 
-export default class ManipulationFormStart extends Unit {
+export default class ManipulationFormStart {
   public getNameValue(): string {
     const name = document.querySelector('.name__input') as HTMLInputElement;
 
