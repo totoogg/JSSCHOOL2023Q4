@@ -1,10 +1,10 @@
 import ManipulationMainUsers from '../../../../../view/util/manipulationMainUsers';
-import Listener from '../../../listener';
+import Work from '../../../workWithServer';
 
-export default class ClickUser extends Listener {
+export default class ClickUser extends Work {
   public eventListener: string;
 
-  private mainUsers = new ManipulationMainUsers();
+  private mainUsersThis = new ManipulationMainUsers();
 
   constructor(key: string) {
     super();
@@ -20,7 +20,7 @@ export default class ClickUser extends Listener {
       const name = parent.children[1].textContent;
       const nameFull = parent.children[1].getAttribute('data-login');
 
-      this.mainUsers.selectUser(status, name!, nameFull);
+      this.mainUsersThis.selectUser(status, name!, nameFull);
     }
   }
 }

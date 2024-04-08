@@ -1,10 +1,10 @@
 import ManipulationMainUsers from '../../../../../view/util/manipulationMainUsers';
-import Listener from '../../../listener';
+import Work from '../../../workWithServer';
 
-export default class SubmitMessage extends Listener {
+export default class SubmitMessage extends Work {
   public eventListener: string;
 
-  private mainUsers = new ManipulationMainUsers();
+  private mainUsersThis = new ManipulationMainUsers();
 
   constructor(key: string) {
     super();

@@ -1,68 +1,42 @@
-import WebSocketConnect from '../../../model/webSocketConnect';
-import ManipulationFormStart from '../../../view/util/manipulationFormStart';
-import ManipulationMainUsers from '../../../view/util/manipulationMainUsers';
-import Unit from '../unit';
-import { IEventUnit } from '../../../interfaces/interfaces';
-import Work from '../workWithServer';
+import { IEventUnit } from '../../interfaces/IEventUnit';
+import WebSocketConnect from '../../model/webSocketConnect';
+import ManipulationFormStart from '../../view/util/manipulationFormStart';
+import ManipulationMainUsers from '../../view/util/manipulationMainUsers';
+import Unit from './unit';
 
-export default class SubmitStartForm extends Work {
-  public eventListener: string;
+export default class WorkWithServer {
+  private server = new WebSocketConnect();
 
-  private formStartThis = new ManipulationFormStart();
+  private formStart = new ManipulationFormStart();
 
-  private mainUsersThis = new ManipulationMainUsers();
+  private mainUsers = new ManipulationMainUsers();
 
-  private serverThis = new WebSocketConnect();
+  private unit = new Unit();
 
-  private unitThis = new Unit();
-
-  constructor(key: string) {
-    super();
-    this.eventListener = key;
-    // this.addUnitEvent();
+  constructor() {
+    this.addUnitEvent();
   }
 
-  public callback(event: Event): void {
-    event.preventDefault();
-
-    if (!this.formStartThis.checkButton()) {
-      const usersInactive: IEventUnit = {
-        id: String(Date.now()),
-        type: 'USER_INACTIVE',
-        payload: null,
-      };
-      const usersActive: IEventUnit = {
-        id: String(Date.now()),
-        type: 'USER_ACTIVE',
-        payload: null,
-      };
-      const user: IEventUnit = {
-        id: String(Date.now()),
-        type: 'USER_LOGIN',
-        payload: {
-          user: {
-            login: this.formStartThis.getNameValue(),
-            password: this.formStartThis.getPasswordValue(),
-          },
-        },
-      };
-
-      this.sendServerData(user);
-      this.sendServerData(usersActive);
-      this.sendServerData(usersInactive);
-      /* this.server.connectServer(JSON.stringify(user));
-      this.server.connectServer(JSON.stringify(usersActive));
-      this.server.connectServer(JSON.stringify(usersInactive)); */
-    }
-  }
-
-  /* private addUnitEvent(): void {
+  private addUnitEvent(): void {
     this.server.on('USER_LOGIN', this.userLogin.bind(this));
     this.server.on('ERROR', this.userShowError.bind(this));
     this.server.on('USER_ACTIVE', this.usersActive.bind(this));
     this.server.on('USER_INACTIVE', this.usersInactive.bind(this));
     this.server.on('USER_EXTERNAL_LOGIN', this.userExternalLogin.bind(this));
     this.server.on('USER_EXTERNAL_LOGOUT', this.userExternalLogout.bind(this));
+
+    this.server.on('USER_LOGOUT', this.userLogout.bind(this));
+  }
+
+  public sendServerData(data: IEventUnit): void {
+    this.server.connectServer(JSON.stringify(data));
+  }
+
+  private userLogout(arg: IEventUnit): void {
+    if (!arg.payload!.user?.isLogined) {
+      this.formStart.startPage();
+      sessionStorage.removeItem('totoogg-JSFE2023Q4');
+    }
   }
 
   private userLogin(arg: IEventUnit): void {
@@ -127,5 +101,5 @@ export default class SubmitStartForm extends Work {
     this.mainUsers.sortUsers();
     this.mainUsers.updateUserMessage(user!.login, false);
     this.unit.checkUsers();
-  } */
+  }
 }

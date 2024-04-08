@@ -1,19 +1,15 @@
-import WebSocketConnect from '../../../../model/webSocketConnect';
-import ManipulationFormStart from '../../../../view/util/manipulationFormStart';
-import Listener from '../../listener';
+import ManipulationMainUsers from '../../../../view/util/manipulationMainUsers';
+import Work from '../../workWithServer';
 import { IEventUnit } from '../../../../interfaces/interfaces';
 
-export default class ButtonLogout extends Listener {
+export default class ButtonLogout extends Work {
   public eventListener: string;
 
-  private formStart = new ManipulationFormStart();
-
-  private server = new WebSocketConnect();
+  private mainUsersThis = new ManipulationMainUsers();
 
   constructor(key: string) {
     super();
     this.eventListener = key;
-    this.server.on('USER_LOGOUT', this.userLogout.bind(this));
   }
 
   public callback(event: Event): void {
@@ -23,7 +19,7 @@ export default class ButtonLogout extends Listener {
 
     if (userLocation) {
       const userData = JSON.parse(userLocation);
-      const user = {
+      const user: IEventUnit = {
         id: userData.id,
         type: 'USER_LOGOUT',
         payload: {
@@ -34,14 +30,8 @@ export default class ButtonLogout extends Listener {
         },
       };
 
-      this.server.connectServer(JSON.stringify(user));
-    }
-  }
-
-  private userLogout(arg: IEventUnit): void {
-    if (!arg.payload!.user?.isLogined) {
-      this.formStart.startPage();
-      sessionStorage.removeItem('totoogg-JSFE2023Q4');
+      this.sendServerData(user);
+      this.mainUsersThis.clearUsers();
     }
   }
 }

@@ -1,10 +1,10 @@
 import ManipulationFormStart from '../../../view/util/manipulationFormStart';
-import Listener from '../listener';
+import Work from '../workWithServer';
 
-export default class ButtonError extends Listener {
+export default class ButtonError extends Work {
   public eventListener: string;
 
-  private formStart = new ManipulationFormStart();
+  private formStartThis = new ManipulationFormStart();
 
   constructor(key: string) {
     super();
@@ -14,6 +14,6 @@ export default class ButtonError extends Listener {
   public callback(event: Event): void {
     event.preventDefault();
 
-    this.formStart.hiddenError();
+    this.formStartThis.hiddenError();
   }
 }

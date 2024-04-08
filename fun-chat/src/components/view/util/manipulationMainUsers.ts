@@ -1,4 +1,10 @@
 export default class ManipulationMainUsers {
+  public clearUsers(): void {
+    const content = document.querySelector('.users__content') as HTMLInputElement;
+
+    content.innerHTML = ``;
+  }
+
   public getSearchUser(): string {
     const input = document.querySelector('.users__search') as HTMLInputElement;
 

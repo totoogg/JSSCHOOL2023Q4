@@ -3,7 +3,6 @@ import ElementCreation from '../view/util/element-creation';
 import ErrorBlock from '../view/errorBlock/errorBlock';
 import InfoBlock from '../view/infoBlock/infoBlock';
 import MainPage from '../view/mainPage/main';
-import { IApp } from '../interfaces/interfaces';
 import {
   errorParams,
   formParams,
@@ -11,8 +10,9 @@ import {
   mainParams,
   wrapperParams,
 } from '../view/util/params';
+import Work from './listeners/workWithServer';
 
-export default class App implements IApp {
+export default class App {
   private start = new StartForm(formParams);
 
   private wrapper = new ElementCreation(wrapperParams);
@@ -22,6 +22,8 @@ export default class App implements IApp {
   private infoBlock = new InfoBlock(infoParams);
 
   private main = new MainPage(mainParams);
+
+  private server = new Work();
 
   public createPage(): void {
     console.log(window.location.href);

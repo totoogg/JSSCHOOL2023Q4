@@ -1,19 +1,10 @@
-import WebSocketConnect from '../../../../../model/webSocketConnect';
-import ManipulationFormStart from '../../../../../view/util/manipulationFormStart';
-import ManipulationMainUsers from '../../../../../view/util/manipulationMainUsers';
-import Listener from '../../../listener';
 import Unit from '../../../unit';
+import Work from '../../../workWithServer';
 
-export default class InputSearch extends Listener {
+export default class InputSearch extends Work {
   public eventListener: string;
 
-  private mainUsers = new ManipulationMainUsers();
-
-  private formStart = new ManipulationFormStart();
-
-  private server = new WebSocketConnect();
-
-  private unit = new Unit();
+  private unitThis = new Unit();
 
   constructor(key: string) {
     super();
@@ -21,6 +12,6 @@ export default class InputSearch extends Listener {
   }
 
   public callback(): void {
-    this.unit.checkUsers();
+    this.unitThis.checkUsers();
   }
 }

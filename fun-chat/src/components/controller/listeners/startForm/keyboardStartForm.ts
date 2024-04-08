@@ -1,10 +1,10 @@
 import ManipulationFormStart from '../../../view/util/manipulationFormStart';
-import Listener from '../listener';
+import Work from '../workWithServer';
 
-export default class KeyboardStartForm extends Listener {
+export default class KeyboardStartForm extends Work {
   public eventListener: string;
 
-  private formStart = new ManipulationFormStart();
+  private formStartThis = new ManipulationFormStart();
 
   constructor(key: string) {
     super();
@@ -12,8 +12,8 @@ export default class KeyboardStartForm extends Listener {
   }
 
   public callback(): void {
-    const valueName = this.formStart.getNameValue();
-    const valuePassword = this.formStart.getPasswordValue();
+    const valueName = this.formStartThis.getNameValue();
+    const valuePassword = this.formStartThis.getPasswordValue();
     let letterUpper: boolean = false;
     let letterLower: boolean = false;
 
@@ -25,25 +25,25 @@ export default class KeyboardStartForm extends Listener {
     });
 
     if (valueName.length <= 4) {
-      this.formStart.visibilityNameError(true);
+      this.formStartThis.visibilityNameError(true);
     } else {
-      this.formStart.visibilityNameError(false);
+      this.formStartThis.visibilityNameError(false);
     }
 
     if (valuePassword.length <= 4 || !letterLower || !letterUpper) {
-      this.formStart.visibilityPasswordError(true);
+      this.formStartThis.visibilityPasswordError(true);
     } else {
-      this.formStart.visibilityPasswordError(false);
+      this.formStartThis.visibilityPasswordError(false);
     }
 
     if (
-      !this.formStart.checkVisibilityError() &&
-      this.formStart.getNameValue() &&
-      this.formStart.getPasswordValue()
+      !this.formStartThis.checkVisibilityError() &&
+      this.formStartThis.getNameValue() &&
+      this.formStartThis.getPasswordValue()
     ) {
-      this.formStart.buttonLogin();
+      this.formStartThis.buttonLogin();
     } else {
-      this.formStart.buttonLogin('disable');
+      this.formStartThis.buttonLogin('disable');
     }
   }
 }

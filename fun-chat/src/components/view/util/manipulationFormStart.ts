@@ -127,9 +127,9 @@ export default class ManipulationFormStart {
     const user = document.querySelector('.header__user') as HTMLParagraphElement;
 
     if (name.value.length > 10) {
-      user.textContent += `${name.value.slice(0, 10)}...`;
+      user.textContent = `User: ${name.value.slice(0, 10)}...`;
     } else {
-      user.textContent += name.value;
+      user.textContent = `User: ${name.value}`;
     }
 
     main.classList.remove('display-none');
