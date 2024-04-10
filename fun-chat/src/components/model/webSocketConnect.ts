@@ -1,22 +1,18 @@
-import UnitListeners from '../controller/listeners/unitListeners';
+import WorkWithServer from '../controller/listeners/workWithServer';
 import { Types } from '../interfaces/interfaces';
 
-export default class WebSocketConnect extends UnitListeners {
-  private socket = new WebSocket('ws://127.0.0.1:4000');
+const socket = new WebSocket('ws://127.0.0.1:4000');
 
-  constructor() {
-    super();
-    this.socket.addEventListener('message', this.serverMessage.bind(this));
-  }
-
+export default class WebSocketConnect {
   public connectServer(data: string): void {
-    this.socket.send(data);
-  }
-
-  private serverMessage(event: MessageEvent): void {
-    const data = JSON.parse(event.data);
-    const type = data.type as Types;
-
-    this.emit(type, data);
+    socket.send(data);
   }
 }
+
+socket.addEventListener('message', (event) => {
+  const server = new WorkWithServer();
+  const data = JSON.parse(event.data);
+  const type = data.type as Types;
+
+  server.emit(type, data);
+});

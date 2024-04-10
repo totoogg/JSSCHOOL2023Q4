@@ -1,5 +1,6 @@
 import ManipulationMainUsers from '../../../../../view/util/manipulationMainUsers';
 import Listener from '../../../listener';
+import { IEventUnit } from '../../../../../interfaces/interfaces';
 
 export default class SubmitMessage extends Listener {
   public eventListener: string;
@@ -13,6 +14,25 @@ export default class SubmitMessage extends Listener {
 
   public callback(event: Event): void {
     event.preventDefault();
-    console.log(3);
+
+    if (!this.mainUsersThis.checkButtonSend()) {
+      const value = this.mainUsersThis.getMessageValue();
+
+      const message: IEventUnit = {
+        id: String(Date.now()),
+        type: 'MSG_SEND',
+        payload: {
+          message: {
+            to: this.mainUsersThis.getUserToSend(),
+            text: value,
+          },
+        },
+      };
+
+      console.log(message);
+
+      this.sendServerData(message);
+      this.mainUsersThis.clearInputMessage();
+    }
   }
 }

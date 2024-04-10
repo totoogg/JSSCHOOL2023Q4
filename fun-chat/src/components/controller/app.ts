@@ -10,7 +10,6 @@ import {
   mainParams,
   wrapperParams,
 } from '../view/util/params';
-import Work from './listeners/workWithServer';
 
 export default class App {
   private start = new StartForm(formParams);
@@ -22,8 +21,6 @@ export default class App {
   private infoBlock = new InfoBlock(infoParams);
 
   private main = new MainPage(mainParams);
-
-  private server = new Work();
 
   public createPage(): void {
     console.log(window.location.href);

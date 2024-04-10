@@ -3,8 +3,9 @@ import WebSocketConnect from '../../model/webSocketConnect';
 import ManipulationFormStart from '../../view/util/manipulationFormStart';
 import ManipulationMainUsers from '../../view/util/manipulationMainUsers';
 import Unit from './unit';
+import UnitListeners from './unitListeners';
 
-export default class WorkWithServer {
+export default class WorkWithServer extends UnitListeners {
   private server = new WebSocketConnect();
 
   private formStart = new ManipulationFormStart();
@@ -14,18 +15,19 @@ export default class WorkWithServer {
   private unit = new Unit();
 
   constructor() {
+    super();
     this.addUnitEvent();
   }
 
   private addUnitEvent(): void {
-    this.server.on('USER_LOGIN', this.userLogin.bind(this));
-    this.server.on('ERROR', this.userShowError.bind(this));
-    this.server.on('USER_ACTIVE', this.usersActive.bind(this));
-    this.server.on('USER_INACTIVE', this.usersInactive.bind(this));
-    this.server.on('USER_EXTERNAL_LOGIN', this.userExternalLogin.bind(this));
-    this.server.on('USER_EXTERNAL_LOGOUT', this.userExternalLogout.bind(this));
+    this.on('USER_LOGIN', this.userLogin.bind(this));
+    this.on('ERROR', this.userShowError.bind(this));
+    this.on('USER_ACTIVE', this.usersActive.bind(this));
+    this.on('USER_INACTIVE', this.usersInactive.bind(this));
+    this.on('USER_EXTERNAL_LOGIN', this.userExternalLogin.bind(this));
+    this.on('USER_EXTERNAL_LOGOUT', this.userExternalLogout.bind(this));
 
-    this.server.on('USER_LOGOUT', this.userLogout.bind(this));
+    this.on('USER_LOGOUT', this.userLogout.bind(this));
   }
 
   public sendServerData(data: IEventUnit): void {
@@ -47,6 +49,21 @@ export default class WorkWithServer {
     };
 
     sessionStorage.setItem('totoogg-JSFE2023Q4', JSON.stringify(user));
+
+    const usersInactive: IEventUnit = {
+      id: String(Date.now()),
+      type: 'USER_INACTIVE',
+      payload: null,
+    };
+
+    const usersActive: IEventUnit = {
+      id: String(Date.now()),
+      type: 'USER_ACTIVE',
+      payload: null,
+    };
+
+    this.sendServerData(usersActive);
+    this.sendServerData(usersInactive);
 
     this.formStart.hiddenFormStart();
     this.formStart.showMain();
@@ -72,11 +89,15 @@ export default class WorkWithServer {
 
   private usersInactive(arg: IEventUnit): void {
     const { users } = arg.payload!;
+
+    // console.log(users);
+
     if (users!.length > 0) {
       users?.forEach((el) => {
         this.formStart.addUser({ status: el.isLogined!, name: el.login, count: 0 });
       });
     }
+
     this.mainUsers.sortUsers();
   }
 

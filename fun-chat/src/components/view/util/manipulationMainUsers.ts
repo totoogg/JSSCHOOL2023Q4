@@ -158,4 +158,17 @@ export default class ManipulationMainUsers {
       button.classList.add('disable');
     }
   }
+
+  public checkButtonSend(): boolean {
+    const button = document.querySelector('.footer__message-button') as HTMLButtonElement;
+
+    return button.classList.contains('disable');
+  }
+
+  public getUserToSend(): string {
+    const user = document.querySelector('.header__name-user') as HTMLButtonElement;
+    const att = user.getAttribute('data-login');
+
+    return att || user.textContent!;
+  }
 }

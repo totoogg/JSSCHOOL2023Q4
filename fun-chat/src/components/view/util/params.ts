@@ -243,6 +243,46 @@ export const messagesMainParams: IParams = {
   textContent: 'Select a user to send a message...',
 };
 
+export const messagesParams: IParams = {
+  tag: 'div',
+  classNames: ['message'],
+};
+
+export const messageHeaderParams: IParams = {
+  tag: 'div',
+  classNames: ['message__header'],
+};
+
+export const messageHeaderSenderParams: IParams = {
+  tag: 'p',
+  classNames: ['header__message-sender'],
+};
+
+export const messageHeaderTimeParams: IParams = {
+  tag: 'p',
+  classNames: ['message__message-time'],
+};
+
+export const messageMainParams: IParams = {
+  tag: 'p',
+  classNames: ['message__main'],
+};
+
+export const messageFooterParams: IParams = {
+  tag: 'div',
+  classNames: ['messages__footer'],
+};
+
+export const messageFooterChangeParams: IParams = {
+  tag: 'p',
+  classNames: ['footer__message-change'],
+};
+
+export const messageFooterStatusParams: IParams = {
+  tag: 'p',
+  classNames: ['footer__message-status'],
+};
+
 export const messagesFooterParams: IParams = {
   tag: 'form',
   classNames: ['messages__footer'],
