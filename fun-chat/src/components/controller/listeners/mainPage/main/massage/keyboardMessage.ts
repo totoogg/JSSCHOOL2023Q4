@@ -1,7 +1,7 @@
 import ManipulationMainUsers from '../../../../../view/util/manipulationMainUsers';
 import Listener from '../../../listener';
 
-export default class SubmitMessage extends Listener {
+export default class KeyboardMessage extends Listener {
   public eventListener: string;
 
   private mainUsersThis = new ManipulationMainUsers();
@@ -11,8 +11,13 @@ export default class SubmitMessage extends Listener {
     this.eventListener = key;
   }
 
-  public callback(event: Event): void {
-    event.preventDefault();
-    console.log(3);
+  public callback(): void {
+    const value = this.mainUsersThis.getMessageValue();
+
+    if (value.trim().length > 0) {
+      this.mainUsersThis.buttonSend(true);
+    } else {
+      this.mainUsersThis.buttonSend(false);
+    }
   }
 }

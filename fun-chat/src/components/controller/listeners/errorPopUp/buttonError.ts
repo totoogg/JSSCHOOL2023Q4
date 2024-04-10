@@ -1,7 +1,7 @@
 import ManipulationFormStart from '../../../view/util/manipulationFormStart';
-import Work from '../workWithServer';
+import Listener from '../listener';
 
-export default class ButtonError extends Work {
+export default class ButtonError extends Listener {
   public eventListener: string;
 
   private formStartThis = new ManipulationFormStart();

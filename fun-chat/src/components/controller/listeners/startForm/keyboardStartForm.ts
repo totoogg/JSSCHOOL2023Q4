@@ -1,7 +1,7 @@
 import ManipulationFormStart from '../../../view/util/manipulationFormStart';
-import Work from '../workWithServer';
+import Listener from '../listener';
 
-export default class KeyboardStartForm extends Work {
+export default class KeyboardStartForm extends Listener {
   public eventListener: string;
 
   private formStartThis = new ManipulationFormStart();
@@ -12,25 +12,13 @@ export default class KeyboardStartForm extends Work {
   }
 
   public callback(): void {
-    const valueName = this.formStartThis.getNameValue();
-    const valuePassword = this.formStartThis.getPasswordValue();
-    let letterUpper: boolean = false;
-    let letterLower: boolean = false;
-
-    valuePassword.split('').forEach((el) => {
-      if (Number.isNaN(Number(el))) {
-        if (!letterUpper) letterUpper = el.toUpperCase() === el;
-        if (!letterLower) letterLower = el.toLowerCase() === el;
-      }
-    });
-
-    if (valueName.length <= 4) {
+    if (this.checkName()) {
       this.formStartThis.visibilityNameError(true);
     } else {
       this.formStartThis.visibilityNameError(false);
     }
 
-    if (valuePassword.length <= 4 || !letterLower || !letterUpper) {
+    if (this.checkPassword()) {
       this.formStartThis.visibilityPasswordError(true);
     } else {
       this.formStartThis.visibilityPasswordError(false);
@@ -45,5 +33,40 @@ export default class KeyboardStartForm extends Work {
     } else {
       this.formStartThis.buttonLogin('disable');
     }
+  }
+
+  private checkName(): boolean {
+    const alphabet = 'AEIOUYBCDFGHJKLMNPQRSTVWXZaeiouybcdfghjklmnpqrstvwxz1234567890';
+    const valueName = this.formStartThis.getNameValue();
+    const arrName = valueName.split('');
+    const arrNameFilter = arrName.filter((el) => !alphabet.includes(el));
+
+    if (arrName.length <= 4 || arrNameFilter.length > 0) {
+      return true;
+    }
+
+    return false;
+  }
+
+  private checkPassword(): boolean {
+    const alphabet = 'AEIOUYBCDFGHJKLMNPQRSTVWXZaeiouybcdfghjklmnpqrstvwxz1234567890';
+    const valuePassword = this.formStartThis.getPasswordValue();
+    let letterUpper: boolean = false;
+    let letterLower: boolean = false;
+    const arrPassword = valuePassword.split('');
+    const arrPasswordFilter = arrPassword.filter((el) => !alphabet.includes(el));
+
+    arrPassword.forEach((el) => {
+      if (Number.isNaN(Number(el))) {
+        if (!letterUpper) letterUpper = el.toUpperCase() === el;
+        if (!letterLower) letterLower = el.toLowerCase() === el;
+      }
+    });
+
+    if (arrPassword.length <= 4 || !letterLower || !letterUpper || arrPasswordFilter.length > 0) {
+      return true;
+    }
+
+    return false;
   }
 }

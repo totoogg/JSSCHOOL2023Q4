@@ -1,7 +1,7 @@
 import ManipulationMainUsers from '../../../../../view/util/manipulationMainUsers';
-import Work from '../../../workWithServer';
+import Listener from '../../../listener';
 
-export default class ClickUser extends Work {
+export default class ClickUser extends Listener {
   public eventListener: string;
 
   private mainUsersThis = new ManipulationMainUsers();
@@ -21,6 +21,7 @@ export default class ClickUser extends Work {
       const nameFull = parent.children[1].getAttribute('data-login');
 
       this.mainUsersThis.selectUser(status, name!, nameFull);
+      this.mainUsersThis.clearInputMessage();
     }
   }
 }

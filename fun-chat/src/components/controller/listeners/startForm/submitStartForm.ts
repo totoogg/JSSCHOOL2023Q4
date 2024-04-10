@@ -3,9 +3,9 @@ import ManipulationFormStart from '../../../view/util/manipulationFormStart';
 import ManipulationMainUsers from '../../../view/util/manipulationMainUsers';
 import Unit from '../unit';
 import { IEventUnit } from '../../../interfaces/interfaces';
-import Work from '../workWithServer';
+import Listener from '../listener';
 
-export default class SubmitStartForm extends Work {
+export default class SubmitStartForm extends Listener {
   public eventListener: string;
 
   private formStartThis = new ManipulationFormStart();

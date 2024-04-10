@@ -1,6 +1,7 @@
 import ButtonError from '../../controller/listeners/errorPopUp/buttonError';
 import ButtonInfoBack from '../../controller/listeners/infoPopUp/buttonInfoBack';
 import ButtonLogout from '../../controller/listeners/mainPage/header/buttonLogout';
+import KeyboardMessage from '../../controller/listeners/mainPage/main/massage/keyboardMessage';
 import SubmitMessage from '../../controller/listeners/mainPage/main/massage/submitMessage';
 import ClickUser from '../../controller/listeners/mainPage/main/users/clickUser';
 import InputSearch from '../../controller/listeners/mainPage/main/users/inputSearch';
@@ -41,7 +42,8 @@ export const nameInputParams: IParams = {
 export const formNameErrorParams: IParams = {
   tag: 'div',
   classNames: ['form__error', 'error-name'],
-  textContent: 'The name field requires at least 4 characters',
+  textContent:
+    'The name field requires at least 4 characters of the English alphabet or numbers, without gaps',
 };
 
 export const formPasswordParams: IParams = {
@@ -64,7 +66,8 @@ export const passwordInputParams: IParams = {
 export const formPasswordErrorParams: IParams = {
   tag: 'div',
   classNames: ['form__error', 'error-password'],
-  textContent: 'Length must be more than 4 characters. Use uppercase and lowercase letters',
+  textContent:
+    'Length must be more than 4 characters. Use uppercase and lowercase letters English alphabet or numbers, without gaps',
 };
 
 export const formButtonsParams: IParams = {
@@ -249,6 +252,7 @@ export const messagesFooterParams: IParams = {
 export const footerInputParams: IParams = {
   tag: 'input',
   classNames: ['footer__message-input'],
+  action: new KeyboardMessage('keyup'),
 };
 
 export const footerButtonParams: IParams = {

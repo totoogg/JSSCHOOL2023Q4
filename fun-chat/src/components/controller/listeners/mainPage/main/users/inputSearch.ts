@@ -1,7 +1,7 @@
+import Listener from '../../../listener';
 import Unit from '../../../unit';
-import Work from '../../../workWithServer';
 
-export default class InputSearch extends Work {
+export default class InputSearch extends Listener {
   public eventListener: string;
 
   private unitThis = new Unit();

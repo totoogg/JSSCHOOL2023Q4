@@ -1,8 +1,24 @@
 export default class ManipulationMainUsers {
+  public activeButtonSendMessage(bool: boolean): void {
+    const massageButton = document.querySelector('.footer__message-button') as HTMLButtonElement;
+
+    if (bool) {
+      massageButton.classList.remove('disable');
+    } else {
+      massageButton.classList.add('disable');
+    }
+  }
+
   public clearUsers(): void {
-    const content = document.querySelector('.users__content') as HTMLInputElement;
+    const content = document.querySelector('.users__content') as HTMLDivElement;
 
     content.innerHTML = ``;
+  }
+
+  public clearInputMessage(): void {
+    const content = document.querySelector('.footer__message-input') as HTMLInputElement;
+
+    content.value = ``;
   }
 
   public getSearchUser(): string {
@@ -114,11 +130,9 @@ export default class ManipulationMainUsers {
     const user = document.querySelector('.header__name-user') as HTMLParagraphElement;
     const mainMessage = document.querySelector('.messages__main') as HTMLDivElement;
     const massageInput = document.querySelector('.footer__message-input') as HTMLInputElement;
-    const massageButton = document.querySelector('.footer__message-button') as HTMLButtonElement;
 
     user.textContent = name;
     massageInput.removeAttribute('disabled');
-    massageButton.classList.remove('disable');
     mainMessage.textContent = `Write your first message...`;
     this.updateStatus(status);
 
@@ -126,6 +140,22 @@ export default class ManipulationMainUsers {
       user.setAttribute('data-login', nameFull);
     } else {
       user.removeAttribute('data-login');
+    }
+  }
+
+  public getMessageValue(): string {
+    const message = document.querySelector('.footer__message-input') as HTMLInputElement;
+
+    return message.value;
+  }
+
+  public buttonSend(but: boolean): void {
+    const button = document.querySelector('.footer__message-button') as HTMLButtonElement;
+
+    if (but) {
+      button.classList.remove('disable');
+    } else {
+      button.classList.add('disable');
     }
   }
 }
