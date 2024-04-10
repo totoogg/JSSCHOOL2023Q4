@@ -29,8 +29,6 @@ export default class SubmitMessage extends Listener {
         },
       };
 
-      console.log(message);
-
       this.sendServerData(message);
       this.mainUsersThis.clearInputMessage();
     }

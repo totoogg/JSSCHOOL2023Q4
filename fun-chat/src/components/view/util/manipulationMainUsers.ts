@@ -1,3 +1,6 @@
+import Message from '../mainPage/mainMessage/message/message';
+import { messagesParams } from './params';
+
 export default class ManipulationMainUsers {
   public activeButtonSendMessage(bool: boolean): void {
     const massageButton = document.querySelector('.footer__message-button') as HTMLButtonElement;
@@ -170,5 +173,35 @@ export default class ManipulationMainUsers {
     const att = user.getAttribute('data-login');
 
     return att || user.textContent!;
+  }
+
+  public getUserFromSend(): string {
+    const user = document.querySelector('.header__user') as HTMLButtonElement;
+    const att = user.getAttribute('data-login');
+
+    return att || user.textContent!;
+  }
+
+  public addMessage(who: string, whom: string, text: string, time: string, id: string): void {
+    const fieldMessage = document.querySelector('.messages__main') as HTMLDivElement;
+    const sender = who;
+    const newMessage = new Message(messagesParams, sender, text, time);
+    const element = newMessage.message.getElement()!;
+
+    if (who === 'You') {
+      element.classList.add('right');
+    }
+
+    element.setAttribute('data-id', id);
+
+    if (
+      fieldMessage.textContent === 'Write your first message...' ||
+      fieldMessage.textContent === 'Select a user to send a message...'
+    ) {
+      fieldMessage.textContent = '';
+      fieldMessage.classList.remove('start');
+    }
+
+    fieldMessage.prepend(element);
   }
 }

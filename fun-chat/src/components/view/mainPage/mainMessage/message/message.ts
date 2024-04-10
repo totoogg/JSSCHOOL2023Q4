@@ -12,7 +12,7 @@ import {
 
 import './message.scss';
 
-export default class MainMessage implements IHTMLElement {
+export default class Message implements IHTMLElement {
   public message: ElementCreation;
 
   private header = new ElementCreation(messageHeaderParams);
@@ -29,7 +29,16 @@ export default class MainMessage implements IHTMLElement {
 
   private status = new ElementCreation(messageFooterStatusParams);
 
-  constructor(param: IParams) {
+  private mailer: string;
+
+  private timeSend: string;
+
+  private text: string;
+
+  constructor(param: IParams, mailer: string, text: string, timeSend: string) {
+    this.mailer = mailer;
+    this.text = text;
+    this.timeSend = timeSend;
     this.message = new ElementCreation(param);
     this.createElements();
   }
@@ -45,16 +54,21 @@ export default class MainMessage implements IHTMLElement {
     this.createHeader();
     this.createFooter();
 
+    this.main.setText(this.text);
+
     this.message
       .getElement()!
       .append(this.header.getElement()!, this.main.getElement()!, this.footer.getElement()!);
   }
 
   private createHeader(): void {
-    this.message.getElement()!.append(this.sender.getElement()!, this.time.getElement()!);
+    this.sender.setText(this.mailer);
+    this.time.setText(this.timeSend);
+
+    this.header.getElement()!.append(this.sender.getElement()!, this.time.getElement()!);
   }
 
   private createFooter(): void {
-    this.message.getElement()!.append(this.change.getElement()!, this.status.getElement()!);
+    this.footer.getElement()!.append(this.change.getElement()!, this.status.getElement()!);
   }
 }

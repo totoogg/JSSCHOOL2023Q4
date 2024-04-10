@@ -57,11 +57,12 @@
     .interaction__messages {
       width: 65%;
       min-height: 70vh;
-      height: 100%;
+      height: 70vh;
       padding: 5px;
       background-color: #eef2ff;
       border-radius: 10px;
       border: 1px solid #000000;
+      overflow: hidden;
     }
   }
 }

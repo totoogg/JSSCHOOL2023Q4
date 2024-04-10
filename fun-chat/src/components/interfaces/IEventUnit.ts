@@ -7,6 +7,17 @@ export interface IEventUnit {
     user?: { login: string; password?: string; isLogined?: boolean };
     users?: { login: string; isLogined?: boolean }[];
     error?: string;
-    message?: { to: string; text: string };
+    message?: {
+      id?: string;
+      from?: string;
+      to: string;
+      text: string;
+      datetime?: number;
+      status?: {
+        isDelivered: boolean;
+        isReaded: boolean;
+        isEdited: boolean;
+      };
+    };
   } | null;
 }

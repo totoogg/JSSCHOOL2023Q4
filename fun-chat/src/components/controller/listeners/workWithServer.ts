@@ -20,14 +20,14 @@ export default class WorkWithServer extends UnitListeners {
   }
 
   private addUnitEvent(): void {
-    this.on('USER_LOGIN', this.userLogin.bind(this));
     this.on('ERROR', this.userShowError.bind(this));
+    this.on('USER_LOGIN', this.userLogin.bind(this));
+    this.on('USER_LOGOUT', this.userLogout.bind(this));
     this.on('USER_ACTIVE', this.usersActive.bind(this));
     this.on('USER_INACTIVE', this.usersInactive.bind(this));
     this.on('USER_EXTERNAL_LOGIN', this.userExternalLogin.bind(this));
     this.on('USER_EXTERNAL_LOGOUT', this.userExternalLogout.bind(this));
-
-    this.on('USER_LOGOUT', this.userLogout.bind(this));
+    this.on('MSG_SEND', this.messageSend.bind(this));
   }
 
   public sendServerData(data: IEventUnit): void {
@@ -90,8 +90,6 @@ export default class WorkWithServer extends UnitListeners {
   private usersInactive(arg: IEventUnit): void {
     const { users } = arg.payload!;
 
-    // console.log(users);
-
     if (users!.length > 0) {
       users?.forEach((el) => {
         this.formStart.addUser({ status: el.isLogined!, name: el.login, count: 0 });
@@ -122,5 +120,15 @@ export default class WorkWithServer extends UnitListeners {
     this.mainUsers.sortUsers();
     this.mainUsers.updateUserMessage(user!.login, false);
     this.unit.checkUsers();
+  }
+
+  private messageSend(arg: IEventUnit): void {
+    const message = arg.payload?.message;
+    const time = new Date(message!.datetime!);
+    const timeStr = `${String(time.getDate()).padStart(2, '0')}.${String(time.getMonth() + 1).padStart(2, '0')}.${time.getFullYear()}, ${String(time.getHours()).padStart(2, '0')}:${String(time.getMinutes()).padStart(2, '0')}:${String(time.getSeconds()).padStart(2, '0')}`;
+
+    console.log(message);
+
+    this.mainUsers.addMessage('You', message!.to!, message!.text, timeStr, String(message!.id!));
   }
 }

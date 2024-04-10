@@ -270,7 +270,7 @@ export const messageMainParams: IParams = {
 
 export const messageFooterParams: IParams = {
   tag: 'div',
-  classNames: ['messages__footer'],
+  classNames: ['message__footer'],
 };
 
 export const messageFooterChangeParams: IParams = {
@@ -281,6 +281,7 @@ export const messageFooterChangeParams: IParams = {
 export const messageFooterStatusParams: IParams = {
   tag: 'p',
   classNames: ['footer__message-status'],
+  textContent: 'delivered',
 };
 
 export const messagesFooterParams: IParams = {
