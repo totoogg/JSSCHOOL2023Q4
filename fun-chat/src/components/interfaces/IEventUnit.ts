@@ -19,5 +19,17 @@ export interface IEventUnit {
         isEdited: boolean;
       };
     };
+    messages?: {
+      id?: string;
+      from?: string;
+      to: string;
+      text: string;
+      datetime?: number;
+      status?: {
+        isDelivered: boolean;
+        isReaded: boolean;
+        isEdited: boolean;
+      };
+    }[];
   } | null;
 }

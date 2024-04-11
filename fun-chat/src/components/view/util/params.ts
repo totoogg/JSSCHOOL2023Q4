@@ -243,6 +243,27 @@ export const messagesMainParams: IParams = {
   textContent: 'Select a user to send a message...',
 };
 
+export const messageStripParams: IParams = {
+  tag: 'div',
+  classNames: ['strip'],
+};
+
+export const stripLeftParams: IParams = {
+  tag: 'div',
+  classNames: ['strip__left'],
+};
+
+export const stripCenterParams: IParams = {
+  tag: 'p',
+  classNames: ['strip__center'],
+  textContent: 'New message',
+};
+
+export const stripRightParams: IParams = {
+  tag: 'div',
+  classNames: ['strip__right'],
+};
+
 export const messagesParams: IParams = {
   tag: 'div',
   classNames: ['message'],
@@ -313,7 +334,7 @@ export const footerSchoolLinkParams: IParams = {
 };
 
 export const footerSchoolLogoParams: IParams = {
-  tag: 'img',
+  tag: 'div',
   classNames: ['school-link__logo'],
 };
 

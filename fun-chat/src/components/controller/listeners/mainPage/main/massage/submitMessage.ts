@@ -31,6 +31,7 @@ export default class SubmitMessage extends Listener {
 
       this.sendServerData(message);
       this.mainUsersThis.clearInputMessage();
+      this.mainUsersThis.buttonSend(false);
     }
   }
 }

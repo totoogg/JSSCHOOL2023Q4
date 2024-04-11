@@ -1,5 +1,6 @@
+import DividingStrip from '../mainPage/mainMessage/message/dividingStrip/dividingStrip';
 import Message from '../mainPage/mainMessage/message/message';
-import { messagesParams } from './params';
+import { messageStripParams, messagesParams } from './params';
 
 export default class ManipulationMainUsers {
   public activeButtonSendMessage(bool: boolean): void {
@@ -179,20 +180,88 @@ export default class ManipulationMainUsers {
     const user = document.querySelector('.header__user') as HTMLButtonElement;
     const att = user.getAttribute('data-login');
 
-    return att || user.textContent!;
+    if (att) {
+      return att;
+    }
+
+    return user.textContent!.slice(6);
   }
 
-  public addMessage(who: string, whom: string, text: string, time: string, id: string): void {
-    const fieldMessage = document.querySelector('.messages__main') as HTMLDivElement;
-    const sender = who;
-    const newMessage = new Message(messagesParams, sender, text, time);
-    const element = newMessage.message.getElement()!;
+  public updateCountMessages(name: string, countMessage?: number): void {
+    const users = Array.from(document.querySelectorAll('.content__user')) as HTMLDivElement[];
 
-    if (who === 'You') {
+    users.forEach((el) => {
+      const user = el.children[1];
+      const att = user.getAttribute('data-login');
+
+      if (att === name || user.textContent === name) {
+        const count = el.lastElementChild;
+
+        count!.textContent =
+          countMessage === undefined ? `${Number(count!.textContent) + 1}` : String(countMessage);
+        count?.classList.add('unread');
+      }
+    });
+  }
+
+  public addDividingStrip(): void {
+    const fieldMessage = document.querySelector('.messages__main') as HTMLDivElement;
+    const strip = new DividingStrip(messageStripParams);
+    const element = strip.strip.getElement()!;
+
+    this.clearFieldMessages();
+
+    fieldMessage.prepend(element);
+  }
+
+  public checkDividingStrip(): boolean {
+    const strip = document.querySelector('.strip') as HTMLDivElement;
+
+    return !!strip;
+  }
+
+  public updateMessageScrolling(): void {
+    const fieldMessage = document.querySelector('.messages__main') as HTMLDivElement;
+
+    if (this.checkDividingStrip()) {
+      const strip = document.querySelector('.strip') as HTMLDivElement;
+      const scroll = Number(strip.offsetTop) - Number(fieldMessage.getBoundingClientRect().y);
+
+      fieldMessage.scrollTop = scroll;
+    } else {
+      fieldMessage.scrollTop = 0;
+    }
+  }
+
+  public addMessage(name: string, text: string, time: string, id: string): void {
+    const fieldMessage = document.querySelector('.messages__main') as HTMLDivElement;
+    const newMessage = new Message(messagesParams, name, text, time);
+    const element = newMessage.message.getElement()!;
+    const sendName = element.querySelector('.header__message-sender') as HTMLParagraphElement;
+
+    if (sendName.textContent!.length > 10) {
+      sendName.setAttribute('data-login', name);
+      sendName.textContent = `${name.slice(0, 10)}...`;
+    } else {
+      sendName.removeAttribute('data-login');
+      sendName.textContent = name;
+    }
+
+    if (name === 'You') {
       element.classList.add('right');
+    } else {
+      element.classList.add('left');
     }
 
     element.setAttribute('data-id', id);
+
+    this.clearFieldMessages();
+
+    fieldMessage.prepend(element);
+  }
+
+  public clearFieldMessages(): void {
+    const fieldMessage = document.querySelector('.messages__main') as HTMLDivElement;
 
     if (
       fieldMessage.textContent === 'Write your first message...' ||
@@ -201,7 +270,27 @@ export default class ManipulationMainUsers {
       fieldMessage.textContent = '';
       fieldMessage.classList.remove('start');
     }
+  }
 
-    fieldMessage.prepend(element);
+  public clearFieldMessagesLogout(): void {
+    const fieldMessage = document.querySelector('.messages__main') as HTMLDivElement;
+
+    fieldMessage.innerHTML = '';
+    fieldMessage.textContent = 'Select a user to send a message...';
+    fieldMessage.classList.add('start');
+  }
+
+  public clearInteractionMessages(): void {
+    const headerName = document.querySelector('.header__name-user') as HTMLParagraphElement;
+    const headerStatus = document.querySelector('.header__status-user') as HTMLParagraphElement;
+    const input = document.querySelector('.footer__message-input') as HTMLInputElement;
+
+    headerName.innerHTML = '';
+    headerStatus.innerHTML = '';
+
+    this.clearFieldMessagesLogout();
+    this.activeButtonSendMessage(false);
+    this.clearInputMessage();
+    input.setAttribute('disabled', 'true');
   }
 }

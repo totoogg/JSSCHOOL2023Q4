@@ -32,6 +32,7 @@ export default class ButtonLogout extends Listener {
 
       this.sendServerData(user);
       this.mainUsersThis.clearUsers();
+      this.mainUsersThis.clearInteractionMessages();
     }
   }
 }

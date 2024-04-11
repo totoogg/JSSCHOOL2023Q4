@@ -50,8 +50,6 @@ export default class MainFooter implements IHTMLElement {
     const link = this.link.getElement()!;
     const image = this.image.getElement()!;
 
-    image.setAttribute('alt', 'logo');
-    image.setAttribute('src', 'https://rs.school/assets/rs-logo-uySws9h1.png');
     link.setAttribute('href', 'https://rs.school/');
 
     link.append(image);

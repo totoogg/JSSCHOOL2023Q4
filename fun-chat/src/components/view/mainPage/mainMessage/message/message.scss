@@ -1,12 +1,11 @@
 .message {
-  background-color: #c7d2fe;
   margin-bottom: 10px;
   border-radius: 10px;
   padding: 5px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 75%;
+  width: 65%;
 
   .message__header {
     display: flex;
@@ -40,8 +39,10 @@
 
 .right {
   align-self: flex-end;
+  background-color: #c7d2fe;
 }
 
 .left {
   align-self: flex-start;
+  background-color: #fecdd3;
 }

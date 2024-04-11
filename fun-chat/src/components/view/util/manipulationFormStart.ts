@@ -123,12 +123,13 @@ export default class ManipulationFormStart {
   public showMain(): void {
     const main = document.querySelector('.main') as HTMLDivElement;
     const name = document.querySelector('.name__input') as HTMLInputElement;
-
     const user = document.querySelector('.header__user') as HTMLParagraphElement;
 
     if (name.value.length > 10) {
+      user.setAttribute('data-login', name.value);
       user.textContent = `User: ${name.value.slice(0, 10)}...`;
     } else {
+      user.removeAttribute('data-login');
       user.textContent = `User: ${name.value}`;
     }
 
