@@ -2,6 +2,7 @@ import ButtonError from '../../controller/listeners/errorPopUp/buttonError';
 import ButtonInfoBack from '../../controller/listeners/infoPopUp/buttonInfoBack';
 import ButtonLogout from '../../controller/listeners/mainPage/header/buttonLogout';
 import KeyboardMessage from '../../controller/listeners/mainPage/main/massage/keyboardMessage';
+import ScrollMessage from '../../controller/listeners/mainPage/main/massage/scrollMessages';
 import SubmitMessage from '../../controller/listeners/mainPage/main/massage/submitMessage';
 import ClickUser from '../../controller/listeners/mainPage/main/users/clickUser';
 import InputSearch from '../../controller/listeners/mainPage/main/users/inputSearch';
@@ -9,6 +10,7 @@ import ButtonInfo from '../../controller/listeners/startForm/buttonInfo';
 import KeyboardStartForm from '../../controller/listeners/startForm/keyboardStartForm';
 import SubmitStartForm from '../../controller/listeners/startForm/submitStartForm';
 import { IParams } from '../../interfaces/interfaces';
+import MouseOverMessages from '../../controller/listeners/mainPage/main/massage/mouseOverMessages';
 
 export const formParams: IParams = {
   tag: 'form',
@@ -241,6 +243,11 @@ export const messagesMainParams: IParams = {
   tag: 'div',
   classNames: ['messages__main', 'start'],
   textContent: 'Select a user to send a message...',
+  action: [
+    new ScrollMessage('scroll'),
+    new MouseOverMessages('mouseenter'),
+    new MouseOverMessages('mouseleave'),
+  ],
 };
 
 export const messageStripParams: IParams = {
@@ -302,7 +309,7 @@ export const messageFooterChangeParams: IParams = {
 export const messageFooterStatusParams: IParams = {
   tag: 'p',
   classNames: ['footer__message-status'],
-  textContent: 'delivered',
+  textContent: 'sent',
 };
 
 export const messagesFooterParams: IParams = {

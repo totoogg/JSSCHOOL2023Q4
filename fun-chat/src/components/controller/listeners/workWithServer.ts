@@ -29,6 +29,7 @@ export default class WorkWithServer extends UnitListeners {
     this.on('USER_EXTERNAL_LOGOUT', this.userExternalLogout.bind(this));
     this.on('MSG_SEND', this.messageSend.bind(this));
     this.on('MSG_FROM_USER', this.messagesFromUser.bind(this));
+    this.on('MSG_DELIVER', this.messageDelivered.bind(this));
   }
 
   public sendServerData(data: IEventUnit): void {
@@ -124,6 +125,12 @@ export default class WorkWithServer extends UnitListeners {
     this.unit.checkUsers();
   }
 
+  private messageDelivered(arg: IEventUnit): void {
+    const { message } = arg.payload!;
+
+    this.mainUsers.updateSentMessage(message!.id!, message!.status!.isDelivered);
+  }
+
   private messageSend(arg: IEventUnit): void {
     const message = arg.payload?.message;
     const timeStr = this.getTime(message!.datetime!);
@@ -140,10 +147,10 @@ export default class WorkWithServer extends UnitListeners {
         }
 
         this.mainUsers.addMessage(message!.from!, message!.text, timeStr, String(message!.id!));
-        this.mainUsers.updateMessageScrolling();
       }
     }
 
+    this.mainUsers.updateMessageScrolling();
     this.mainUsers.updateCountMessages(message!.from!);
   }
 

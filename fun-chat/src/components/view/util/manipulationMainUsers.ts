@@ -131,11 +131,13 @@ export default class ManipulationMainUsers {
   }
 
   public selectUser(status: boolean, name: string, nameFull: string | null): void {
+    const fieldMessage = document.querySelector('.messages__main') as HTMLDivElement;
     const user = document.querySelector('.header__name-user') as HTMLParagraphElement;
     const mainMessage = document.querySelector('.messages__main') as HTMLDivElement;
     const massageInput = document.querySelector('.footer__message-input') as HTMLInputElement;
 
     user.textContent = name;
+    fieldMessage.classList.add('start');
     massageInput.removeAttribute('disabled');
     mainMessage.textContent = `Write your first message...`;
     this.updateStatus(status);
@@ -220,6 +222,30 @@ export default class ManipulationMainUsers {
     return !!strip;
   }
 
+  public clearStrip(): void {
+    const strip = document.querySelector('.strip') as HTMLDivElement;
+
+    if (this.checkDividingStrip()) {
+      strip.remove();
+    }
+  }
+
+  public toggleAttMessages(bool: boolean): void {
+    const fieldMessage = document.querySelector('.messages__main') as HTMLDivElement;
+
+    if (bool) {
+      fieldMessage.setAttribute('data-scroll', 'true');
+    } else {
+      fieldMessage.setAttribute('data-scroll', 'false');
+    }
+  }
+
+  public checkAttMessages(): string {
+    const fieldMessage = document.querySelector('.messages__main') as HTMLDivElement;
+
+    return fieldMessage.getAttribute('data-scroll') || 'false';
+  }
+
   public updateMessageScrolling(): void {
     const fieldMessage = document.querySelector('.messages__main') as HTMLDivElement;
 
@@ -288,9 +314,20 @@ export default class ManipulationMainUsers {
     headerName.innerHTML = '';
     headerStatus.innerHTML = '';
 
+    headerName.removeAttribute('data-login');
     this.clearFieldMessagesLogout();
     this.activeButtonSendMessage(false);
     this.clearInputMessage();
     input.setAttribute('disabled', 'true');
+  }
+
+  public updateSentMessage(id: string, delivered: boolean): void {
+    const messageArr = Array.from(document.querySelectorAll('.message')) as HTMLDivElement[];
+    const message = messageArr.find((el) => el.getAttribute('data-id') === id);
+    const status = message?.querySelector('.footer__message-status');
+
+    if (status && delivered) {
+      status.textContent = 'delivered';
+    }
   }
 }
