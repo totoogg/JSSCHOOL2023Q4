@@ -35,7 +35,20 @@ export default class Message implements IHTMLElement {
 
   private text: string;
 
-  constructor(param: IParams, mailer: string, text: string, timeSend: string) {
+  private statusMessage: { isDelivered: boolean; isReaded: boolean; isEdited: boolean };
+
+  constructor(
+    param: IParams,
+    mailer: string,
+    text: string,
+    timeSend: string,
+    status: {
+      isDelivered: boolean;
+      isReaded: boolean;
+      isEdited: boolean;
+    },
+  ) {
+    this.statusMessage = status;
     this.mailer = mailer;
     this.text = text;
     this.timeSend = timeSend;
@@ -69,6 +82,18 @@ export default class Message implements IHTMLElement {
   }
 
   private createFooter(): void {
+    if (this.statusMessage.isEdited) this.change.setText('changed');
+
+    if (this.mailer === 'You') {
+      if (this.statusMessage.isReaded) {
+        this.status.setText('readed');
+      } else if (this.statusMessage.isDelivered) {
+        this.status.setText('delivered');
+      } else {
+        this.status.setText('sent');
+      }
+    }
+
     this.footer.getElement()!.append(this.change.getElement()!, this.status.getElement()!);
   }
 }

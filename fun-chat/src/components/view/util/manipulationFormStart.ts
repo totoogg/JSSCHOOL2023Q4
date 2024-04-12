@@ -127,9 +127,11 @@ export default class ManipulationFormStart {
 
     if (name.value.length > 10) {
       user.setAttribute('data-login', name.value);
+      user.setAttribute('title', name.value);
       user.textContent = `User: ${name.value.slice(0, 10)}...`;
     } else {
       user.removeAttribute('data-login');
+      user.removeAttribute('title');
       user.textContent = `User: ${name.value}`;
     }
 
@@ -163,6 +165,7 @@ export default class ManipulationFormStart {
 
     if (userBlock.children[1].textContent!.length > 10) {
       userBlock.children[1].setAttribute('data-login', userBlock.children[1].textContent!);
+      userBlock.children[1].setAttribute('title', userBlock.children[1].textContent!);
       userBlock.children[1].textContent! = `${userBlock.children[1].textContent!.slice(0, 10)}...`;
     }
 

@@ -10,8 +10,8 @@ export interface IEventUnit {
     message?: {
       id?: string;
       from?: string;
-      to: string;
-      text: string;
+      to?: string;
+      text?: string;
       datetime?: number;
       status?: {
         isDelivered: boolean;

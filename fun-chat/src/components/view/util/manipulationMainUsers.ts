@@ -19,6 +19,21 @@ export default class ManipulationMainUsers {
     content.innerHTML = ``;
   }
 
+  public clearCountMessage(): void {
+    const userArr = Array.from(document.querySelectorAll('.content__user')) as HTMLDivElement[];
+    const user = this.getUserToSend();
+    const userSearch = userArr.find(
+      (el) =>
+        (el.children[1].getAttribute('data-login') &&
+          el.children[1].getAttribute('data-login') === user) ||
+        el.children[1].textContent === user,
+    );
+    const count = userSearch?.querySelector('.user__count-message') as HTMLDivElement;
+
+    count.innerHTML = ``;
+    count.classList.remove('unread');
+  }
+
   public clearInputMessage(): void {
     const content = document.querySelector('.footer__message-input') as HTMLInputElement;
 
@@ -34,14 +49,20 @@ export default class ManipulationMainUsers {
   public getUsers(): (string | null)[] {
     const users = Array.from(document.querySelectorAll('.user__name')) as HTMLParagraphElement[];
 
-    return users.map((el) => el.textContent);
+    return users.map((el) => {
+      const att = el.getAttribute('data-login');
+
+      return att || el.textContent;
+    });
   }
 
   public showUsers(arr: (string | null)[]): void {
     const users = Array.from(document.querySelectorAll('.user__name')) as HTMLParagraphElement[];
 
     users.forEach((el) => {
-      if (arr.includes(el.textContent)) {
+      const att = el.getAttribute('data-login');
+
+      if (arr.includes(att || el.textContent)) {
         el.parentElement!.classList.remove('display-none');
       } else {
         el.parentElement!.classList.add('display-none');
@@ -144,8 +165,10 @@ export default class ManipulationMainUsers {
 
     if (nameFull) {
       user.setAttribute('data-login', nameFull);
+      user.setAttribute('title', nameFull);
     } else {
       user.removeAttribute('data-login');
+      user.removeAttribute('title');
     }
   }
 
@@ -255,21 +278,34 @@ export default class ManipulationMainUsers {
 
       fieldMessage.scrollTop = scroll;
     } else {
-      fieldMessage.scrollTop = 0;
+      fieldMessage.scrollTop = -1;
     }
   }
 
-  public addMessage(name: string, text: string, time: string, id: string): void {
+  public addMessage(
+    name: string,
+    text: string,
+    time: string,
+    id: string,
+    status: {
+      isDelivered: boolean;
+      isReaded: boolean;
+      isEdited: boolean;
+    },
+  ): void {
     const fieldMessage = document.querySelector('.messages__main') as HTMLDivElement;
-    const newMessage = new Message(messagesParams, name, text, time);
+
+    const newMessage = new Message(messagesParams, name, text, time, status);
     const element = newMessage.message.getElement()!;
     const sendName = element.querySelector('.header__message-sender') as HTMLParagraphElement;
 
     if (sendName.textContent!.length > 10) {
       sendName.setAttribute('data-login', name);
+      sendName.setAttribute('title', name);
       sendName.textContent = `${name.slice(0, 10)}...`;
     } else {
       sendName.removeAttribute('data-login');
+      sendName.removeAttribute('title');
       sendName.textContent = name;
     }
 
@@ -315,6 +351,7 @@ export default class ManipulationMainUsers {
     headerStatus.innerHTML = '';
 
     headerName.removeAttribute('data-login');
+    headerName.removeAttribute('title');
     this.clearFieldMessagesLogout();
     this.activeButtonSendMessage(false);
     this.clearInputMessage();
@@ -326,8 +363,32 @@ export default class ManipulationMainUsers {
     const message = messageArr.find((el) => el.getAttribute('data-id') === id);
     const status = message?.querySelector('.footer__message-status');
 
-    if (status && delivered) {
+    if (status && delivered && message?.classList.contains('right')) {
       status.textContent = 'delivered';
     }
+  }
+
+  public updateReadedMessage(id: string, readed: boolean): void {
+    const messageArr = Array.from(document.querySelectorAll('.message')) as HTMLDivElement[];
+    const message = messageArr.find((el) => el.getAttribute('data-id') === id);
+    const status = message?.querySelector('.footer__message-status');
+
+    if (status && readed && message?.classList.contains('right')) {
+      status.textContent = 'readed';
+    }
+  }
+
+  public getIdMessagesDelivered(): (string | null)[] {
+    const fieldMessage = document.querySelector('.messages__main') as HTMLDivElement;
+    const index = Array.from(fieldMessage.children).findIndex(
+      (el) => el.children[1].textContent === 'New message',
+    );
+    const messageArr = Array.from(document.querySelectorAll('.message')) as HTMLDivElement[];
+    const messageDelivered = messageArr.filter(
+      (el) => el.children[2].children[1].textContent === '',
+    );
+    const arrSlice = messageDelivered.slice(0, index);
+
+    return arrSlice.map((el) => el.getAttribute('data-id'));
   }
 }

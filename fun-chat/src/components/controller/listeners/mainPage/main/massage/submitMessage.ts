@@ -32,6 +32,30 @@ export default class SubmitMessage extends Listener {
       this.sendServerData(message);
       this.mainUsersThis.clearInputMessage();
       this.mainUsersThis.buttonSend(false);
+      this.readedMessage();
+    }
+  }
+
+  private readedMessage(): void {
+    if (this.mainUsersThis.checkDividingStrip()) {
+      const arrIdMessages = this.mainUsersThis.getIdMessagesDelivered();
+
+      this.mainUsersThis.clearStrip();
+      this.mainUsersThis.clearCountMessage();
+
+      arrIdMessages.forEach((el) => {
+        const status: IEventUnit = {
+          id: String(Date.now()),
+          type: 'MSG_READ',
+          payload: {
+            message: {
+              id: el!,
+            },
+          },
+        };
+
+        this.sendServerData(status);
+      });
     }
   }
 }

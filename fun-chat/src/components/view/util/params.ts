@@ -244,7 +244,8 @@ export const messagesMainParams: IParams = {
   classNames: ['messages__main', 'start'],
   textContent: 'Select a user to send a message...',
   action: [
-    new ScrollMessage('scroll'),
+    new ScrollMessage('wheel'),
+    new ScrollMessage('click'),
     new MouseOverMessages('mouseenter'),
     new MouseOverMessages('mouseleave'),
   ],
@@ -309,7 +310,6 @@ export const messageFooterChangeParams: IParams = {
 export const messageFooterStatusParams: IParams = {
   tag: 'p',
   classNames: ['footer__message-status'],
-  textContent: 'sent',
 };
 
 export const messagesFooterParams: IParams = {

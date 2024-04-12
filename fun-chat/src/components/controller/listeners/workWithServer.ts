@@ -30,6 +30,7 @@ export default class WorkWithServer extends UnitListeners {
     this.on('MSG_SEND', this.messageSend.bind(this));
     this.on('MSG_FROM_USER', this.messagesFromUser.bind(this));
     this.on('MSG_DELIVER', this.messageDelivered.bind(this));
+    this.on('MSG_READ', this.messageReaded.bind(this));
   }
 
   public sendServerData(data: IEventUnit): void {
@@ -131,6 +132,12 @@ export default class WorkWithServer extends UnitListeners {
     this.mainUsers.updateSentMessage(message!.id!, message!.status!.isDelivered);
   }
 
+  private messageReaded(arg: IEventUnit): void {
+    const { message } = arg.payload!;
+
+    this.mainUsers.updateReadedMessage(message!.id!, message!.status!.isReaded);
+  }
+
   private messageSend(arg: IEventUnit): void {
     const message = arg.payload?.message;
     const timeStr = this.getTime(message!.datetime!);
@@ -139,14 +146,26 @@ export default class WorkWithServer extends UnitListeners {
 
     if (userTo) {
       if (message?.from === userFrom) {
-        this.mainUsers.addMessage('You', message!.text, timeStr, String(message!.id!));
+        this.mainUsers.addMessage(
+          'You',
+          message!.text!,
+          timeStr,
+          String(message!.id!),
+          message.status!,
+        );
       }
       if (message?.from === userTo) {
         if (!this.mainUsers.checkDividingStrip()) {
           this.mainUsers.addDividingStrip();
         }
 
-        this.mainUsers.addMessage(message!.from!, message!.text, timeStr, String(message!.id!));
+        this.mainUsers.addMessage(
+          message!.from!,
+          message!.text!,
+          timeStr,
+          String(message!.id!),
+          message.status!,
+        );
       }
     }
 
@@ -161,22 +180,23 @@ export default class WorkWithServer extends UnitListeners {
     const userFrom = messages?.find((el) => el.from !== user);
     const notReade = messages?.filter((el) => !el.status?.isReaded && el.from !== user).length;
 
-    if (userFrom) {
+    if (notReade) {
       this.mainUsers.updateCountMessages(userFrom!.from!, notReade);
     }
 
     if (userMessage && messages!.length > 0) {
       messages?.forEach((el) => {
+        const status = el.status!;
         const timeStr = this.getTime(el.datetime!);
 
         if (el.from === user) {
-          this.mainUsers.addMessage('You', el!.text, timeStr, String(el!.id!));
+          this.mainUsers.addMessage('You', el!.text, timeStr, String(el!.id!), status);
         } else {
           if (!el.status?.isReaded && !this.mainUsers.checkDividingStrip()) {
             this.mainUsers.addDividingStrip();
           }
 
-          this.mainUsers.addMessage(el.to, el!.text, timeStr, String(el!.id!));
+          this.mainUsers.addMessage(el.to, el!.text, timeStr, String(el!.id!), status);
         }
       });
 
