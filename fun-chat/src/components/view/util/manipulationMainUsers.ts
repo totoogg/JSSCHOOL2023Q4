@@ -391,4 +391,81 @@ export default class ManipulationMainUsers {
 
     return arrSlice.map((el) => el.getAttribute('data-id'));
   }
+
+  public overBlockActionMessage(x: number, y: number): void {
+    const field = document.querySelector('.interaction__messages') as HTMLElement;
+    const actionBlock = document.querySelector('.action') as HTMLElement;
+
+    if (actionBlock.classList.contains('display-none')) {
+      const coordLeft = field.getBoundingClientRect().left;
+      const coordTop = field.getBoundingClientRect().top;
+      const coordRight = field.getBoundingClientRect().right;
+      const coordBottom = field.getBoundingClientRect().bottom;
+      const height = 50;
+      const width = 100;
+
+      if (x < coordRight - width && y < coordBottom - height - 45) {
+        actionBlock.style.transform = `translate(${x - coordLeft}px, ${y - coordTop}px)`;
+      } else if (y > coordBottom - height - 45 && x > coordRight - width) {
+        actionBlock.style.transform = `translate(${x - coordLeft - width}px, ${y - coordTop - height}px)`;
+      } else if (y < coordBottom - height && x > coordRight - width) {
+        actionBlock.style.transform = `translate(${x - coordLeft - width}px, ${y - coordTop}px)`;
+      } else if (y > coordBottom - height - 45 && x < coordRight - width) {
+        actionBlock.style.transform = `translate(${x - coordLeft - width}px, ${y - coordTop - height}px)`;
+      }
+    }
+  }
+
+  public showActionMessage(bool: boolean): void {
+    const actionBlock = document.querySelector('.action') as HTMLElement;
+
+    if (bool) {
+      actionBlock.classList.remove('display-none');
+    } else {
+      actionBlock.classList.add('display-none');
+      this.selectMessage('s');
+    }
+  }
+
+  public writeIdActionMessage(id: string): void {
+    const actionBlock = document.querySelector('.action') as HTMLElement;
+
+    if (id) {
+      actionBlock.setAttribute('data-id', id);
+    } else {
+      actionBlock.removeAttribute('data-id');
+    }
+  }
+
+  public getIdActionMessage(): string | null {
+    const actionBlock = document.querySelector('.action') as HTMLElement;
+
+    return actionBlock.getAttribute('data-id');
+  }
+
+  public selectMessage(id: string): void {
+    const messageArr = Array.from(document.querySelectorAll('.message')) as HTMLDivElement[];
+
+    messageArr.forEach((el) => {
+      const att = el.getAttribute('data-id');
+
+      if (att === id) {
+        el.classList.add('select');
+      } else {
+        el.classList.remove('select');
+      }
+    });
+  }
+
+  public messageDelete(id: string): void {
+    const messageArr = Array.from(document.querySelectorAll('.message')) as HTMLDivElement[];
+
+    messageArr.forEach((el) => {
+      const att = el.getAttribute('data-id');
+
+      if (att === id) {
+        el.remove();
+      }
+    });
+  }
 }

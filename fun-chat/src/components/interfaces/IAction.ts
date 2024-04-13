@@ -1,4 +1,4 @@
 export interface IAction {
   eventListener: string;
-  callback: (event: Event) => void;
+  callback(event: Event | MouseEvent): void;
 }

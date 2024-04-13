@@ -11,13 +11,19 @@ export default class MouseOverMessages extends Listener {
     this.eventListener = key;
   }
 
-  public callback(): void {
+  public callback(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+
     if (this.eventListener === 'mouseenter') {
       this.mainUsersThis.toggleAttMessages(true);
     }
 
     if (this.eventListener === 'mouseleave') {
       this.mainUsersThis.toggleAttMessages(false);
+    }
+
+    if (this.eventListener === 'mousemove' && target.closest('.interaction__messages')) {
+      this.mainUsersThis.overBlockActionMessage(event.clientX, event.clientY);
     }
   }
 }

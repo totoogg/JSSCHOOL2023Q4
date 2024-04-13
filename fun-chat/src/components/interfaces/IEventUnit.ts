@@ -17,6 +17,7 @@ export interface IEventUnit {
         isDelivered: boolean;
         isReaded: boolean;
         isEdited: boolean;
+        isDeleted?: boolean;
       };
     };
     messages?: {

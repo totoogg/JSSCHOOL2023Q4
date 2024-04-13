@@ -11,6 +11,8 @@ import KeyboardStartForm from '../../controller/listeners/startForm/keyboardStar
 import SubmitStartForm from '../../controller/listeners/startForm/submitStartForm';
 import { IParams } from '../../interfaces/interfaces';
 import MouseOverMessages from '../../controller/listeners/mainPage/main/massage/mouseOverMessages';
+import ContextMenuMessage from '../../controller/listeners/mainPage/main/massage/contextMenuMessage';
+import DeleteMessage from '../../controller/listeners/mainPage/main/massage/deleteMessege';
 
 export const formParams: IParams = {
   tag: 'form',
@@ -246,8 +248,11 @@ export const messagesMainParams: IParams = {
   action: [
     new ScrollMessage('wheel'),
     new ScrollMessage('click'),
+    new ContextMenuMessage('mousedown'),
     new MouseOverMessages('mouseenter'),
     new MouseOverMessages('mouseleave'),
+    new MouseOverMessages('mousemove'),
+    new ContextMenuMessage('contextmenu'),
   ],
 };
 
@@ -310,6 +315,23 @@ export const messageFooterChangeParams: IParams = {
 export const messageFooterStatusParams: IParams = {
   tag: 'p',
   classNames: ['footer__message-status'],
+};
+
+export const actionParams: IParams = {
+  tag: 'div',
+  classNames: ['action', 'display-none'],
+};
+export const actionEditParams: IParams = {
+  tag: 'div',
+  classNames: ['action__edit'],
+  textContent: 'Edit',
+  action: null,
+};
+export const actionDeleteParams: IParams = {
+  tag: 'div',
+  classNames: ['action__delete'],
+  textContent: 'Delete',
+  action: new DeleteMessage('click'),
 };
 
 export const messagesFooterParams: IParams = {

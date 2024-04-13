@@ -35,5 +35,8 @@ export default class ScrollMessage extends Listener {
         });
       }
     }
+
+    this.mainUsersThis.showActionMessage(false);
+    this.mainUsersThis.writeIdActionMessage('');
   }
 }

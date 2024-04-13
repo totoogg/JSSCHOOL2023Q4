@@ -31,6 +31,7 @@ export default class WorkWithServer extends UnitListeners {
     this.on('MSG_FROM_USER', this.messagesFromUser.bind(this));
     this.on('MSG_DELIVER', this.messageDelivered.bind(this));
     this.on('MSG_READ', this.messageReaded.bind(this));
+    this.on('MSG_DELETE', this.messageDelete.bind(this));
   }
 
   public sendServerData(data: IEventUnit): void {
@@ -196,11 +197,19 @@ export default class WorkWithServer extends UnitListeners {
             this.mainUsers.addDividingStrip();
           }
 
-          this.mainUsers.addMessage(el.to, el!.text, timeStr, String(el!.id!), status);
+          this.mainUsers.addMessage(el.from!, el!.text, timeStr, String(el!.id!), status);
         }
       });
 
       this.mainUsers.updateMessageScrolling();
+    }
+  }
+
+  private messageDelete(arg: IEventUnit): void {
+    const { message } = arg.payload!;
+
+    if (message?.status?.isDeleted) {
+      this.mainUsers.messageDelete(message.id!);
     }
   }
 

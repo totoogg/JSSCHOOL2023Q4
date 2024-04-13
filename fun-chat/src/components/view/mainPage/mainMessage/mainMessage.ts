@@ -8,6 +8,9 @@ import {
   messagesFooterParams,
   footerButtonParams,
   footerInputParams,
+  actionDeleteParams,
+  actionEditParams,
+  actionParams,
 } from '../../util/params';
 
 import './mainMessage.scss';
@@ -29,6 +32,12 @@ export default class MainMessage implements IHTMLElement {
 
   private footerButton = new ElementCreation(footerButtonParams);
 
+  private action = new ElementCreation(actionParams);
+
+  private edit = new ElementCreation(actionEditParams);
+
+  private delete = new ElementCreation(actionDeleteParams);
+
   constructor(param: IParams) {
     this.mainMessage = new ElementCreation(param);
     this.createElements();
@@ -44,10 +53,16 @@ export default class MainMessage implements IHTMLElement {
   public createElements(): void {
     this.createHeader();
     this.createFooter();
+    this.createAction();
 
     this.mainMessage
       .getElement()!
-      .append(this.header.getElement()!, this.main.getElement()!, this.footer.getElement()!);
+      .append(
+        this.header.getElement()!,
+        this.main.getElement()!,
+        this.footer.getElement()!,
+        this.action.getElement()!,
+      );
   }
 
   private createHeader(): void {
@@ -64,5 +79,9 @@ export default class MainMessage implements IHTMLElement {
     footerInput.setAttribute('disabled', 'true');
 
     this.footer.getElement()!.append(footerInput, this.footerButton.getElement()!);
+  }
+
+  private createAction(): void {
+    this.action.getElement()!.append(this.edit.getElement()!, this.delete.getElement()!);
   }
 }

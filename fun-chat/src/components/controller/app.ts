@@ -10,6 +10,7 @@ import {
   mainParams,
   wrapperParams,
 } from '../view/util/params';
+import ManipulationMainUsers from '../view/util/manipulationMainUsers';
 
 export default class App {
   private start = new StartForm(formParams);
@@ -22,11 +23,19 @@ export default class App {
 
   private main = new MainPage(mainParams);
 
+  private mainUsersThis = new ManipulationMainUsers();
+
   public createPage(): void {
     console.log(window.location.href);
     document.addEventListener('DOMContentLoaded', () => {
       console.log(1);
     });
+
+    document.addEventListener('click', () => {
+      this.mainUsersThis.showActionMessage(false);
+      this.mainUsersThis.writeIdActionMessage('');
+    });
+
     document.body.append(
       this.errorBlock.errorBlock.getElement()!,
       this.wrapper.getElement()!,
