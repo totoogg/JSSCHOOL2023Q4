@@ -13,6 +13,8 @@ import { IParams } from '../../interfaces/interfaces';
 import MouseOverMessages from '../../controller/listeners/mainPage/main/massage/mouseOverMessages';
 import ContextMenuMessage from '../../controller/listeners/mainPage/main/massage/contextMenuMessage';
 import DeleteMessage from '../../controller/listeners/mainPage/main/massage/deleteMessege';
+import EditMessage from '../../controller/listeners/mainPage/main/massage/editMessege';
+import CancelEdit from '../../controller/listeners/mainPage/main/massage/cancelEdit';
 
 export const formParams: IParams = {
   tag: 'form',
@@ -325,7 +327,7 @@ export const actionEditParams: IParams = {
   tag: 'div',
   classNames: ['action__edit'],
   textContent: 'Edit',
-  action: null,
+  action: new EditMessage('click'),
 };
 export const actionDeleteParams: IParams = {
   tag: 'div',
@@ -340,10 +342,21 @@ export const messagesFooterParams: IParams = {
   action: new SubmitMessage('submit'),
 };
 
-export const footerInputParams: IParams = {
+export const footerWrapperInputParams: IParams = {
+  tag: 'div',
+  classNames: ['footer__wrapper'],
+};
+
+export const wrapperInputParams: IParams = {
   tag: 'input',
-  classNames: ['footer__message-input'],
+  classNames: ['wrapper__message-input'],
   action: new KeyboardMessage('keyup'),
+};
+
+export const wrapperInputButtonParams: IParams = {
+  tag: 'div',
+  classNames: ['wrapper__button', 'display-none'],
+  action: new CancelEdit('click'),
 };
 
 export const footerButtonParams: IParams = {

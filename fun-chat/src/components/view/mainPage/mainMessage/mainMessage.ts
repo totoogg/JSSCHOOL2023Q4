@@ -7,10 +7,12 @@ import {
   messagesMainParams,
   messagesFooterParams,
   footerButtonParams,
-  footerInputParams,
   actionDeleteParams,
   actionEditParams,
   actionParams,
+  footerWrapperInputParams,
+  wrapperInputButtonParams,
+  wrapperInputParams,
 } from '../../util/params';
 
 import './mainMessage.scss';
@@ -28,7 +30,11 @@ export default class MainMessage implements IHTMLElement {
 
   private footer = new ElementCreation(messagesFooterParams);
 
-  private footerInput = new ElementCreation(footerInputParams);
+  private footerWrapper = new ElementCreation(footerWrapperInputParams);
+
+  private wrapperInput = new ElementCreation(wrapperInputParams);
+
+  private wrapperInputButton = new ElementCreation(wrapperInputButtonParams);
 
   private footerButton = new ElementCreation(footerButtonParams);
 
@@ -72,13 +78,21 @@ export default class MainMessage implements IHTMLElement {
   }
 
   private createFooter(): void {
-    const footerInput = this.footerInput.getElement()!;
+    const footerInput = this.wrapperInput.getElement()!;
 
     footerInput.setAttribute('type', 'text');
     footerInput.setAttribute('placeholder', 'Message...');
     footerInput.setAttribute('disabled', 'true');
 
-    this.footer.getElement()!.append(footerInput, this.footerButton.getElement()!);
+    const button = this.wrapperInputButton.getElement()!;
+
+    button.append(document.createElement('span'), document.createElement('span'));
+
+    this.footerWrapper.getElement()!.append(footerInput, button);
+
+    this.footer
+      .getElement()!
+      .append(this.footerWrapper.getElement()!, this.footerButton.getElement()!);
   }
 
   private createAction(): void {

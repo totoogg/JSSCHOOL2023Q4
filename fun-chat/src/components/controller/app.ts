@@ -31,9 +31,13 @@ export default class App {
       console.log(1);
     });
 
-    document.addEventListener('click', () => {
-      this.mainUsersThis.showActionMessage(false);
-      this.mainUsersThis.writeIdActionMessage('');
+    document.addEventListener('click', (event: Event) => {
+      const target = event.target as HTMLElement;
+
+      if (!target.classList.contains('action')) {
+        this.mainUsersThis.showActionMessage(false);
+        this.mainUsersThis.writeIdActionMessage('');
+      }
     });
 
     document.body.append(

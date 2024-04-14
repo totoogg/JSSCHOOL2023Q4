@@ -35,9 +35,10 @@ export default class ManipulationMainUsers {
   }
 
   public clearInputMessage(): void {
-    const content = document.querySelector('.footer__message-input') as HTMLInputElement;
+    const content = document.querySelector('.wrapper__message-input') as HTMLInputElement;
 
     content.value = ``;
+    content.removeAttribute('data-id');
   }
 
   public getSearchUser(): string {
@@ -83,6 +84,12 @@ export default class ManipulationMainUsers {
     });
 
     return result;
+  }
+
+  public checkMessage(): boolean {
+    const message = document.querySelector('.message') as HTMLElement;
+
+    return !!message;
   }
 
   public updateStatusUser(login: string): void {
@@ -155,7 +162,7 @@ export default class ManipulationMainUsers {
     const fieldMessage = document.querySelector('.messages__main') as HTMLDivElement;
     const user = document.querySelector('.header__name-user') as HTMLParagraphElement;
     const mainMessage = document.querySelector('.messages__main') as HTMLDivElement;
-    const massageInput = document.querySelector('.footer__message-input') as HTMLInputElement;
+    const massageInput = document.querySelector('.wrapper__message-input') as HTMLInputElement;
 
     user.textContent = name;
     fieldMessage.classList.add('start');
@@ -173,7 +180,7 @@ export default class ManipulationMainUsers {
   }
 
   public getMessageValue(): string {
-    const message = document.querySelector('.footer__message-input') as HTMLInputElement;
+    const message = document.querySelector('.wrapper__message-input') as HTMLInputElement;
 
     return message.value;
   }
@@ -345,7 +352,7 @@ export default class ManipulationMainUsers {
   public clearInteractionMessages(): void {
     const headerName = document.querySelector('.header__name-user') as HTMLParagraphElement;
     const headerStatus = document.querySelector('.header__status-user') as HTMLParagraphElement;
-    const input = document.querySelector('.footer__message-input') as HTMLInputElement;
+    const input = document.querySelector('.wrapper__message-input') as HTMLInputElement;
 
     headerName.innerHTML = '';
     headerStatus.innerHTML = '';
@@ -467,5 +474,56 @@ export default class ManipulationMainUsers {
         el.remove();
       }
     });
+  }
+
+  public addTextInInput(id: string): void {
+    const input = document.querySelector('.wrapper__message-input') as HTMLInputElement;
+    const messageArr = Array.from(document.querySelectorAll('.message')) as HTMLDivElement[];
+    const message = messageArr.find((el) => el.getAttribute('data-id') === id);
+
+    input.value = message!.children[1].textContent!;
+    input.setAttribute('data-id', id);
+    message?.classList.add('edit');
+
+    this.showCancelEdit(true);
+    this.activeButtonSendMessage(true);
+  }
+
+  public clearMessageEdit(id: string): void {
+    const messageArr = Array.from(document.querySelectorAll('.message')) as HTMLDivElement[];
+    const message = messageArr.find((el) => el.getAttribute('data-id') === id);
+
+    message?.classList.remove('edit');
+  }
+
+  public showCancelEdit(bool: boolean): void {
+    const button = document.querySelector('.wrapper__button') as HTMLElement;
+
+    if (bool) {
+      button.classList.remove('display-none');
+    } else {
+      button.classList.add('display-none');
+    }
+  }
+
+  public getIdInput(): string | null {
+    const input = document.querySelector('.wrapper__message-input') as HTMLElement;
+
+    return input.getAttribute('data-id');
+  }
+
+  public checkEdit(): boolean {
+    const button = document.querySelector('.wrapper__button') as HTMLElement;
+
+    return button.classList.contains('display-none');
+  }
+
+  public messageEdit(id: string, text: string): void {
+    const messageArr = Array.from(document.querySelectorAll('.message')) as HTMLDivElement[];
+    const message = messageArr.find((el) => el.getAttribute('data-id') === id);
+    const edit = message?.querySelector('.footer__message-change') as HTMLParagraphElement;
+
+    message!.children[1].textContent = text;
+    edit.textContent = 'changed';
   }
 }

@@ -32,6 +32,7 @@ export default class WorkWithServer extends UnitListeners {
     this.on('MSG_DELIVER', this.messageDelivered.bind(this));
     this.on('MSG_READ', this.messageReaded.bind(this));
     this.on('MSG_DELETE', this.messageDelete.bind(this));
+    this.on('MSG_EDIT', this.messageEdit.bind(this));
   }
 
   public sendServerData(data: IEventUnit): void {
@@ -210,6 +211,14 @@ export default class WorkWithServer extends UnitListeners {
 
     if (message?.status?.isDeleted) {
       this.mainUsers.messageDelete(message.id!);
+    }
+  }
+
+  private messageEdit(arg: IEventUnit): void {
+    const { message } = arg.payload!;
+
+    if (message?.status?.isEdited) {
+      this.mainUsers.messageEdit(message.id!, message.text!);
     }
   }
 

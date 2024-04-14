@@ -16,23 +16,27 @@ export default class SubmitMessage extends Listener {
     event.preventDefault();
 
     if (!this.mainUsersThis.checkButtonSend()) {
-      const value = this.mainUsersThis.getMessageValue();
+      if (this.mainUsersThis.checkEdit()) {
+        const value = this.mainUsersThis.getMessageValue();
 
-      const message: IEventUnit = {
-        id: String(Date.now()),
-        type: 'MSG_SEND',
-        payload: {
-          message: {
-            to: this.mainUsersThis.getUserToSend(),
-            text: value,
+        const message: IEventUnit = {
+          id: String(Date.now()),
+          type: 'MSG_SEND',
+          payload: {
+            message: {
+              to: this.mainUsersThis.getUserToSend(),
+              text: value,
+            },
           },
-        },
-      };
+        };
 
-      this.sendServerData(message);
-      this.mainUsersThis.clearInputMessage();
-      this.mainUsersThis.buttonSend(false);
-      this.readedMessage();
+        this.sendServerData(message);
+        this.mainUsersThis.clearInputMessage();
+        this.mainUsersThis.buttonSend(false);
+        this.readedMessage();
+      } else {
+        this.editMessage();
+      }
     }
   }
 
@@ -57,5 +61,28 @@ export default class SubmitMessage extends Listener {
         this.sendServerData(status);
       });
     }
+  }
+
+  private editMessage(): void {
+    const id = this.mainUsersThis.getIdInput();
+    const value = this.mainUsersThis.getMessageValue();
+
+    const message: IEventUnit = {
+      id: String(Date.now()),
+      type: 'MSG_EDIT',
+      payload: {
+        message: {
+          id: id!,
+          text: value,
+        },
+      },
+    };
+
+    this.sendServerData(message);
+
+    this.mainUsersThis.showCancelEdit(false);
+    this.mainUsersThis.clearInputMessage();
+    this.mainUsersThis.activeButtonSendMessage(false);
+    this.mainUsersThis.clearMessageEdit(id!);
   }
 }

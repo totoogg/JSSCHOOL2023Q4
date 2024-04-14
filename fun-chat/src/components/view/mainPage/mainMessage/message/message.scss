@@ -41,11 +41,12 @@
   outline: 1px solid #164e63;
 }
 
+
 .right {
   cursor: pointer;
   align-self: flex-end;
   background-color: #c7d2fe;
-
+  
   &:hover {
     outline: 1px solid #164e63;
   }
@@ -54,4 +55,8 @@
 .left {
   align-self: flex-start;
   background-color: #fecdd3;
+}
+
+.edit {
+  background-color: rgba($color: #000000, $alpha: 0.3);
 }
