@@ -15,6 +15,10 @@
     padding-bottom: 5px;
     margin-bottom: 20px;
 
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+
     .interaction__users {
       width: calc(35% - 10px);
       min-height: 70vh;
@@ -26,6 +30,13 @@
       display: flex;
       flex-direction: column;
       overflow: hidden;
+
+      @media (max-width: 768px) {
+        width: 100%;
+        margin-bottom: 10px;
+        min-height: 30vh;
+        height: 30vh;
+      }
 
       input {
         height: 30px;
@@ -63,6 +74,10 @@
       border-radius: 10px;
       border: 1px solid #000000;
       overflow: hidden;
+
+      @media (max-width: 768px) {
+        width: 100%;
+      }
     }
   }
 }

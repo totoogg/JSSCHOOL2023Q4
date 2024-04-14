@@ -24,10 +24,6 @@ const baseConfig = {
         use: 'ts-loader',
         exclude: /node_modules/,
       },
-      {
-        test: /\.(png|svg|jpe?g|gif)$/,
-        loader: 'file-loader'
-      },
     ],
   },
   resolve: {

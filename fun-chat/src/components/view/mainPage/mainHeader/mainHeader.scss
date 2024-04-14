@@ -11,7 +11,18 @@
   border: 1px solid #000000;
   flex-wrap: wrap;
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
   
+  .header__name {
+    @media (max-width: 768px) {
+      order: -1;
+      margin-bottom: 10px;
+    }
+  }
+
   .header__buttons {
     width: 250px;
     display: flex;
