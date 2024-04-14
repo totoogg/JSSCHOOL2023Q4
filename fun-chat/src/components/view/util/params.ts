@@ -249,7 +249,7 @@ export const messagesMainParams: IParams = {
   textContent: 'Select a user to send a message...',
   action: [
     new ScrollMessage('wheel'),
-    new ScrollMessage('click'),
+    new ScrollMessage('mousedown'),
     new ContextMenuMessage('mousedown'),
     new MouseOverMessages('mouseenter'),
     new MouseOverMessages('mouseleave'),

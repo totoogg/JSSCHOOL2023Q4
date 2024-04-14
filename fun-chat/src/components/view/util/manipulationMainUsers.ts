@@ -281,7 +281,7 @@ export default class ManipulationMainUsers {
 
     if (this.checkDividingStrip()) {
       const strip = document.querySelector('.strip') as HTMLDivElement;
-      const scroll = Number(strip.offsetTop) - Number(fieldMessage.getBoundingClientRect().y);
+      const scroll = Number(strip.offsetTop) - Number(strip.offsetHeight) * 2;
 
       fieldMessage.scrollTop = scroll;
     } else {

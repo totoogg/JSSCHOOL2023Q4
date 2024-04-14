@@ -25,8 +25,7 @@ const baseConfig = {
         exclude: /node_modules/,
       },
       {
-        test: /\.mp3$/,
-        include: SRC,
+        test: /\.(png|svg|jpe?g|gif)$/,
         loader: 'file-loader'
       },
     ],
