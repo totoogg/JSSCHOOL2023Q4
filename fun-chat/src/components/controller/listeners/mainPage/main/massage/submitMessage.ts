@@ -83,6 +83,6 @@ export default class SubmitMessage extends Listener {
     this.mainUsersThis.showCancelEdit(false);
     this.mainUsersThis.clearInputMessage();
     this.mainUsersThis.activeButtonSendMessage(false);
-    this.mainUsersThis.clearMessageEdit(id!);
+    this.mainUsersThis.clearMessageEdit();
   }
 }

@@ -33,6 +33,10 @@ export default class ButtonLogout extends Listener {
       this.sendServerData(user);
       this.mainUsersThis.clearUsers();
       this.mainUsersThis.clearInteractionMessages();
+      this.mainUsersThis.showCancelEdit(false);
+      this.mainUsersThis.clearInputMessage();
+      this.mainUsersThis.activeButtonSendMessage(false);
+      this.mainUsersThis.clearMessageEdit();
     }
   }
 }

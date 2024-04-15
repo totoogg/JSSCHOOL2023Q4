@@ -25,6 +25,24 @@
   .error__text::first-letter {
     text-transform: uppercase;
   }
+
+  .error__loss {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .loss__img {
+      width: 50px;
+      height: 50px;
+      background: url('./loader.gif') no-repeat center;
+      background-size: 100%;
+    }
+  }
+
+  .display-none {
+    display: none;
+  }
 }
 
 .display-none {

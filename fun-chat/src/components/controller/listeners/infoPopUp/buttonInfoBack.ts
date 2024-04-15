@@ -16,11 +16,17 @@ export default class ButtonInfoBack extends Listener {
 
   public callback(event: Event): void {
     event.preventDefault();
+    sessionStorage.removeItem('pageInfoTotoogg-JSFE2023Q4');
 
     this.formStartThis.hiddenInfo();
 
     if (this.mainUsersThis.checkMessage()) {
       this.mainUsersThis.updateMessageScrolling();
     }
+
+    this.mainUsersThis.showCancelEdit(false);
+    this.mainUsersThis.clearInputMessage();
+    this.mainUsersThis.activeButtonSendMessage(false);
+    this.mainUsersThis.clearMessageEdit();
   }
 }

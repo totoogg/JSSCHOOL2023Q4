@@ -24,6 +24,10 @@ const baseConfig = {
         use: 'ts-loader',
         exclude: /node_modules/,
       },
+      {
+        test: /\.(jpg|png|svg|gif)$/,
+        type: 'asset/resource',
+      },
     ],
   },
   resolve: {
@@ -39,6 +43,7 @@ const baseConfig = {
   plugins: [
     new DotenvWebpackPlugin(),
     new HtmlWebpackPlugin({
+      favicon: path.resolve(__dirname, './src/icon.ico'),
       template: path.resolve(__dirname, './src/index.html'),
       filename: 'index.html',
     }),

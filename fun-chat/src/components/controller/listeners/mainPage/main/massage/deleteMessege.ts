@@ -13,15 +13,24 @@ export default class DeleteMessage extends Listener {
   }
 
   public callback(): void {
+    const id = this.mainUsersThis.getIdActionMessage();
+
     const status: IEventUnit = {
       id: String(Date.now()),
       type: 'MSG_DELETE',
       payload: {
         message: {
-          id: this.mainUsersThis.getIdActionMessage()!,
+          id: id!,
         },
       },
     };
+
+    if (this.mainUsersThis.getIdInput() === id) {
+      this.mainUsersThis.showCancelEdit(false);
+      this.mainUsersThis.clearInputMessage();
+      this.mainUsersThis.activeButtonSendMessage(false);
+      this.mainUsersThis.clearMessageEdit();
+    }
 
     this.sendServerData(status);
   }

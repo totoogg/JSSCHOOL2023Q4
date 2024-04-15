@@ -161,13 +161,12 @@ export default class ManipulationMainUsers {
   public selectUser(status: boolean, name: string, nameFull: string | null): void {
     const fieldMessage = document.querySelector('.messages__main') as HTMLDivElement;
     const user = document.querySelector('.header__name-user') as HTMLParagraphElement;
-    const mainMessage = document.querySelector('.messages__main') as HTMLDivElement;
     const massageInput = document.querySelector('.wrapper__message-input') as HTMLInputElement;
 
     user.textContent = name;
     fieldMessage.classList.add('start');
     massageInput.removeAttribute('disabled');
-    mainMessage.textContent = `Write your first message...`;
+    fieldMessage.textContent = `Write your first message...`;
     this.updateStatus(status);
 
     if (nameFull) {
@@ -219,6 +218,25 @@ export default class ManipulationMainUsers {
     return user.textContent!.slice(6);
   }
 
+  public checkCountMessages(): void {
+    const messages = Array.from(document.querySelectorAll('.message')) as HTMLDivElement[];
+    const fieldMessage = document.querySelector('.messages__main') as HTMLDivElement;
+
+    if (
+      messages.length === 0 &&
+      fieldMessage.textContent !== 'Select a user to send a message...'
+    ) {
+      fieldMessage.classList.add('start');
+      fieldMessage.textContent = `Write your first message...`;
+    }
+  }
+
+  public checkIdMessages(id: string): boolean {
+    const message = document.querySelector(`.message[data-id="${id}"]`) as HTMLDivElement;
+
+    return !!message;
+  }
+
   public updateCountMessages(name: string, countMessage?: number): void {
     const users = Array.from(document.querySelectorAll('.content__user')) as HTMLDivElement[];
 
@@ -229,9 +247,14 @@ export default class ManipulationMainUsers {
       if (att === name || user.textContent === name) {
         const count = el.lastElementChild;
 
-        count!.textContent =
-          countMessage === undefined ? `${Number(count!.textContent) + 1}` : String(countMessage);
-        count?.classList.add('unread');
+        if (countMessage === -1) {
+          count!.textContent = '';
+          count?.classList.remove('unread');
+        } else {
+          count!.textContent =
+            countMessage === undefined ? `${Number(count!.textContent) + 1}` : String(countMessage);
+          count?.classList.add('unread');
+        }
       }
     });
   }
@@ -489,9 +512,9 @@ export default class ManipulationMainUsers {
     this.activeButtonSendMessage(true);
   }
 
-  public clearMessageEdit(id: string): void {
+  public clearMessageEdit(): void {
     const messageArr = Array.from(document.querySelectorAll('.message')) as HTMLDivElement[];
-    const message = messageArr.find((el) => el.getAttribute('data-id') === id);
+    const message = messageArr.find((el) => el.classList.contains('edit'));
 
     message?.classList.remove('edit');
   }

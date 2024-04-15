@@ -14,6 +14,10 @@ export default class EditMessage extends Listener {
   public callback(): void {
     const id = this.mainUsersThis.getIdActionMessage();
 
+    this.mainUsersThis.showCancelEdit(false);
+    this.mainUsersThis.clearInputMessage();
+    this.mainUsersThis.activeButtonSendMessage(false);
+    this.mainUsersThis.clearMessageEdit();
     this.mainUsersThis.addTextInInput(id!);
   }
 }

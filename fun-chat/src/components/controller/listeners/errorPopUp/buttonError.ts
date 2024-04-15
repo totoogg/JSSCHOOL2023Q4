@@ -1,10 +1,13 @@
 import ManipulationFormStart from '../../../view/util/manipulationFormStart';
+import ManipulationMainUsers from '../../../view/util/manipulationMainUsers';
 import Listener from '../listener';
 
 export default class ButtonError extends Listener {
   public eventListener: string;
 
   private formStartThis = new ManipulationFormStart();
+
+  private mainUsersThis = new ManipulationMainUsers();
 
   constructor(key: string) {
     super();
@@ -15,5 +18,9 @@ export default class ButtonError extends Listener {
     event.preventDefault();
 
     this.formStartThis.hiddenError();
+    this.mainUsersThis.showCancelEdit(false);
+    this.mainUsersThis.clearInputMessage();
+    this.mainUsersThis.activeButtonSendMessage(false);
+    this.mainUsersThis.clearMessageEdit();
   }
 }

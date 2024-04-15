@@ -1,4 +1,6 @@
 export type Types =
+  | 'OPEN'
+  | 'CLOSE'
   | 'USER_LOGIN'
   | 'ERROR'
   | 'USER_LOGOUT'

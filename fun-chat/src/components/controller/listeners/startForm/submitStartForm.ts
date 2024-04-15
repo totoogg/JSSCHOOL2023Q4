@@ -1,7 +1,4 @@
-import WebSocketConnect from '../../../model/webSocketConnect';
 import ManipulationFormStart from '../../../view/util/manipulationFormStart';
-import ManipulationMainUsers from '../../../view/util/manipulationMainUsers';
-import Unit from '../unit';
 import { IEventUnit } from '../../../interfaces/interfaces';
 import Listener from '../listener';
 
@@ -9,12 +6,6 @@ export default class SubmitStartForm extends Listener {
   public eventListener: string;
 
   private formStartThis = new ManipulationFormStart();
-
-  private mainUsersThis = new ManipulationMainUsers();
-
-  private serverThis = new WebSocketConnect();
-
-  private unitThis = new Unit();
 
   constructor(key: string) {
     super();

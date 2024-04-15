@@ -11,6 +11,7 @@ import {
   wrapperParams,
 } from '../view/util/params';
 import ManipulationMainUsers from '../view/util/manipulationMainUsers';
+import ManipulationFormStart from '../view/util/manipulationFormStart';
 
 export default class App {
   private start = new StartForm(formParams);
@@ -25,19 +26,14 @@ export default class App {
 
   private mainUsersThis = new ManipulationMainUsers();
 
+  private formStartThis = new ManipulationFormStart();
+
   public createPage(): void {
     console.log(window.location.href);
-    document.addEventListener('DOMContentLoaded', () => {
-      console.log(1);
-    });
 
-    document.addEventListener('click', (event: Event) => {
-      const target = event.target as HTMLElement;
-
-      if (!target.classList.contains('action')) {
-        this.mainUsersThis.showActionMessage(false);
-        this.mainUsersThis.writeIdActionMessage('');
-      }
+    document.addEventListener('click', () => {
+      this.mainUsersThis.showActionMessage(false);
+      this.mainUsersThis.writeIdActionMessage('');
     });
 
     document.body.append(
@@ -47,5 +43,20 @@ export default class App {
       this.start.form.getElement()!,
       this.main.mainPage.getElement()!,
     );
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const session = sessionStorage.getItem('totoogg-JSFE2023Q4');
+      const page = sessionStorage.getItem('pageInfoTotoogg-JSFE2023Q4');
+
+      if (session) {
+        this.formStartThis.hiddenFormStart();
+      }
+
+      if (page) {
+        this.formStartThis.showInfo();
+      }
+
+      console.log(1);
+    });
   }
 }

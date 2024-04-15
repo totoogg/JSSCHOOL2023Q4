@@ -29,7 +29,9 @@ export default class ClickUser extends Listener {
           },
         },
       };
-
+      this.mainUsersThis.showCancelEdit(false);
+      this.mainUsersThis.activeButtonSendMessage(false);
+      this.mainUsersThis.clearMessageEdit();
       this.mainUsersThis.selectUser(status, name!, nameFull);
       this.mainUsersThis.clearInputMessage();
 

@@ -33,10 +33,54 @@ export default class WorkWithServer extends UnitListeners {
     this.on('MSG_READ', this.messageReaded.bind(this));
     this.on('MSG_DELETE', this.messageDelete.bind(this));
     this.on('MSG_EDIT', this.messageEdit.bind(this));
+    this.on('OPEN', this.openConnect.bind(this));
+    this.on('CLOSE', this.closeConnect.bind(this));
   }
 
   public sendServerData(data: IEventUnit): void {
     this.server.connectServer(JSON.stringify(data));
+  }
+
+  public openConnect(data: IEventUnit): void {
+    const session = sessionStorage.getItem('totoogg-JSFE2023Q4');
+    const page = sessionStorage.getItem('pageInfoTotoogg-JSFE2023Q4');
+
+    if (session && data.type === 'OPEN') {
+      const user: {
+        id: string;
+        login: string;
+        password: string;
+      } = JSON.parse(session);
+
+      this.formStart.setNameValue(user.login);
+      this.formStart.setPasswordValue(user.password);
+      this.formStart.buttonLogin();
+      this.mainUsers.clearUsers();
+      this.mainUsers.clearInteractionMessages();
+      this.mainUsers.showCancelEdit(false);
+      this.mainUsers.clearInputMessage();
+      this.mainUsers.activeButtonSendMessage(false);
+      this.mainUsers.clearMessageEdit();
+      this.formStart.submitForm();
+    }
+
+    if (page) {
+      this.formStart.showInfo();
+    }
+
+    this.formStart.showErrorConnect(false);
+  }
+
+  public closeConnect(data: IEventUnit): void {
+    if (data.type === 'CLOSE') {
+      this.formStart.showErrorConnect(true);
+      this.mainUsers.clearUsers();
+      this.mainUsers.clearInteractionMessages();
+      this.mainUsers.showCancelEdit(false);
+      this.mainUsers.clearInputMessage();
+      this.mainUsers.activeButtonSendMessage(false);
+      this.mainUsers.clearMessageEdit();
+    }
   }
 
   private userLogout(arg: IEventUnit): void {
@@ -47,6 +91,7 @@ export default class WorkWithServer extends UnitListeners {
   }
 
   private userLogin(arg: IEventUnit): void {
+    const page = sessionStorage.getItem('pageInfoTotoogg-JSFE2023Q4');
     const user = {
       id: String(arg.id),
       login: this.formStart.getNameValue(),
@@ -67,11 +112,17 @@ export default class WorkWithServer extends UnitListeners {
       payload: null,
     };
 
+    if (!page) {
+      this.formStart.showMain();
+    } else {
+      this.formStart.setAttMain();
+      this.formStart.showInfo();
+    }
+
     this.sendServerData(usersActive);
     this.sendServerData(usersInactive);
 
     this.formStart.hiddenFormStart();
-    this.formStart.showMain();
   }
 
   private userShowError(arg: IEventUnit): void {
@@ -188,17 +239,19 @@ export default class WorkWithServer extends UnitListeners {
 
     if (userMessage && messages!.length > 0) {
       messages?.forEach((el) => {
-        const status = el.status!;
-        const timeStr = this.getTime(el.datetime!);
+        if (!this.mainUsers.checkIdMessages(el.id!)) {
+          const status = el.status!;
+          const timeStr = this.getTime(el.datetime!);
 
-        if (el.from === user) {
-          this.mainUsers.addMessage('You', el!.text, timeStr, String(el!.id!), status);
-        } else {
-          if (!el.status?.isReaded && !this.mainUsers.checkDividingStrip()) {
-            this.mainUsers.addDividingStrip();
+          if (el.from === user) {
+            this.mainUsers.addMessage('You', el!.text, timeStr, String(el!.id!), status);
+          } else {
+            if (!el.status?.isReaded && !this.mainUsers.checkDividingStrip()) {
+              this.mainUsers.addDividingStrip();
+            }
+
+            this.mainUsers.addMessage(el.from!, el!.text, timeStr, String(el!.id!), status);
           }
-
-          this.mainUsers.addMessage(el.from!, el!.text, timeStr, String(el!.id!), status);
         }
       });
 
@@ -211,6 +264,24 @@ export default class WorkWithServer extends UnitListeners {
 
     if (message?.status?.isDeleted) {
       this.mainUsers.messageDelete(message.id!);
+
+      this.mainUsers.checkCountMessages();
+      this.mainUsers.clearUsers();
+
+      const usersInactive: IEventUnit = {
+        id: String(Date.now()),
+        type: 'USER_INACTIVE',
+        payload: null,
+      };
+
+      const usersActive: IEventUnit = {
+        id: String(Date.now()),
+        type: 'USER_ACTIVE',
+        payload: null,
+      };
+
+      this.sendServerData(usersActive);
+      this.sendServerData(usersInactive);
     }
   }
 

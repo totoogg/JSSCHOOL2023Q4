@@ -8,6 +8,12 @@ export default class ManipulationFormStart {
     return name.value;
   }
 
+  public setNameValue(str: string): void {
+    const name = document.querySelector('.name__input') as HTMLInputElement;
+
+    name.value = str;
+  }
+
   public visibilityNameError(bool: boolean): void {
     const name = document.querySelector('.name__input') as HTMLInputElement;
     const error = document.querySelector('.error-name') as HTMLDivElement;
@@ -25,6 +31,12 @@ export default class ManipulationFormStart {
     const password = document.querySelector('.password__input') as HTMLInputElement;
 
     return password.value;
+  }
+
+  public setPasswordValue(str: string): void {
+    const password = document.querySelector('.password__input') as HTMLInputElement;
+
+    password.value = str;
   }
 
   public checkButton(): boolean {
@@ -60,7 +72,7 @@ export default class ManipulationFormStart {
   public buttonLogin(but?: string): void {
     const button = document.querySelector('.buttons__login') as HTMLButtonElement;
 
-    if (!but) {
+    if (!but && localStorage.getItem('funChatTotooggJSFE2023Q4') === 'on') {
       button.classList.remove('disable');
     }
 
@@ -86,6 +98,28 @@ export default class ManipulationFormStart {
     error.classList.remove('display-none');
   }
 
+  public showErrorConnect(bool: boolean): void {
+    const wrapper = document.querySelector('.wrapper') as HTMLDivElement;
+    const error = document.querySelector('.error') as HTMLDivElement;
+    const textError = error.querySelector('.error__text') as HTMLParagraphElement;
+    const buttonError = error.querySelector('.error__button') as HTMLParagraphElement;
+    const lossError = error.querySelector('.error__loss') as HTMLParagraphElement;
+
+    if (bool) {
+      wrapper.classList.remove('display-none');
+      error.classList.remove('display-none');
+      lossError.classList.remove('display-none');
+      textError.classList.add('display-none');
+      buttonError.classList.add('display-none');
+    } else {
+      wrapper.classList.add('display-none');
+      error.classList.add('display-none');
+      lossError.classList.add('display-none');
+      textError.classList.remove('display-none');
+      buttonError.classList.remove('display-none');
+    }
+  }
+
   public hiddenError(): void {
     const wrapper = document.querySelector('.wrapper') as HTMLDivElement;
     const error = document.querySelector('.error') as HTMLDivElement;
@@ -105,6 +139,12 @@ export default class ManipulationFormStart {
     });
 
     info.classList.remove('display-none');
+  }
+
+  public setAttMain(): void {
+    const main = document.querySelector('.main') as HTMLDivElement;
+
+    main.setAttribute('data-display', 'none');
   }
 
   public hiddenInfo(): void {
@@ -170,5 +210,12 @@ export default class ManipulationFormStart {
     }
 
     content.append(userBlock);
+  }
+
+  public submitForm(): void {
+    const form = document.querySelector('.form') as HTMLDivElement;
+    const submit = new Event('submit');
+
+    form.dispatchEvent(submit);
   }
 }

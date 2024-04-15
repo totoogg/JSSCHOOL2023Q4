@@ -14,11 +14,9 @@ export default class CancelEdit extends Listener {
   public callback(event: MouseEvent): void {
     event.preventDefault();
 
-    const id = this.mainUsersThis.getIdInput();
-
     this.mainUsersThis.showCancelEdit(false);
     this.mainUsersThis.clearInputMessage();
     this.mainUsersThis.activeButtonSendMessage(false);
-    this.mainUsersThis.clearMessageEdit(id!);
+    this.mainUsersThis.clearMessageEdit();
   }
 }

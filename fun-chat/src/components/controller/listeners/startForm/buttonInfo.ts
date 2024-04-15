@@ -13,6 +13,7 @@ export default class ButtonInfo extends Listener {
 
   public callback(event: Event): void {
     event.preventDefault();
+    sessionStorage.setItem('pageInfoTotoogg-JSFE2023Q4', 'info');
 
     this.formStartThis.showInfo();
   }

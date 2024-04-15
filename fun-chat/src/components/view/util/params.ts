@@ -104,6 +104,22 @@ export const errorParams: IParams = {
   classNames: ['error', 'display-none'],
 };
 
+export const errorLossParams: IParams = {
+  tag: 'div',
+  classNames: ['error__loss', 'display-none'],
+};
+
+export const errorLossImgParams: IParams = {
+  tag: 'div',
+  classNames: ['loss__img'],
+};
+
+export const errorLossTextParams: IParams = {
+  tag: 'p',
+  classNames: ['loss__text'],
+  textContent: 'Connection to the server',
+};
+
 export const errorTextParams: IParams = {
   tag: 'p',
   classNames: ['error__text'],
