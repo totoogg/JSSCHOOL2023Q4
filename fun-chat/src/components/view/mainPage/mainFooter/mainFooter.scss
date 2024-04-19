@@ -1,0 +1,27 @@
+.main__footer {
+  background-color: #eef2ff;
+  width: 100%;
+  max-width: 1440px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 10px;
+  border: 1px solid #000000;
+  flex-wrap: wrap;
+  
+  .footer__school-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .school-link__logo {
+      height: 62px;
+      width: 62px;
+      background: url('./images.png') no-repeat center;
+      background-size: 100%;
+      border-radius: 50%;
+    }
+  }
+}

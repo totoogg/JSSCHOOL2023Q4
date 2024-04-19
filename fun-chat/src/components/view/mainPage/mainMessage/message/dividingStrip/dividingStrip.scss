@@ -1,0 +1,24 @@
+.strip {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+
+  .strip__left, .strip__right {
+    align-self: center;
+    flex-grow: 1;
+    height: 1px;
+    background-color: #000000;
+  }
+
+  .strip__center {
+    flex-shrink: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+.display-none {
+  display: none;
+}
