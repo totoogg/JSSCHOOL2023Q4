@@ -2,6 +2,7 @@ import { IEventUnit } from '../../interfaces/IEventUnit';
 import WebSocketConnect from '../../model/webSocketConnect';
 import ManipulationFormStart from '../../view/util/manipulationFormStart';
 import ManipulationMainUsers from '../../view/util/manipulationMainUsers';
+import Router from '../router/router';
 import Unit from './unit';
 import UnitListeners from './unitListeners';
 
@@ -13,6 +14,8 @@ export default class WorkWithServer extends UnitListeners {
   private mainUsers = new ManipulationMainUsers();
 
   private unit = new Unit();
+
+  private router = new Router();
 
   constructor() {
     super();
@@ -43,36 +46,31 @@ export default class WorkWithServer extends UnitListeners {
 
   public openConnect(data: IEventUnit): void {
     const session = sessionStorage.getItem('totoogg-JSFE2023Q4');
-    const page = sessionStorage.getItem('pageInfoTotoogg-JSFE2023Q4');
+    const url = window.location.pathname.slice(1);
 
-    if (session && data.type === 'OPEN') {
-      const user: {
-        id: string;
-        login: string;
-        password: string;
-      } = JSON.parse(session);
+    if (session) {
+      const user = JSON.parse(session);
 
-      this.formStart.setNameValue(user.login);
-      this.formStart.setPasswordValue(user.password);
-      this.formStart.buttonLogin();
-      this.mainUsers.clearUsers();
-      this.mainUsers.clearInteractionMessages();
-      this.mainUsers.showCancelEdit(false);
-      this.mainUsers.clearInputMessage();
-      this.mainUsers.activeButtonSendMessage(false);
-      this.mainUsers.clearMessageEdit();
-      this.formStart.submitForm();
+      const userSave = {
+        login: user.login,
+        password: user.password,
+        isLogin: false,
+      };
+
+      sessionStorage.setItem('totoogg-JSFE2023Q4', JSON.stringify(userSave));
     }
 
-    if (page) {
-      this.formStart.showInfo();
+    if (session && data.type === 'OPEN' && url !== 'about' && url !== 'error') {
+      this.router.navigate('main');
+    } else {
+      this.router.navigate(url);
     }
-
     this.formStart.showErrorConnect(false);
   }
 
   public closeConnect(data: IEventUnit): void {
     if (data.type === 'CLOSE') {
+      sessionStorage.removeItem('selectUserTotoogg-JSFE2023Q4');
       this.formStart.showErrorConnect(true);
       this.mainUsers.clearUsers();
       this.mainUsers.clearInteractionMessages();
@@ -85,44 +83,37 @@ export default class WorkWithServer extends UnitListeners {
 
   private userLogout(arg: IEventUnit): void {
     if (!arg.payload!.user?.isLogined) {
-      this.formStart.startPage();
       sessionStorage.removeItem('totoogg-JSFE2023Q4');
+      sessionStorage.removeItem('selectUserTotoogg-JSFE2023Q4');
+      this.router.navigate('login');
     }
   }
 
   private userLogin(arg: IEventUnit): void {
-    const page = sessionStorage.getItem('pageInfoTotoogg-JSFE2023Q4');
-    const user = {
-      id: String(arg.id),
-      login: this.formStart.getNameValue(),
-      password: this.formStart.getPasswordValue(),
-    };
+    if (arg.payload?.user?.login) {
+      const usersInactive: IEventUnit = {
+        id: String(Date.now()),
+        type: 'USER_INACTIVE',
+        payload: null,
+      };
+      const usersActive: IEventUnit = {
+        id: String(Date.now()),
+        type: 'USER_ACTIVE',
+        payload: null,
+      };
+      const userSave = {
+        login: this.formStart.getNameValue(),
+        password: this.formStart.getPasswordValue(),
+        isLogin: true,
+      };
 
-    sessionStorage.setItem('totoogg-JSFE2023Q4', JSON.stringify(user));
+      sessionStorage.setItem('totoogg-JSFE2023Q4', JSON.stringify(userSave));
 
-    const usersInactive: IEventUnit = {
-      id: String(Date.now()),
-      type: 'USER_INACTIVE',
-      payload: null,
-    };
-
-    const usersActive: IEventUnit = {
-      id: String(Date.now()),
-      type: 'USER_ACTIVE',
-      payload: null,
-    };
-
-    if (!page) {
       this.formStart.showMain();
-    } else {
-      this.formStart.setAttMain();
-      this.formStart.showInfo();
+      this.sendServerData(usersActive);
+      this.sendServerData(usersInactive);
+      this.formStart.hiddenFormStart();
     }
-
-    this.sendServerData(usersActive);
-    this.sendServerData(usersInactive);
-
-    this.formStart.hiddenFormStart();
   }
 
   private userShowError(arg: IEventUnit): void {
@@ -132,6 +123,7 @@ export default class WorkWithServer extends UnitListeners {
   private authenticationUsers(arg: IEventUnit): void {
     const { users } = arg.payload!;
     const login = this.formStart.getNameValue();
+    const selectUser = sessionStorage.getItem('selectUserTotoogg-JSFE2023Q4');
 
     if (users!.length > 0) {
       users?.forEach((el) => {
@@ -147,6 +139,18 @@ export default class WorkWithServer extends UnitListeners {
           };
 
           this.sendServerData(messages);
+
+          if (selectUser && selectUser === el.login) {
+            let name = selectUser;
+            let fullName = null;
+
+            if (selectUser.length > 10) {
+              name = `${selectUser.slice(0, 10)}...`;
+              fullName = selectUser;
+            }
+
+            this.mainUsers.selectUser(el.isLogined!, name, fullName);
+          }
 
           this.formStart.addUser({ status: el.isLogined!, name: el.login, count: 0 });
         }
@@ -237,7 +241,7 @@ export default class WorkWithServer extends UnitListeners {
       this.mainUsers.updateCountMessages(userFrom!.from!, notReade);
     }
 
-    if (userMessage && messages!.length > 0) {
+    if (userMessage && messages!.length > 0 && messages![0].to === userMessage) {
       messages?.forEach((el) => {
         if (!this.mainUsers.checkIdMessages(el.id!)) {
           const status = el.status!;

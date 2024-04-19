@@ -549,4 +549,12 @@ export default class ManipulationMainUsers {
     message!.children[1].textContent = text;
     edit.textContent = 'changed';
   }
+
+  public selectUserClick(name: string): void {
+    const userArr = Array.from(document.querySelectorAll('.user__name')) as HTMLDivElement[];
+    const user = userArr.find((el) => el.textContent === name);
+    const click = new Event('click');
+
+    user!.dispatchEvent(click);
+  }
 }

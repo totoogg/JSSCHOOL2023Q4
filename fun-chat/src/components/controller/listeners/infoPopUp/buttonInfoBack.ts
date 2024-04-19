@@ -1,5 +1,6 @@
 import ManipulationFormStart from '../../../view/util/manipulationFormStart';
 import ManipulationMainUsers from '../../../view/util/manipulationMainUsers';
+import Router from '../../router/router';
 import Listener from '../listener';
 
 export default class ButtonInfoBack extends Listener {
@@ -9,6 +10,8 @@ export default class ButtonInfoBack extends Listener {
 
   private mainUsersThis = new ManipulationMainUsers();
 
+  private routerThis = new Router();
+
   constructor(key: string) {
     super();
     this.eventListener = key;
@@ -16,7 +19,14 @@ export default class ButtonInfoBack extends Listener {
 
   public callback(event: Event): void {
     event.preventDefault();
-    sessionStorage.removeItem('pageInfoTotoogg-JSFE2023Q4');
+
+    const session = sessionStorage.getItem('totoogg-JSFE2023Q4');
+
+    if (session) {
+      this.routerThis.navigate('main');
+    } else {
+      this.routerThis.navigate('login');
+    }
 
     this.formStartThis.hiddenInfo();
 

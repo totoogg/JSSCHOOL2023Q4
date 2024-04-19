@@ -3,15 +3,17 @@ import ElementCreation from '../view/util/element-creation';
 import ErrorBlock from '../view/errorBlock/errorBlock';
 import InfoBlock from '../view/infoBlock/infoBlock';
 import MainPage from '../view/mainPage/main';
+import NotFound from '../view/notFound/notFound';
+import ManipulationMainUsers from '../view/util/manipulationMainUsers';
+import Router from './router/router';
 import {
   errorParams,
   formParams,
   infoParams,
   mainParams,
+  notFoundParams,
   wrapperParams,
 } from '../view/util/params';
-import ManipulationMainUsers from '../view/util/manipulationMainUsers';
-import ManipulationFormStart from '../view/util/manipulationFormStart';
 
 export default class App {
   private start = new StartForm(formParams);
@@ -24,13 +26,13 @@ export default class App {
 
   private main = new MainPage(mainParams);
 
+  private notFound = new NotFound(notFoundParams);
+
   private mainUsersThis = new ManipulationMainUsers();
 
-  private formStartThis = new ManipulationFormStart();
+  private router = new Router();
 
   public createPage(): void {
-    console.log(window.location.href);
-
     document.addEventListener('click', () => {
       this.mainUsersThis.showActionMessage(false);
       this.mainUsersThis.writeIdActionMessage('');
@@ -42,21 +44,15 @@ export default class App {
       this.infoBlock.infoBlock.getElement()!,
       this.start.form.getElement()!,
       this.main.mainPage.getElement()!,
+      this.notFound.notFoundPage.getElement()!,
     );
 
     document.addEventListener('DOMContentLoaded', () => {
-      const session = sessionStorage.getItem('totoogg-JSFE2023Q4');
-      const page = sessionStorage.getItem('pageInfoTotoogg-JSFE2023Q4');
+      this.router.navigate(null);
+    });
 
-      if (session) {
-        this.formStartThis.hiddenFormStart();
-      }
-
-      if (page) {
-        this.formStartThis.showInfo();
-      }
-
-      console.log(1);
+    window.addEventListener('popstate', () => {
+      this.router.navigate(null);
     });
   }
 }

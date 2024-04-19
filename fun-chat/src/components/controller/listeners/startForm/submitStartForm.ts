@@ -1,11 +1,14 @@
 import ManipulationFormStart from '../../../view/util/manipulationFormStart';
 import { IEventUnit } from '../../../interfaces/interfaces';
 import Listener from '../listener';
+import Router from '../../router/router';
 
 export default class SubmitStartForm extends Listener {
   public eventListener: string;
 
   private formStartThis = new ManipulationFormStart();
+
+  private routerThis = new Router();
 
   constructor(key: string) {
     super();

@@ -132,10 +132,7 @@ export default class ManipulationFormStart {
     const info = document.querySelector('.info') as HTMLDivElement;
     const body = document.querySelector('body') as HTMLBodyElement;
     Array.from(body.children).forEach((el) => {
-      if (!el.classList.contains('info') && !el.classList.contains('display-none')) {
-        el.setAttribute('data-display', 'none');
-        el.classList.add('display-none');
-      }
+      el.classList.add('display-none');
     });
 
     info.classList.remove('display-none');
@@ -217,5 +214,37 @@ export default class ManipulationFormStart {
     const submit = new Event('submit');
 
     form.dispatchEvent(submit);
+  }
+
+  public clickLogout(): void {
+    const button = document.querySelector('.buttons__logout') as HTMLDivElement;
+    const click = new Event('click');
+
+    button.dispatchEvent(click);
+  }
+
+  public clickInfo(): void {
+    const button = document.querySelector('.buttons__info') as HTMLDivElement;
+    const click = new Event('click');
+
+    button.dispatchEvent(click);
+  }
+
+  public checkInfo(): boolean {
+    const info = document.querySelector('.info') as HTMLDivElement;
+
+    return info.classList.contains('display-none');
+  }
+
+  public showNotFound(): void {
+    const body = document.querySelector('body') as HTMLBodyElement;
+
+    Array.from(body.children).forEach((el) => {
+      if (el.classList.contains('not-found')) {
+        el.classList.remove('display-none');
+      } else {
+        el.classList.add('display-none');
+      }
+    });
   }
 }

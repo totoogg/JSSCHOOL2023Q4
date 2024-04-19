@@ -29,6 +29,12 @@ export default class ClickUser extends Listener {
           },
         },
       };
+      const session = sessionStorage.getItem('totoogg-JSFE2023Q4');
+
+      if (session) {
+        sessionStorage.setItem('selectUserTotoogg-JSFE2023Q4', nameFull || name!);
+      }
+
       this.mainUsersThis.showCancelEdit(false);
       this.mainUsersThis.activeButtonSendMessage(false);
       this.mainUsersThis.clearMessageEdit();

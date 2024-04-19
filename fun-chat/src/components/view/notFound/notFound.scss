@@ -1,0 +1,20 @@
+.not-found {
+  width: 100%;
+  max-width: 380px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .not-found__title {
+    margin-bottom: 10px;
+  }
+}
+
+.display-none {
+  display: none;
+}

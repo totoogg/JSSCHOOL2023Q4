@@ -20,7 +20,7 @@ export default class ButtonLogout extends Listener {
     if (userLocation) {
       const userData = JSON.parse(userLocation);
       const user: IEventUnit = {
-        id: userData.id,
+        id: String(Date.now()),
         type: 'USER_LOGOUT',
         payload: {
           user: {

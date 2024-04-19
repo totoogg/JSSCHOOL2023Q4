@@ -407,3 +407,20 @@ export const footerYearParams: IParams = {
   classNames: ['footer__year'],
   textContent: '2024',
 };
+
+export const notFoundParams: IParams = {
+  tag: 'div',
+  classNames: ['not-found', 'display-none'],
+};
+
+export const notFoundTitleParams: IParams = {
+  tag: 'p',
+  classNames: ['not-found__title'],
+  textContent: 'An error has occurred',
+};
+
+export const notFoundTextParams: IParams = {
+  tag: 'p',
+  classNames: ['not-found__text'],
+  textContent: 'The page you requested does not exist',
+};
