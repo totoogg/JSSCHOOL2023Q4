@@ -1,8 +1,8 @@
 import ManipulationMainUsers from '../../../../view/util/manipulationMainUsers';
-import { IEventUnit } from '../../../../interfaces/interfaces';
 import Listener from '../../listener';
+import { IAction, IEventUnit } from '../../../../interfaces/interfaces';
 
-export default class ButtonLogout extends Listener {
+export default class ButtonLogout extends Listener implements IAction {
   public eventListener: string;
 
   private mainUsersThis = new ManipulationMainUsers();

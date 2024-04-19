@@ -1,8 +1,9 @@
 import DividingStrip from '../mainPage/mainMessage/message/dividingStrip/dividingStrip';
 import Message from '../mainPage/mainMessage/message/message';
+import { IManipulationMainUsers } from '../../interfaces/interfaces';
 import { messageStripParams, messagesParams } from './params';
 
-export default class ManipulationMainUsers {
+export default class ManipulationMainUsers implements IManipulationMainUsers {
   public activeButtonSendMessage(bool: boolean): void {
     const massageButton = document.querySelector('.footer__message-button') as HTMLButtonElement;
 

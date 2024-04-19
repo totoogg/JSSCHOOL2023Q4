@@ -1,8 +1,9 @@
 import ManipulationMainUsers from '../../../../../view/util/manipulationMainUsers';
 import Listener from '../../../listener';
 import { IEventUnit } from '../../../../../interfaces/IEventUnit';
+import { IAction } from '../../../../../interfaces/interfaces';
 
-export default class ScrollMessage extends Listener {
+export default class ScrollMessage extends Listener implements IAction {
   public eventListener: string;
 
   private mainUsersThis = new ManipulationMainUsers();

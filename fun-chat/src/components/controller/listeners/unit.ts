@@ -1,6 +1,7 @@
 import ManipulationMainUsers from '../../view/util/manipulationMainUsers';
+import { IUnit } from '../../interfaces/interfaces';
 
-export default class Unit {
+export default class Unit implements IUnit {
   private mainUsers = new ManipulationMainUsers();
 
   public checkUsers(): void {

@@ -1,7 +1,8 @@
 import Listener from '../../../listener';
 import Unit from '../../../unit';
+import { IAction } from '../../../../../interfaces/interfaces';
 
-export default class InputSearch extends Listener {
+export default class InputSearch extends Listener implements IAction {
   public eventListener: string;
 
   private unitThis = new Unit();

@@ -1,7 +1,8 @@
 import MainUsers from '../mainPage/mainUsers/mainUsers';
+import { IManipulationFormStart } from '../../interfaces/interfaces';
 import { userAuthenticationParams } from './params';
 
-export default class ManipulationFormStart {
+export default class ManipulationFormStart implements IManipulationFormStart {
   public getNameValue(): string {
     const name = document.querySelector('.name__input') as HTMLInputElement;
 
@@ -72,7 +73,7 @@ export default class ManipulationFormStart {
   public buttonLogin(but?: string): void {
     const button = document.querySelector('.buttons__login') as HTMLButtonElement;
 
-    if (!but && localStorage.getItem('funChatTotooggJSFE2023Q4') === 'on') {
+    if (!but) {
       button.classList.remove('disable');
     }
 

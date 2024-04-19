@@ -1,12 +1,12 @@
-import { IEventUnit } from '../../interfaces/IEventUnit';
 import WebSocketConnect from '../../model/webSocketConnect';
 import ManipulationFormStart from '../../view/util/manipulationFormStart';
 import ManipulationMainUsers from '../../view/util/manipulationMainUsers';
 import Router from '../router/router';
 import Unit from './unit';
 import UnitListeners from './unitListeners';
+import { IWorkWithServer, IEventUnit } from '../../interfaces/interfaces';
 
-export default class WorkWithServer extends UnitListeners {
+export default class WorkWithServer extends UnitListeners implements IWorkWithServer {
   private server = new WebSocketConnect();
 
   private formStart = new ManipulationFormStart();

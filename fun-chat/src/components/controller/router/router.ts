@@ -1,7 +1,8 @@
 import ManipulationFormStart from '../../view/util/manipulationFormStart';
 import ManipulationMainUsers from '../../view/util/manipulationMainUsers';
+import { IRouter } from '../../interfaces/interfaces';
 
-export default class Router {
+export default class Router implements IRouter {
   private routes = [
     {
       path: 'totoogg-JSFE2023Q4/fun-chat/prod',
