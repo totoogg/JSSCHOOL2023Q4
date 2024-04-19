@@ -44,7 +44,14 @@ export default class Router {
       this.setHistory(str);
     }
 
-    const url = window.location.pathname.slice(29);
+    const urlStart = window.location.pathname;
+    let url;
+
+    if (urlStart.startsWith('/totoogg-JSFE2023Q4/fun-chat/prod/')) {
+      url = window.location.pathname.slice(34);
+    } else {
+      url = window.location.pathname.slice(1);
+    }
 
     this.urlChangedHandler(url);
   }
