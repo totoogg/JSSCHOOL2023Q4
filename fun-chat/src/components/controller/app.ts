@@ -14,8 +14,9 @@ import {
   notFoundParams,
   wrapperParams,
 } from '../view/util/params';
+import { IApp } from '../interfaces/interfaces';
 
-export default class App {
+export default class App implements IApp {
   private start = new StartForm(formParams);
 
   private wrapper = new ElementCreation(wrapperParams);

@@ -1,16 +1,16 @@
-import { IEventUnit, IEvents, Types } from '../../interfaces/interfaces';
+import { IEventUnit, IEvents, IUnitListeners, Types } from '../../interfaces/interfaces';
 
-export default class UnitListeners {
+export default class UnitListeners implements IUnitListeners {
   private events: IEvents = {};
 
-  on(type: Types, listener: (arg: IEventUnit) => void): void {
+  public on(type: Types, listener: (arg: IEventUnit) => void): void {
     this.events[type] = (this.events[type] || []) as ((arg: IEventUnit) => void)[] | [];
     if (this.events[type]) {
       this.events[type]!.push(listener);
     }
   }
 
-  emit(type: Types, arg: IEventUnit) {
+  public emit(type: Types, arg: IEventUnit): void {
     if (this.events[type]) {
       this.events[type]!.forEach((el) => el(arg));
     }

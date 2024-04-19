@@ -1,8 +1,9 @@
 import ManipulationFormStart from '../../../view/util/manipulationFormStart';
 import ManipulationMainUsers from '../../../view/util/manipulationMainUsers';
 import Listener from '../listener';
+import { IAction } from '../../../interfaces/interfaces';
 
-export default class ButtonError extends Listener {
+export default class ButtonError extends Listener implements IAction {
   public eventListener: string;
 
   private formStartThis = new ManipulationFormStart();

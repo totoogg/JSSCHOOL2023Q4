@@ -1,5 +1,5 @@
 import WorkWithServer from '../controller/listeners/workWithServer';
-import { IEventUnit, Types } from '../interfaces/interfaces';
+import { IEventUnit, IWebSocketConnect, Types } from '../interfaces/interfaces';
 
 let socket = new WebSocket('ws://127.0.0.1:4000');
 
@@ -29,7 +29,7 @@ function close(): void {
   socket.onclose = close;
 }
 
-export default class WebSocketConnect {
+export default class WebSocketConnect implements IWebSocketConnect {
   public connectServer(data: string): void {
     if (socket.readyState === 1) {
       socket.send(data);

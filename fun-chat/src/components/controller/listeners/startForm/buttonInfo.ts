@@ -1,14 +1,9 @@
-import ManipulationFormStart from '../../../view/util/manipulationFormStart';
-import ManipulationMainUsers from '../../../view/util/manipulationMainUsers';
 import Router from '../../router/router';
 import Listener from '../listener';
+import { IAction } from '../../../interfaces/interfaces';
 
-export default class ButtonInfo extends Listener {
+export default class ButtonInfo extends Listener implements IAction {
   public eventListener: string;
-
-  private formStartThis = new ManipulationFormStart();
-
-  private mainUsersThis = new ManipulationMainUsers();
 
   private routerThis = new Router();
 

@@ -1,7 +1,8 @@
 import ManipulationFormStart from '../../../view/util/manipulationFormStart';
 import Listener from '../listener';
+import { IAction } from '../../../interfaces/interfaces';
 
-export default class KeyboardStartForm extends Listener {
+export default class KeyboardStartForm extends Listener implements IAction {
   public eventListener: string;
 
   private formStartThis = new ManipulationFormStart();

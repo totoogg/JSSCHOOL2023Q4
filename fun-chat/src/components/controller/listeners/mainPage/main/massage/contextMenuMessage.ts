@@ -1,7 +1,8 @@
 import ManipulationMainUsers from '../../../../../view/util/manipulationMainUsers';
 import Listener from '../../../listener';
+import { IAction } from '../../../../../interfaces/interfaces';
 
-export default class ContextMenuMessage extends Listener {
+export default class ContextMenuMessage extends Listener implements IAction {
   public eventListener: string;
 
   private mainUsersThis = new ManipulationMainUsers();

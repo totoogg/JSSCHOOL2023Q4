@@ -1,9 +1,9 @@
 import ManipulationFormStart from '../../../view/util/manipulationFormStart';
-import { IEventUnit } from '../../../interfaces/interfaces';
 import Listener from '../listener';
 import Router from '../../router/router';
+import { IAction, IEventUnit } from '../../../interfaces/interfaces';
 
-export default class SubmitStartForm extends Listener {
+export default class SubmitStartForm extends Listener implements IAction {
   public eventListener: string;
 
   private formStartThis = new ManipulationFormStart();
