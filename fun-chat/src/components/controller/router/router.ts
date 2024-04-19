@@ -44,7 +44,7 @@ export default class Router {
       this.setHistory(str);
     }
 
-    const url = window.location.pathname.slice(1);
+    const url = window.location.pathname.slice(29);
 
     this.urlChangedHandler(url);
   }
