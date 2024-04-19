@@ -23,9 +23,9 @@ export default class ButtonInfoBack extends Listener {
     const session = sessionStorage.getItem('totoogg-JSFE2023Q4');
 
     if (session) {
-      this.routerThis.navigate('main');
+      this.routerThis.navigate('totoogg-JSFE2023Q4/fun-chat/prod/main');
     } else {
-      this.routerThis.navigate('login');
+      this.routerThis.navigate('totoogg-JSFE2023Q4/fun-chat/prod/login');
     }
 
     this.formStartThis.hiddenInfo();

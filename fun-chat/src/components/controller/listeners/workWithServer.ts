@@ -61,7 +61,7 @@ export default class WorkWithServer extends UnitListeners {
     }
 
     if (session && data.type === 'OPEN' && url !== 'about' && url !== 'error') {
-      this.router.navigate('main');
+      this.router.navigate('totoogg-JSFE2023Q4/fun-chat/prod/main');
     } else {
       this.router.navigate(url);
     }
@@ -85,7 +85,7 @@ export default class WorkWithServer extends UnitListeners {
     if (!arg.payload!.user?.isLogined) {
       sessionStorage.removeItem('totoogg-JSFE2023Q4');
       sessionStorage.removeItem('selectUserTotoogg-JSFE2023Q4');
-      this.router.navigate('login');
+      this.router.navigate('totoogg-JSFE2023Q4/fun-chat/prod/login');
     }
   }
 
