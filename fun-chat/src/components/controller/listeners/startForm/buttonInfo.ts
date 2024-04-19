@@ -20,6 +20,6 @@ export default class ButtonInfo extends Listener {
   public callback(event: Event): void {
     event.preventDefault();
 
-    this.routerThis.navigate('about');
+    this.routerThis.navigate('totoogg-JSFE2023Q4/fun-chat/prod/about');
   }
 }
