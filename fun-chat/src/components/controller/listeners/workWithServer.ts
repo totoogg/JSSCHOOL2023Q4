@@ -46,7 +46,7 @@ export default class WorkWithServer extends UnitListeners {
 
   public openConnect(data: IEventUnit): void {
     const session = sessionStorage.getItem('totoogg-JSFE2023Q4');
-    const url = window.location.pathname.slice(1);
+    const url = window.location.pathname.slice(29);
 
     if (session) {
       const user = JSON.parse(session);
