@@ -4,31 +4,31 @@ import ManipulationMainUsers from '../../view/util/manipulationMainUsers';
 export default class Router {
   private routes = [
     {
-      path: '',
+      path: 'totoogg-JSFE2023Q4/fun-chat/prod',
       callback: () => {
         this.startPage();
       },
     },
     {
-      path: 'login',
+      path: 'totoogg-JSFE2023Q4/fun-chat/prod/login',
       callback: () => {
         this.startPage();
       },
     },
     {
-      path: 'about',
+      path: 'totoogg-JSFE2023Q4/fun-chat/prod/about',
       callback: () => {
         this.infoPage();
       },
     },
     {
-      path: 'main',
+      path: 'totoogg-JSFE2023Q4/fun-chat/prod/main',
       callback: () => {
         this.mainPage();
       },
     },
     {
-      path: 'error',
+      path: 'totoogg-JSFE2023Q4/fun-chat/prod/error',
       callback: () => {
         this.notFoundPage();
       },
@@ -44,14 +44,7 @@ export default class Router {
       this.setHistory(str);
     }
 
-    const urlStart = window.location.pathname;
-    let url;
-
-    if (urlStart.startsWith('/totoogg-JSFE2023Q4/fun-chat/prod/')) {
-      url = window.location.pathname.slice(34);
-    } else {
-      url = window.location.pathname.slice(1);
-    }
+    const url = window.location.pathname.slice(1);
 
     this.urlChangedHandler(url);
   }
