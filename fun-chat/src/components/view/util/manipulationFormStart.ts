@@ -132,6 +132,7 @@ export default class ManipulationFormStart implements IManipulationFormStart {
   public showInfo(): void {
     const info = document.querySelector('.info') as HTMLDivElement;
     const body = document.querySelector('body') as HTMLBodyElement;
+
     Array.from(body.children).forEach((el) => {
       el.classList.add('display-none');
     });
@@ -162,6 +163,11 @@ export default class ManipulationFormStart implements IManipulationFormStart {
     const main = document.querySelector('.main') as HTMLDivElement;
     const name = document.querySelector('.name__input') as HTMLInputElement;
     const user = document.querySelector('.header__user') as HTMLParagraphElement;
+    const body = document.querySelector('body') as HTMLBodyElement;
+
+    Array.from(body.children).forEach((el) => {
+      el.classList.add('display-none');
+    });
 
     if (name.value.length > 10) {
       user.setAttribute('data-login', name.value);

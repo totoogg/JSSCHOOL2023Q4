@@ -29,6 +29,13 @@ export default class SubmitStartForm extends Listener implements IAction {
           },
         },
       };
+      const userSave = {
+        login: this.formStartThis.getNameValue(),
+        password: this.formStartThis.getPasswordValue(),
+        isLogin: true,
+      };
+
+      sessionStorage.setItem('totoogg-JSFE2023Q4', JSON.stringify(userSave));
 
       this.sendServerData(user);
     }

@@ -5,31 +5,31 @@ import { IRouter } from '../../interfaces/interfaces';
 export default class Router implements IRouter {
   private routes = [
     {
-      path: 'totoogg-JSFE2023Q4/fun-chat/prod',
+      path: '',
       callback: () => {
         this.startPage();
       },
     },
     {
-      path: 'totoogg-JSFE2023Q4/fun-chat/prod/login',
+      path: 'login',
       callback: () => {
         this.startPage();
       },
     },
     {
-      path: 'totoogg-JSFE2023Q4/fun-chat/prod/about',
+      path: 'about',
       callback: () => {
         this.infoPage();
       },
     },
     {
-      path: 'totoogg-JSFE2023Q4/fun-chat/prod/main',
+      path: 'main',
       callback: () => {
         this.mainPage();
       },
     },
     {
-      path: 'totoogg-JSFE2023Q4/fun-chat/prod/error',
+      path: 'error',
       callback: () => {
         this.notFoundPage();
       },
@@ -41,17 +41,17 @@ export default class Router implements IRouter {
   private formStartThis = new ManipulationFormStart();
 
   public navigate(str: string | null): void {
-    if (typeof str === 'string') {
+    if (typeof str === 'string' && this.routes.find((el) => el.path === str)) {
       this.setHistory(str);
     }
 
-    const url = window.location.pathname.slice(1);
+    const url = window.location.hash.slice(1);
 
     this.urlChangedHandler(url);
   }
 
   private setHistory(str: string): void {
-    window.history.pushState(null, '', `/${str}`);
+    window.location.href = `${window.location.href.replace(/#(.*)$/, '')}#${str}`;
   }
 
   private urlChangedHandler(str: string): void {
@@ -59,8 +59,9 @@ export default class Router implements IRouter {
 
     if (!route) {
       const notFound = this.routes.find((el) => el.path === 'error');
+
       if (notFound) {
-        this.navigate(notFound.path);
+        notFound.callback();
       }
 
       return;

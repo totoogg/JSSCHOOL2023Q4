@@ -46,7 +46,7 @@ export default class WorkWithServer extends UnitListeners implements IWorkWithSe
 
   public openConnect(data: IEventUnit): void {
     const session = sessionStorage.getItem('totoogg-JSFE2023Q4');
-    const url = window.location.pathname.slice(1);
+    const url = window.location.hash.slice(1);
 
     if (session) {
       const user = JSON.parse(session);
@@ -61,10 +61,11 @@ export default class WorkWithServer extends UnitListeners implements IWorkWithSe
     }
 
     if (session && data.type === 'OPEN' && url !== 'about' && url !== 'error') {
-      this.router.navigate('totoogg-JSFE2023Q4/fun-chat/prod/main');
+      this.router.navigate('main');
     } else {
       this.router.navigate(url);
     }
+
     this.formStart.showErrorConnect(false);
   }
 
@@ -83,9 +84,10 @@ export default class WorkWithServer extends UnitListeners implements IWorkWithSe
 
   private userLogout(arg: IEventUnit): void {
     if (!arg.payload!.user?.isLogined) {
+      sessionStorage.setItem('pageTotoogg-JSFE2023Q4', 'login');
       sessionStorage.removeItem('totoogg-JSFE2023Q4');
       sessionStorage.removeItem('selectUserTotoogg-JSFE2023Q4');
-      this.router.navigate('totoogg-JSFE2023Q4/fun-chat/prod/login');
+      this.router.navigate('login');
     }
   }
 
@@ -101,13 +103,9 @@ export default class WorkWithServer extends UnitListeners implements IWorkWithSe
         type: 'USER_ACTIVE',
         payload: null,
       };
-      const userSave = {
-        login: this.formStart.getNameValue(),
-        password: this.formStart.getPasswordValue(),
-        isLogin: true,
-      };
 
-      sessionStorage.setItem('totoogg-JSFE2023Q4', JSON.stringify(userSave));
+      sessionStorage.setItem('pageTotoogg-JSFE2023Q4', 'main');
+      this.router.navigate('main');
 
       this.formStart.showMain();
       this.sendServerData(usersActive);

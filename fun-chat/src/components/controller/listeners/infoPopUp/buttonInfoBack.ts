@@ -24,9 +24,11 @@ export default class ButtonInfoBack extends Listener implements IAction {
     const session = sessionStorage.getItem('totoogg-JSFE2023Q4');
 
     if (session) {
-      this.routerThis.navigate('totoogg-JSFE2023Q4/fun-chat/prod/main');
+      sessionStorage.setItem('pageTotoogg-JSFE2023Q4', 'main');
+      this.routerThis.navigate('main');
     } else {
-      this.routerThis.navigate('totoogg-JSFE2023Q4/fun-chat/prod/login');
+      sessionStorage.setItem('pageTotoogg-JSFE2023Q4', 'login');
+      this.routerThis.navigate('login');
     }
 
     this.formStartThis.hiddenInfo();

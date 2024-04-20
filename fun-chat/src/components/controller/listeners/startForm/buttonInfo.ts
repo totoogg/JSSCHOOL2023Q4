@@ -15,6 +15,8 @@ export default class ButtonInfo extends Listener implements IAction {
   public callback(event: Event): void {
     event.preventDefault();
 
-    this.routerThis.navigate('totoogg-JSFE2023Q4/fun-chat/prod/about');
+    sessionStorage.setItem('pageTotoogg-JSFE2023Q4', 'about');
+
+    this.routerThis.navigate('about');
   }
 }

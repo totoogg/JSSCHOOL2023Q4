@@ -52,7 +52,7 @@ export default class App implements IApp {
       this.router.navigate(null);
     });
 
-    window.addEventListener('popstate', () => {
+    window.addEventListener('hashchange', () => {
       this.router.navigate(null);
     });
   }
