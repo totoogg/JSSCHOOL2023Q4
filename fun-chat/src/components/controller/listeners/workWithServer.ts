@@ -234,8 +234,6 @@ export default class WorkWithServer extends UnitListeners implements IWorkWithSe
     const userMessage = this.mainUsers.getUserToSend();
     const userFrom = messages?.find((el) => el.from !== user);
     const notReade = messages?.filter((el) => !el.status?.isReaded && el.from !== user).length;
-    console.log(userMessage);
-    console.log(messages);
 
     if (notReade) {
       this.mainUsers.updateCountMessages(userFrom!.from!, notReade);
