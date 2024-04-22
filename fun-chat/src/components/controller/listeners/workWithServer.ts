@@ -60,7 +60,7 @@ export default class WorkWithServer extends UnitListeners implements IWorkWithSe
       sessionStorage.setItem('totoogg-JSFE2023Q4', JSON.stringify(userSave));
     }
 
-    if (session && data.type === 'OPEN' && url !== 'about' && url !== 'error') {
+    if (session && data.type === 'OPEN' && (url === 'main' || url === 'login' || url === '')) {
       this.router.navigate('main');
     } else {
       this.router.navigate(url);
