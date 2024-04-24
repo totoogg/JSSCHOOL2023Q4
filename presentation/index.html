@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Regular expressions</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>Regular expressions</section>
+				<section>
+          <section>Create a regular expression object
+          <pre><code data-trim data-noescape>
+          regexp = new RegExp("pattern", "flags");
+          </code></pre>
+          <pre><code data-trim data-noescape>
+            regexp = /pattern/; // no flags
+            regexp = /pattern/gmi; // with flags g,m and i
+          </code></pre></section>
+          <section>Flags: i, g, m, s, u, y, d</section>
+          <section>str.match(regexp)
+            <pre><code data-trim data-noescape>
+              let str = "There is the house where my family lives";
+
+              alert( str.match(/ere/gi) ); 
+              // ere, ere (an array of 2 substrings that match)
+              </code></pre>
+          </section>
+          <section>str.replace(regexp, replacement)
+            <pre><code data-trim data-noescape>
+              // no flag g
+              alert( "To be or not to be".replace(/to/i, "I") ); 
+              // I be or not to be
+              
+              // with flag g
+              alert( "To be or not to be".replace(/to/ig, "I") ); 
+              // I be or not I be
+              </code></pre>
+          </section>
+          <section>regexp.test(str)
+            <pre><code data-trim data-noescape>
+              let str = "To be or not to be";
+              let regexp = /BE/i;
+
+              alert( regexp.test(str) ); // true
+              </code></pre>
+          </section>
+        </section>
+				<section>Character classes: \d, \D, \s, \S, \w, \W, .
+          <section>
+            <pre><code data-trim data-noescape>
+              let str = "+1(234)-567-89-12";
+
+              alert( str.match(/\d/) ); // 1
+
+              alert( str.match(/\d/g) ); 
+              // array of matches: [1,2,3,4,5,6,7,8,9,1,2]
+              </code></pre>
+          </section>
+        </section>
+				<section>Anchors: ^ and $
+          <pre><code data-trim data-noescape>
+            let str = "There is the house where my family lives";
+            
+            alert( /^There/.test(str) ); // true
+
+            alert( /lives$/.test(str) ); // true
+            </code></pre>
+        </section>
+				<section>Escaping: \
+          <p>Special characters: [ ] { } ( ) \ ^ $ . | ? * +</p>
+          <section><pre><code data-trim data-noescape>
+            alert( "Chapter 7.2".match(/\d\.\d/) ); // 7.2
+            </code></pre>
+          </section>
+        </section>
+				<section>
+          <section>Sets and ranges [...]</section>
+          <section>Sets
+            <pre><code data-trim data-noescape>
+              alert( "Ava avi".match(/av[ai]/gi) ); // "Ava", "avi"
+              </code></pre>
+          </section>
+          <section>Ranges
+            <pre><code data-trim data-noescape>
+              alert( "My family".match(/i[0-9a-z][0-9a-z]/g) ); // ily
+              </code></pre>
+          </section>
+          <section>Excluding ranges
+            <pre><code data-trim data-noescape>
+              alert( "example5@gmail.com".match(/[^\d\sA-Z]/gi) ); // @ and .
+              </code></pre>
+          </section>
+        </section>
+				<section>Quantifiers +, *, ? and {n}
+          <section>{n}
+            <pre><code data-trim data-noescape>
+              alert( "My number 12345".match(/\d{5}/) ); //  "12345"
+
+              alert( "My number 1234".match(/\d{3,5}/) ); //  "1234"
+              
+              alert( "My number 1234567".match(/\d{3,}/) ); //  "1234567"
+              </code></pre>
+          </section>
+          <section>+
+            <pre><code data-trim data-noescape>
+              alert( "+1(234)-567-89-12".match(/\d+/g) ); //  1,234,567,89,12
+              </code></pre>
+          </section>
+          <section>?
+            <pre><code data-trim data-noescape>
+              alert( "Should I write color or colour?".match(/colou?r/g) ); 
+              // color, colour
+              </code></pre>
+          </section>
+          <section>*
+            <pre><code data-trim data-noescape>
+              alert( "100 10 1".match(/\d0*/g) ); // 100, 10, 1
+              </code></pre>
+          </section>
+        </section>
+				<section>Capturing groups (...)
+          <pre><code data-trim data-noescape>
+            alert( 'Gogogo now!'.match(/(go)+/ig) ); // "Gogogo"
+            </code></pre>
+        </section>
+				<section>Alternation |
+          <pre><code data-trim data-noescape>
+            let regexp = /html|php|css|java(script)?/gi;
+
+            let str = "First HTML appeared, then CSS, then JavaScript";
+
+            alert( str.match(regexp) ); // 'HTML', 'CSS', 'JavaScript'
+            </code></pre>
+        </section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
